@@ -329,6 +329,13 @@
 			$consult = new Administrador_model();
 			$consult->eliminar_consult_2($id);
 			$this->gestion_consult();
-		}	
+		}
+
+		public function eliminar_consult($id){
+
+			$consult = new Administrador_model();
+			$consult->eliminar_consult_3($id);
+			$this->gestion_consult();
+		}
 	}
 ?>
