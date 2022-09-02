@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.1.3
 -- https://www.phpmyadmin.net/
 --
--- Servidor: 127.0.0.1
--- Tiempo de generación: 30-08-2022 a las 00:22:14
--- Versión del servidor: 10.4.22-MariaDB
--- Versión de PHP: 8.1.2
+-- Host: 127.0.0.1
+-- Generation Time: Sep 02, 2022 at 03:13 AM
+-- Server version: 10.4.24-MariaDB
+-- PHP Version: 7.4.28
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,13 +18,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `clinica_health_home`
+-- Database: `clinica_health_home`
 --
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `administrador`
+-- Table structure for table `administrador`
 --
 
 CREATE TABLE `administrador` (
@@ -34,7 +34,7 @@ CREATE TABLE `administrador` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Volcado de datos para la tabla `administrador`
+-- Dumping data for table `administrador`
 --
 
 INSERT INTO `administrador` (`usuario_administrador`, `pass_admin`, `create_admin`) VALUES
@@ -43,7 +43,7 @@ INSERT INTO `administrador` (`usuario_administrador`, `pass_admin`, `create_admi
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `auxiliar`
+-- Table structure for table `auxiliar`
 --
 
 CREATE TABLE `auxiliar` (
@@ -59,16 +59,17 @@ CREATE TABLE `auxiliar` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Volcado de datos para la tabla `auxiliar`
+-- Dumping data for table `auxiliar`
 --
 
 INSERT INTO `auxiliar` (`id_auxiliar`, `id_tipo_doc`, `nombres_aux`, `apellidos_aux`, `tel_aux`, `correo_aux`, `estado_aux`, `pass_aux`, `create_aux`) VALUES
-('24354654', 'CC', 'gggfhghh', 'hfg', 343246556, 'gdfgfdg@hgh', 0, '24354654', '2022-08-29 17:18:19');
+('3030301', 'RC', 'Arturo Fernando', 'Jimenez Calle', 26, 'arturito@hotmail.com', 1, '1234', '2022-09-01 18:56:47'),
+('3030302', 'PA', 'Pamela', 'Díaz', 27, 'pamelachu@nose.com', 1, '1234', '2022-09-01 18:56:47');
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `cita`
+-- Table structure for table `cita`
 --
 
 CREATE TABLE `cita` (
@@ -83,10 +84,18 @@ CREATE TABLE `cita` (
   `create_cita` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `cita`
+--
+
+INSERT INTO `cita` (`id_cita`, `id_paciente`, `id_profesional`, `fechacita_horainicio`, `fechacita_horafin`, `estado_cita`, `estado_pago_cita`, `asistencia_cita`, `create_cita`) VALUES
+(4, '2020201', '1010101', '2022-09-02 08:00:00', '2022-09-02 08:30:00', 1, 0, 0, '2022-09-01 19:02:04'),
+(5, '2020202', '1010102', '2022-09-06 12:00:00', '2022-09-06 12:30:00', 1, 0, 0, '2022-09-01 19:02:04');
+
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `consultorios`
+-- Table structure for table `consultorios`
 --
 
 CREATE TABLE `consultorios` (
@@ -96,19 +105,20 @@ CREATE TABLE `consultorios` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Volcado de datos para la tabla `consultorios`
+-- Dumping data for table `consultorios`
 --
 
 INSERT INTO `consultorios` (`id_consultorios`, `estado_consult`, `create_consult`) VALUES
 ('C01', 1, '2022-08-18 17:07:04'),
 ('C02', 1, '2022-08-18 17:07:04'),
 ('C03', 1, '2022-08-18 17:07:04'),
-('co5', 0, '2022-08-29 17:19:31');
+('C04', 1, '2022-08-31 12:39:56'),
+('C05', 1, '2022-08-31 12:40:08');
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `especialidad`
+-- Table structure for table `especialidad`
 --
 
 CREATE TABLE `especialidad` (
@@ -120,7 +130,7 @@ CREATE TABLE `especialidad` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Volcado de datos para la tabla `especialidad`
+-- Dumping data for table `especialidad`
 --
 
 INSERT INTO `especialidad` (`id_especialidad`, `descrip_espec`, `costo_espec`, `estado_espec`, `create_espec`) VALUES
@@ -132,7 +142,7 @@ INSERT INTO `especialidad` (`id_especialidad`, `descrip_espec`, `costo_espec`, `
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `paciente`
+-- Table structure for table `paciente`
 --
 
 CREATE TABLE `paciente` (
@@ -149,16 +159,17 @@ CREATE TABLE `paciente` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Volcado de datos para la tabla `paciente`
+-- Dumping data for table `paciente`
 --
 
 INSERT INTO `paciente` (`id_paciente`, `id_tipo_doc`, `nombres_pac`, `apellidos_pac`, `tel_pac`, `correo_pac`, `sexo_pac`, `estado_pac`, `pass_pac`, `create_pac`) VALUES
-('2020201', 'CC', 'alejamdro fasti', 'dc', 323231, 'djdmw@gfhgfh.hjg', 'Masculino', 0, '2020201', '2022-08-29 17:16:44');
+('2020201', 'PEP', 'Kyle', 'Mendez Castro', 24, 'kyle@gmail.com', 'Masculino', 1, '1234', '2022-09-01 18:57:37'),
+('2020202', 'PA', 'Maria Andrea', 'Ortiz Palacios', 25, 'mariita@outlook.com', 'Femenino', 1, '1234', '2022-09-01 18:57:37');
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `profesional`
+-- Table structure for table `profesional`
 --
 
 CREATE TABLE `profesional` (
@@ -178,16 +189,17 @@ CREATE TABLE `profesional` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Volcado de datos para la tabla `profesional`
+-- Dumping data for table `profesional`
 --
 
 INSERT INTO `profesional` (`id_profesional`, `id_tipo_doc`, `id_consultorios`, `id_especialidad`, `nombres_prof`, `apellidos_prof`, `tel_prof`, `correo_prof`, `dias_laborales`, `franja_horaria`, `estado_prof`, `pass_prof`, `create_prof`) VALUES
-('2020207', 'CC', 'C02', 3, 'jhjghjtf', 'fyfryrtdtr', 1215355, 'gmhdrmy@xn--kjjll-sta.kl', 'de dia da dia', '24', 0, '2020207', '2022-08-29 17:17:49');
+('1010101', 'TI', 'C01', 3, 'Maximiliano', 'Zapata', 22, 'maxi@yahoo.com', 'Lunes-Viernes\r\nExcepciones: Fines de semana.', '6:00 am - 2:00 pm', 1, '1234', '2022-09-01 18:59:53'),
+('1010102', 'CC', 'C02', 1, 'Oscar', 'Medina', 23, 'osquitar@myspace.com', 'Martes-Domingo\r\nExcepciones: Lunes y festivos.', '8:00 am - 4:00 pm', 1, '', '2022-09-01 18:59:53');
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `tipo_doc`
+-- Table structure for table `tipo_doc`
 --
 
 CREATE TABLE `tipo_doc` (
@@ -197,7 +209,7 @@ CREATE TABLE `tipo_doc` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Volcado de datos para la tabla `tipo_doc`
+-- Dumping data for table `tipo_doc`
 --
 
 INSERT INTO `tipo_doc` (`id_tipo_doc`, `tipo_doc`, `create_tipo_doc`) VALUES
@@ -209,24 +221,24 @@ INSERT INTO `tipo_doc` (`id_tipo_doc`, `tipo_doc`, `create_tipo_doc`) VALUES
 ('TI', 'Tarjeta de Identidad', '2022-08-18 16:59:40');
 
 --
--- Índices para tablas volcadas
+-- Indexes for dumped tables
 --
 
 --
--- Indices de la tabla `administrador`
+-- Indexes for table `administrador`
 --
 ALTER TABLE `administrador`
   ADD PRIMARY KEY (`usuario_administrador`);
 
 --
--- Indices de la tabla `auxiliar`
+-- Indexes for table `auxiliar`
 --
 ALTER TABLE `auxiliar`
   ADD PRIMARY KEY (`id_auxiliar`),
   ADD KEY `fk_tipo_doc_auxiliar` (`id_tipo_doc`);
 
 --
--- Indices de la tabla `cita`
+-- Indexes for table `cita`
 --
 ALTER TABLE `cita`
   ADD PRIMARY KEY (`id_cita`),
@@ -234,26 +246,26 @@ ALTER TABLE `cita`
   ADD KEY `fk_profesional_cita` (`id_profesional`);
 
 --
--- Indices de la tabla `consultorios`
+-- Indexes for table `consultorios`
 --
 ALTER TABLE `consultorios`
   ADD PRIMARY KEY (`id_consultorios`);
 
 --
--- Indices de la tabla `especialidad`
+-- Indexes for table `especialidad`
 --
 ALTER TABLE `especialidad`
   ADD PRIMARY KEY (`id_especialidad`);
 
 --
--- Indices de la tabla `paciente`
+-- Indexes for table `paciente`
 --
 ALTER TABLE `paciente`
   ADD PRIMARY KEY (`id_paciente`),
   ADD KEY `fk_tipo_doc_paciente` (`id_tipo_doc`);
 
 --
--- Indices de la tabla `profesional`
+-- Indexes for table `profesional`
 --
 ALTER TABLE `profesional`
   ADD PRIMARY KEY (`id_profesional`),
@@ -262,52 +274,52 @@ ALTER TABLE `profesional`
   ADD KEY `fk_especialidad_profesional` (`id_especialidad`);
 
 --
--- Indices de la tabla `tipo_doc`
+-- Indexes for table `tipo_doc`
 --
 ALTER TABLE `tipo_doc`
   ADD PRIMARY KEY (`id_tipo_doc`);
 
 --
--- AUTO_INCREMENT de las tablas volcadas
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT de la tabla `cita`
+-- AUTO_INCREMENT for table `cita`
 --
 ALTER TABLE `cita`
-  MODIFY `id_cita` bigint(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_cita` bigint(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT de la tabla `especialidad`
+-- AUTO_INCREMENT for table `especialidad`
 --
 ALTER TABLE `especialidad`
   MODIFY `id_especialidad` tinyint(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- Restricciones para tablas volcadas
+-- Constraints for dumped tables
 --
 
 --
--- Filtros para la tabla `auxiliar`
+-- Constraints for table `auxiliar`
 --
 ALTER TABLE `auxiliar`
   ADD CONSTRAINT `fk_tipo_doc_auxiliar` FOREIGN KEY (`id_tipo_doc`) REFERENCES `tipo_doc` (`id_tipo_doc`);
 
 --
--- Filtros para la tabla `cita`
+-- Constraints for table `cita`
 --
 ALTER TABLE `cita`
   ADD CONSTRAINT `fk_paciente_cita` FOREIGN KEY (`id_paciente`) REFERENCES `paciente` (`id_paciente`),
   ADD CONSTRAINT `fk_profesional_cita` FOREIGN KEY (`id_profesional`) REFERENCES `profesional` (`id_profesional`);
 
 --
--- Filtros para la tabla `paciente`
+-- Constraints for table `paciente`
 --
 ALTER TABLE `paciente`
   ADD CONSTRAINT `fk_tipo_doc_paciente` FOREIGN KEY (`id_tipo_doc`) REFERENCES `tipo_doc` (`id_tipo_doc`);
 
 --
--- Filtros para la tabla `profesional`
+-- Constraints for table `profesional`
 --
 ALTER TABLE `profesional`
   ADD CONSTRAINT `fk_consultorios_profesional` FOREIGN KEY (`id_consultorios`) REFERENCES `consultorios` (`id_consultorios`),
