@@ -263,5 +263,11 @@
 			$resultado = $this->db->query($sql);
 
 		}
+
+		public function eliminar_consul($id){
+
+			$sql= "DELETE FROM consultorios WHERE id_consultorios = '$id'";
+			$resultado = $this ->db->query($sql);
+		}
 	} 	
 ?>

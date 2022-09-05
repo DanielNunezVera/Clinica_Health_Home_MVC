@@ -261,6 +261,13 @@
 			$this->gestion_u();
 		}
 
+		public function eliminar_consul($id){
+
+			$consul = new Administrador_model();
+			$consul -> eliminar_consul($id);
+			$this->gestion_consult();
+		}
+
 		public function cambio_estado_1_pac($id){
 			
 			$pac = new Administrador_model();
