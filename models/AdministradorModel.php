@@ -113,13 +113,13 @@
 			$resultado = $this->db->query("INSERT INTO consultorios (id_consultorios, estado_consult, create_consult) VALUES ('$id_consultorios', 1, CURRENT_TIMESTAMP)");
 		}
 		
-		public function modificar_paciente($id_paciente, $id_tipo_doc, $tel_pac, $correo_pac){
-			$resultado = $this->db->query("UPDATE paciente SET id_tipo_doc='$id_tipo_doc', tel_pac='$tel_pac', correo_pac='$correo_pac' WHERE id_paciente= '$id_paciente'");
+		public function modificar_paciente($id_paciente, $id_tipo_doc, $id_tipo_doc_1 ,$tel_pac, $correo_pac){
+			$resultado = $this->db->query("UPDATE paciente SET id_tipo_doc='$id_tipo_doc', tel_pac='$tel_pac', correo_pac='$correo_pac' WHERE id_paciente= '$id_paciente' AND id_tipo_doc='$id_tipo_doc_1'");
 		}
 
-		public function modificar_profesional($id_profesional, $id_consultorios, $id_especialidad, $tel_prof, $correo_prof ,$dias_laborales, $franja_horaria){
+		public function modificar_profesional($id_profesional, $id_consultorios, $id_especialidad, $tel_prof, $correo_prof,$dias_laborales, $franja_horaria, $id_tipo_doc){
 			
-			$resultado = $this->db->query("UPDATE profesional SET  tel_prof='$tel_prof', correo_prof='$correo_prof', id_consultorios='$id_consultorios', id_especialidad='$id_especialidad',dias_laborales='$dias_laborales', franja_horaria='$franja_horaria' WHERE id_profesional = '$id_profesional'");			
+			$resultado = $this->db->query("UPDATE profesional SET  tel_prof='$tel_prof', correo_prof='$correo_prof', id_consultorios='$id_consultorios', id_especialidad='$id_especialidad',dias_laborales='$dias_laborales', franja_horaria='$franja_horaria' WHERE id_profesional = '$id_profesional' AND id_tipo_doc = '$id_tipo_doc'");			
 		}
 
 		public function modificar_auxiliar($id_auxiliar, $id_tipo_doc, $tel_aux, $correo_aux){
@@ -199,16 +199,16 @@
 		}
 
 		
-		public function get_paciente($id){
-			$sql = "SELECT * FROM paciente WHERE id_paciente='$id' LIMIT 1";
+		public function get_paciente($id, $t_doc){
+			$sql = "SELECT * FROM paciente WHERE id_paciente='$id' AND id_tipo_doc = '$t_doc' LIMIT 1";
 			$resultado = $this->db->query($sql);
 			$row = $resultado->fetch_assoc();
 
 			return $row;
 		}
 
-		public function get_prof($id){
-			$sql = "SELECT * FROM profesional WHERE id_profesional='$id' LIMIT 1";
+		public function get_prof($id, $t_doc){
+			$sql = "SELECT * FROM profesional WHERE id_profesional='$id' AND id_tipo_doc='$t_doc' LIMIT 1";
 			$resultado = $this->db->query($sql);
 			$row = $resultado->fetch_assoc();
 

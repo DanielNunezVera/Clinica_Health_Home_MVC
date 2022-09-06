@@ -41,6 +41,7 @@
                     <div class="contact-wrapper animated bounceInUp">
                         <div class="contact-form">
                             <form action="index.php?c=Administrador&a=modificar_pac" method="POST" autocomplete="off">
+                                <input type="hidden" id="id_tipo_doc_1" name="id_tipo_doc_1" value="<?php echo $data["paciente"]["id_tipo_doc"]?>">
                                 <p>
                                     <label>Tipo doc</label>
                                     <select class="Selectorconsult" name="id_tipo_doc" id="id_tipo_doc" required>

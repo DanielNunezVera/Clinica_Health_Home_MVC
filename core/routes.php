@@ -15,13 +15,13 @@
 		return $control;
 	}
 	
-	function cargarAccion($controller, $accion, $id = null){
+	function cargarAccion($controller, $accion, $id = null, $t_doc = null){
 		
 		if(isset($accion) && method_exists($controller, $accion)){
-			if($id == null){
+			if($id == null && $t_doc == null){
 				$controller->$accion();
 				} else {
-				$controller->$accion($id);
+				$controller->$accion($id, $t_doc);
 			}
 			} else {
 			$controller->ACCION_PRINCIPAL();

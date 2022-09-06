@@ -5,8 +5,10 @@
         if (!!scheds) {
             Object.keys(scheds).map(k => {
                 var row = scheds[k]
-                events.push({ id: row.id, title: row.title, start: row.start_datetime, end: row.end_datetime });
+                events.push({ id: row.id_cita, title: row.id_cita, start: row.fechacita_horainicio, end: row.fechacita_horafin });
             })
+        }else {
+            alert("pvto");
         }
         var date = new Date()
         var d = date.getDate(),
@@ -27,14 +29,14 @@
                 var _details = $('#event-details-modal')
                 var id = info.event.id
                 if (!!scheds[id]) {
-                    _details.find('#title').text(scheds[id].title)
-                    _details.find('#description').text(scheds[id].description)
+                    _details.find('#title').text(scheds[id].id_cita)
+                    _details.find('#description').text(scheds[id].id_cita)
                     _details.find('#start').text(scheds[id].sdate)
                     _details.find('#end').text(scheds[id].edate)
                     _details.find('#edit,#delete').attr('data-id', id)
                     _details.modal('show')
                 } else {
-                    alert("Event is undefined");
+                    alert("pete");
                 }
             },
             eventDidMount: function(info) {
