@@ -43,7 +43,7 @@
                         <br>
                         <a href="index.php?c=Administrador&a=gestion_consult" class="boton">Gestión Consultorios</a>
                         <br>
-                        <a href="gestion_agenda/gestion_agenda.php" class="boton">Gestión Agenda</a>
+                        <a href="index.php?c=Administrador&a=gestion_agenda" class="boton">Gestión Agenda</a>
                         <br>
                     </div>
                 </div>

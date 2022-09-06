@@ -1,6 +1,5 @@
 <?php
-include "../../../controller/sesiones/sesiones_admin.php";
-require_once('db-connect.php');
+require_once('views/administrador/gestion_agenda/db-connect.php');
 ?> 
 <!DOCTYPE html>
 <html lang="en">
@@ -10,15 +9,17 @@ require_once('db-connect.php');
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nueva Agenda</title>
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
-    <link rel="stylesheet" href="./css/bootstrap.min.css">
-    <link rel="stylesheet" href="./fullcalendar/lib/main.min.css">
-    <script src="./js/jquery-3.6.0.min.js"></script>
-    <script src="./js/bootstrap.min.js"></script>
-    <script src="./fullcalendar/lib/main.min.js"></script>
+    <link rel="stylesheet" href="assets/css/estilos.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="views/administrador/gestion_agenda/css/bootstrap.min.css">
+    <link rel="stylesheet" href="views/administrador/gestion_agenda/fullcalendar/lib/main.min.css">
+    <script src="views/administrador/gestion_agenda/js/jquery-3.6.0.min.js"></script>
+    <script src="views/administrador/gestion_agenda/js/bootstrap.min.js"></script>
+    <script src="views/administrador/gestion_agenda/fullcalendar/lib/main.min.js"></script>
     <script src="https://kit.fontawesome.com/41bcea2ae3.js" crossorigin="anonymous"></script>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 
-    <link rel="stylesheet" href="../../../assets/css/estilos.css">
+
+
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Merriweather+Sans:wght@800&display=swap');
 
@@ -33,16 +34,16 @@ require_once('db-connect.php');
     <header>
         <div class="container__menu">
             <div class="logo">
-                <img src="../../assets/images/Logo2.png" alt="">
+                <img src="assets/images/Logo2.png" alt="">
             </div>
             <div class="menu">
                 <i class="fas fa-bars" id="btn_menu"></i>
                 <div id="back_menu"></div>
                 <nav id="nav">
-                    <img src="../../assets/images/ajustes.png" alt="">
+                    <img src="assets/images/ajustes.png" alt="">
                     <ul>
-                        <li><a href="../index_admin.php">Inicio</a></li>
-                        <li><a href="../../../controller/sesiones/cerrarsesion.php">Cerrar sesion</a></li>
+                        <li><a href="index.php?c=Administrador&a=index">Inicio</a></li>
+                        <li><a href="">Cerrar sesion</a></li>
                     </ul>
                 </nav>
             </div>
@@ -68,11 +69,11 @@ require_once('db-connect.php');
                                                 <input type="hidden" name="id" value="">
                                                 <div class="form-group mb-2">
                                                     <label for="nombre_prof" class="control-label">Nombre profesional</label>
-                                                    <input type="text" class="form-control form-control-sm rounded-0" name="title" id="title" value=<?php echo $_SESSION['p_nombre_pers']."&nbsp;".$_SESSION['p_apellido_pers']?> disabled>
+                                                    <input type="text" class="form-control form-control-sm rounded-0" name="title" id="title" value= "holis" disabled>
                                                 </div>
                                                 <div class="form-group mb-2">
                                                     <label for="description" class="control-label">Descripción agenda</label>
-                                                    <textarea rows="3" class="form-control form-control-sm rounded-0" name="description" id="description" disabled><?php echo $_SESSION['descrip_espec']."$".$_SESSION['costo_espec']?> </textarea>
+                                                    <textarea rows="3" class="form-control form-control-sm rounded-0" name="description" id="description" disabled></textarea>
                                                 </div>
                                                 <div class="form-group mb-2">
                                                 <label for="end_datetime" class="control-label">Elija el mes laboral</label>
@@ -152,25 +153,22 @@ require_once('db-connect.php');
         </div>
     </main>
 <?php 
-$id_prof=$_SESSION['id_pers'];
-$schedules = $conn->query("SELECT * FROM agenda WHERE id_prof=$id_prof");
+$schedules = $conn->query("SELECT * FROM cita WHERE id_profesional = 1010101");
 $sched_res = [];
 
 foreach($schedules->fetch_all(MYSQLI_ASSOC) as $row){
-    $row['sdate'] = date("F d, Y h:i A",strtotime($row['start_datetime']));
-    $row['edate'] = date("F d, Y h:i A",strtotime($row['end_datetime']));
-    $sched_res[$row['id']] = $row;
+    $row['sdate'] = date("F d, Y h:i A",strtotime($row['fechacita_horainicio']));
+    $row['edate'] = date("F d, Y h:i A",strtotime($row['fechacita_horafin']));
+    $sched_res[$row['id_cita']] = $row;
 }
 ?>
 <?php 
 if(isset($conn)) $conn->close();
 ?>
-    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script type="text/javascript" src = "../assets/js/sweetAlert4.js"></script>
-    <script src="../../assets/js-general/menu-responsive.js"></script>
+<script src="assets/js-general/menu-responsive.js"></script>
 </body>
 <script>
     var scheds = $.parseJSON('<?= json_encode($sched_res) ?>')
 </script>
-<script src="./js/script.js"></script>
+<script src="views/administrador/gestion_agenda/js/script.js"></script>
 </html>

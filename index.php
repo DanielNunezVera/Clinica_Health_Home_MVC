@@ -11,7 +11,11 @@
 		
 		if(isset($_GET['a'])){
 			if(isset($_GET['id'])){
-				cargarAccion($controlador, $_GET['a'], $_GET['id']);
+				if(isset($_GET['t_doc'])){
+					cargarAccion($controlador, $_GET['a'], $_GET['id'], $_GET['t_doc']);
+				}else{
+					cargarAccion($controlador, $_GET['a'], $_GET['id']);
+				}
 				} else {
 				cargarAccion($controlador, $_GET['a']);
 			}

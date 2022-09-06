@@ -41,9 +41,11 @@
                     <div class="contact-wrapper animated bounceInUp">
                         <div class="contact-form">
                             <form action="index.php?c=Administrador&a=modificar_prof" method="POST">
+                                <input type="hidden" id="id_tipo_doc" name="id_tipo_doc" value="<?php echo $data["profesional"]["id_tipo_doc"]?>">
+                                
                                 <p>
                                     <label>Tipo de dcumento</label>
-                                    <input type="text" name="id_tipo_doc " id="id_tipo_doc" value="<?php 
+                                    <input type="text" name="" id="" value="<?php 
                                         foreach ($data["tipo_doc"] as $dato) {
                                         if($dato["id_tipo_doc"]==$data["profesional"]["id_tipo_doc"]){
                                             $documento = $dato["tipo_doc"];
@@ -94,11 +96,11 @@
                                 </p>
                                 <p>
                                     <label>Teléfono</label>
-                                    <input type="tel" name="tel_prof" id="	tel_prof" value="<?php echo $data["profesional"]["tel_prof"]?>" readonly>
+                                    <input type="tel" name="tel_prof" id="	tel_prof" value="<?php echo $data["profesional"]["tel_prof"]?>" >
                                 </p>
                                 <p>
                                     <label>Email</label>
-                                    <input type="email" name="correo_prof" id="correo_prof" value="<?php echo $data["profesional"]["correo_prof"]?>" readonly>
+                                    <input type="email" name="correo_prof" id="correo_prof" value="<?php echo $data["profesional"]["correo_prof"]?>" >
                                 </p>
                                 <p>
                                     <label>Dias laborales</label>

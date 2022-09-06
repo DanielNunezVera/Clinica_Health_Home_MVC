@@ -22,6 +22,21 @@
 				
 		}
 
+		public function gestion_agenda(){
+
+			$agenda =  new Administrador_model();
+			$data["profesionales"] = $agenda->get_profesional();
+			$data["tipo_doc"] = $agenda->get_tipo_doc();
+			require_once "views/administrador/gestion_agenda/gestion_agenda.php";
+
+		}
+
+		public function gestion_agenda_2(){
+
+			require_once "views/administrador/gestion_agenda/new_agenda.php";
+
+		}
+
 		public function gestion_espec(){
 			
 			$especialidad = new Administrador_model();
@@ -138,21 +153,21 @@
 
 		}
 		
-		public function actualizar_pac($id){
+		public function actualizar_pac($id, $t_doc){
 			
 			$paciente = new Administrador_model();
 			$data["tipo_doc"] = $paciente->get_tipo_doc();
-			$data["paciente"] = $paciente->get_paciente($id);
+			$data["paciente"] = $paciente->get_paciente($id, $t_doc);
 			require_once "views/administrador/gestion_usuarios/update_pac.php";
 		}
 
-		public function actualizar_prof($id){
+		public function actualizar_prof($id, $t_doc){
 			
 			$profesional = new Administrador_model();
 			$data["consultorios"] = $profesional->get_consultorios();
 			$data["especialidad"] = $profesional->get_especialidad();
 			$data["tipo_doc"] = $profesional->get_tipo_doc();
-			$data["profesional"] = $profesional->get_prof($id);
+			$data["profesional"] = $profesional->get_prof($id, $t_doc);
 			require_once "views/administrador/gestion_usuarios/update_prof.php";
 		}
 
@@ -180,18 +195,20 @@
 		
 		public function modificar_pac(){
 
+			$id_tipo_doc_1 = $_POST['id_tipo_doc_1'];
 			$id_paciente = $_POST['id_paciente'];
 			$id_tipo_doc = $_POST['id_tipo_doc'];
 			$tel_pac = $_POST['tel_pac'];
 			$correo_pac = $_POST['correo_pac'];
 
 			$paciente = new Administrador_model();
-			$paciente->modificar_paciente($id_paciente, $id_tipo_doc, $tel_pac, $correo_pac);
+			$paciente->modificar_paciente($id_paciente, $id_tipo_doc,$id_tipo_doc_1, $tel_pac, $correo_pac);
 			$this->gestion_u();
 		}
 
 		public function modificar_prof(){
 
+			$id_tipo_doc = $_POST['id_tipo_doc'];
 			$id_profesional = $_POST['id_profesional'];
 			$id_consultorios = $_POST['id_consultorios'];
 			$id_especialidad = $_POST['id_especialidad'];
@@ -202,7 +219,7 @@
 
 
 			$paciente = new Administrador_model();
-			$paciente->modificar_profesional($id_profesional, $id_consultorios, $id_especialidad, $tel_prof, $correo_prof, $dias_laborales, $franja_horaria);
+			$paciente->modificar_profesional($id_profesional, $id_consultorios, $id_especialidad, $tel_prof, $correo_prof, $dias_laborales, $franja_horaria, $id_tipo_doc);
 			$this->gestion_u();
 		}
 
