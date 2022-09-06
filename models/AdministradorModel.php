@@ -4,8 +4,8 @@
 		
 		private $db;
 		private $paciente;
-        private $profesional;
-        private $auxiliar;
+    private $profesional;
+    private $auxiliar;
 		private $consultorios;
 		private $especialidad;
 		private $tipo_doc;
@@ -13,8 +13,8 @@
 		public function __construct(){
 			$this->db = Conectar::conexion();
 			$this->paciente = array();
-            $this->profesional = array();
-            $this->auxiliar = array();
+      $this->profesional = array();
+      $this->auxiliar = array();
 			$this->consultorios = array();
 			$this->especialidad = array();
 			$this->tipo_doc = array();
@@ -186,6 +186,12 @@
 			
 		}
 
+		public function eliminar_espec_3($id_especialidad){
+
+			$resultado = $this->db->query("DELETE FROM especialidad WHERE id_especialidad='$id_especialidad'");
+
+		}
+
 		public function eliminar_consult_2($id_consultorios){
 			
 			$resultado = $this->db->query("UPDATE consultorios SET estado_consult=1 WHERE id_consultorios = '$id_consultorios'");
@@ -196,6 +202,12 @@
 			
 			$resultado = $this->db->query("UPDATE consultorios SET estado_consult=0 WHERE id_consultorios = '$id_consultorios'");
 			
+		}
+
+		public function eliminar_consult_3($id_consultorios){
+
+			$resultado = $this->db->query("DELETE FROM consultorios WHERE id_consultorios='$id_consultorios'");
+
 		}
 
 		
@@ -262,6 +274,12 @@
 			$sql = "DELETE FROM auxiliar WHERE id_auxiliar = '$id'";
 			$resultado = $this->db->query($sql);
 
+		}
+
+		public function eliminar_consul($id){
+
+			$sql= "DELETE FROM consultorios WHERE id_consultorios = '$id'";
+			$resultado = $this ->db->query($sql);
 		}
 	} 	
 ?>

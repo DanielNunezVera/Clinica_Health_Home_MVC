@@ -51,25 +51,31 @@
                                         <th>Id_consultorio</th>
                                         <th>Estado</th>
                                         <th>Modificar</th>
-                                        <th>Cambio de estado</th>
+                                        <th>Eliminar</th>
+                                        <th>Estado</th>
+                                        <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php foreach ($data["consultorios"] as $dato) {
                                       if($dato["estado_consult"]==1){
-                                        $estado="Activo";
+                                        // $estado="Activo";
                                         $url="index.php?c=Administrador&a=cambio_estado_1_consult&id=";
-                                        $boton="class='btn btn-danger active' role='button' aria-pressed='true'>Desactivar</a>";
+                                        $boton="class='btn btn-secondary active' role='button' aria-pressed='true'>Desactivar</a>";
                                       }else{
-                                        $estado="Inactivo";
+                                        // $estado="Inactivo";
                                         $url="index.php?c=Administrador&a=cambio_estado_2_consult&id=";
                                         $boton="class='btn btn-success active' role='button' aria-pressed='true'>&nbsp&nbsp&nbspActivar&nbsp&nbsp&nbsp</a>";
                                       }
                                       echo "<tr>";
                                       echo "<td>".$dato["id_consultorios"]."</td>";
-                                      echo "<td>".$estado."</td>";
-                                      echo "<td><a href='index.php?c=Administrador&a=actualizar_consult&id=".$dato["id_consultorios"]."' class='btn btn-secondary active' role='button' aria-pressed='true'>Actualizar</a></td>";
                                       echo "<td><a href='"."$url".$dato["id_consultorios"]."' ".$boton."</td>";
+                                      echo "<td><a href='index.php?c=Administrador&a=actualizar_consult&id=".$dato["id_consultorios"]."' class='btn btn-light active' role='button' aria-pressed='true'>Actualizar</a></td>";
+                                      echo "<td><a href='"."index.php?c=Administrador&a=eliminar_consult&id=".$dato["id_consultorios"]."' "."class='btn btn-danger active' role='button' aria-pressed='true'>&nbsp&nbspEliminar&nbsp&nbsp</a>"."</td>";
+                                      echo "<td>".$estado."</td>";
+                                      echo "<td><a href='index.php?c=Administrador&a=actualizar_consult&id=".$dato["id_consultorios"]."' class='btn btn-light active' role='button' aria-pressed='true'>Actualizar</a></td>";
+                                      echo "<td><a href='"."$url".$dato["id_consultorios"]."' ".$boton."</td>";
+                                      echo "<td><a href='index.php?c=Administrador&a=eliminar_consul&id=".$dato["id_consultorios"]."' class='btn btn-danger active' role='button' aria-pressed='true'>&nbsp&nbspEliminar&nbsp&nbsp</a></td>";
                                       echo "</tr>";
                                     }
                                     ?>
