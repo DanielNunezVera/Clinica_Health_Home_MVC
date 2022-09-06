@@ -52,8 +52,6 @@
                                         <th>Estado</th>
                                         <th>Modificar</th>
                                         <th>Eliminar</th>
-                                        <th>Estado</th>
-                                        <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -72,10 +70,6 @@
                                       echo "<td><a href='"."$url".$dato["id_consultorios"]."' ".$boton."</td>";
                                       echo "<td><a href='index.php?c=Administrador&a=actualizar_consult&id=".$dato["id_consultorios"]."' class='btn btn-light active' role='button' aria-pressed='true'>Actualizar</a></td>";
                                       echo "<td><a href='"."index.php?c=Administrador&a=eliminar_consult&id=".$dato["id_consultorios"]."' "."class='btn btn-danger active' role='button' aria-pressed='true'>&nbsp&nbspEliminar&nbsp&nbsp</a>"."</td>";
-                                      echo "<td>".$estado."</td>";
-                                      echo "<td><a href='index.php?c=Administrador&a=actualizar_consult&id=".$dato["id_consultorios"]."' class='btn btn-light active' role='button' aria-pressed='true'>Actualizar</a></td>";
-                                      echo "<td><a href='"."$url".$dato["id_consultorios"]."' ".$boton."</td>";
-                                      echo "<td><a href='index.php?c=Administrador&a=eliminar_consul&id=".$dato["id_consultorios"]."' class='btn btn-danger active' role='button' aria-pressed='true'>&nbsp&nbspEliminar&nbsp&nbsp</a></td>";
                                       echo "</tr>";
                                     }
                                     ?>
