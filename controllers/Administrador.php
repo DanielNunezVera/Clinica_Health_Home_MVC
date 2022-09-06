@@ -283,6 +283,15 @@
 			$consult = new Administrador_model();
 			$consult->eliminar_espec_3($id);
 			$this->gestion_espec();
+
+		}
+
+		public function eliminar_consul($id){
+
+			$consul = new Administrador_model();
+			$consul -> eliminar_consul($id);
+			$this->gestion_consult();
+
 		}
 
 		public function cambio_estado_1_pac($id){
