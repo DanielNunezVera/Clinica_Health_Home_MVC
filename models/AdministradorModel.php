@@ -186,6 +186,12 @@
 			
 		}
 
+		public function eliminar_espec_3($id_especialidad){
+
+			$resultado = $this->db->query("DELETE FROM especialidad WHERE id_especialidad='$id_especialidad'");
+
+		}
+
 		public function eliminar_consult_2($id_consultorios){
 			
 			$resultado = $this->db->query("UPDATE consultorios SET estado_consult=1 WHERE id_consultorios = '$id_consultorios'");

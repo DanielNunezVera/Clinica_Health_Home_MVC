@@ -53,7 +53,7 @@
                                         <th>Costo</th>
                                         <th>Estado</th>
                                         <th>Modificar</th>
-                                        <th>Cambio de estado</th>
+                                        <th>Eliminar</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -61,7 +61,7 @@
                                       if($dato["estado_espec"]==1){
                                         $estado="Activo";
                                         $url="index.php?c=Administrador&a=cambio_estado_1_espec&id=";
-                                        $boton="class='btn btn-danger active' role='button' aria-pressed='true'>Desactivar</a>";
+                                        $boton="class='btn btn-secondary active' role='button' aria-pressed='true'>Desactivar</a>";
                                       }else{
                                         $estado="Inactivo";
                                         $url="index.php?c=Administrador&a=cambio_estado_2_espec&id=";
@@ -71,9 +71,9 @@
                                       echo "<td>".$dato["id_especialidad"]."</td>";
                                       echo "<td>".$dato["descrip_espec"]."</td>";
                                       echo "<td>".$dato["costo_espec"]."</td>";
-                                      echo "<td>".$estado."</td>";
-                                      echo "<td><a href='index.php?c=Administrador&a=actualizar_espec&id=".$dato["id_especialidad"]."' class='btn btn-secondary active' role='button' aria-pressed='true'>Actualizar</a></td>";
                                       echo "<td><a href='"."$url".$dato["id_especialidad"]."' ".$boton."</td>";
+                                      echo "<td><a href='index.php?c=Administrador&a=actualizar_espec&id=".$dato["id_especialidad"]."' class='btn btn-light active' role='button' aria-pressed='true'>Actualizar</a></td>";
+                                      echo "<td><a href='"."index.php?c=Administrador&a=eliminar_espec&id=".$dato["id_especialidad"]."' "."class='btn btn-danger active' role='button' aria-pressed='true'>&nbsp&nbspEliminar&nbsp&nbsp</a>"."</td>";
                                       echo "</tr>";
                                     }
                                     ?>
