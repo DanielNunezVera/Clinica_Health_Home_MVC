@@ -4,13 +4,8 @@
 		
 		private $db;
 		private $paciente;
-<<<<<<< HEAD
 		private $profesional;
 		private $auxiliar;
-=======
-    	private $profesional;
-   		private $auxiliar;
->>>>>>> a7cacb58147bb54d7530b5bc6b346c37213a7e5b
 		private $consultorios;
 		private $especialidad;
 		private $tipo_doc;
@@ -18,13 +13,8 @@
 		public function __construct(){
 			$this->db = Conectar::conexion();
 			$this->paciente = array();
-<<<<<<< HEAD
 			$this->profesional = array();
 			$this->auxiliar = array();
-=======
-      		$this->profesional = array();
-      		$this->auxiliar = array();
->>>>>>> a7cacb58147bb54d7530b5bc6b346c37213a7e5b
 			$this->consultorios = array();
 			$this->especialidad = array();
 			$this->tipo_doc = array();
