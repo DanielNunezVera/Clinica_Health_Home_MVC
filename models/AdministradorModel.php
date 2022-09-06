@@ -4,8 +4,8 @@
 		
 		private $db;
 		private $paciente;
-    private $profesional;
-    private $auxiliar;
+		private $profesional;
+		private $auxiliar;
 		private $consultorios;
 		private $especialidad;
 		private $tipo_doc;
@@ -13,8 +13,8 @@
 		public function __construct(){
 			$this->db = Conectar::conexion();
 			$this->paciente = array();
-      $this->profesional = array();
-      $this->auxiliar = array();
+			$this->profesional = array();
+			$this->auxiliar = array();
 			$this->consultorios = array();
 			$this->especialidad = array();
 			$this->tipo_doc = array();
@@ -84,6 +84,19 @@
 				$this->especialidad[] = $row;
 			}
 			return $this->especialidad;
+		}
+
+		public function get_agenda_prof($id){
+			$sql = "SELECT * FROM cita WHERE id_profesional='$id' LIMIT 1";
+			$resultado = $this->db->query($sql);
+
+			foreach($resultado->fetch_all(MYSQLI_ASSOC) as $row){
+				$row['sdate'] = date("F d, Y h:i A",strtotime($row['fechacita_horainicio']));
+				$row['edate'] = date("F d, Y h:i A",strtotime($row['fechacita_horafin']));
+				$sched_res[$row['id_cita']] = $row;
+			}
+
+			return $row;
 		}
 
 

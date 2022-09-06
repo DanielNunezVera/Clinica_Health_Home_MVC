@@ -62,7 +62,7 @@
                                         echo "<td>".$dato["id_tipo_doc"]."</td>";
                                         echo "<td>".$dato["id_profesional"]."</td>";
                                         echo "<td>".$dato["nombres_prof"]."&nbsp".$dato["apellidos_prof"]."</td>";
-                                        echo "<td><a href='index.php?c=Administrador&a=gestion_agenda_2' class='btn btn-primary active' role='button' aria-pressed='true'>Agenda</a></td>";
+                                        echo "<td><a href='index.php?c=Administrador&a=gestion_agenda_2&id=".$dato["id_profesional"]."' class='btn btn-primary active' role='button' aria-pressed='true'>Agenda</a></td>";
                                         echo "</tr>";
                                     }
                                     ?>

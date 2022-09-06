@@ -31,8 +31,10 @@
 
 		}
 
-		public function gestion_agenda_2(){
-
+		public function gestion_agenda_2($id){
+			
+			$agenda =  new Administrador_model();
+			$data["sched_res"] = $agenda->get_agenda_prof($id);
 			require_once "views/administrador/gestion_agenda/new_agenda.php";
 
 		}
