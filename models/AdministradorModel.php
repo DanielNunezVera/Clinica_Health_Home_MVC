@@ -4,8 +4,8 @@
 		
 		private $db;
 		private $paciente;
-    private $profesional;
-    private $auxiliar;
+    	private $profesional;
+   		private $auxiliar;
 		private $consultorios;
 		private $especialidad;
 		private $tipo_doc;
@@ -13,8 +13,8 @@
 		public function __construct(){
 			$this->db = Conectar::conexion();
 			$this->paciente = array();
-      $this->profesional = array();
-      $this->auxiliar = array();
+      		$this->profesional = array();
+      		$this->auxiliar = array();
 			$this->consultorios = array();
 			$this->especialidad = array();
 			$this->tipo_doc = array();

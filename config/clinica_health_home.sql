@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 30-08-2022 a las 00:22:14
--- Versión del servidor: 10.4.22-MariaDB
--- Versión de PHP: 8.1.2
+-- Tiempo de generación: 06-09-2022 a las 18:35:37
+-- Versión del servidor: 10.4.24-MariaDB
+-- Versión de PHP: 7.4.29
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -47,8 +47,9 @@ INSERT INTO `administrador` (`usuario_administrador`, `pass_admin`, `create_admi
 --
 
 CREATE TABLE `auxiliar` (
-  `id_auxiliar` varchar(20) NOT NULL,
+  `id_auxiliar` int(20) NOT NULL,
   `id_tipo_doc` varchar(5) NOT NULL,
+  `num_doc_aux` varchar(20) NOT NULL,
   `nombres_aux` varchar(40) NOT NULL,
   `apellidos_aux` varchar(40) NOT NULL,
   `tel_aux` bigint(10) NOT NULL,
@@ -58,13 +59,6 @@ CREATE TABLE `auxiliar` (
   `create_aux` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Volcado de datos para la tabla `auxiliar`
---
-
-INSERT INTO `auxiliar` (`id_auxiliar`, `id_tipo_doc`, `nombres_aux`, `apellidos_aux`, `tel_aux`, `correo_aux`, `estado_aux`, `pass_aux`, `create_aux`) VALUES
-('24354654', 'CC', 'gggfhghh', 'hfg', 343246556, 'gdfgfdg@hgh', 0, '24354654', '2022-08-29 17:18:19');
-
 -- --------------------------------------------------------
 
 --
@@ -73,8 +67,8 @@ INSERT INTO `auxiliar` (`id_auxiliar`, `id_tipo_doc`, `nombres_aux`, `apellidos_
 
 CREATE TABLE `cita` (
   `id_cita` bigint(11) NOT NULL,
-  `id_paciente` varchar(20) DEFAULT NULL,
-  `id_profesional` varchar(20) NOT NULL,
+  `id_paciente` int(20) DEFAULT NULL,
+  `id_profesional` int(20) NOT NULL,
   `fechacita_horainicio` datetime NOT NULL,
   `fechacita_horafin` datetime NOT NULL,
   `estado_cita` tinyint(1) NOT NULL,
@@ -136,8 +130,9 @@ INSERT INTO `especialidad` (`id_especialidad`, `descrip_espec`, `costo_espec`, `
 --
 
 CREATE TABLE `paciente` (
-  `id_paciente` varchar(20) NOT NULL,
+  `id_paciente` int(20) NOT NULL,
   `id_tipo_doc` varchar(5) NOT NULL,
+  `num_doc_pac` varchar(20) NOT NULL,
   `nombres_pac` varchar(40) NOT NULL,
   `apellidos_pac` varchar(40) NOT NULL,
   `tel_pac` bigint(10) NOT NULL,
@@ -148,13 +143,6 @@ CREATE TABLE `paciente` (
   `create_pac` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Volcado de datos para la tabla `paciente`
---
-
-INSERT INTO `paciente` (`id_paciente`, `id_tipo_doc`, `nombres_pac`, `apellidos_pac`, `tel_pac`, `correo_pac`, `sexo_pac`, `estado_pac`, `pass_pac`, `create_pac`) VALUES
-('2020201', 'CC', 'alejamdro fasti', 'dc', 323231, 'djdmw@gfhgfh.hjg', 'Masculino', 0, '2020201', '2022-08-29 17:16:44');
-
 -- --------------------------------------------------------
 
 --
@@ -162,8 +150,9 @@ INSERT INTO `paciente` (`id_paciente`, `id_tipo_doc`, `nombres_pac`, `apellidos_
 --
 
 CREATE TABLE `profesional` (
-  `id_profesional` varchar(20) NOT NULL,
+  `id_profesional` int(20) NOT NULL,
   `id_tipo_doc` varchar(5) NOT NULL,
+  `num_doc_prof` varchar(20) NOT NULL,
   `id_consultorios` varchar(3) DEFAULT NULL,
   `id_especialidad` tinyint(2) DEFAULT NULL,
   `nombres_prof` varchar(40) NOT NULL,
@@ -176,13 +165,6 @@ CREATE TABLE `profesional` (
   `pass_prof` varchar(20) NOT NULL,
   `create_prof` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Volcado de datos para la tabla `profesional`
---
-
-INSERT INTO `profesional` (`id_profesional`, `id_tipo_doc`, `id_consultorios`, `id_especialidad`, `nombres_prof`, `apellidos_prof`, `tel_prof`, `correo_prof`, `dias_laborales`, `franja_horaria`, `estado_prof`, `pass_prof`, `create_prof`) VALUES
-('2020207', 'CC', 'C02', 3, 'jhjghjtf', 'fyfryrtdtr', 1215355, 'gmhdrmy@xn--kjjll-sta.kl', 'de dia da dia', '24', 0, '2020207', '2022-08-29 17:17:49');
 
 -- --------------------------------------------------------
 
@@ -272,6 +254,12 @@ ALTER TABLE `tipo_doc`
 --
 
 --
+-- AUTO_INCREMENT de la tabla `auxiliar`
+--
+ALTER TABLE `auxiliar`
+  MODIFY `id_auxiliar` int(20) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT de la tabla `cita`
 --
 ALTER TABLE `cita`
@@ -282,6 +270,18 @@ ALTER TABLE `cita`
 --
 ALTER TABLE `especialidad`
   MODIFY `id_especialidad` tinyint(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT de la tabla `paciente`
+--
+ALTER TABLE `paciente`
+  MODIFY `id_paciente` int(20) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `profesional`
+--
+ALTER TABLE `profesional`
+  MODIFY `id_profesional` int(20) NOT NULL AUTO_INCREMENT;
 
 --
 -- Restricciones para tablas volcadas

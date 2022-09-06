@@ -45,6 +45,10 @@
                         <br>
                         <a href="index.php?c=Administrador&a=gestion_agenda" class="boton">Gestión Agenda</a>
                         <br>
+                        <a href="index.php?c=Auxiliar&a=citas_pac" class="boton">Citas Pacientes</a>
+                        <br>
+                        <a href="index.php?c=Auxiliar&a=citas_prof" class="boton">Citas Profesionales</a>
+                        <br>
                     </div>
                 </div>
                 <div class="caja2">
