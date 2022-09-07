@@ -41,7 +41,7 @@
                     <div class="contact-wrapper animated bounceInUp">
                         <div class="contact-form">
                             <form action="index.php?c=Administrador&a=modificar_pac" method="POST" autocomplete="off">
-                                <input type="hidden" id="id_tipo_doc_1" name="id_tipo_doc_1" value="<?php echo $data["paciente"]["id_tipo_doc"]?>">
+                                <input type="hidden" id="id_paciente" name="id_paciente" value="<?php echo $data["paciente"]["id_paciente"]?>">
                                 <p>
                                     <label>Tipo doc</label>
                                     <select class="Selectorconsult" name="id_tipo_doc" id="id_tipo_doc" required>
@@ -56,15 +56,14 @@
                                     echo "<option value='".$data["paciente"]["id_tipo_doc"]."'>".$documento
                                     ."</option>";
 
-
-                                         foreach ($data["tipo_doc"] as $dato) {
-                                            echo "<option value='".$dato["id_tipo_doc"]."'>".$dato["tipo_doc"]."</option>";
+                                        foreach ($data["tipo_doc"] as $dato) {
+                                           echo "<option value='".$dato["id_tipo_doc"]."'>".$dato["tipo_doc"]."</option>";
                                     }?>
                                     </select>
                                 </p>
                                 <p>
                                     <label>N° documento</label>
-                                    <input type="number" name="id_paciente" id="id_paciente" value="<?php echo $data["paciente"]["id_paciente"]?>" readonly>
+                                    <input type="number" name="num_doc_pac" id="num_doc_pac" value="<?php echo $data["paciente"]["num_doc_pac"]?>" readonly>
                                 </p>
                                 <p>
                                     <label>Nombres</label>
@@ -76,7 +75,7 @@
                                 </p>
                                 <p>
                                     <label>Teléfono</label>
-                                    <input type="tel" name="tel_pac" id="	tel_pac" value="<?php echo $data["paciente"]["tel_pac"]?>" required>
+                                    <input type="tel" name="tel_pac" id="tel_pac" value="<?php echo $data["paciente"]["tel_pac"]?>" required>
                                 </p>
                                 <p>
                                     <label>Email</label>

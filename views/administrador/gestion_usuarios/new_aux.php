@@ -52,7 +52,7 @@
                                 </p>
                                 <p>
                                     <label>N° documento</label>
-                                    <input type="number" name="id_auxiliar" id="id_auxiliar">
+                                    <input type="number" name="num_doc_aux" id="num_doc_aux">
                                 </p>
                                 <p>
                                     <label>Nombres</label>
@@ -71,7 +71,7 @@
                                     <input type="email" name="correo_aux" id="correo_aux" required>
                                 </p>
                                 <p class="block">
-                                <button class="btn btn-primary btn-lg btn-block" name="registrar" id="reistrar" type="submit">Registrar</button>
+                                <button class="btn btn-primary btn-lg btn-block" name="registrar" id="registrar" type="submit">Registrar</button>
                                 </p>
                                 </p>
                             </form>
