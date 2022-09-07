@@ -41,21 +41,28 @@
                     <div class="contact-wrapper animated bounceInUp">
                         <div class="contact-form">
                             <form action="index.php?c=Administrador&a=modificar_prof" method="POST">
-                                <input type="hidden" id="id_tipo_doc" name="id_tipo_doc" value="<?php echo $data["profesional"]["id_tipo_doc"]?>">
-                                
+                                <input type="hidden" id="id_profesional" name="id_profesional" value="<?php echo $data["profesional"]["id_profesional"]?>">
                                 <p>
-                                    <label>Tipo de dcumento</label>
-                                    <input type="text" name="" id="" value="<?php 
-                                        foreach ($data["tipo_doc"] as $dato) {
+                                    <label>Tipo doc</label>
+                                    <select class="Selectorconsult" name="id_tipo_doc" id="id_tipo_doc" required>
+                                    <?php   
+                                    foreach ($data["tipo_doc"] as $dato) {
                                         if($dato["id_tipo_doc"]==$data["profesional"]["id_tipo_doc"]){
                                             $documento = $dato["tipo_doc"];
+                                            }
                                         }
-                                    }
-                                    echo $documento ?>" readonly>
+
+                                    echo "<option value='".$data["profesional"]["id_tipo_doc"]."'>".$documento
+                                    ."</option>";
+
+                                        foreach ($data["tipo_doc"] as $dato) {
+                                           echo "<option value='".$dato["id_tipo_doc"]."'>".$dato["tipo_doc"]."</option>";
+                                    }?>
+                                    </select>
                                 </p>
                                 <p>
                                     <label>N° documento</label>
-                                    <input type="number" name="id_profesional" id="id_profesional" value="<?php echo $data["profesional"]["id_profesional"]?>" readonly>
+                                    <input type="number" name="num_doc_prof" id="num_doc_prof" value="<?php echo $data["profesional"]["num_doc_prof"]?>" readonly>
                                 </p>
                                 <p>
                                     <label>Consultorio</label>

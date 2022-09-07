@@ -52,7 +52,7 @@
                                 </p>
                                 <p>
                                     <label>N° documento</label>
-                                    <input type="number" name="id_profesional" id="id_profesional">
+                                    <input type="number" name="num_doc_prof" id="num_doc_prof">
                                 </p>
                                 <p>
                                     <label>Consultorio</label>

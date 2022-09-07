@@ -63,54 +63,54 @@
                                     <?php foreach ($data["pacientes"] as $dato) {
                                       if($dato["estado_pac"]==1){
                                         $url="index.php?c=Administrador&a=cambio_estado_1_pac&id=";
-                                        $boton="class='btn btn-danger active' role='button' aria-pressed='true'>Desactivar</a>";
+                                        $boton="class='btn btn-secondary active' role='button' aria-pressed='true'>Desactivar</a>";
                                       }else{
                                         $url="index.php?c=Administrador&a=cambio_estado_2_pac&id=";
                                         $boton="class='btn btn-success active' role='button' aria-pressed='true'>&nbsp&nbsp&nbspActivar&nbsp&nbsp&nbsp</a>";
                                       }
                                       echo "<tr>";
                                       echo "<td>".$dato["id_tipo_doc"]."</td>";
-                                      echo "<td>".$dato["id_paciente"]."</td>";
+                                      echo "<td>".$dato["num_doc_pac"]."</td>";
                                       echo "<td>".$dato["nombres_pac"]."&nbsp".$dato["apellidos_pac"]."</td>";
                                       echo "<td> Paciente </td>";
                                       echo "<td><a href='"."$url".$dato["id_paciente"]."' ".$boton."</td>";
-                                      echo "<td><a href='index.php?c=Administrador&a=actualizar_pac&id=".$dato["id_paciente"]."&t_doc=".$dato["id_tipo_doc"]."' class='btn btn-secondary active' role='button' aria-pressed='true'>Actualizar</a></td>";
+                                      echo "<td><a href='index.php?c=Administrador&a=actualizar_pac&id=".$dato["id_paciente"]."&t_doc=".$dato["id_tipo_doc"]."' class='btn btn-light active' role='button' aria-pressed='true'>Actualizar</a></td>";
                                       echo "<td><a href='index.php?c=Administrador&a=eliminar_pac&id=".$dato["id_paciente"]."' class='btn btn-danger active' role='button' aria-pressed='true'>&nbsp&nbspEliminar&nbsp&nbsp</a></td>";
                                       echo "</tr>";
                                     }
                                     foreach ($data["profesionales"] as $dato){
                                         if($dato["estado_prof"]==1){
                                             $url="index.php?c=Administrador&a=cambio_estado_1_prof&id=";
-                                            $boton="class='btn btn-danger active' role='button' aria-pressed='true'>Desactivar</a>";
+                                            $boton="class='btn btn-secondary active' role='button' aria-pressed='true'>Desactivar</a>";
                                           }else{
                                             $url="index.php?c=Administrador&a=cambio_estado_2_prof&id=";
                                             $boton="class='btn btn-success active' role='button' aria-pressed='true'>&nbsp&nbsp&nbspActivar&nbsp&nbsp&nbsp</a>";
                                           }
                                         echo "<tr>";
                                         echo "<td>".$dato["id_tipo_doc"]."</td>";
-                                        echo "<td>".$dato["id_profesional"]."</td>";
+                                        echo "<td>".$dato["num_doc_prof"]."</td>";
                                         echo "<td>".$dato["nombres_prof"]."&nbsp".$dato["apellidos_prof"]."</td>";
                                         echo "<td> Profesional </td>";
                                         echo "<td><a href='"."$url".$dato["id_profesional"]."' ".$boton."</td>";
-                                        echo "<td><a href='index.php?c=Administrador&a=actualizar_prof&id=".$dato["id_profesional"]."&t_doc=".$dato["id_tipo_doc"]."' class='btn btn-secondary active' role='button' aria-pressed='true'>Actualizar</a></td>";
+                                        echo "<td><a href='index.php?c=Administrador&a=actualizar_prof&id=".$dato["id_profesional"]."&t_doc=".$dato["id_tipo_doc"]."' class='btn btn-light active' role='button' aria-pressed='true'>Actualizar</a></td>";
                                         echo "<td><a href='index.php?c=Administrador&a=eliminar_prof&id=".$dato["id_profesional"]."' class='btn btn-danger active' role='button' aria-pressed='true'>&nbsp&nbspEliminar&nbsp&nbsp</a></td>";
                                         echo "</tr>";
                                     }
                                     foreach ($data["auxiliares"] as $dato){
                                         if($dato["estado_aux"]==1){
                                             $url="index.php?c=Administrador&a=cambio_estado_1_aux&id=";
-                                            $boton="class='btn btn-danger active' role='button' aria-pressed='true'>Desactivar</a>";
+                                            $boton="class='btn btn-secondary active' role='button' aria-pressed='true'>Desactivar</a>";
                                           }else{
                                             $url="index.php?c=Administrador&a=cambio_estado_2_aux&id=";
                                             $boton="class='btn btn-success active' role='button' aria-pressed='true'>&nbsp&nbsp&nbspActivar&nbsp&nbsp&nbsp</a>";
                                           }
                                         echo "<tr>";
                                         echo "<td>".$dato["id_tipo_doc"]."</td>";
-                                        echo "<td>".$dato["id_auxiliar"]."</td>";
+                                        echo "<td>".$dato["num_doc_aux"]."</td>";
                                         echo "<td>".$dato["nombres_aux"]."&nbsp".$dato["apellidos_aux"]."</td>";
                                         echo "<td> Auxiliar </td>";
                                         echo "<td><a href='"."$url".$dato["id_auxiliar"]."' ".$boton."</td>";
-                                        echo "<td><a href='index.php?c=Administrador&a=actualizar_aux&id=".$dato["id_auxiliar"]."' class='btn btn-secondary active' role='button' aria-pressed='true'>Actualizar</a></td>";
+                                        echo "<td><a href='index.php?c=Administrador&a=actualizar_aux&id=".$dato["id_auxiliar"]."' class='btn btn-light active' role='button' aria-pressed='true'>Actualizar</a></td>";
                                         echo "<td><a href='index.php?c=Administrador&a=eliminar_aux&id=".$dato["id_auxiliar"]."' class='btn btn-danger active' role='button' aria-pressed='true'>&nbsp&nbspEliminar&nbsp&nbsp</a></td>";
                                         echo "</tr>";
                                     }

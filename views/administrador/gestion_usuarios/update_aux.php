@@ -43,7 +43,7 @@
                             <form action="index.php?c=Administrador&a=modificar_aux" method="POST">
                                 <p>
                                     <label>Tipo doc</label>
-                                    <select class="Selectorconsult" name="id_tipo_doc" id="id_tipo_doc" required>
+                                    <select class="Selectorconsult" name="id_tipo_doc" id="id_tipo_doc">
                                     <?php   
                                     
                                     foreach ($data["tipo_doc"] as $dato) {
@@ -63,7 +63,7 @@
                                 </p>
                                 <p>
                                     <label>N° documento</label>
-                                    <input type="number" name="id_auxiliar" id="id_auxiliar" value="<?php echo $data["auxiliar"]["id_auxiliar"]?>" readonly>
+                                    <input type="number" name="num_doc_aux" id="num_doc_aux" value="<?php echo $data["auxiliar"]["num_doc_aux"]?>" readonly>
                                 </p>
                                 <p>
                                     <label>Nombres</label>

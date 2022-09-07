@@ -19,7 +19,7 @@
 			$this->especialidad = array();
 			$this->tipo_doc = array();
 		}
-		
+		//consultas para listar pacientes, profesionales, auxiliares, consultorios, especialidades, tipo doc, agenda
 		public function get_pacientes()
 		{
 			$sql = "SELECT * FROM paciente";
@@ -99,21 +99,21 @@
 			return $row;
 		}
 
-
-		public function insertar_pac($id_paciente, $id_tipo_doc, $nombres_pac, $apellidos_pac, $tel_pac, $correo_pac, $sexo_pac){
+////
+		public function insertar_pac($id_tipo_doc, $num_doc_pac, $nombres_pac, $apellidos_pac, $tel_pac, $correo_pac, $sexo_pac){
 			
-			$resultado = $this->db->query("INSERT INTO paciente (id_paciente, id_tipo_doc, nombres_pac, apellidos_pac, tel_pac, correo_pac, sexo_pac, estado_pac, pass_pac, create_pac) VALUES ('$id_paciente', '$id_tipo_doc', '$nombres_pac', '$apellidos_pac', '$tel_pac', '$correo_pac', '$sexo_pac', 1, '$id_paciente', CURRENT_TIMESTAMP)");
+			$resultado = $this->db->query("INSERT INTO paciente (id_tipo_doc, num_doc_pac, nombres_pac, apellidos_pac, tel_pac, correo_pac, sexo_pac, estado_pac, pass_pac, create_pac) VALUES ('$id_tipo_doc', '$num_doc_pac', '$nombres_pac', '$apellidos_pac', '$tel_pac', '$correo_pac', '$sexo_pac', 1, '$num_doc_pac', CURRENT_TIMESTAMP)");
 		}
 
-		public function insertar_prof($id_profesional, $id_tipo_doc, $id_consultorios, $id_especialidad, $nombres_prof, $apellidos_prof, $tel_prof, $correo_prof, $dias_laborales, $franja_horaria){
+		public function insertar_prof($id_tipo_doc, $num_doc_prof, $id_consultorios, $id_especialidad, $nombres_prof, $apellidos_prof, $tel_prof, $correo_prof, $dias_laborales, $franja_horaria){
 			
-			$resultado = $this->db->query("INSERT INTO profesional (id_profesional, id_tipo_doc, id_consultorios, id_especialidad, nombres_prof, apellidos_prof, tel_prof, correo_prof, dias_laborales, franja_horaria, estado_prof, pass_prof, create_prof) VALUES ('$id_profesional', '$id_tipo_doc', '$id_consultorios', '$id_especialidad', '$nombres_prof', '$apellidos_prof', '$tel_prof', '$correo_prof', '$dias_laborales', '$franja_horaria', 1, '$id_profesional', CURRENT_TIMESTAMP)");
+			$resultado = $this->db->query("INSERT INTO profesional (id_tipo_doc, num_doc_prof, id_consultorios, id_especialidad, nombres_prof, apellidos_prof, tel_prof, correo_prof, dias_laborales, franja_horaria, estado_prof, pass_prof, create_prof) VALUES ('$id_tipo_doc', '$num_doc_prof', '$id_consultorios', '$id_especialidad', '$nombres_prof', '$apellidos_prof', '$tel_prof', '$correo_prof', '$dias_laborales', '$franja_horaria', 1, '$num_doc_prof', CURRENT_TIMESTAMP)");
 			
 		}
 
-		public function insertar_aux($id_auxiliar, $id_tipo_doc, $nombres_aux, $apellidos_aux, $tel_aux, $correo_aux){
+		public function insertar_aux($id_tipo_doc, $num_doc_aux, $nombres_aux, $apellidos_aux, $tel_aux, $correo_aux){
 			
-			$resultado = $this->db->query("INSERT INTO auxiliar (id_auxiliar, id_tipo_doc, nombres_aux, apellidos_aux, tel_aux, correo_aux, estado_aux, pass_aux, create_aux) VALUES ('$id_auxiliar', '$id_tipo_doc', '$nombres_aux', '$apellidos_aux', '$tel_aux', '$correo_aux', 1, '$id_auxiliar', CURRENT_TIMESTAMP)");
+			$resultado = $this->db->query("INSERT INTO auxiliar (id_tipo_doc, num_doc_aux, nombres_aux, apellidos_aux, tel_aux, correo_aux, estado_aux, pass_aux, create_aux) VALUES ('$id_tipo_doc', '$num_doc_aux', '$nombres_aux', '$apellidos_aux', '$tel_aux', '$correo_aux', 1, '$num_doc_aux', CURRENT_TIMESTAMP)");
 		}
 
 		public function insertar_espec($descrip_espec, $costo_espec){
@@ -126,13 +126,14 @@
 			$resultado = $this->db->query("INSERT INTO consultorios (id_consultorios, estado_consult, create_consult) VALUES ('$id_consultorios', 1, CURRENT_TIMESTAMP)");
 		}
 		
-		public function modificar_paciente($id_paciente, $id_tipo_doc, $id_tipo_doc_1 ,$tel_pac, $correo_pac){
-			$resultado = $this->db->query("UPDATE paciente SET id_tipo_doc='$id_tipo_doc', tel_pac='$tel_pac', correo_pac='$correo_pac' WHERE id_paciente= '$id_paciente' AND id_tipo_doc='$id_tipo_doc_1'");
+		public function modificar_paciente($id_paciente, $id_tipo_doc, $tel_pac, $correo_pac){
+			
+			$resultado = $this->db->query("UPDATE paciente SET id_tipo_doc='$id_tipo_doc', tel_pac='$tel_pac', correo_pac='$correo_pac' WHERE id_paciente= '$id_paciente'");
 		}
 
-		public function modificar_profesional($id_profesional, $id_consultorios, $id_especialidad, $tel_prof, $correo_prof,$dias_laborales, $franja_horaria, $id_tipo_doc){
+		public function modificar_profesional($id_profesional, $id_tipo_doc, $id_consultorios, $id_especialidad, $tel_prof, $correo_prof,$dias_laborales, $franja_horaria){
 			
-			$resultado = $this->db->query("UPDATE profesional SET  tel_prof='$tel_prof', correo_prof='$correo_prof', id_consultorios='$id_consultorios', id_especialidad='$id_especialidad',dias_laborales='$dias_laborales', franja_horaria='$franja_horaria' WHERE id_profesional = '$id_profesional' AND id_tipo_doc = '$id_tipo_doc'");			
+			$resultado = $this->db->query("UPDATE profesional SET id_tipo_doc='$id_tipo_doc', tel_prof='$tel_prof', correo_prof='$correo_prof', id_consultorios='$id_consultorios', id_especialidad='$id_especialidad',dias_laborales='$dias_laborales', franja_horaria='$franja_horaria' WHERE id_profesional = '$id_profesional'");			
 		}
 
 		public function modificar_auxiliar($id_auxiliar, $id_tipo_doc, $tel_aux, $correo_aux){
@@ -145,10 +146,10 @@
 			$resultado = $this->db->query("UPDATE especialidad SET costo_espec='$costo_espec' WHERE id_especialidad= '$id_especialidad'");			
 		}
 
-		public function modificar_consultorio($id_consultorios, $id_consultorios_a){
+		/*public function modificar_consultorio($id_consultorios, $id_consultorios_a){
 			
 			$resultado = $this->db->query("UPDATE consultorios SET id_consultorios='$id_consultorios' WHERE id_consultorios= '$id_consultorios_a'");			
-		}
+		}*/
 		
 		public function eliminar_pac_1($id_paciente){
 			
@@ -224,16 +225,16 @@
 		}
 
 		
-		public function get_paciente($id, $t_doc){
-			$sql = "SELECT * FROM paciente WHERE id_paciente='$id' AND id_tipo_doc = '$t_doc' LIMIT 1";
+		public function get_paciente($id){
+			$sql = "SELECT * FROM paciente WHERE id_paciente='$id' LIMIT 1";
 			$resultado = $this->db->query($sql);
 			$row = $resultado->fetch_assoc();
 
 			return $row;
 		}
 
-		public function get_prof($id, $t_doc){
-			$sql = "SELECT * FROM profesional WHERE id_profesional='$id' AND id_tipo_doc='$t_doc' LIMIT 1";
+		public function get_prof($id){
+			$sql = "SELECT * FROM profesional WHERE id_profesional='$id' LIMIT 1";
 			$resultado = $this->db->query($sql);
 			$row = $resultado->fetch_assoc();
 
@@ -290,9 +291,11 @@
 		}
 
 		public function eliminar_consul($id){
-
-			$sql= "DELETE FROM consultorios WHERE id_consultorios = '$id'";
-			$resultado = $this ->db->query($sql);
+			
+			$sql_1= "UPDATE profesional SET id_consultorios = null WHERE id_consultorios = '$id'";
+			$resultado = $this->db->query($sql_1);
+			$sql_2= "DELETE FROM consultorios WHERE id_consultorios = '$id'";
+			$resultado = $this ->db->query($sql_2);
 		}
 	} 	
 ?>

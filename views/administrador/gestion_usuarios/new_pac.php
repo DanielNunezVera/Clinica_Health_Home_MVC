@@ -52,7 +52,7 @@
                                 </p>
                                 <p>
                                     <label>N° documento</label>
-                                    <input type="number" name="id_paciente" id="id_paciente">
+                                    <input type="number" name="num_doc_pac" id="num_doc_pac">
                                 </p>
                                 <p>
                                     <label>Nombres</label>
