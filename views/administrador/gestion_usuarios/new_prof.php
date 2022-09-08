@@ -97,7 +97,9 @@
                                     <input type="text" name="franja_horaria" id="franja_horaria" required>
                                 </p>
                                 <p class="block">
-                                <button class="btn btn-primary btn-lg btn-block" name="registrar" id="reistrar" type="submit">Registrar</button>
+                                <a href="gestion_usuarios.php">
+                                <button class="btn btn-primary btn-lg btn-block" name="registrar" id="reistrar" type="submit" >Registrar</button>
+                                </a>
                                 </p>
                             </form>
                         </div>

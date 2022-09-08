@@ -1,3 +1,7 @@
+<?php 
+session_start();
+session_destroy();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -49,6 +53,7 @@
                         <br>
                         <a href="index.php?c=Auxiliar&a=citas_prof" class="boton">Citas Profesionales</a>
                         <br>
+                        <a href="index.php?c=Paciente&a=agendar_cita_i" class="boton">Agendar cita</a>
                     </div>
                 </div>
                 <div class="caja2">

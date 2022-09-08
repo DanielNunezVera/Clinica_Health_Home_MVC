@@ -41,6 +41,7 @@
                     <div class="contact-wrapper animated bounceInUp">
                         <div class="contact-form">
                             <form action="index.php?c=Administrador&a=modificar_aux" method="POST">
+                                <input type="hidden" id="id_auxiliar" name="id_auxiliar" value="<?php echo $data["auxiliar"]["id_auxiliar"]?>">
                                 <p>
                                     <label>Tipo doc</label>
                                     <select class="Selectorconsult" name="id_tipo_doc" id="id_tipo_doc">

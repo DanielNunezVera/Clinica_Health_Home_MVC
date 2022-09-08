@@ -1,7 +1,7 @@
 <?php
 	
 	class AdministradorController {
-
+		
 		public function __construct(){
 			require_once "models/AdministradorModel.php";
 		}
@@ -12,8 +12,9 @@
 		}
 
 ////listar todos los usuarios
+
 		public function gestion_u(){
-			
+
 			$usuarios = new Administrador_model();
 			$data["pacientes"] = $usuarios->get_pacientes();
 			$data["profesionales"] = $usuarios->get_profesional();
@@ -32,7 +33,12 @@
 
 		}
 
-		public function gestion_agenda_2(){
+		public function gestion_agenda_2($id){
+			session_start();
+			$_SESSION['id_profesional'] = $id;
+			$agenda =  new Administrador_model();
+			$data["profesional"] = $agenda->get_prof($id);
+			$data["sched_res"] = $agenda->get_agenda_prof($id);
 
 			require_once "views/administrador/gestion_agenda/new_agenda.php";
 
@@ -84,7 +90,24 @@
 			require_once "views/administrador/gestion_consult/new_consult.php";
 		}
 
-////registrar nuevos usuarios
+		////registrar nuevos usuarios
+
+		public function nueva_agenda(){
+
+			$id_profesional = $_POST['id_profesional'];
+			$tipo_franja_la = $_POST['tipo_franja_la'];
+			$tipo_franja = $_POST['tipo_franja'];
+
+			if($tipo_franja_la=="." or $tipo_franja=="."){
+				echo "<script> alert('Error: Seleccione datos correctos.'); location.replace('index.php?c=Administrador&a=gestion_agenda_2&id=".$id_profesional."') </script>";
+			}else{
+				$agenda = new Administrador_model();
+				$agenda->insertar_agenda($id_profesional, $tipo_franja_la, $tipo_franja);
+				header('location:index.php?c=Administrador&a=gestion_agenda_2&id='.$id_profesional);
+			}
+
+		}
+		
 		public function guarda_paciente(){
 			
 			$id_tipo_doc = $_POST['id_tipo_doc'];
@@ -97,14 +120,15 @@
 			
 			$usuarios = new Administrador_model();
 			$usuarios->insertar_pac($id_tipo_doc, $num_doc_pac, $nombres_pac, $apellidos_pac, $tel_pac, $correo_pac, $sexo_pac);
+
 			header('location:index.php?c=Administrador&a=gestion_u');
 
 		}
 
 		public function guarda_profesional(){
 			
-			$id_tipo_doc = $_POST['id_tipo_doc'];
 			$num_doc_prof = $_POST['num_doc_prof'];
+			$id_tipo_doc = $_POST['id_tipo_doc'];
 			$id_consultorios = $_POST['id_consultorios'];
 			$id_especialidad = $_POST['id_especialidad'];
 			$nombres_prof = $_POST['nombres_prof'];
@@ -115,7 +139,8 @@
 			$franja_horaria = $_POST['franja_horaria'];
 			
 			$usuarios = new Administrador_model();
-			$usuarios->insertar_prof($id_tipo_doc, $num_doc_prof, $id_consultorios, $id_especialidad, $nombres_prof, $apellidos_prof, $tel_prof, $correo_prof, $dias_laborales, $franja_horaria);
+			$usuarios->insertar_prof($num_doc_prof, $id_tipo_doc, $id_consultorios, $id_especialidad, $nombres_prof, $apellidos_prof, $tel_prof, $correo_prof, $dias_laborales, $franja_horaria);
+
 			header('location:index.php?c=Administrador&a=gestion_u');
 			
 		}
@@ -296,6 +321,14 @@
 
 		}
 
+		public function eliminar_agenda($id){
+			session_start();
+			$agenda = new Administrador_model();
+			$agenda -> eliminar_agend($id);
+			header('location:index.php?c=Administrador&a=gestion_agenda_2&id='.$_SESSION['id_profesional']);
+
+		}
+
 		public function cambio_estado_1_pac($id){
 			
 			$pac = new Administrador_model();
@@ -371,6 +404,17 @@
 			$consult = new Administrador_model();
 			$consult->eliminar_consult_3($id);
 			$this->gestion_consult();
+		}
+
+		public function excepciones(){
+			
+			session_start();
+			$dia_eliminar = $_POST['dia_eliminar'];
+			$id_profesional = $_POST['id_profesional'];
+
+			$agenda = new Administrador_model();
+			$agenda->excepciones_agenda($dia_eliminar, $id_profesional);
+			header('location:index.php?c=Administrador&a=gestion_agenda_2&id='.$_SESSION['id_profesional']);
 		}
 	}
 ?>

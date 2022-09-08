@@ -9,6 +9,7 @@
 		private $consultorios;
 		private $especialidad;
 		private $tipo_doc;
+		private $sched_res;
 		
 		public function __construct(){
 			$this->db = Conectar::conexion();
@@ -18,6 +19,7 @@
 			$this->consultorios = array();
 			$this->especialidad = array();
 			$this->tipo_doc = array();
+			$this->sched_res = array();
 		}
 		//consultas para listar pacientes, profesionales, auxiliares, consultorios, especialidades, tipo doc, agenda
 		public function get_pacientes()
@@ -90,16 +92,17 @@
 		// Se busca traer la agenda de los profesionales 
 
 		public function get_agenda_prof($id){
-			$sql = "SELECT * FROM cita WHERE id_profesional='$id' LIMIT 1";
+			$sql = "SELECT * FROM cita WHERE id_profesional='$id'";
 			$resultado = $this->db->query($sql);
+
 
 			foreach($resultado->fetch_all(MYSQLI_ASSOC) as $row){
 				$row['sdate'] = date("F d, Y h:i A",strtotime($row['fechacita_horainicio']));
 				$row['edate'] = date("F d, Y h:i A",strtotime($row['fechacita_horafin']));
-				$sched_res[$row['id_cita']] = $row;
+				$this->sched_res[$row['id_cita']] = $row;
 			}
 
-			return $row;
+			return $this->sched_res;
 		}
 
 		////Métodos para crear usuarios
@@ -109,9 +112,9 @@
 			$resultado = $this->db->query("INSERT INTO paciente (id_tipo_doc, num_doc_pac, nombres_pac, apellidos_pac, tel_pac, correo_pac, sexo_pac, estado_pac, pass_pac, create_pac) VALUES ('$id_tipo_doc', '$num_doc_pac', '$nombres_pac', '$apellidos_pac', '$tel_pac', '$correo_pac', '$sexo_pac', 1, '$num_doc_pac', CURRENT_TIMESTAMP)");
 		}
 
-		public function insertar_prof($id_tipo_doc, $num_doc_prof, $id_consultorios, $id_especialidad, $nombres_prof, $apellidos_prof, $tel_prof, $correo_prof, $dias_laborales, $franja_horaria){
+		public function insertar_prof($num_doc_prof, $id_tipo_doc, $id_consultorios, $id_especialidad, $nombres_prof, $apellidos_prof, $tel_prof, $correo_prof, $dias_laborales, $franja_horaria){
 			
-			$resultado = $this->db->query("INSERT INTO profesional (id_tipo_doc, num_doc_prof, id_consultorios, id_especialidad, nombres_prof, apellidos_prof, tel_prof, correo_prof, dias_laborales, franja_horaria, estado_prof, pass_prof, create_prof) VALUES ('$id_tipo_doc', '$num_doc_prof', '$id_consultorios', '$id_especialidad', '$nombres_prof', '$apellidos_prof', '$tel_prof', '$correo_prof', '$dias_laborales', '$franja_horaria', 1, '$num_doc_prof', CURRENT_TIMESTAMP)");
+			$resultado = $this->db->query("INSERT INTO profesional (num_doc_prof, id_tipo_doc, id_consultorios, id_especialidad, nombres_prof, apellidos_prof, tel_prof, correo_prof, dias_laborales, franja_horaria, estado_prof, pass_prof, create_prof) VALUES ('$num_doc_prof', '$id_tipo_doc', '$id_consultorios', '$id_especialidad', '$nombres_prof', '$apellidos_prof', '$tel_prof', '$correo_prof', '$dias_laborales', '$franja_horaria', 1, '$num_doc_prof', CURRENT_TIMESTAMP)");
 			
 		}
 
@@ -129,10 +132,61 @@
 			
 			$resultado = $this->db->query("INSERT INTO consultorios (id_consultorios, estado_consult, create_consult) VALUES ('$id_consultorios', 1, CURRENT_TIMESTAMP)");
 		}
+
+
+
+
+
+
+		public function insertar_agenda($id_profesional, $tipo_franja_la, $tipo_franja){
+
+			if($tipo_franja == "a"){
+				$fecha_i = '2022/'.$tipo_franja_la.'/01 8:00';
+				$fecha_f = '2022/'.$tipo_franja_la.'/01 16:00';
+			}elseif ($tipo_franja == "b") {
+				$fecha_i = '2022/'.$tipo_franja_la.'/01 6:00';
+				$fecha_f = '2022/'.$tipo_franja_la.'/01 14:00';
+			}elseif ($tipo_franja == "b") {
+				$fecha_i = '2022/'.$tipo_franja_la.'/01 14:00';
+				$fecha_f = '2022/'.$tipo_franja_la.'/01 22:00';
+			}
 		
-		public function modificar_paciente($id_paciente, $id_tipo_doc, $tel_pac, $correo_pac){
+			for($i = 0; $i < 31; $i++){
+				$count = 0;
+				$begin = new DateTime($fecha_i);
+				$end = new DateTime($fecha_f);
+				$end = $end->modify( '30 minute' );
+				$interval = new DateInterval('PT30M');
+				$daterange = new DatePeriod($begin, $interval ,$end);
 			
+				foreach($daterange as $date){
+				if(date('l', strtotime($date->format("Y-m-d H:i"))) == 'Sunday'){
+					////////  no se que poner aqui :v///////////////////////////
+				} else {
+					$count = $count + 1;
+					if($count == 1){
+						$fecha_i_1 = $date->format("Y-m-d H:i");
+					}elseif ($count == 2) {
+						$fecha_f_1 = $date->format("Y-m-d H:i");
+					}
+					if($count > 2){
+						$resultado = $this->db->query("INSERT INTO `cita` (`id_profesional`,`fechacita_horainicio`,`fechacita_horafin`,`estado_cita`,`estado_pago_cita`,`asistencia_cita`,`create_cita`) VALUES ('$id_profesional','$fecha_i_1','$fecha_f_1',1,0,0, CURRENT_TIMESTAMP)"); 
+						$count = 1;
+						$fecha_i_2 = $date->format("Y-m-d H:i");
+						$resultado = $this->db->query("INSERT INTO `cita` (`id_profesional`,`fechacita_horainicio`,`fechacita_horafin`,`estado_cita`,`estado_pago_cita`,`asistencia_cita`,`create_cita`) VALUES ('$id_profesional','$fecha_f_1','$fecha_i_2',1,0,0, CURRENT_TIMESTAMP)"); 
+						$fecha_i_1 = $date->format("Y-m-d H:i");
+					}
+				  }
+				}
+				$fecha_i = date("Y-m-d H:i",strtotime($fecha_i." 1 day"));
+				$fecha_f = date("Y-m-d H:i",strtotime($fecha_f." 1 day"));
+			} 
+		}
+		
+
+		public function modificar_paciente($id_paciente, $id_tipo_doc ,$tel_pac, $correo_pac){
 			$resultado = $this->db->query("UPDATE paciente SET id_tipo_doc='$id_tipo_doc', tel_pac='$tel_pac', correo_pac='$correo_pac' WHERE id_paciente= '$id_paciente'");
+
 		}
 
 		public function modificar_profesional($id_profesional, $id_tipo_doc, $id_consultorios, $id_especialidad, $tel_prof, $correo_prof,$dias_laborales, $franja_horaria){
@@ -300,6 +354,18 @@
 			$resultado = $this->db->query($sql_1);
 			$sql_2= "DELETE FROM consultorios WHERE id_consultorios = '$id'";
 			$resultado = $this ->db->query($sql_2);
+		}
+
+		public function eliminar_agend($id){
+
+			$sql= "DELETE FROM cita WHERE id_cita = '$id'";
+			$resultado = $this ->db->query($sql);
+		}
+
+		public function excepciones_agenda($dia_eliminar, $id_profesional){
+
+			$sql= "DELETE FROM cita WHERE id_profesional = '$id_profesional' AND fechacita_horainicio LIKE ('%$dia_eliminar%') AND fechacita_horafin LIKE ('%$dia_eliminar%')";
+			$resultado = $this ->db->query($sql);
 		}
 	} 	
 ?>
