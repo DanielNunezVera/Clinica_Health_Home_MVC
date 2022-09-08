@@ -22,14 +22,23 @@
 
 		public function citas_prof(){
 			
-			$usuarios = new Administrador_model();
-			$data["pacientes"] = $usuarios->get_pacientes();
-			$data["profesionales"] = $usuarios->get_profesional();
-			$data["auxiliares"] = $usuarios->get_auxiliar();
-			
+			$citas_prof = new Auxiliar_model();
+			$data["citas"] = $citas_prof->get_citas_prof();
+						
 			require_once "views/auxiliar_admin/view_citas/citasprof.php";
 				
 		}
+
+		// public function citas_prof(){
+			
+		// 	$usuarios = new Administrador_model();
+		// 	$data["pacientes"] = $usuarios->get_pacientes();
+		// 	$data["profesionales"] = $usuarios->get_profesional();
+		// 	$data["auxiliares"] = $usuarios->get_auxiliar();
+			
+		// 	require_once "views/auxiliar_admin/view_citas/citasprof.php";
+				
+		// }
 
 		public function gestion_agenda(){
 
