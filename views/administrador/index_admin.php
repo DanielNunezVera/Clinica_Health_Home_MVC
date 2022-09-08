@@ -1,3 +1,7 @@
+<?php 
+session_start();
+session_destroy();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -44,6 +48,8 @@
                         <a href="index.php?c=Administrador&a=gestion_consult" class="boton">Gestión Consultorios</a>
                         <br>
                         <a href="index.php?c=Administrador&a=gestion_agenda" class="boton">Gestión Agenda</a>
+                        <br>
+                        <a href="index.php?c=Paciente&a=agendar_cita_i" class="boton">Agendar cita</a>
                     </div>
                 </div>
                 <div class="caja2">

@@ -1,6 +1,3 @@
-<?php
-require_once('views/administrador/gestion_agenda/db-connect.php');
-?> 
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,11 +9,11 @@ require_once('views/administrador/gestion_agenda/db-connect.php');
     <link rel="stylesheet" href="assets/css/estilos.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="views/administrador/gestion_agenda/css/bootstrap.min.css">
-    <link rel="stylesheet" href="views/administrador/gestion_agenda/fullcalendar/lib/main.min.css">
-    <script src="views/administrador/gestion_agenda/js/jquery-3.6.0.min.js"></script>
-    <script src="views/administrador/gestion_agenda/js/bootstrap.min.js"></script>
-    <script src="views/administrador/gestion_agenda/fullcalendar/lib/main.min.js"></script>
-    <script src="https://kit.fontawesome.com/41bcea2ae3.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="assets/fullcalendar/lib/main.min.css">
+    <script src="assets/js-general/jquery-3.6.0.min.js"></script>
+    <script src="assets/js-general/bootstrap.min.js"></script>
+    <script src="assets/fullcalendar/lib/main.min.js"></script>
+    <script src="https://kit.fontawesome.com/68088d55fd.js" crossorigin="anonymous"></script>
 
 
 
@@ -55,30 +52,26 @@ require_once('views/administrador/gestion_agenda/db-connect.php');
                 <div class="caja3">
                     <div class="container py-5" id="page-container">
                         <div class="row">
-                            <div class="col-md-9">
+                            <div class="col-md-8">
                                 <div id="calendar"></div>
                             </div>
-                            <div class="col-md-3">
+                            <div class="col-md-4">
                                 <div class="cardt rounded-0 shadow">
                                     <div class="card-header bg-gradient bg-primary text-light">
-                                        <h5 class="card-title">Crear Evento</h5>
+                                        <h5 class="card-title">Crear Agenda</h5>
                                     </div>
                                     <div class="card-body">
                                         <div class="container-fluid">
-                                            <form action="save_schedule.php" method="post" id="schedule-form">
-                                                <input type="hidden" name="id" value="">
+                                            <form action="index.php?c=Administrador&a=nueva_agenda" method="post" id="schedule-form">
+                                                <input type="hidden" name="id_profesional" id="id_profesional" value="<?php echo $data["profesional"]["id_profesional"]?>">
                                                 <div class="form-group mb-2">
-                                                    <label for="nombre_prof" class="control-label">Nombre profesional</label>
-                                                    <input type="text" class="form-control form-control-sm rounded-0" name="title" id="title" value= "holis" disabled>
-                                                </div>
-                                                <div class="form-group mb-2">
-                                                    <label for="description" class="control-label">Descripción agenda</label>
-                                                    <textarea rows="3" class="form-control form-control-sm rounded-0" name="description" id="description" disabled></textarea>
+                                                    <label for="nombre_prof" class="control-label">Profesional</label>
+                                                    <input type="text" class="form-control form-control-sm rounded-0" value="<?php echo $data["profesional"]["nombres_prof"]?>" disabled>
                                                 </div>
                                                 <div class="form-group mb-2">
                                                 <label for="end_datetime" class="control-label">Elija el mes laboral</label>
-                                                <select class="Selectordoc" name="tipo_franja_la" id="tipo_franja_la">
-                                                <option >Seleccione el mes </option>
+                                                <select class="Selectordoc" name="tipo_franja_la" id="tipo_franja_la" required>
+                                                <option value="">Seleccione el mes </option>
                                                     <option value="01">Enero</option>
                                                     <option value="02">Febrero</option>
                                                     <option value="03">Marzo</option>
@@ -96,8 +89,8 @@ require_once('views/administrador/gestion_agenda/db-connect.php');
                                                 </div>
                                                 <div class="form-group mb-2">
                                                 <label for="end_datetime" class="control-label">Franja laboral</label>
-                                                <select class="Selectordoc" name="tipo_franja" id="tipo_franja">
-                                                <option >Elige el tipo de franja</option>
+                                                <select class="Selectordoc" name="tipo_franja" id="tipo_franja" required>
+                                                <option value="">Elige el tipo de franja</option>
                                                     <option value="a">8:00 a.m - 4:00 p.m</option>
                                                     <option value="b">6:00 a.m - 2:00 p.m</option>
                                                     <option value="c">2:00 p.m - 10:00 p.m</option>
@@ -109,7 +102,25 @@ require_once('views/administrador/gestion_agenda/db-connect.php');
                                     <div class="card-footer">
                                         <div class="text-center">
                                             <button class="btn btn-primary btn-sm rounded-0" type="submit" form="schedule-form"><i class="fa fa-save"></i> Guardar</button>
-                                            <button class="btn btn-default border btn-sm rounded-0" type="reset" form="schedule-form"><i class="fa fa-reset"></i> Cancelar</button>
+                                        </div>
+                                    </div>
+                                    <div class="card-header bg-gradient bg-primary text-light">
+                                        <h5 class="card-title">Execpciones</h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="container-fluid">
+                                            <div class="form-group mb-2">
+                                                <form action="index.php?c=Administrador&a=excepciones" method="post" id="eliminar_dia">
+                                                    <input type="hidden" name="id_profesional" id="id_profesional" value="<?php echo $data["profesional"]["id_profesional"]?>">
+                                                    <label for="nombre_prof" class="control-label">Seleccione el dia</label>
+                                                    <input type="date" class="form-control form-control-sm rounded-0" id="dia_eliminar" name="dia_eliminar" required>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card-footer">
+                                        <div class="text-center">
+                                            <button class="btn btn-warning btn-sm rounded-0" type="submit" form="eliminar_dia"><i class="fa-solid fa-delete-right"></i> Eliminar dia</button>
                                         </div>
                                     </div>
                                 </div>
@@ -128,9 +139,9 @@ require_once('views/administrador/gestion_agenda/db-connect.php');
                             <div class="modal-body rounded-0">
                                 <div class="container-fluid">
                                     <dl>
-                                        <dt class="text-muted">Nombre</dt>
+                                        <dt class="text-muted">Id cita</dt>
                                         <dd id="title" class="fw-bold fs-4"></dd>
-                                        <dt class="text-muted">Descripción</dt>
+                                        <dt class="text-muted">Numero</dt>
                                         <dd id="description" class=""></dd>
                                         <dt class="text-muted">Inicio</dt>
                                         <dd id="start" class=""></dd>
@@ -141,7 +152,6 @@ require_once('views/administrador/gestion_agenda/db-connect.php');
                             </div>
                             <div class="modal-footer rounded-0">
                                 <div class="text-end">
-                                    <button type="button" class="btn btn-primary btn-sm rounded-0" id="edit" data-id="">Editar</button>
                                     <button type="button" class="btn btn-danger btn-sm rounded-0" id="delete" data-id="">Eliminar</button>
                                     <button type="button" class="btn btn-secondary btn-sm rounded-0" data-bs-dismiss="modal">Cerrar</button>
                                 </div>
@@ -152,23 +162,11 @@ require_once('views/administrador/gestion_agenda/db-connect.php');
             </div> 
         </div>
     </main>
-<?php 
-$schedules = $conn->query("SELECT * FROM cita WHERE id_profesional = 1010101");
-$sched_res = [];
-
-foreach($schedules->fetch_all(MYSQLI_ASSOC) as $row){
-    $row['sdate'] = date("F d, Y h:i A",strtotime($row['fechacita_horainicio']));
-    $row['edate'] = date("F d, Y h:i A",strtotime($row['fechacita_horafin']));
-    $sched_res[$row['id_cita']] = $row;
-}
-?>
-<?php 
-if(isset($conn)) $conn->close();
-?>
 <script src="assets/js-general/menu-responsive.js"></script>
+
 </body>
 <script>
-    var scheds = $.parseJSON('<?= json_encode($sched_res) ?>')
+    var scheds = $.parseJSON('<?= json_encode($data["sched_res"]) ?>')
 </script>
-<script src="views/administrador/gestion_agenda/js/script.js"></script>
+<script src="assets/js-general/script.js"></script>
 </html>

@@ -18,6 +18,7 @@
 	function cargarAccion($controller, $accion, $id = null){
 		
 		if(isset($accion) && method_exists($controller, $accion)){
+			
 			if($id == null ){
 				$controller->$accion();
 				} else {
