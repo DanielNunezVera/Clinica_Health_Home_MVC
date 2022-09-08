@@ -31,7 +31,7 @@
 			return $this->paciente;
 		}
 
-        public function get_profesional()
+    public function get_profesional()
 		{
 			$sql = "SELECT * FROM profesional";
 			$resultado = $this->db->query($sql);
@@ -39,10 +39,11 @@
 			{
 				$this->profesional[] = $row;
 			}
+			// $this->db->close();
 			return $this->profesional;
 		}
 
-        public function get_auxiliar()
+    public function get_auxiliar()
 		{
 			$sql = "SELECT * FROM auxiliar";
 			$resultado = $this->db->query($sql);

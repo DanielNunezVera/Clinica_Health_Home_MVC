@@ -4,17 +4,17 @@
 		
 		private $db;
 		private $citas_pac;
-    	private $citas_prof;
+    private $citas_prof;
 		
 		public function __construct(){
 			$this->db = Conectar::conexion();
 			$this->citas_pac = array();
-      		$this->citas_prof = array();
-      		}
+      $this->citas_prof = array();
+		}
 		
 		public function get_citas_pac()
 		{
-			$sql = "SELECT * FROM cita";
+			$sql = "SELECT * FROM cita_paciente";
 			$resultado = $this->db->query($sql);
 			while($row = $resultado->fetch_assoc())
 			{

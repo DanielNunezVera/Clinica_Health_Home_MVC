@@ -1,5 +1,5 @@
 <?php
-include "../../../controller/sesiones/sesiones_aux.php";
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -9,7 +9,7 @@ include "../../../controller/sesiones/sesiones_aux.php";
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Citas</title>
     <script src="https://kit.fontawesome.com/41bcea2ae3.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="../../../assets/css/estilos.css">
+    <link rel="stylesheet" href="assets/css/estilos.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
     <!--  Datatables  -->
@@ -26,15 +26,15 @@ include "../../../controller/sesiones/sesiones_aux.php";
     <header>
         <div class="container__menu">
             <div class="logo">
-                <img src="../../assets/images/Logo2.png" alt="">
+                <img src="assets/images/Logo2.png" alt="">
             </div>
             <div class="menu">
                 <i class="fas fa-bars" id="btn_menu"></i>
                 <div id="back_menu"></div>
                 <nav id="nav">
-                    <img src="../../assets/images/icon_auxadmin.png" alt="">
+                    <img src="assets/images/icon_auxadmin.png" alt="">
                     <ul>
-                        <li><a href="../index_aux.php">Inicio</a></li>
+                        <li><a href="index.php?c=Administrador&a=index">Inicio</a></li>
                         <li><a href="../update_info_aux/update_aux.php">Actualizar datos</a></li>
                         <li><a href="../../../controller/sesiones/cerrarsesion.php">Cerrar sesión</a></li>
                     </ul>
@@ -99,7 +99,7 @@ include "../../../controller/sesiones/sesiones_aux.php";
             </div> 
         </div>
     </main>
-    <script src="../../assets/js-general/menu-responsive.js"></script>
+    <script src="assets/js-general/menu-responsive.js"></script>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
