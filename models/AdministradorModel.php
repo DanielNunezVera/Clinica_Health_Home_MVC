@@ -86,6 +86,8 @@
 			return $this->especialidad;
 		}
 
+		// Se busca traer la agenda de los profesionales 
+
 		public function get_agenda_prof($id){
 			$sql = "SELECT * FROM cita WHERE id_profesional='$id' LIMIT 1";
 			$resultado = $this->db->query($sql);
@@ -99,7 +101,8 @@
 			return $row;
 		}
 
-////
+		////Métodos para crear usuarios
+
 		public function insertar_pac($id_tipo_doc, $num_doc_pac, $nombres_pac, $apellidos_pac, $tel_pac, $correo_pac, $sexo_pac){
 			
 			$resultado = $this->db->query("INSERT INTO paciente (id_tipo_doc, num_doc_pac, nombres_pac, apellidos_pac, tel_pac, correo_pac, sexo_pac, estado_pac, pass_pac, create_pac) VALUES ('$id_tipo_doc', '$num_doc_pac', '$nombres_pac', '$apellidos_pac', '$tel_pac', '$correo_pac', '$sexo_pac', 1, '$num_doc_pac', CURRENT_TIMESTAMP)");
