@@ -39,8 +39,7 @@
                     <h1 class="titulo1">Agendar cita</h1>
                     <div class="contact-wrapper animated bounceInUp">
                         <div class="contact-form">
-                            <form action="index.php?c=Administrador&a=cambio_estado_1_aux" method="POST">
-                                <input type="hidden" id="id_tipo_doc" name="id_tipo_doc" value="">
+                            <form action="index.php?c=Paciente&a=buscar_cita" method="POST">
                                 <p>
                                     <label>Especialidad</label>
                                     <select class="Selectorconsult" name="id_especialidad" id="id_especialidad" required>
@@ -56,7 +55,7 @@
                                 </p> 
                                 <p class="block">
                                 <a href="gestion_usuarios.php">
-                                <button class="btn btn-primary btn-lg btn-block" name="registrar" id="reistrar" type="submit" >Buscar</button>
+                                <button class="btn btn-primary btn-lg btn-block" name="registrar" id="reistrar" type="submit">Buscar</button>
                                 </a>
                                 </p>
                             </form>
