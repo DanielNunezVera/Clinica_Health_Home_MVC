@@ -19,7 +19,7 @@
             $id_cita = $_POST['id_cita'];
 			$id_paciente = $_POST['id_paciente'];
             $paquete = new Paciente_model();
-            $data["especialidad"] = $paquete->agendar_cita($id_cita, $id_paciente);
+            $paquete->agendar_cita($id_cita, $id_paciente);
             header('location:index.php?c=Paciente&a=agendar_cita_i');
 		}
 

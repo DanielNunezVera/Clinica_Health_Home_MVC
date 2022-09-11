@@ -34,6 +34,10 @@
 			return $this->citas_prof;
 		}
 
+		// public function cancelar_cita_pac(){
+
+		// }
+
 
 		/*public function modificar_auxiliar($id_auxiliar, $id_tipo_doc, $tel_aux, $correo_aux){
 			
@@ -46,9 +50,9 @@
 			
 		}
 
-		public function cancelar_cita_prof($id_consultorios){
+		public function cancelar_cita_prof($id){
 
-			$resultado = $this->db->query("DELETE FROM consultorios WHERE id_consultorios='$id_consultorios'");
+			$resultado = $this->db->query("DELETE FROM cita WHERE id_cita='$id'");
 
 		}
 	

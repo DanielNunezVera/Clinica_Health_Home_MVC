@@ -4,7 +4,10 @@
 
 		public function __construct(){
 			require_once "models/AuxiliarModel.php";
+			require_once "models/AdministradorModel.php";
+			require_once "models/PacienteModel.php";
 		}
+
 
 		public function index(){
 			
@@ -23,10 +26,58 @@
 		public function citas_prof(){
 			
 			$citas_prof = new Auxiliar_model();
-			$data["citas"] = $citas_prof->get_citas_prof();
+			$data["citas_profe"] = $citas_prof->get_citas_prof();
 						
 			require_once "views/auxiliar_admin/view_citas/citasprof.php";
 				
+		}
+
+		public function agendar_cita_i(){
+            $paquete=  new Administrador_model();
+            $data["especialidad"] = $paquete->get_especialidad();
+			require_once "views/auxiliar_admin/agenda_cita/cita_aux.php";
+				
+		}
+
+		public function cancelar_cita_prof($id){
+
+			session_start();					
+			if(isset($_POST['id_paciente'])){
+				$id_paciente = $_POST['id_paciente'];
+				$_SESSION["id_paciente"]=$id_paciente;
+			}
+			
+			$id_c=$id;
+			$can_ci= new Auxiliar_model;
+			$can_ci->cancelar_cita_prof($id_c);
+
+			if(isset($_POST['id_paciente'])){
+				header('location:index.php?c=Auxiliar&a=agendar_cita_i');
+			} else{
+				header('location:index.php?c=Auxiliar&a=citas_prof');
+			}
+
+			
+
+		}
+
+		public function buscar_cita(){
+
+			$id_especialidad = $_POST['id_especialidad'];
+			$fecha = $_POST['fecha'];
+            $paquete=  new Paciente_model();
+            $data["cita"] = $paquete->get_citas($fecha, $id_especialidad);
+			require_once "views/auxiliar_admin/agenda_cita/citas_dis_aux.php";
+				
+		}
+		public function agendar_cita_f(){
+
+			session_start();
+            $id_cita = $_POST['id_cita'];
+			$id_paciente=$_SESSION['id_paciente'];
+            $paquete = new Paciente_model();
+            $paquete->agendar_cita($id_cita, $id_paciente);
+            header('location:index.php?c=Auxiliar&a=citas_prof');
 		}
 
 

@@ -170,10 +170,10 @@
 						$fecha_f_1 = $date->format("Y-m-d H:i");
 					}
 					if($count > 2){
-						$resultado = $this->db->query("INSERT INTO `cita` (`id_profesional`,`fechacita_horainicio`,`fechacita_horafin`,`estado_cita`,`estado_pago_cita`,`asistencia_cita`,`create_cita`) VALUES ('$id_profesional','$fecha_i_1','$fecha_f_1',1,0,0, CURRENT_TIMESTAMP)"); 
+						$resultado = $this->db->query("INSERT INTO `cita` (`id_profesional`,`fechacita_horainicio`,`fechacita_horafin`,`estado_cita`,`estado_pago_cita`,`asistencia_cita`,`create_cita`) VALUES ('$id_profesional','$fecha_i_1','$fecha_f_1',0,0,0, CURRENT_TIMESTAMP)"); 
 						$count = 1;
 						$fecha_i_2 = $date->format("Y-m-d H:i");
-						$resultado = $this->db->query("INSERT INTO `cita` (`id_profesional`,`fechacita_horainicio`,`fechacita_horafin`,`estado_cita`,`estado_pago_cita`,`asistencia_cita`,`create_cita`) VALUES ('$id_profesional','$fecha_f_1','$fecha_i_2',1,0,0, CURRENT_TIMESTAMP)"); 
+						$resultado = $this->db->query("INSERT INTO `cita` (`id_profesional`,`fechacita_horainicio`,`fechacita_horafin`,`estado_cita`,`estado_pago_cita`,`asistencia_cita`,`create_cita`) VALUES ('$id_profesional','$fecha_f_1','$fecha_i_2',0,0,0, CURRENT_TIMESTAMP)"); 
 						$fecha_i_1 = $date->format("Y-m-d H:i");
 					}
 				  }
