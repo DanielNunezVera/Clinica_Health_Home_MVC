@@ -33,10 +33,38 @@
 				
 		}
 
+        public function get_paciente(){
+
+            $paquete = new Paciente_model;
+            $data["paciente"] = $paquete -> get_paciente();
+
+            require_once "views/pacientes/update_info_pac/update_pacientes.php";
+
+        }
+
+        public function update_pac(){
+
+            $correo_pac = $_POST['correo_pac'];
+            $tel_pac = $_POST['tel_pac'];
+
+            $paquete = new Paciente_model;
+            $paquete -> update_info_pac($correo_pac, $tel_pac);
+
+            header ('location:index.php?c=Paciente&a=get_paciente');
+
+        }
+
+        public function update_password(){
+
+            $id_paciente = $_POST['id_paciente'];
+            $pass_pac = $_POST['pass_pac'];
+
+            $password = new Paciente_model;
+            $password -> update_pass_pac($id_paciente, $pass_pac);
+
+            require_once "views/pacientes/update_info_pac/update_contraseña.php";
+
+        }
+
     }
-
-
-
-
-
 ?>

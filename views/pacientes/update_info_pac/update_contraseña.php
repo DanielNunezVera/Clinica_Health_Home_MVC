@@ -1,25 +1,25 @@
 <?php
-    include "../../../controller/conexion-db/db_connect.php";
+    // include "../../../controller/conexion-db/db_connect.php";
 
-    include "../../../controller/sesiones/sesiones_pac.php";
+    // include "../../../controller/sesiones/sesiones_pac.php";
 
-    $consulta = "SELECT * FROM personas INNER JOIN pacientes ON personas.id_pers = pacientes.id_pac";
+    // $consulta = "SELECT * FROM personas INNER JOIN pacientes ON personas.id_pers = pacientes.id_pac";
 
-    $resultado = mysqli_query($conectar, $consulta) or die(mysqli_error());
+    // $resultado = mysqli_query($conectar, $consulta) or die(mysqli_error());
 
-    $fila = mysqli_fetch_assoc($resultado);
+    // $fila = mysqli_fetch_assoc($resultado);
 
-    $filas = mysqli_num_rows($resultado);
+    // $filas = mysqli_num_rows($resultado);
 
-    if($filas == 1){
+    // if($filas == 1){
         
-        $_SESSION['id_pac'] = $fila['id_pac'];
-        $_SESSION['genero'] = $fila['genero'];
-        $_SESSION['fecha_nacimiento'] = $fila['fecha_nacimiento'];
-        $_SESSION['creacion'] = $fila['creacion'];
-        $_SESSION['actualizacion'] = $fila['actualizacion'];
-        $_SESSION['delete'] = $fila['delete'];
-    }
+    //     $_SESSION['id_pac'] = $fila['id_pac'];
+    //     $_SESSION['genero'] = $fila['genero'];
+    //     $_SESSION['fecha_nacimiento'] = $fila['fecha_nacimiento'];
+    //     $_SESSION['creacion'] = $fila['creacion'];
+    //     $_SESSION['actualizacion'] = $fila['actualizacion'];
+    //     $_SESSION['delete'] = $fila['delete'];
+    // }
 
 ?>
 <!DOCTYPE html>
@@ -50,8 +50,8 @@
                 <nav id="nav">
                     <img src="../../../assets/images/ajustes.png" alt="">
                     <ul>
-                        <li><a href="../index_pac.php">Inicio</a></li>
-                        <li><a href="../../Update pacientes/update_pacientes.php">Actualizar datos</a></li>
+                        <li><a href="../../../index.php">Inicio</a></li>
+                        <li><a href="../../../index.php">Actualizar datos</a></li>
                         <li><a href="../../../controller/sesiones/cerrarsesion.php">Cerrar sesion</a></li>
                     </ul>
                 </nav>
@@ -65,20 +65,25 @@
                     <h1 class="titulo1">Cambio de contraseña</h1>
                     <div class="contact-wrapper animated bounceInUp">
                         <div class="contact-form">
-                            <form action="update_pacientes_alert3.php" method="POST">
+                            <form action="index.php?c=Paciente&a=update_password" method="POST">
+                                <input type="hidden" name="id_paciente" id="id_paciente" value="<?php $data["paciente"]["id_paciente"] ?>" >
                                 <p>
                                     <label>Nueva contraseña</label>
-                                    <input type="text" name="contra">
+                                    <input type="text" name="pass_pac" id="pass_pac">
                                 </p>
                                 <p>
                                     <label>Repita contraseña</label>
-                                    <input type="text" name="contra">
+                                    <input type="text" name="repeat_pass_pac" id="repeat_pass_pac">
                                 </p>
-                                <p class="block">
-                                    <button name="update_con" type="submit">
-                                        Actualizar
-                                    </button>
-                                </p>
+                                <?php 
+
+                                if ($_POST['pass_pac'] != $_POST['repeat_pass_pac']){
+
+                                    
+
+                                }
+                                
+                                ?>
                             </form>
                         </div>
                     </div>
