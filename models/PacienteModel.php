@@ -39,15 +39,17 @@
 
 			public function update_info_pac($correo_pac, $tel_pac){
 
-				$sql = "UPDATE paciente SET correo_pac = $correo_pac, tel_pac = $tel_pac";
-				$resultado = $this->db->query($sql);
+				$resultado = $this->db->query("UPDATE paciente SET correo_pac = '$correo_pac', tel_pac = '$tel_pac'");
+
+				return $resultado;
 
 			}
 
 			public function update_pass_pac($id_paciente, $pass_pac){
 
-				$sql = "UPDATE paciente SET pass_pac = $pass_pac WHERE id_paciente = '$id_paciente'";
-				$resultado = $this->db->query($sql);
+				$resultado = $this->db->query("UPDATE paciente SET pass_pac = '$pass_pac' WHERE id_paciente = '$id_paciente'");
+
+				return $resultado;
 
 			}
 

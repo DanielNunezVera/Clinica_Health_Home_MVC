@@ -54,15 +54,34 @@
 
         }
 
+        public function password(){
+
+            $paquete = new Paciente_model;
+            $data["paciente"] = $paquete ->get_paciente();
+
+            require_once "views/pacientes/update_info_pac/update_contraseña.php";
+
+        }
+
         public function update_password(){
 
             $id_paciente = $_POST['id_paciente'];
             $pass_pac = $_POST['pass_pac'];
 
-            $password = new Paciente_model;
-            $password -> update_pass_pac($id_paciente, $pass_pac);
+            var_dump($_POST['id_paciente'], $_POST["pass_pac"], $_POST["repeat_pass_pac"]);
 
-            require_once "views/pacientes/update_info_pac/update_contraseña.php";
+            $paquete = new Paciente_model;
+            $paquete -> update_pass_pac($id_paciente, $pass_pac);
+
+            if ($_POST["pass_pac"] != $_POST["repeat_pass_pac"]) {
+                                    
+                header('Location:index.php?c=Paciente&a=password');
+
+            } else{
+
+                header ('Location:index.php?c=Paciente&a=get_paciente');
+
+            }
 
         }
 

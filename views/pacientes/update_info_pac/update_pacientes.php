@@ -103,7 +103,7 @@
                                 </p>
                                 <p>
                                     <label><br></label>
-                                    <a href="index.php?c=Paciente&a=update_password" class="boton">Actualizar contraseña</a>
+                                    <a href="index.php?c=Paciente&a=password" class="boton">Actualizar contraseña</a>
                                 </p>
                                 <p class="block">
                                     <button name="update" id="update" type="submit">
