@@ -35,7 +35,7 @@
                     <img src="assets/images/icon_auxadmin.png" alt="">
                     <ul>
                         <li><a href="index.php?c=Administrador&a=index">Inicio</a></li>
-                        <li><a href="../update_info_aux/update_aux.php">Actualizar datos</a></li>
+                        <li><a href="index.php?c=Auxiliar&a=actualizar_aux">Actualizar datos</a></li>
                         <li><a href="../../../controller/sesiones/cerrarsesion.php">Cerrar sesión</a></li>
                     </ul>
                 </nav>

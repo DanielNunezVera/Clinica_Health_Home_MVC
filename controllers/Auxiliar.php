@@ -241,12 +241,37 @@
 			require_once "views/administrador/gestion_usuarios/update_prof.php";
 		}
 
-		public function actualizar_aux($id){
+		public function actualizar_aux(){
 			
-			$auxiliar = new Administrador_model();
-			$data["tipo_doc"] = $auxiliar->get_tipo_doc();
-			$data["auxiliar"] = $auxiliar->get_aux($id);
-			require_once "views/administrador/gestion_usuarios/update_aux.php";
+			$auxiliar = new Auxiliar_model();
+			$data["auxiliar"] = $auxiliar->get_aux();
+			require_once "views/auxiliar_admin/update_info_aux/update_aux.php";
+			
+		}
+
+		public function actualizar_pass(){
+
+			$auxiliar = new Auxiliar_model();
+			$data["auxiliar"] = $auxiliar->get_aux();
+			require_once "views/auxiliar_admin/update_info_aux/update_pass.php";
+		}
+
+		public function modificar_aux(){
+
+			$tel_aux = $_POST['tel_aux'];
+			$correo_aux = $_POST['correo_aux'];
+
+			$auxiliar = new Auxiliar_model();
+			$auxiliar->modificar_auxiliar($tel_aux, $correo_aux);
+			header('location:index.php?c=Administrador&a=index');
+		}
+
+		public function modificar_pass(){
+			$newpass = $_POST['newpass'];
+
+			$password = new Auxiliar_model();
+			$password -> update_password($newpass);
+			header('location:index.php?c=Administrador&a=index');
 		}
 	}
 ?>

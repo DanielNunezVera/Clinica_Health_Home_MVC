@@ -35,10 +35,37 @@
 			$this->set_citas_prom_prof();
 		}	
         
+		public function actualizar_prof(){
+			
+			$profesional = new Profesional_model();
+			$data["profesional"] = $profesional->get_prof();
+			require_once "views/profesional/update_prof/update_prof.php";			
+		}
 
+        public function modificar_prof(){
+            $tel_prof = $_POST['tel_prof'];
+            $correo_prof = $_POST['correo_prof'];
 
+            $profesional = new Profesional_model();
+            $profesional->modificar_profesional($tel_prof, $correo_prof);
+            header('location:index.php?c=Administrador&a=index');
+        }
 
+        public function actualizar_pass(){
 
+			$profesional = new Profesional_model();
+			$data["profesional"] = $profesional->get_prof();
+			require_once "views/profesional/update_prof/update_pass.php";
+		}
+
+        public function modificar_pass(){
+            $newpass = $_POST['newpass'];
+            $repass = $_POST['repass'];
+        	
+			$password = new Profesional_model();
+            $password->update_password($newpass);
+            header('location:index.php?c=Administrador&a=index');
+        }
     }
 
 

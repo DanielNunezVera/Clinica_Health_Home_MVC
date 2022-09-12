@@ -35,7 +35,20 @@ class Profesional_model{
         
     }
 
+    public function get_prof(){
+        $sql = "SELECT * FROM profesional WHERE id_profesional=1 LIMIT 1 ";
+        $resultado = $this->db->query($sql);
+        $row = $resultado->fetch_assoc();
+        return $row;
+    }
 
+    public function modificar_profesional($tel_prof, $correo_prof){
+        $resultado = $this->db->query("UPDATE profesional SET tel_prof='$tel_prof', correo_prof='$correo_prof' WHERE id_profesional=1 ");
+    }
+
+    public function update_password($newpass){
+        $resultado = $this->db->query("UPDATE profesional SET pass_prof='$newpass' WHERE id_profesional=1 ");
+    }
 }
 
 

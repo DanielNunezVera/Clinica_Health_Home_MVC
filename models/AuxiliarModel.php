@@ -55,6 +55,21 @@
 			$resultado = $this->db->query("DELETE FROM cita WHERE id_cita='$id'");
 
 		}
-	
+
+		public function get_aux(){
+			$sql = "SELECT * FROM auxiliar WHERE id_auxiliar=2 LIMIT 1";
+			$resultado = $this->db->query($sql);
+			$row = $resultado->fetch_assoc();
+
+			return $row;
+		}
+
+		public function modificar_auxiliar($tel_aux, $correo_aux){
+			$resultado = $this->db->query("UPDATE auxiliar SET tel_aux='$tel_aux', correo_aux='$correo_aux' WHERE id_auxiliar=2 ");
+		}
+		
+		public function update_password($newpass){
+			$resultado = $this->db->query("UPDATE auxiliar SET pass_aux='$newpass' WHERE id_auxiliar=2 ");
+		}
 	} 	
 ?>
