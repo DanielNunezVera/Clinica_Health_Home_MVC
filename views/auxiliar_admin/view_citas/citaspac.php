@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Citas</title>
+    <title>Citas pacientes</title>
     <script src="https://kit.fontawesome.com/41bcea2ae3.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="assets/css/estilos.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
@@ -35,8 +35,8 @@
                     <img src="assets/images/icon_auxadmin.png" alt="">
                     <ul>
                         <li><a href="index.php?c=Administrador&a=index">Inicio</a></li>
-                        <li><a href="index.php?c=Auxiliar&a=actualizar_aux">Actualizar datos</a></li>
-                        <li><a href="../../../controller/sesiones/cerrarsesion.php">Cerrar sesión</a></li>
+                        <li><a href="update_info_aux/update_aux.php">Actualizar datos</a></li>
+                        <li><a href="controller/sesiones/cerrarsesion.php">Cerrar sesión</a></li>
                     </ul>
                 </nav>
             </div>
@@ -46,55 +46,54 @@
         <div class="container__cover">
             <div class="cover"> 
                 <div class="caja3">
-                    <h1>Citas paciente</h1>
+                    <h1>Citas pacientes</h1>
                     <div class="row">
                         <div class="col-lg-12">
                             <table id="example" class="table table-bordered  display nowrap" cellspacing="0" width="100%">
                                 <thead>
                                     <tr>
-                                        <th>Id_cita</th>
-                                        <th>Fecha cita</th>
-                                        <th>Hora cita</th>
-                                        <th>Especilidad</th>
-                                        <th>Consultorio</th>
+                                        <th>Fecha de la cita</th>
+                                        <th>N° documento pac</th>
+                                        <th>Paciente</th>
+                                        <th>Tel paciente</th>
+                                        <th>N° documento prof</th>
                                         <th>Profesional</th>
-                                        <th>Costo</th>
+                                        <th>Especialidad</th>
+                                        <th>Costo cita</th>
+                                        <th>Consultorio</th>
                                         <th>Estado pago cita</th>
-                                        <th>Acción</th>
+                                        <th>Cancelar cita</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>20</td>
-                                        <td>07-julio-2022</td>
-                                        <td>7:00 am</td>
-                                        <td>Medicina general</td>
-                                        <td>C01</td>
-                                        <td>Manuel Rodolfo</td>
-                                        <td>$50.000</td>
-                                        <td><a href="citapac_confpago_alert5.php">Pdte Pago</a></td>
-                                        <td><a href="citapac_cancel_alert2.php">Cancelar</a></td>
+                                <?php foreach ($data["citas_pac"] as $dato) {
+                                      echo "<tr>";
+                                      echo "<td>".$dato["fechacita_horainicio"]."</td>";
+                                      echo "<td>".$dato["num_doc_pac"]."</td>";
+                                      echo "<td>".$dato["nombres_pac"]."&nbsp".$dato["apellidos_pac"]."</td>";
+                                      echo "<td>".$dato["tel_pac"]."</td>";
+                                      echo "<td>".$dato["num_doc_prof"]."</td>";
+                                      echo "<td>".$dato["nombres_prof"]."&nbsp".$dato["apellidos_prof"]."</td>";
+                                      echo "<td>".$dato["descrip_espec"]."</td>";
+                                      echo "<td>".$dato["costo_espec"]."</td>";
+                                      echo "<td>".$dato["id_consultorios"]."</td>";
+                                      echo "<td><a href='"."$url".$dato["id_cita"]."' ".$boton."</td>";
+                                      echo "<td><a href='index.php?c=Auxiliar&a=eliminar_aux&id=".$dato["id_auxiliar"]."' class='btn btn-danger active' role='button' aria-pressed='true'>&nbsp&nbspEliminar&nbsp&nbsp</a></td>";
+                                      echo "</tr>";  
+                                }
+                                ?>
+
+                                    
+                                        
                                     </tr>
-                                    <tr>
-                                        <td>21</td>
-                                        <td>28-julio-2022</td>
-                                        <td>7:00 am</td>
-                                        <td>Dermatología</td>
-                                        <td>C05</td>
-                                        <td>Lucia Castro Bermudez</td>
-                                        <td>$60.000</td>
-                                        <td><a href="citapac_confpago_alert5.php">Pdte Pago</a></td>
-                                        <td><a href="citapac_cancel_alert2.php">Cancelar</a></td>
-                                    </tr>
+                                    
                                 </tbody>
+                                
                             </table>  
+                            <button id="btn1" class="btn btn-primary btn-lg btn-block">Registrar</button>
                         </div>
                     </div> 
-                    <p class="boton_espec">
-                        <button name="Agendar" type="submit" onclick="enviarform()">
-                            Agendar cita
-                        </button>
-                    </p>
+                    
                 </div>
             </div> 
         </div>
