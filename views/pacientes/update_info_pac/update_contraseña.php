@@ -1,25 +1,25 @@
 <?php
-    include "../../../controller/conexion-db/db_connect.php";
+    // include "../../../controller/conexion-db/db_connect.php";
 
-    include "../../../controller/sesiones/sesiones_pac.php";
+    // include "../../../controller/sesiones/sesiones_pac.php";
 
-    $consulta = "SELECT * FROM personas INNER JOIN pacientes ON personas.id_pers = pacientes.id_pac";
+    // $consulta = "SELECT * FROM personas INNER JOIN pacientes ON personas.id_pers = pacientes.id_pac";
 
-    $resultado = mysqli_query($conectar, $consulta) or die(mysqli_error());
+    // $resultado = mysqli_query($conectar, $consulta) or die(mysqli_error());
 
-    $fila = mysqli_fetch_assoc($resultado);
+    // $fila = mysqli_fetch_assoc($resultado);
 
-    $filas = mysqli_num_rows($resultado);
+    // $filas = mysqli_num_rows($resultado);
 
-    if($filas == 1){
+    // if($filas == 1){
         
-        $_SESSION['id_pac'] = $fila['id_pac'];
-        $_SESSION['genero'] = $fila['genero'];
-        $_SESSION['fecha_nacimiento'] = $fila['fecha_nacimiento'];
-        $_SESSION['creacion'] = $fila['creacion'];
-        $_SESSION['actualizacion'] = $fila['actualizacion'];
-        $_SESSION['delete'] = $fila['delete'];
-    }
+    //     $_SESSION['id_pac'] = $fila['id_pac'];
+    //     $_SESSION['genero'] = $fila['genero'];
+    //     $_SESSION['fecha_nacimiento'] = $fila['fecha_nacimiento'];
+    //     $_SESSION['creacion'] = $fila['creacion'];
+    //     $_SESSION['actualizacion'] = $fila['actualizacion'];
+    //     $_SESSION['delete'] = $fila['delete'];
+    // }
 
 ?>
 <!DOCTYPE html>
@@ -33,7 +33,7 @@
     <script src="https://kit.fontawesome.com/41bcea2ae3.js" crossorigin="anonymous"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 
-    <link rel="stylesheet" href="../../../assets/css/estilos.css">
+    <link rel="stylesheet" href="assets/css/estilos.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Merriweather+Sans:wght@800&display=swap');
     </style>
@@ -42,16 +42,16 @@
     <header>
         <div class="container__menu">
             <div class="logo">
-                <img src="../../assets/images/Logo2.png" alt="">
+                <img src="assets/images/Logo2.png" alt="">
             </div>
             <div class="menu">
                 <i class="fas fa-bars" id="btn_menu"></i>
                 <div id="back_menu"></div>
                 <nav id="nav">
-                    <img src="../../../assets/images/ajustes.png" alt="">
+                    <img src="assets/images/ajustes.png" alt="">
                     <ul>
-                        <li><a href="../index_pac.php">Inicio</a></li>
-                        <li><a href="../../Update pacientes/update_pacientes.php">Actualizar datos</a></li>
+                        <li><a href="index.php?c=Administrador&a=index">Inicio</a></li>
+                        <li><a href="index.php?c=Paciente&a=get_paciente">Actualizar datos</a></li>
                         <li><a href="../../../controller/sesiones/cerrarsesion.php">Cerrar sesion</a></li>
                     </ul>
                 </nav>
@@ -65,17 +65,21 @@
                     <h1 class="titulo1">Cambio de contraseña</h1>
                     <div class="contact-wrapper animated bounceInUp">
                         <div class="contact-form">
-                            <form action="update_pacientes_alert3.php" method="POST">
+                            <form action="index.php?c=Paciente&a=update_password" method="POST">
+                                <input type="hidden" name="id_paciente" id="id_paciente" value="<?php $data["paciente"]["id_paciente"] ?>">
+                                <?php
+                                // var_dump($data["paciente"]["id_paciente"])
+                                ?>
                                 <p>
                                     <label>Nueva contraseña</label>
-                                    <input type="text" name="contra">
+                                    <input type="text" name="pass_pac" id="pass_pac" required>
                                 </p>
                                 <p>
                                     <label>Repita contraseña</label>
-                                    <input type="text" name="contra">
+                                    <input type="text" name="repeat_pass_pac" id="repeat_pass_pac" required>
                                 </p>
                                 <p class="block">
-                                    <button name="update_con" type="submit">
+                                    <button name="update_pass" id="update_pass" type="submit">
                                         Actualizar
                                     </button>
                                 </p>
@@ -86,6 +90,6 @@
             </div>
         </div>
     </main>
-    <script src="../../assets/js-general/menu-responsive.js"></script>
+    <script src="assets/js-general/menu-responsive.js"></script>
 </body>
 </html>

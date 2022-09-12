@@ -25,7 +25,7 @@
                     <img src="assets/images/pacientemenu.png" alt="">
                     <ul>
                         <li><a href="index.php?c=Administrador&a=index">Inicio</a></li>
-                        <li><a href="">Actualizar datos</a></li>
+                        <li><a href="index.php?c=Paciente&a=get_paciente">Actualizar datos</a></li>
                         <li><a href="">Cerrar sesion</a></li>
                     </ul>
                 </nav>

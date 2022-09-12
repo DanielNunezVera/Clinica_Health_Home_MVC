@@ -81,6 +81,81 @@ CREATE TABLE `cita` (
 
 --
 -- Estructura de tabla para la tabla `consultorios`
+-- Stand-in structure for view `citas_programadas_prof`
+-- (See below for the actual view)
+--
+CREATE TABLE `citas_programadas_prof` (
+`id_cita` bigint(11)
+,`fechacita_horainicio` datetime
+,`id_paciente` int(20)
+,`id_tipo_doc` varchar(5)
+,`num_doc_pac` varchar(20)
+,`nombres_pac` varchar(40)
+,`apellidos_pac` varchar(40)
+,`tel_pac` bigint(10)
+,`correo_pac` varchar(30)
+,`id_profesional` int(20)
+,`asistencia_cita` tinyint(1)
+);
+
+-- --------------------------------------------------------
+
+--
+-- Stand-in structure for view `cita_paciente`
+-- (See below for the actual view)
+--
+CREATE TABLE `cita_paciente` (
+`id_cita` bigint(11)
+,`fechacita_horainicio` datetime
+,`id_paciente` int(20)
+,`id_tipo_doc` varchar(5)
+,`num_doc_pac` varchar(20)
+,`nombres_pac` varchar(40)
+,`apellidos_pac` varchar(40)
+,`tel_pac` bigint(10)
+,`sexo_pac` varchar(15)
+,`id_profesional` int(20)
+,`num_doc_prof` varchar(20)
+,`nombres_prof` varchar(40)
+,`apellidos_prof` varchar(40)
+,`descrip_espec` varchar(30)
+,`costo_espec` int(6)
+,`id_consultorios` varchar(3)
+,`estado_cita` tinyint(1)
+,`asistencia_cita` tinyint(1)
+,`estado_pago_cita` tinyint(1)
+);
+
+-- --------------------------------------------------------
+
+--
+-- Stand-in structure for view `cita_profesional`
+-- (See below for the actual view)
+--
+CREATE TABLE `cita_profesional` (
+`id_cita` bigint(11)
+,`fechacita_horainicio` datetime
+,`id_paciente` int(20)
+,`id_tipo_doc` varchar(5)
+,`num_doc_pac` varchar(20)
+,`nombres_pac` varchar(40)
+,`apellidos_pac` varchar(40)
+,`tel_pac` bigint(10)
+,`sexo_pac` varchar(15)
+,`id_profesional` int(20)
+,`num_doc_prof` varchar(20)
+,`nombres_prof` varchar(40)
+,`apellidos_prof` varchar(40)
+,`descrip_espec` varchar(30)
+,`id_consultorios` varchar(3)
+,`estado_cita` tinyint(1)
+,`asistencia_cita` tinyint(1)
+);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `consultorios`
 --
 
 CREATE TABLE `consultorios` (
@@ -143,6 +218,16 @@ CREATE TABLE `paciente` (
   `create_pac` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `paciente`
+--
+
+INSERT INTO `paciente` (`id_paciente`, `id_tipo_doc`, `num_doc_pac`, `nombres_pac`, `apellidos_pac`, `tel_pac`, `correo_pac`, `sexo_pac`, `estado_pac`, `pass_pac`, `create_pac`) VALUES
+(1, 'CC', '2020201', 'Kyle', 'Mendez Castro', 31566868986, 'kylemendez@gmail.com', 'Masculino', 1, '1234', '2022-09-08 12:51:39'),
+(2, 'TI', '2020202', 'Maria Andrea', 'Ortiz Palacios', 31566868986, 'kylemendez@gmail.com', 'Femenino', 1, '1234', '2022-09-08 12:51:39'),
+(3, 'PA', '2020203', 'Martin Elias', 'Accidente opss', 31566868986, 'kylemendez@gmail.com', 'No sé', 1, '1234', '2022-09-08 17:07:50'),
+(6, 'CE', '2020204', 'Oscar', 'Martinez', 31566868986, 'kylemendez@gmail.com', 'Femenino', 1, '2020204', '2022-09-08 18:13:39');
+
 -- --------------------------------------------------------
 
 --
@@ -189,6 +274,33 @@ INSERT INTO `tipo_doc` (`id_tipo_doc`, `tipo_doc`, `create_tipo_doc`) VALUES
 ('PEP', 'Permiso Especial de Permanencia', '2022-08-18 17:00:36'),
 ('RC', 'Registro Civil', '2022-08-18 17:00:36'),
 ('TI', 'Tarjeta de Identidad', '2022-08-18 16:59:40');
+
+-- --------------------------------------------------------
+
+--
+-- Structure for view `citas_programadas_prof`
+--
+DROP TABLE IF EXISTS `citas_programadas_prof`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `citas_programadas_prof`  AS SELECT `cita`.`id_cita` AS `id_cita`, `cita`.`fechacita_horainicio` AS `fechacita_horainicio`, `paciente`.`id_paciente` AS `id_paciente`, `paciente`.`id_tipo_doc` AS `id_tipo_doc`, `paciente`.`num_doc_pac` AS `num_doc_pac`, `paciente`.`nombres_pac` AS `nombres_pac`, `paciente`.`apellidos_pac` AS `apellidos_pac`, `paciente`.`tel_pac` AS `tel_pac`, `paciente`.`correo_pac` AS `correo_pac`, `profesional`.`id_profesional` AS `id_profesional`, `cita`.`asistencia_cita` AS `asistencia_cita` FROM ((`cita` join `paciente` on(`cita`.`id_paciente` = `paciente`.`id_paciente`)) join `profesional` on(`cita`.`id_profesional` = `profesional`.`id_profesional`)) WHERE `cita`.`fechacita_horainicio` >= current_timestamp() AND `cita`.`estado_cita` = 11  ;
+
+-- --------------------------------------------------------
+
+--
+-- Structure for view `cita_paciente`
+--
+DROP TABLE IF EXISTS `cita_paciente`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `cita_paciente`  AS SELECT `cita`.`id_cita` AS `id_cita`, `cita`.`fechacita_horainicio` AS `fechacita_horainicio`, `paciente`.`id_paciente` AS `id_paciente`, `paciente`.`id_tipo_doc` AS `id_tipo_doc`, `paciente`.`num_doc_pac` AS `num_doc_pac`, `paciente`.`nombres_pac` AS `nombres_pac`, `paciente`.`apellidos_pac` AS `apellidos_pac`, `paciente`.`tel_pac` AS `tel_pac`, `paciente`.`sexo_pac` AS `sexo_pac`, `profesional`.`id_profesional` AS `id_profesional`, `profesional`.`num_doc_prof` AS `num_doc_prof`, `profesional`.`nombres_prof` AS `nombres_prof`, `profesional`.`apellidos_prof` AS `apellidos_prof`, `especialidad`.`descrip_espec` AS `descrip_espec`, `especialidad`.`costo_espec` AS `costo_espec`, `consultorios`.`id_consultorios` AS `id_consultorios`, `cita`.`estado_cita` AS `estado_cita`, `cita`.`asistencia_cita` AS `asistencia_cita`, `cita`.`estado_pago_cita` AS `estado_pago_cita` FROM ((((`cita` join `paciente` on(`cita`.`id_paciente` = `paciente`.`id_paciente`)) join `profesional` on(`cita`.`id_profesional` = `profesional`.`id_profesional`)) join `especialidad` on(`profesional`.`id_especialidad` = `especialidad`.`id_especialidad`)) join `consultorios` on(`profesional`.`id_consultorios` = `consultorios`.`id_consultorios`)) WHERE `cita`.`fechacita_horainicio` >= current_timestamp() AND `cita`.`estado_cita` = 11  ;
+
+-- --------------------------------------------------------
+
+--
+-- Structure for view `cita_profesional`
+--
+DROP TABLE IF EXISTS `cita_profesional`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `cita_profesional`  AS SELECT `cita`.`id_cita` AS `id_cita`, `cita`.`fechacita_horainicio` AS `fechacita_horainicio`, `paciente`.`id_paciente` AS `id_paciente`, `paciente`.`id_tipo_doc` AS `id_tipo_doc`, `paciente`.`num_doc_pac` AS `num_doc_pac`, `paciente`.`nombres_pac` AS `nombres_pac`, `paciente`.`apellidos_pac` AS `apellidos_pac`, `paciente`.`tel_pac` AS `tel_pac`, `paciente`.`sexo_pac` AS `sexo_pac`, `profesional`.`id_profesional` AS `id_profesional`, `profesional`.`num_doc_prof` AS `num_doc_prof`, `profesional`.`nombres_prof` AS `nombres_prof`, `profesional`.`apellidos_prof` AS `apellidos_prof`, `especialidad`.`descrip_espec` AS `descrip_espec`, `consultorios`.`id_consultorios` AS `id_consultorios`, `cita`.`estado_cita` AS `estado_cita`, `cita`.`asistencia_cita` AS `asistencia_cita` FROM ((((`cita` join `paciente` on(`cita`.`id_paciente` = `paciente`.`id_paciente`)) join `profesional` on(`cita`.`id_profesional` = `profesional`.`id_profesional`)) join `especialidad` on(`profesional`.`id_especialidad` = `especialidad`.`id_especialidad`)) join `consultorios` on(`profesional`.`id_consultorios` = `consultorios`.`id_consultorios`)) WHERE `cita`.`fechacita_horainicio` >= current_timestamp() AND `cita`.`estado_cita` = 11  ;
 
 --
 -- Índices para tablas volcadas

@@ -185,6 +185,7 @@
 		
 
 		public function modificar_paciente($id_paciente, $id_tipo_doc ,$tel_pac, $correo_pac){
+			
 			$resultado = $this->db->query("UPDATE paciente SET id_tipo_doc='$id_tipo_doc', tel_pac='$tel_pac', correo_pac='$correo_pac' WHERE id_paciente= '$id_paciente'");
 
 		}
