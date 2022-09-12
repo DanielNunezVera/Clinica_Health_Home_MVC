@@ -44,11 +44,12 @@
 
         public function update_pac(){
 
+            $id_paciente = $_POST['id_paciente'];
             $correo_pac = $_POST['correo_pac'];
             $tel_pac = $_POST['tel_pac'];
 
             $paquete = new Paciente_model;
-            $paquete -> update_info_pac($correo_pac, $tel_pac);
+            $paquete -> update_info_pac($id_paciente, $correo_pac, $tel_pac);
 
             header ('location:index.php?c=Paciente&a=get_paciente');
 

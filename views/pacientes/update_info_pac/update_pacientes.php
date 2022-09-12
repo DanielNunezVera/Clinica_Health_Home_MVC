@@ -67,11 +67,11 @@
                                 <input type="hidden" name="id_paciente" id="id_paciente" value="<?php $data["paciente"]["id_paciente"] ?>">
                                 <p>
                                     <label>N° documento</label>
-                                    <input type="number" name="num_doc_pac" value="<?php echo $data["paciente"]["num_doc_pac"];?>" disabled>
+                                    <input type="number" name="num_doc_pac" value="<?php echo $data["paciente"]["num_doc_pac"];?>" readonly>
                                 </p>
                                 <p>
                                     <label>Nombre completo</label>
-                                    <input type="text" name="nombrecompleto" id="nombrecompleto" value="<?php echo $data["paciente"]["nombres_pac"]." ".$data["paciente"]["apellidos_pac"]?>" disabled>
+                                    <input type="text" name="nombrecompleto" id="nombrecompleto" value="<?php echo $data["paciente"]["nombres_pac"]." ".$data["paciente"]["apellidos_pac"]?>" readonly>
                                 </p>
                                 <!-- <p>
                                     <label>Segundo nombre</label>
@@ -99,7 +99,7 @@
                                 </p> -->
                                 <p>
                                     <label>Genero</label>
-                                    <input type="text" name="sexo_pac" value="<?php echo $data["paciente"]["sexo_pac"] ?>" disabled>
+                                    <input type="text" name="sexo_pac" value="<?php echo $data["paciente"]["sexo_pac"] ?>" readonly>
                                 </p>
                                 <p>
                                     <label><br></label>

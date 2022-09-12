@@ -66,7 +66,7 @@
                     <div class="contact-wrapper animated bounceInUp">
                         <div class="contact-form">
                             <form action="index.php?c=Paciente&a=update_password" method="POST">
-                                <input type="text" name="id_paciente" id="id_paciente" value="<?php $data["paciente"]["id_paciente"] ?>">
+                                <input type="hidden" name="id_paciente" id="id_paciente" value="<?php $data["paciente"]["id_paciente"] ?>">
                                 <?php
                                 // var_dump($data["paciente"]["id_paciente"])
                                 ?>
