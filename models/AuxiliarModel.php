@@ -40,6 +40,19 @@
 			$resultado = $this->db->query("UPDATE auxiliar SET id_tipo_doc='$id_tipo_doc', tel_aux='$tel_aux', correo_aux='$correo_aux' WHERE id_auxiliar= '$id_auxiliar'");			
 		}*/
 		
+		public function confirmapago_aux1($id_cita){
+			
+			$resultado = $this->db->query("UPDATE cita SET   WHERE id_ = '$id_cita'");
+			
+		}
+
+		public function confirmapago_aux2($id_cita){
+			
+			$resultado = $this->db->query("UPDATE cita SET   WHERE id_ = '$id_cita'");
+			
+		}
+		
+		
 		public function cancelar_cita_pac($id_paciente){
 			
 			$resultado = $this->db->query("UPDATE paciente SET estado_pac=0 WHERE id_paciente = '$id_paciente'");
