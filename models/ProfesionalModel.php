@@ -17,9 +17,10 @@ class Profesional_model{
         $resultado = $this->db->query($sql);
 		while($row = $resultado->fetch_assoc())
 		{
-			$this->cita_pro_prof[] = $row;
+			$this->citas_progr[] = $row;
 		}
-		return $this->cita_pro_prof;
+        
+		return $this->citas_progr;
         
     }
 

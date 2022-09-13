@@ -66,23 +66,42 @@
 
         public function update_password(){
 
-            $id_paciente = $_POST['id_paciente'];
-            $pass_pac = $_POST['pass_pac'];
+            if ($_POST["pass_pac"] == $_POST["repeat_pass_pac"]) {
+                
+                $id_paciente = $_POST['id_paciente'];
+                $pass_pac = $_POST['pass_pac'];
+                $repeat_pass_pac = $_POST['repeat_pas_pac'];
 
-            var_dump($_POST['id_paciente'], $_POST["pass_pac"], $_POST["repeat_pass_pac"]);
+                var_dump($_POST['id_paciente'], $_POST["pass_pac"], $_POST["repeat_pass_pac"]);
 
-            $paquete = new Paciente_model;
-            $paquete -> update_pass_pac($id_paciente, $pass_pac);
-
-            if ($_POST["pass_pac"] != $_POST["repeat_pass_pac"]) {
+                $paquete = new Paciente_model;
+                $paquete -> update_pass_pac($id_paciente, $pass_pac);
                                     
-                header('Location:index.php?c=Paciente&a=password');
+                header ('Location:index.php?c=Paciente&a=get_paciente');
 
             } else{
 
-                header ('Location:index.php?c=Paciente&a=get_paciente');
+                header('Location:index.php?c=Paciente&a=password');
 
             }
+
+        }
+
+        public function citas_agendadas(){
+
+            $paquete = new Paciente_model;
+            $data["agendadas"] = $paquete -> citas_agendadas();
+
+            require_once "views/pacientes/view_citas/view_citas.php";
+
+        }
+
+        public function cancel_agendada($id){
+
+            $paquete = new Paciente_model;
+            $paquete -> cancelar_agendada($id);
+
+            header("Location:index.php?c=Paciente&a=citas_agendadas");
 
         }
 

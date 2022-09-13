@@ -66,10 +66,7 @@
                     <div class="contact-wrapper animated bounceInUp">
                         <div class="contact-form">
                             <form action="index.php?c=Paciente&a=update_password" method="POST">
-                                <input type="hidden" name="id_paciente" id="id_paciente" value="<?php $data["paciente"]["id_paciente"] ?>">
-                                <?php
-                                // var_dump($data["paciente"]["id_paciente"])
-                                ?>
+                                <input type="hidden" name="id_paciente" id="id_paciente" value="<?php echo $data["paciente"]["id_paciente"] ?>">
                                 <p>
                                     <label>Nueva contraseña</label>
                                     <input type="text" name="pass_pac" id="pass_pac" required>
@@ -79,7 +76,7 @@
                                     <input type="text" name="repeat_pass_pac" id="repeat_pass_pac" required>
                                 </p>
                                 <p class="block">
-                                    <button name="update_pass" id="update_pass" type="submit">
+                                    <button class="btn btn-primary btn-lg btn-block" name="update_pass" id="update_pass" type="submit">
                                         Actualizar
                                     </button>
                                 </p>

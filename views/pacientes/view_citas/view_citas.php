@@ -1,5 +1,5 @@
 <?php
-include "../../../controller/sesiones/sesiones_pac.php";
+// include "../../../controller/sesiones/sesiones_pac.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -9,7 +9,7 @@ include "../../../controller/sesiones/sesiones_pac.php";
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Citas agendadas</title>
     <script src="https://kit.fontawesome.com/41bcea2ae3.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="../../../assets/css/estilos.css">
+    <link rel="stylesheet" href="assets/css/estilos.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
     <!--  Datatables  -->
@@ -26,16 +26,16 @@ include "../../../controller/sesiones/sesiones_pac.php";
     <header>
         <div class="container__menu">
             <div class="logo">
-                <img src="../../assets/images/Logo2.png" alt="">
+                <img src="assets/images/Logo2.png" alt="">
             </div>
             <div class="menu">
                 <i class="fas fa-bars" id="btn_menu"></i>
                 <div id="back_menu"></div>
                 <nav id="nav">
-                    <img src="../../assets/images/ajustes.png" alt="">
+                    <img src="assets/images/ajustes.png" alt="">
                     <ul>
-                        <li><a href="../index_pac.php">Inicio</a></li>
-                        <li><a href="../update_info_pac/update_pacientes.php">Actualizar datos</a></li>
+                        <li><a href="index.php?c=Administrador&a=index">Inicio</a></li>
+                        <li><a href="index.php?c=Paciente&a=get_paciente">Actualizar datos</a></li>
                         <li><a href="../../../controller/sesiones/cerrarsesion.php">Cerrar sesion</a></li>
                     </ul>
                 </nav>
@@ -53,8 +53,7 @@ include "../../../controller/sesiones/sesiones_pac.php";
                                 <thead>
                                     <tr>
                                         <th>Id</th>
-                                        <th>Fecha cita</th>
-                                        <th>Hora cita</th>
+                                        <th>Fecha y hora cita</th>
                                         <th>Especialidad</th>
                                         <th>Profesional</th>
                                         <th>Costo</th>
@@ -62,24 +61,22 @@ include "../../../controller/sesiones/sesiones_pac.php";
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>24/06/2022</td>
-                                        <td>04:38 p.m</td>
-                                        <td>Medicina general</td>
-                                        <td>Pepito Paez Mejia</td>
-                                        <td>$20.000</td>
-                                        <td><a href="view_citas_alerta1.php">Cancelar cita</a></td>
-                                    </tr>
-                                    <tr>
-                                        <td>2</td>
-                                        <td>27/06/2022</td>
-                                        <td>08:38 a.m</td>
-                                        <td>Odontologia</td>
-                                        <td>Juanita Sanchez Resrepo</td>
-                                        <td>$50.000</td>
-                                        <td><a href="view_citas_alerta1.php">Cancelar cita</a></td>
-                                    </tr>
+                                    <?php
+
+                                    foreach($data["agendadas"] as $dato){
+
+                                        echo "<tr>";
+                                        echo "<td>".$dato['id_cita']."</td>";
+                                        echo "<td>".$dato['fechacita_horainicio']."</td>";
+                                        echo "<td>".$dato['descrip_espec']."</td>";
+                                        echo "<td>".$dato['nombres_prof']." ".$dato['apellidos_prof']."</td>";
+                                        echo "<td>"."$".$dato['costo_espec']."</td>";
+                                        echo "<td><a href='index.php?c=Paciente&a=cancel_agendada&id=".$dato['id_cita']."'>Cancelar cita</a></td>";
+                                        echo "<tr>";
+
+                                    }
+
+                                    ?>
                                 </tbody>
                             </table>  
                         </div>
@@ -88,7 +85,7 @@ include "../../../controller/sesiones/sesiones_pac.php";
             </div> 
         </div>
     </main>
-    <script src="../../assets/js-general/menu-responsive.js"></script>
+    <script src="assets/js-general/menu-responsive.js"></script>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
