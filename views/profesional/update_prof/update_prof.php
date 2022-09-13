@@ -1,6 +1,3 @@
-<?php
-include "../../../controller/sesiones/sesiones_prof.php";
-?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -10,7 +7,7 @@ include "../../../controller/sesiones/sesiones_prof.php";
     <title>Actualizar datos de profesional</title>
     <script src="https://kit.fontawesome.com/41bcea2ae3.js" crossorigin="anonymous"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
-    <link rel="stylesheet" href="../../../assets/css/estilos.css">
+    <link rel="stylesheet" href="assets/css/estilos.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Merriweather+Sans:wght@800&display=swap');
     </style>
@@ -19,15 +16,15 @@ include "../../../controller/sesiones/sesiones_prof.php";
     <header>
         <div class="container__menu">
             <div class="logo">
-                <img src="../../assets/images/Logo2.png" alt="">
+                <img src="assets/images/Logo2.png" alt="">
             </div>
             <div class="menu">
                 <i class="fas fa-bars" id="btn_menu"></i>
                 <div id="back_menu"></div>
                 <nav id="nav">
-                    <img src="../../assets/images/ajustes.png" alt="">
+                    <img src="assets/images/ajustes.png" alt="">
                     <ul>
-                        <li><a href="../index_prof.php" >Inicio</a></li>
+                        <li><a href="index.php?c=Administrador&a=index" >Inicio</a></li>
                         <li><a href="../../../controller/sesiones/cerrarsesion.php">Cerrar sesion</a></li>
                     </ul>
                 </nav>
@@ -41,35 +38,35 @@ include "../../../controller/sesiones/sesiones_prof.php";
                     <h1 class="titulo1">Actualizar Datos</h1>
                     <div class="contact-wrapper animated bounceInUp">
                         <div class="contact-form">
-                            <form action="update_prof_alert1.php" method="POST">
+                            <form action="index.php?c=Profesional&a=modificar_prof" method="POST">
                                 <p>
                                     <label>Tipo doc</label>
-                                    <input type="text" name="t_doc" value="<?php echo $_SESSION['t_doc_pers']?>" disabled>
+                                    <input type="text" name="t_doc" value="<?php echo $data["profesional"]["id_tipo_doc"];?>" disabled>
                                 </p>
                                 <p>
                                     <label>N° documento</label>
-                                    <input type="number" name="num_doc" value="<?php echo $_SESSION['num_doc_pers'];?>" disabled>
+                                    <input type="number" name="num_doc" value="<?php echo $data["profesional"]["num_doc_prof"];?>" disabled>
                                 </p>
                                 <p>
                                     <label>Nombre </label>
-                                    <input type="text" name="fullnombre" value="<?php echo $_SESSION['p_nombre_pers']."".$_SESSION['s_nombre_pers']."".$_SESSION['p_apellido_pers']."".$_SESSION['s_apellido_pers'];?>" disabled>
+                                    <input type="text" name="fullnombre" value="<?php echo $data["profesional"]["nombres_prof"]." ".$data["profesional"]["apellidos_prof"];?>" disabled>
                                 </p>
                                 <p>
                                     <label>Teléfono</label>
-                                    <input type="tel" name="tel" value="<?php echo $_SESSION['tel_pers'];?>" required>
+                                    <input type="tel" name="tel_prof" value="<?php echo $data["profesional"]["tel_prof"];?>" required>
                                 </p>
                                 <p>
                                     <label>Email</label>
-                                    <input type="email" name="email" value="<?php echo $_SESSION['correo_pers']?>" required>
+                                    <input type="email" name="correo_prof" value="<?php echo $data["profesional"]["correo_prof"]?>" required>
                                 </p>
                                 <p>
                                     <label>Dias laborales </label>
-                                    <input value="lunes - viernes" name="dias_laborales" disabled>
+                                    <input name="dias_laborales" value="<?php echo $data["profesional"]["dias_laborales"]?>" disabled>
                                 </p>
 
                                 <p>
                                     <label>Franja laboral </label>
-                                    <input value="8:00am - 6:00pm" name="franja_horaria" disabled>
+                                    <input name="franja_horaria" value="<?php echo $data["profesional"]["franja_horaria"]?>" disabled>
                                 </p>
                                 
                                 <p>
@@ -77,9 +74,7 @@ include "../../../controller/sesiones/sesiones_prof.php";
                                     <input name="pass" value="Cambiar contraseña" onclick="contraseña()" style="color:blue;">
                                 </p>
                                 <p class="block">
-                                    <button name="registrar" type="submit">
-                                        Actualizar
-                                    </button>
+                                    <button class="btn btn-primary btn-lg btn-block" name="registrar" id="registrar" type="submit">Actualizar</button>
                                 </p>
                             </form>
                         </div>
@@ -88,10 +83,10 @@ include "../../../controller/sesiones/sesiones_prof.php";
             </div>
         </div>
     </main>
-    <script src="../../assets/js-general/menu-responsive.js"></script>
+    <script src="assets/js-general/menu-responsive.js"></script>
     <script>
         function contraseña(){
-            window.location = "update_pass.php"
+            window.location = "index.php?c=Profesional&a=actualizar_pass"
         }
     </script>
 </body>

@@ -64,7 +64,7 @@
                     <div class="contact-wrapper animated bounceInUp">
                         <div class="contact-form">
                             <form action="index.php?c=Paciente&a=update_pac" method="POST">
-                                <input type="hidden" name="id_paciente" id="id_paciente" value="<?php $data["paciente"]["id_paciente"] ?>">
+                                <input type="hidden" name="id_paciente" id="id_paciente" value="<?php echo $data['paciente']['id_paciente'];?>">
                                 <p>
                                     <label>N° documento</label>
                                     <input type="number" name="num_doc_pac" value="<?php echo $data["paciente"]["num_doc_pac"];?>" readonly>
@@ -103,10 +103,10 @@
                                 </p>
                                 <p>
                                     <label><br></label>
-                                    <a href="index.php?c=Paciente&a=password" class="boton">Actualizar contraseña</a>
+                                    <a href="index.php?c=Paciente&a=password" class="btn btn-primary btn-lg btn-block">Actualizar contraseña</a>
                                 </p>
                                 <p class="block">
-                                    <button name="update" id="update" type="submit">
+                                    <button class="btn btn-primary btn-lg btn-block" name="update" id="update" type="submit">
                                         Actualizar
                                     </button>
                                 </p>

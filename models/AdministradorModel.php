@@ -150,39 +150,48 @@
 				$fecha_i = '2022/'.$tipo_franja_la.'/01 14:00';
 				$fecha_f = '2022/'.$tipo_franja_la.'/01 22:00';
 			}
-		
-			for($i = 0; $i < 31; $i++){
-				$count = 0;
-				$begin = new DateTime($fecha_i);
-				$end = new DateTime($fecha_f);
-				$end = $end->modify( '30 minute' );
-				$interval = new DateInterval('PT30M');
-				$daterange = new DatePeriod($begin, $interval ,$end);
-			
-				foreach($daterange as $date){
-				if(date('l', strtotime($date->format("Y-m-d H:i"))) == 'Sunday'){
-					////////  no se que poner aqui :v///////////////////////////
-				} else {
-					$count = $count + 1;
-					if($count == 1){
-						$fecha_i_1 = $date->format("Y-m-d H:i");
-					}elseif ($count == 2) {
-						$fecha_f_1 = $date->format("Y-m-d H:i");
+			$fecha_i_P = $fecha_i;
+			$fecha_i_P_2 = date("Y-m",strtotime($fecha_i_P));
+			$sql = "SELECT fechacita_horainicio FROM cita WHERE fechacita_horainicio LIKE ('%$fecha_i_P_2%') AND id_profesional = $id_profesional";
+			$resultado = $this->db->query($sql);
+			$filas = mysqli_num_rows($resultado);
+
+			if($filas<1){
+				for($i = 0; $i < 30; $i++){
+					$count = 0;
+					$begin = new DateTime($fecha_i);
+					$end = new DateTime($fecha_f);
+					$end = $end->modify( '30 minute' );
+					$interval = new DateInterval('PT30M');
+					$daterange = new DatePeriod($begin, $interval ,$end);
+				
+					foreach($daterange as $date){
+					if(date('l', strtotime($date->format("Y-m-d H:i"))) == 'Sunday'){
+						////////  no se que poner aqui :v///////////////////////////
+					} else {
+						$count = $count + 1;
+						if($count == 1){
+							$fecha_i_1 = $date->format("Y-m-d H:i");
+						}elseif ($count == 2) {
+							$fecha_f_1 = $date->format("Y-m-d H:i");
+						}
+						if($count > 2){
+							$resultado = $this->db->query("INSERT INTO `cita` (`id_profesional`,`fechacita_horainicio`,`fechacita_horafin`,`estado_cita`,`estado_pago_cita`,`asistencia_cita`,`create_cita`) VALUES ('$id_profesional','$fecha_i_1','$fecha_f_1',0,0,0, CURRENT_TIMESTAMP)"); 
+							$count = 1;
+							$fecha_i_2 = $date->format("Y-m-d H:i");
+							$resultado = $this->db->query("INSERT INTO `cita` (`id_profesional`,`fechacita_horainicio`,`fechacita_horafin`,`estado_cita`,`estado_pago_cita`,`asistencia_cita`,`create_cita`) VALUES ('$id_profesional','$fecha_f_1','$fecha_i_2',0,0,0, CURRENT_TIMESTAMP)"); 
+							$fecha_i_1 = $date->format("Y-m-d H:i");
+						}
 					}
-					if($count > 2){
-						$resultado = $this->db->query("INSERT INTO `cita` (`id_profesional`,`fechacita_horainicio`,`fechacita_horafin`,`estado_cita`,`estado_pago_cita`,`asistencia_cita`,`create_cita`) VALUES ('$id_profesional','$fecha_i_1','$fecha_f_1',1,0,0, CURRENT_TIMESTAMP)"); 
-						$count = 1;
-						$fecha_i_2 = $date->format("Y-m-d H:i");
-						$resultado = $this->db->query("INSERT INTO `cita` (`id_profesional`,`fechacita_horainicio`,`fechacita_horafin`,`estado_cita`,`estado_pago_cita`,`asistencia_cita`,`create_cita`) VALUES ('$id_profesional','$fecha_f_1','$fecha_i_2',1,0,0, CURRENT_TIMESTAMP)"); 
-						$fecha_i_1 = $date->format("Y-m-d H:i");
 					}
-				  }
+					$fecha_i = date("Y-m-d H:i",strtotime($fecha_i." 1 day"));
+					$fecha_f = date("Y-m-d H:i",strtotime($fecha_f." 1 day"));
 				}
-				$fecha_i = date("Y-m-d H:i",strtotime($fecha_i." 1 day"));
-				$fecha_f = date("Y-m-d H:i",strtotime($fecha_f." 1 day"));
-			} 
+				return "1";
+			}else{
+				return "0";
+			}
 		}
-		
 
 		public function modificar_paciente($id_paciente, $id_tipo_doc ,$tel_pac, $correo_pac){
 			
@@ -335,7 +344,7 @@
 
 		public function eliminar_prof($id){
 
-			$sql_1 = "DELETE FROM cita WHERE id_profesional = '$id'";
+			$sql_1 = "DELETE FROM cita WHERE id_profesional = '$id' AND id_paciente = NULL";
 			$resultado = $this->db->query($sql_1);
 			$sql_2 = "DELETE FROM profesional WHERE id_profesional = '$id'";
 			$resultado = $this->db->query($sql_2);
@@ -367,6 +376,13 @@
 
 			$sql= "DELETE FROM cita WHERE id_profesional = '$id_profesional' AND fechacita_horainicio LIKE ('%$dia_eliminar%') AND fechacita_horafin LIKE ('%$dia_eliminar%')";
 			$resultado = $this ->db->query($sql);
+			$resultado1 = $this ->db->affected_rows;
+			if($resultado1 > 1){
+				$palabra="1";
+			}elseif($resultado1 < 1 ){
+				$palabra="0";
+			}
+			return $palabra;
 		}
 	} 	
 ?>

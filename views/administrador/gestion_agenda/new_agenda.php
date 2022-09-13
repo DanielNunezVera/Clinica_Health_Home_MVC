@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,6 +10,7 @@
     <link rel="stylesheet" href="assets/css/estilos.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="views/administrador/gestion_agenda/css/bootstrap.min.css">
+    <link href="//cdn.jsdelivr.net/npm/@sweetalert2/theme-minimal@4/minimal.css" rel="stylesheet">
     <link rel="stylesheet" href="assets/fullcalendar/lib/main.min.css">
     <script src="assets/js-general/jquery-3.6.0.min.js"></script>
     <script src="assets/js-general/bootstrap.min.js"></script>
@@ -164,9 +166,36 @@
     </main>
 <script src="assets/js-general/menu-responsive.js"></script>
 
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 </body>
+<script>
+    <?php
+
+        if(isset($alert_agenda_no_exitente)){
+            if($alert_agenda_no_exitente=="0"){
+                echo "var alert_agenda_no_exitente = '$alert_agenda_no_exitente';";
+            }else{
+                echo "var alert_agenda_no_exitente = '$alert_agenda_no_exitente';";
+                echo "var tipo_alerta = '1';";
+            }
+        }
+
+        if(isset($alerta_agenda_repetida)){
+            echo "var alerta_agenda_repetida = '$alerta_agenda_repetida';";
+            echo "var tipo_alerta = '2';";
+        }
+
+        if(isset($alert_dia_eliminado)){
+            echo "var alert_dia_eliminado = '$alert_dia_eliminado';";
+            echo "var tipo_alerta = '3';";
+        }
+    ?>
+    // var alerta_agenda_repetida = "<?php  ?>";s
+</script>
 <script>
     var scheds = $.parseJSON('<?= json_encode($data["sched_res"]) ?>')
 </script>
 <script src="assets/js-general/script.js"></script>
+<script src="assets/js-general/alertas_admin.js"></script>
 </html>

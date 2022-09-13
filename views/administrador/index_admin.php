@@ -54,6 +54,10 @@ session_destroy();
                         <a href="index.php?c=Auxiliar&a=citas_prof" class="boton">Citas Profesionales</a>
                         <br>
                         <a href="index.php?c=Paciente&a=agendar_cita_i" class="boton">Agendar cita</a>
+                        <br>
+                        <a href="index.php?c=Profesional&a=set_citas_prom_prof" class="boton">Citas Programadas</a>
+                        <br>
+                        <a href="index.php?c=Paciente&a=citas_agendadas" class="boton">Citas agendadas</a>
                     </div>
                 </div>
                 <div class="caja2">

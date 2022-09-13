@@ -34,11 +34,39 @@
 		}
 
 		public function gestion_agenda_2($id){
+
 			session_start();
 			$_SESSION['id_profesional'] = $id;
 			$agenda =  new Administrador_model();
 			$data["profesional"] = $agenda->get_prof($id);
 			$data["sched_res"] = $agenda->get_agenda_prof($id);
+
+			if(sizeof($data["sched_res"])==0){
+				$alert_agenda_no_exitente="1";
+			}else{
+				$alert_agenda_no_exitente="0";
+			}
+
+			if(isset($_SESSION['alerta_agenda_repetida']) AND $_SESSION['contador']==1){
+				if($_SESSION['alerta_agenda_repetida']=="0"){
+					$alerta_agenda_repetida = "1";
+					$_SESSION['contador']= 2;
+					$_SESSION['alerta_agenda_repetida']=null;
+				}else{
+					$alerta_agenda_repetida = "0";
+					$_SESSION['contador']= 2;
+				}
+			}
+
+			if(isset($_SESSION["alert_dia_eliminado"]) AND $_SESSION['contador']==1){
+				if($_SESSION['alert_dia_eliminado']=="0"){
+					$alert_dia_eliminado = "0";
+					$_SESSION['contador']= 2;
+				}else{
+					$alert_dia_eliminado = "1";
+					$_SESSION['contador']= 2;
+				}
+			}
 
 			require_once "views/administrador/gestion_agenda/new_agenda.php";
 
@@ -94,17 +122,17 @@
 
 		public function nueva_agenda(){
 
+			session_start();
 			$id_profesional = $_POST['id_profesional'];
 			$tipo_franja_la = $_POST['tipo_franja_la'];
 			$tipo_franja = $_POST['tipo_franja'];
+			$agenda = new Administrador_model();
+			$resultado = $agenda->insertar_agenda($id_profesional, $tipo_franja_la, $tipo_franja);
+			$_SESSION["alerta_agenda_repetida"] = $resultado;
+			$_SESSION["contador"] = 1;
+			header('location:index.php?c=Administrador&a=gestion_agenda_2&id='.$id_profesional);
 
-			if($tipo_franja_la=="." or $tipo_franja=="."){
-				echo "<script> alert('Error: Seleccione datos correctos.'); location.replace('index.php?c=Administrador&a=gestion_agenda_2&id=".$id_profesional."') </script>";
-			}else{
-				$agenda = new Administrador_model();
-				$agenda->insertar_agenda($id_profesional, $tipo_franja_la, $tipo_franja);
-				header('location:index.php?c=Administrador&a=gestion_agenda_2&id='.$id_profesional);
-			}
+		
 
 		}
 		
@@ -413,7 +441,10 @@
 			$id_profesional = $_POST['id_profesional'];
 
 			$agenda = new Administrador_model();
-			$agenda->excepciones_agenda($dia_eliminar, $id_profesional);
+			$resultado = $agenda->excepciones_agenda($dia_eliminar, $id_profesional);
+			$_SESSION["alert_dia_eliminado"] = $resultado;
+			$_SESSION["contador"] = 1;
+			
 			header('location:index.php?c=Administrador&a=gestion_agenda_2&id='.$_SESSION['id_profesional']);
 		}
 	}

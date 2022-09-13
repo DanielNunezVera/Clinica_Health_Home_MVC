@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Actualizar contraseña profesional</title>
+    <title>Pacientes</title>
     <script src="https://kit.fontawesome.com/41bcea2ae3.js" crossorigin="anonymous"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
     <link rel="stylesheet" href="assets/css/estilos.css">
@@ -22,40 +22,47 @@
                 <i class="fas fa-bars" id="btn_menu"></i>
                 <div id="back_menu"></div>
                 <nav id="nav">
-                    <img src="assets/images/ajustes.png" alt="">
+                    <img src="assets/images/pacientemenu.png" alt="">
                     <ul>
-                        <li><a href="index.php?c=Administrador&a=index" >Inicio</a></li>
-                        <li><a href="index.php?c=Profesional&a=actualizar_prof">Actualizar datos</a></li>
-                        <li><a href="../../../controller/sesiones/cerrarsesion.php">Cerrar sesion</a></li>
+                        <li><a href="index.php?c=Administrador&a=index">Inicio</a></li>
+                        <li><a href="">Actualizar datos</a></li>
+                        <li><a href="">Cerrar sesion</a></li>
                     </ul>
                 </nav>
             </div>
         </div>
     </header>
     <main>
-        <div class="container__cover">
-            <div class="cover">
+    <div class="container__cover">
+            <div class="cover"> 
                 <div class="caja3">
-                    <h1 class="titulo1">Actualizar Contraseña</h1>
+                    <h1 class="titulo1">Agendar cita</h1>
                     <div class="contact-wrapper animated bounceInUp">
                         <div class="contact-form">
-                        <form action="index.php?c=Profesional&a=modificar_pass" method="POST">
+                            <form action="index.php?c=Auxiliar&a=buscar_cita" method="POST">
                                 <p>
-                                    <label>Nueva contraseña</label>
-                                    <input type="password" name="newpass">
+                                    <label>Especialidad</label>
+                                    <select class="Selectorconsult" name="id_especialidad" id="id_especialidad" required>
+                                    <option value="">Seleccione</option>
+                                    <?php foreach ($data["especialidad"] as $dato) {
+                                        echo "<option value='".$dato["id_especialidad"]."'>".$dato["descrip_espec"]."</option>";
+                                    }?>
+                                    </select>
                                 </p>
                                 <p>
-                                    <label>Repita contraseña</label>
-                                    <input type="password" name="repass">
-                                </p>
+                                    <label class="txtlabel">Elija fecha</label>
+                                    <input type="date" name="fecha" id="fecha" required>
+                                </p> 
                                 <p class="block">
-                                    <button class="btn btn-primary btn-lg btn-block" name="registrar" id="registrar" type="submit">Actualizar</button>
+                                
+                                <button class="btn btn-primary btn-lg btn-block" name="registrar" id="reistrar" type="submit">Buscar</button>
+                                
                                 </p>
                             </form>
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> 
         </div>
     </main>
     <script src="assets/js-general/menu-responsive.js"></script>
