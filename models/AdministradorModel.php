@@ -168,6 +168,7 @@
 					$daterange = new DatePeriod($begin, $interval ,$end);
 				
 					foreach($daterange as $date){
+
 						if(date('l', strtotime($date->format("Y-m-d H:i"))) == 'Sunday'){
 							////////  no se que poner aqui :v///////////////////////////
 						} else {
@@ -178,7 +179,6 @@
 								$fecha_f_1 = $date->format("Y-m-d H:i");
 							}
 							if($count > 2){
-
 								$resultado = $this->db->query("INSERT INTO `cita` (`id_profesional`,`fechacita_horainicio`,`fechacita_horafin`,`estado_cita`,`estado_pago_cita`,`asistencia_cita`,`create_cita`) VALUES ('$id_profesional','$fecha_i_1','$fecha_f_1',0,0,0, CURRENT_TIMESTAMP)"); 
 								$count = 1;
 								$fecha_i_2 = $date->format("Y-m-d H:i");
@@ -186,12 +186,12 @@
 								$fecha_i_1 = $date->format("Y-m-d H:i");
 							}
 						}
+
 					}
 					$fecha_i = date("Y-m-d H:i",strtotime($fecha_i." 1 day"));
 					$fecha_f = date("Y-m-d H:i",strtotime($fecha_f." 1 day"));
 				}
 				return "1";
-
 			}else{
 				return "0";
 			}

@@ -44,7 +44,12 @@
                                     <label>Especialidad</label>
                                     <select class="Selectorconsult" name="id_especialidad" id="id_especialidad" required>
                                     <option value="">Seleccione</option>
-                                    <?php foreach ($data["especialidad"] as $dato) {
+<!-- <<<<<<< HEAD -->
+                                    
+                                    // foreach ($data["especialidad"] as $dato) {
+<!-- ======= -->
+                                    <?php foreach ($data["especialidades"] as $dato) {
+// >>>>>>> Manuel
                                         echo "<option value='".$dato["id_especialidad"]."'>".$dato["descrip_espec"]."</option>";
                                     }?>
                                     </select>

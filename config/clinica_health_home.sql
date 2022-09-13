@@ -77,14 +77,12 @@ CREATE TABLE `cita` (
   `create_cita` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-<<<<<<< HEAD
 -- --------------------------------------------------------
 
 --
 -- Estructura de tabla para la tabla `consultorios`
 -- Stand-in structure for view `citas_programadas_prof`
 -- (See below for the actual view)
-=======
 --
 -- Volcado de datos para la tabla `cita`
 --
@@ -511,7 +509,6 @@ INSERT INTO `cita` (`id_cita`, `id_paciente`, `id_profesional`, `fechacita_horai
 --
 -- Estructura Stand-in para la vista `citas_programadas_prof`
 -- (Véase abajo para la vista actual)
->>>>>>> Alejandro
 --
 CREATE TABLE `citas_programadas_prof` (
 `id_cita` bigint(11)
@@ -678,8 +675,6 @@ CREATE TABLE `profesional` (
   `create_prof` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-<<<<<<< HEAD
-=======
 --
 -- Volcado de datos para la tabla `profesional`
 --
@@ -687,7 +682,6 @@ CREATE TABLE `profesional` (
 INSERT INTO `profesional` (`id_profesional`, `id_tipo_doc`, `num_doc_prof`, `id_consultorios`, `id_especialidad`, `nombres_prof`, `apellidos_prof`, `tel_prof`, `correo_prof`, `dias_laborales`, `franja_horaria`, `estado_prof`, `pass_prof`, `create_prof`) VALUES
 (1, 'CC', '5555', 'C01', 1, 'juanito', 'perez', 33333, 'hola@hotmal.com', 'lunes', 'todo el dia', 1, '5555', '2022-09-12 12:49:41');
 
->>>>>>> Alejandro
 -- --------------------------------------------------------
 
 --
@@ -812,11 +806,7 @@ ALTER TABLE `auxiliar`
 -- AUTO_INCREMENT de la tabla `cita`
 --
 ALTER TABLE `cita`
-<<<<<<< HEAD
-  MODIFY `id_cita` bigint(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-=======
   MODIFY `id_cita` bigint(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=548;
->>>>>>> Alejandro
 
 --
 -- AUTO_INCREMENT de la tabla `especialidad`
@@ -828,17 +818,13 @@ ALTER TABLE `especialidad`
 -- AUTO_INCREMENT de la tabla `paciente`
 --
 ALTER TABLE `paciente`
-  MODIFY `id_paciente` int(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_paciente` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `profesional`
 --
 ALTER TABLE `profesional`
-<<<<<<< HEAD
-  MODIFY `id_profesional` int(20) NOT NULL AUTO_INCREMENT;
-=======
   MODIFY `id_profesional` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
->>>>>>> Alejandro
 
 --
 -- Restricciones para tablas volcadas

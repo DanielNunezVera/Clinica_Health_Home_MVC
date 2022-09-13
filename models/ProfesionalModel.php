@@ -19,7 +19,7 @@ class Profesional_model{
 		{
 			$this->citas_progr[] = $row;
 		}
-        
+
 		return $this->citas_progr;
         
     }
