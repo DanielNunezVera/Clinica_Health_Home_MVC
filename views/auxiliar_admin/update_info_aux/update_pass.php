@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Actualizacion datos</title>
+    <title>Actualizar contraseña</title>
 
     <script src="https://kit.fontawesome.com/41bcea2ae3.js" crossorigin="anonymous"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
@@ -27,6 +27,7 @@
                     <img src="assets/images/ajustes.png" alt="">
                     <ul>
                         <li><a href="index.php?c=Administrador&a=index">Inicio</a></li>
+                        <li><a href="index.php?c=Auxiliar&a=actualizar_aux">Actualizar datos</a></li>
                         <li><a href="../../../controller/sesiones/cerrarsesion.php">Cerrar sesion</a></li>
                     </ul>
                 </nav>
@@ -35,41 +36,20 @@
     </header>
     <main>
         <div class="container__cover">
-            <div class="cover"> 
+            <div class="cover">
                 <div class="caja3">
-                    <h1 class="titulo1">Información general</h1>
+                    <h1 class="titulo1">Cambio de contraseña</h1>
                     <div class="contact-wrapper animated bounceInUp">
                         <div class="contact-form">
-                            <form action="index.php?c=Auxiliar&a=modificar_aux" method="POST">
-                                <!-- <p>
-                                    <label>Tipo de documento</label>
-                                    <input type="text" name="t_doc" disabled>
-                                </p> -->
+                            <form action="index.php?c=Auxiliar&a=modificar_pass" method="POST">
                                 <p>
-                                    <label>N° documento</label>
-                                    <input type="number" name="num_doc" value="<?php echo $data["auxiliar"]["num_doc_aux"];?>" disabled>
+                                    <label>Nueva contraseña</label>
+                                    <input type="password" name="newpass">
                                 </p>
-
                                 <p>
-                                    <label>Nombre</label>
-                                    <input type="text" name="fullnombre" value="<?php echo $data["auxiliar"]["nombres_aux"]." ".$data["auxiliar"]["apellidos_aux"]?>" disabled>
+                                    <label>Repita contraseña</label>
+                                    <input type="password" name="repass">
                                 </p>
-
-                                <p>
-                                    <label>Email</label>
-                                    <input type="email" name="correo_aux" value="<?php echo $data["auxiliar"]["correo_aux"]?>" required>
-                                </p>
-
-                                <p>
-                                    <label>Teléfono</label>
-                                    <input type="number" name="tel_aux" value="<?php echo $data["auxiliar"]["tel_aux"];?>" required>
-                                </p>
-
-                                <p>
-                                    <label>Contraseña</label>
-                                    <input style="color:blue;" name="pass" value="Cambiar contraseña" onclick="contraseña()">
-                                </p>
-
                                 <p class="block">
                                 <button class="btn btn-primary btn-lg btn-block" name="registrar" id="registrar" type="submit">Actualizar</button>
                                 </p>
@@ -77,14 +57,9 @@
                         </div>
                     </div>
                 </div>
-            </div> 
+            </div>
         </div>
     </main>
     <script src="assets/js-general/menu-responsive.js"></script>
-    <script>
-        function contraseña(){
-            window.location = "index.php?c=Auxiliar&a=actualizar_pass"
-        }
-    </script>
 </body>
 </html>

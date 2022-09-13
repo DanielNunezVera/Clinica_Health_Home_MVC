@@ -34,8 +34,8 @@
                 <nav id="nav">
                     <img src="assets/images/icon_auxadmin.png" alt="">
                     <ul>
-                        <li><a href="../index_aux.php">Inicio</a></li>
-                        <li><a href="../update_info_aux/update_aux.php">Actualizar datos</a></li>
+                        <li><a href="index.php?c=Administrador&a=index">Inicio</a></li>
+                        <li><a href="index.php?c=Auxiliar&a=actualizar_aux">Actualizar datos</a></li>
                         <li><a href="../../../controller/sesiones/cerrarsesion.php">Cerrar sesión</a></li>
                     </ul>
                 </nav>
@@ -51,45 +51,45 @@
                         <div class="col-lg-12">
                             <table id="example" class="table table-bordered  display nowrap" cellspacing="0" width="100%">
                                 <thead>
-                                    <tr>
-                                        <th>Id_cita</th>
-                                        <th>Fecha cita</th>
-                                        <th>Hora cita</th>
-                                        <th>Paciente</th>
+                                    <tr>                                       
+                                        <th>N° documento Prof</th>
                                         <th>Profesional</th>
-                                        <th>Consultorio</th>
+                                        <th>Fecha de la cita</th>
                                         <th>Especialidad</th>
-                                        <th>Costo</th>
-                                        <th>Reasignar</th>
-                                        <th>Acción</th>
+                                        <th>Tipo doc</th>
+                                        <th>N° documento Pac</th>
+                                        <th>Paciente</th>
+                                        <th>Telefono</th>
+                                        <th>Correo</th>
+                                        <th>Reagendar cita paciente</th>
+                                        <th>Cancelar cita</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>20</td>
-                                        <td>07-julio-2022</td>
-                                        <td>7:00 am</td>
-                                        <td>Estevan Hernandez</td>
-                                        <td>Manuel Rodolfo Castro</td>
-                                        <td>C03</td>
-                                        <td>Medicina general</td>
-                                        <td>$50.000</td>
-                                        <td><a href="citaprof_reasignar_alert7.php">Reasignar</a></td>
-                                        <td><a href="citaprof_cancel_alert6.php">Cancelar</a></td>
-                                    </tr>
-                                    <tr>
-                                        <td>35</td>
-                                        <td>09-julio-2022</td>
-                                        <td>11:00 am</td>
-                                        <td>Juan Diego Cortez</td>
-                                        <td>Manuel Rodolfo Castro</td>
-                                        <td>C03</td>
-                                        <td>Medicina general</td>
-                                        <td>$50.000</td>
-                                        <td><a href="citaprof_reasignar_alert7.php">Reasignar</a></td>
-                                        <td><a href="citaprof_cancel_alert6.php">Cancelar</a></td>
-                                    </tr>
-                            </table>  
+                                    <?php foreach ($data["citas_profe"] as $dato) {
+                                      
+                                      echo "<tr>";
+                                      echo "<td>".$dato["num_doc_prof"]."</td>";
+                                      echo "<td>".$dato["nombres_prof"].' '.$dato["apellidos_prof"]."</td>";
+                                      echo "<td>".$dato["fechacita_horainicio"]."</td>";
+                                      echo "<td>".$dato["descrip_espec"]."</td>";
+                                      echo "<td>".$dato["id_tipo_doc"]."</td>";
+                                      echo "<td>".$dato["num_doc_pac"]."</td>";
+                                      echo "<td>".$dato["nombres_pac"].' '.$dato["apellidos_pac"]."</td>";
+                                      echo "<td>".$dato["tel_pac"]."</td>";
+                                      echo "<td>".$dato["correo_pac"]."</td>";
+                                      echo"<td>
+                                            <form action='index.php?c=Auxiliar&a=cancelar_cita_prof&id=".$dato["id_cita"]."' method=POST>                                            
+                                            <input type='hidden' name='id_paciente' id='id_paciente' value='".$dato["id_paciente"]."'>
+                                            <button class='btn btn-light active' type='submit'>Reagendar</button>
+                                            </form>
+                                            </td>
+                                      ";
+                                      echo "<td><a href='"."index.php?c=Auxiliar&a=cancelar_cita_prof&id=".$dato["id_cita"]."' "."class='btn btn-danger active' role='button' aria-pressed='true'>&nbsp&nbspCancelar&nbsp&nbsp</a>"."</td>";
+                                      echo "</tr>";
+                                    }
+                                    ?>
+                                </tbody>
                         </div>
                     </div> 
                 </div>

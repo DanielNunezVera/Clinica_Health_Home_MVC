@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gestión agenda</title>
+    <title>Gestión Usuarios</title>
     <script src="https://kit.fontawesome.com/41bcea2ae3.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="assets/css/estilos.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
@@ -43,27 +43,34 @@
         <div class="container__cover">
             <div class="cover"> 
                 <div class="caja3">
-                    <h1>Profesionales</h1>
+                    <h1>Citas disponibles</h1>
                     <div class="row">
                         <div class="col-lg-12">
                             <table id="example" class="table table-bordered  display nowrap" cellspacing="0" width="100%">
                                 <thead>
                                     <tr>
-                                        <th>Tipo documento</th>
-                                        <th>Numero de documento</th>
-                                        <th>Nombre completo</th>
-                                        <th>Acción</th>
+                                        <th>Especialidad</th>
+                                        <th>Profesional</th>
+                                        <th>Fecha de la cita</th>
+                                        <th>costo</th>
+                                        <th>Accion</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php 
-                                    foreach ($data["profesionales"] as $dato){
-                                        echo "<tr>";
-                                        echo "<td>".$dato["id_tipo_doc"]."</td>";
-                                        echo "<td>".$dato["num_doc_prof"]."</td>";
-                                        echo "<td>".$dato["nombres_prof"]."&nbsp".$dato["apellidos_prof"]."</td>";
-                                        echo "<td><a href='index.php?c=Administrador&a=gestion_agenda_2&id=".$dato["id_profesional"]."' class='btn btn-primary active' role='button' aria-pressed='true'>Agenda</a></td>";
-                                        echo "</tr>";
+                                    <?php foreach ($data["cita"] as $dato) {
+                                      echo "<tr>";
+                                      echo "<td>".$dato["descrip_espec"]."</td>";
+                                      echo "<td>".$dato["nombres_prof"]."&nbsp".$dato["apellidos_prof"]."</td>";
+                                      echo "<td>".$dato["fechacita_horainicio"]."</td>";
+                                      echo "<td>".$dato["costo_espec"]."</td>";
+                                      echo"<td>
+                                            <form action='index.php?c=Auxiliar&a=agendar_cita_f' method=POST>
+                                            <input type='hidden' name='id_cita' id='id_cita' value='".$dato["id_cita"]."'>                                            
+                                            <button class='btn btn-light active' type='submit'>Agendar</button>
+                                            </form>
+                                            </td>
+                                      ";
+                                      echo "</tr>";
                                     }
                                     ?>
                                 </tbody>
@@ -74,7 +81,6 @@
             </div> 
         </div>
     </main>
-
 
 
 
@@ -125,7 +131,6 @@
         });  
     </script>
  		 	  	
-
     <script src="assets/js-general/codigo.js"></script>
 
 </body>

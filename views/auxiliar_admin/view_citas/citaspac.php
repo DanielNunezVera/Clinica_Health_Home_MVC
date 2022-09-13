@@ -67,6 +67,15 @@
                                 </thead>
                                 <tbody>
                                 <?php foreach ($data["citas_pac"] as $dato) {
+                                    if($dato["estado_pago_cita"]==1){
+                                        $url="index.php?c=Auxiliar&a=pdte_pago&id=";
+                                        $boton="class='btn btn-success active' role='button' aria-pressed='true'>&nbspPago&nbspOK&nbsp</a>";
+                                      }else{
+                                        $url="index.php?c=Auxiliar&a=pago_ok&id=";
+                                        $boton="class='btn btn-danger active' role='button' aria-pressed='true'>Pendiente Pago</a>";
+                                      }
+
+
                                       echo "<tr>";
                                       echo "<td>".$dato["fechacita_horainicio"]."</td>";
                                       echo "<td>".$dato["num_doc_pac"]."</td>";
@@ -78,7 +87,7 @@
                                       echo "<td>".$dato["costo_espec"]."</td>";
                                       echo "<td>".$dato["id_consultorios"]."</td>";
                                       echo "<td><a href='"."$url".$dato["id_cita"]."' ".$boton."</td>";
-                                      echo "<td><a href='index.php?c=Auxiliar&a=eliminar_aux&id=".$dato["id_auxiliar"]."' class='btn btn-danger active' role='button' aria-pressed='true'>&nbsp&nbspEliminar&nbsp&nbsp</a></td>";
+                                      echo "<td><a href='index.php?c=Auxiliar&a=cancelar_cita_pac&id=".$dato["id_cita"]."' class='btn btn-danger active' role='button' aria-pressed='true'>&nbsp&nbspEliminar&nbsp&nbsp</a></td>";
                                       echo "</tr>";  
                                 }
                                 ?>
@@ -90,7 +99,9 @@
                                 </tbody>
                                 
                             </table>  
-                            <button id="btn1" class="btn btn-primary btn-lg btn-block">Registrar</button>
+                            <a href="index.php?c=Auxiliar&a=buscar_pacientei">
+                            <button class="btn btn-primary btn-lg btn-block">Agendar</button>
+                            </a>
                         </div>
                     </div> 
                     
