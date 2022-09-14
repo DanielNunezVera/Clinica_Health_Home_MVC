@@ -35,7 +35,7 @@
                     <img src="assets/images/ajustes.png" alt="">
                     <ul>
                         <li><a href="index.php?c=Administrador&a=index" >Inicio</a></li>
-                        <li><a href="../update_prof/update_prof.php">Actualizar datos</a></li>
+                        <li><a href="index.php?c=Profesional&a=actualizar_prof">Actualizar datos</a></li>
                         <li><a href="index.php?c=Administrador&a=index">Cerrar sesion</a></li>
                     </ul>
                 </nav>

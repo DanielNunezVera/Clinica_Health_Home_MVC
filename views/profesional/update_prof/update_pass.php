@@ -26,7 +26,7 @@
                     <ul>
                         <li><a href="index.php?c=Administrador&a=index" >Inicio</a></li>
                         <li><a href="index.php?c=Profesional&a=actualizar_prof">Actualizar datos</a></li>
-                        <li><a href="../../../controller/sesiones/cerrarsesion.php">Cerrar sesion</a></li>
+                        <li><a href="">Cerrar sesion</a></li>
                     </ul>
                 </nav>
             </div>

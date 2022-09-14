@@ -348,7 +348,7 @@
 
 		public function eliminar_prof($id){
 
-			$sql_1 = "DELETE FROM cita WHERE id_profesional = '$id' AND id_paciente = NULL";
+			$sql_1 = "DELETE FROM cita WHERE id_profesional = '$id'";
 			$resultado = $this->db->query($sql_1);
 			$sql_2 = "DELETE FROM profesional WHERE id_profesional = '$id'";
 			$resultado = $this->db->query($sql_2);

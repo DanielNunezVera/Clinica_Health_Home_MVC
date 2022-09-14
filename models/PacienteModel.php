@@ -73,7 +73,7 @@
 
 			public function cancelar_agendada($id){
 
-				$sql = "UPDATE cita SET cita.id_paciente = null WHERE cita.id_cita = '$id'";
+				$sql = "UPDATE cita SET cita.id_paciente = null, cita.estado_cita = 0 WHERE cita.id_cita = '$id'";
 				$resultado = $this->db->query($sql);
 
 			}

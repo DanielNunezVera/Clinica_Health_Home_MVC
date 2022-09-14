@@ -68,7 +68,7 @@
 
 		public function agendar_cita_i(){
             $paquete=  new Administrador_model();
-            $data["especialidad"] = $paquete->get_especialidad();
+            $data["especialidades"] = $paquete->get_especialidad();
 			require_once "views/auxiliar_admin/agenda_cita/cita_aux.php";
 				
 		}
@@ -214,10 +214,15 @@
 				$_SESSION["id_paciente"]=$id_paciente;
 			}
 			
-			$cit = new Auxiliar_model();
-			$cit->confirmapago_aux2($id);
-			$this->gestion_u();
+			$id_c=$id;
+			$can_ci= new Auxiliar_model;
+			$can_ci->cancelar_cita_prof($id_c);
 
+			if(isset($_POST['id_paciente'])){
+				header('location:index.php?c=Auxiliar&a=agendar_cita_i');
+			} else{
+				header('location:index.php?c=Auxiliar&a=citas_prof');
+			}
 		}
 
 		public function guarda_consult(){
@@ -280,15 +285,6 @@
 			$password -> update_password($newpass);
 			header('location:index.php?c=Administrador&a=index');
 
-			$id_c=$id;
-			$can_ci= new Auxiliar_model;
-			$can_ci->cancelar_cita_prof($id_c);
-
-			if(isset($_POST['id_paciente'])){
-				header('location:index.php?c=Auxiliar&a=agendar_cita_i');
-			} else{
-				header('location:index.php?c=Auxiliar&a=citas_prof');
-			}
 		}
 
 
@@ -315,11 +311,11 @@
 
 			session_start();
 			$id_cita = $_POST['id_cita'];
-			$id_paciente=$_SESSION['id_pac'];
+			$id_paciente=$_SESSION['id_paciente'];
 			$paquete = new Paciente_model();
 			$paquete->agendar_cita($id_cita, $id_paciente);
 			header('location:index.php?c=Auxiliar&a=citas_pac');
 
 		}
 	}
-?>
+?>		
