@@ -61,7 +61,7 @@
 		
 		public function cancelar_cita_pac($id_cita){
 			
-			$resultado = $this->db->query("DELETE FROM cita WHERE id_cita = '$id_cita'");
+			$resultado = $this->db->query("UPDATE cita SET id_paciente = null, estado_cita = 0 WHERE id_cita = '$id_cita'");
 			
 		}
 
@@ -71,8 +71,8 @@
 
 		}
 
-		public function get_paciente($num_doc_pac, $tipo_doc){
-			$sql = "SELECT id_paciente FROM paciente WHERE num_doc_pac='$num_doc_pac' AND id_tipo_doc='$tipo_doc' LIMIT 1";
+		public function get_paciente($num_doc_pac, $id_tipo_doc){
+			$sql = "SELECT id_paciente FROM paciente WHERE num_doc_pac='$num_doc_pac' AND id_tipo_doc='$id_tipo_doc' LIMIT 1";
 			$resultado = $this->db->query($sql);
 			$row = $resultado->fetch_assoc();
 

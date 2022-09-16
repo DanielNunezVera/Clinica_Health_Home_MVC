@@ -28,7 +28,7 @@
 			$paciente = new Auxiliar_model();
 			$data["paciente"] = $paciente->get_paciente($num_doc_pac, $id_tipo_doc);
 			$data["especialidades"] = $paciente->get_especialidad();
-			$_SESSION['id_pac']= $data["paciente"]['id_paciente'];
+			$_SESSION['id_paciente']= $data["paciente"]['id_paciente'];
 			require_once "views/auxiliar_admin/agenda_cita/cita_aux.php";
 			
 		}
@@ -301,8 +301,8 @@
 
 			$id_especialidad = $_POST['id_especialidad'];
 			$fecha = $_POST['fecha'];
-            $paquete=  new Paciente_model();
-            $data["cita"] = $paquete->get_citas($fecha, $id_especialidad);
+      $paquete=  new Paciente_model();
+      $data["cita"] = $paquete->get_citas($fecha, $id_especialidad);
 			require_once "views/auxiliar_admin/agenda_cita/citas_dis_aux.php";
 				
 		}
