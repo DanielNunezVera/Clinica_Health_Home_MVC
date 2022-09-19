@@ -132,8 +132,6 @@
 			$_SESSION["contador"] = 1;
 			header('location:index.php?c=Administrador&a=gestion_agenda_2&id='.$id_profesional);
 
-		
-
 		}
 		
 		public function guarda_paciente(){
