@@ -109,23 +109,72 @@
 
 		public function insertar_pac($id_tipo_doc, $num_doc_pac, $nombres_pac, $apellidos_pac, $tel_pac, $correo_pac, $sexo_pac){
 			
-			$resultado = $this->db->query("INSERT INTO paciente (id_tipo_doc, num_doc_pac, nombres_pac, apellidos_pac, tel_pac, correo_pac, sexo_pac, estado_pac, pass_pac, create_pac) VALUES ('$id_tipo_doc', '$num_doc_pac', '$nombres_pac', '$apellidos_pac', '$tel_pac', '$correo_pac', '$sexo_pac', 1, '$num_doc_pac', CURRENT_TIMESTAMP)");
+			$resultado1 = $this->db->query("SELECT num_doc_pac id_tipo_doc FROM paciente WHERE num_doc_pac='$num_doc_pac' AND id_tipo_doc= '$id_tipo_doc'");
+			$filas = mysqli_num_rows($resultado1);
+			if ($filas>0) {
+				return '0';
+
+			}else {
+				$resultado2 = $this->db->query("INSERT INTO paciente (id_tipo_doc, num_doc_pac, nombres_pac, apellidos_pac, tel_pac, correo_pac, sexo_pac, estado_pac, pass_pac, create_pac) VALUES ('$id_tipo_doc', '$num_doc_pac', '$nombres_pac', '$apellidos_pac', '$tel_pac', '$correo_pac', '$sexo_pac', 1, '$num_doc_pac', CURRENT_TIMESTAMP)");
+				$confirm = $this ->db->affected_rows;
+				if ($confirm > 1) {
+					return $confirm;
+				}else {
+					return $confirm;
+
+				}
+
+			}
+
+			
 		}
 
 		public function insertar_prof($num_doc_prof, $id_tipo_doc, $id_consultorios, $id_especialidad, $nombres_prof, $apellidos_prof, $tel_prof, $correo_prof, $dias_laborales, $franja_horaria){
 			
-			$resultado = $this->db->query("INSERT INTO profesional (num_doc_prof, id_tipo_doc, id_consultorios, id_especialidad, nombres_prof, apellidos_prof, tel_prof, correo_prof, dias_laborales, franja_horaria, estado_prof, pass_prof, create_prof) VALUES ('$num_doc_prof', '$id_tipo_doc', '$id_consultorios', '$id_especialidad', '$nombres_prof', '$apellidos_prof', '$tel_prof', '$correo_prof', '$dias_laborales', '$franja_horaria', 1, '$num_doc_prof', CURRENT_TIMESTAMP)");
+			$resultado1 = $this->db->query("SELECT num_doc_prof id_tipo_doc FROM profesional WHERE num_doc_prof='$num_doc_prof' AND id_tipo_doc='$id_tipo_doc'");
+			$filas = mysqli_num_rows($resultado1);
+			if ($filas>0) {
+				return '0';
+			}else {
+				$resultado2 = $this->db->query("INSERT INTO profesional (num_doc_prof, id_tipo_doc, id_consultorios, id_especialidad, nombres_prof, apellidos_prof, tel_prof, correo_prof, dias_laborales, franja_horaria, estado_prof, pass_prof, create_prof) VALUES ('$num_doc_prof', '$id_tipo_doc', '$id_consultorios', '$id_especialidad', '$nombres_prof', '$apellidos_prof', '$tel_prof', '$correo_prof', '$dias_laborales', '$franja_horaria', 1, '$num_doc_prof', CURRENT_TIMESTAMP)");
+				$confirm = $this->db->affected_rows;
+				if ($confirm > 1) {
+					return $confirm;
+				}else {
+					return $confirm;
+				}
+			}
+			
 			
 		}
 
 		public function insertar_aux($id_tipo_doc, $num_doc_aux, $nombres_aux, $apellidos_aux, $tel_aux, $correo_aux){
 			
-			$resultado = $this->db->query("INSERT INTO auxiliar (id_tipo_doc, num_doc_aux, nombres_aux, apellidos_aux, tel_aux, correo_aux, estado_aux, pass_aux, create_aux) VALUES ('$id_tipo_doc', '$num_doc_aux', '$nombres_aux', '$apellidos_aux', '$tel_aux', '$correo_aux', 1, '$num_doc_aux', CURRENT_TIMESTAMP)");
+			$resultado1 = $this->db->query("SELECT num_doc_aux id_tipo_doc FROM auxiliar WHERE num_doc_aux = '$num_doc_aux' AND id_tipo_doc = '$id_tipo_doc'");
+			$filas = mysqli_num_rows($resultado1);
+			if ($filas > 0) {
+				return '0';
+			}else {
+				$resultado2 = $this->db->query("INSERT INTO auxiliar (id_tipo_doc, num_doc_aux, nombres_aux, apellidos_aux, tel_aux, correo_aux, estado_aux, pass_aux, create_aux) VALUES ('$id_tipo_doc', '$num_doc_aux', '$nombres_aux', '$apellidos_aux', '$tel_aux', '$correo_aux', 1, '$num_doc_aux', CURRENT_TIMESTAMP)");
+				$confirm = $this->db->affected_rows;
+				if ($confirm > 1) {
+					return $confirm;
+				}else{
+					return $confirm;
+				}
+			}
+			
 		}
 
 		public function insertar_espec($descrip_espec, $costo_espec){
 			
 			$resultado = $this->db->query("INSERT INTO especialidad (descrip_espec, costo_espec, estado_espec, create_espec) VALUES ('$descrip_espec', '$costo_espec', 1, CURRENT_TIMESTAMP)");
+			$confirm = $this->db->affected_rows;
+				if ($confirm > 1) {
+					return $confirm;
+				}else{
+					return $confirm;
+				}
 		}
 
 		public function insertar_consult($id_consultorios){
@@ -200,22 +249,45 @@
 		public function modificar_paciente($id_paciente, $id_tipo_doc ,$tel_pac, $correo_pac){
 			
 			$resultado = $this->db->query("UPDATE paciente SET id_tipo_doc='$id_tipo_doc', tel_pac='$tel_pac', correo_pac='$correo_pac' WHERE id_paciente= '$id_paciente'");
-
+			$confirm = $this->db->affected_rows;
+			if ($confirm > 1) {
+				return $confirm;
+			}else{
+				return $confirm;
+			}
 		}
 
 		public function modificar_profesional($id_profesional, $id_tipo_doc, $id_consultorios, $id_especialidad, $tel_prof, $correo_prof,$dias_laborales, $franja_horaria){
 			
 			$resultado = $this->db->query("UPDATE profesional SET id_tipo_doc='$id_tipo_doc', tel_prof='$tel_prof', correo_prof='$correo_prof', id_consultorios='$id_consultorios', id_especialidad='$id_especialidad',dias_laborales='$dias_laborales', franja_horaria='$franja_horaria' WHERE id_profesional = '$id_profesional'");			
+			$confirm = $this->db->affected_rows;
+			if ($confirm > 1) {
+				return $confirm;
+			}else{
+				return $confirm;
+			}
 		}
 
 		public function modificar_auxiliar($id_auxiliar, $id_tipo_doc, $tel_aux, $correo_aux){
 			
 			$resultado = $this->db->query("UPDATE auxiliar SET id_tipo_doc='$id_tipo_doc', tel_aux='$tel_aux', correo_aux='$correo_aux' WHERE id_auxiliar= '$id_auxiliar'");			
+			$confirm = $this->db->affected_rows;
+			if ($confirm > 1) {
+				return $confirm;
+			}else{
+				return $confirm;
+			}
 		}
 
 		public function modificar_especialidad($id_especialidad, $costo_espec){
 			
-			$resultado = $this->db->query("UPDATE especialidad SET costo_espec='$costo_espec' WHERE id_especialidad= '$id_especialidad'");			
+			$resultado = $this->db->query("UPDATE especialidad SET costo_espec='$costo_espec' WHERE id_especialidad= '$id_especialidad'");
+			$confirm = $this->db->affected_rows;
+			if ($confirm > 1) {
+				return $confirm;
+			}else {
+				return $confirm;
+			}
 		}
 
 		/*public function modificar_consultorio($id_consultorios, $id_consultorios_a){

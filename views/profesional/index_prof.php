@@ -1,6 +1,3 @@
-<?php
-include "../../controller/sesiones/sesiones_prof.php";
-?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -40,7 +37,7 @@ include "../../controller/sesiones/sesiones_prof.php";
             <div class="cover">
                 <div class="caja1">
                     <div class="row">
-                        <h1>Bienvenido - <?php echo $_SESSION['p_nombre_pers'], $_SESSION['p_apellido_pers']?></h1>
+                        <h1>Profesional</h1>
                         <br>
                         <a href="citas_programadas/citas_programadas.php" class="boton">Citas Programadas</a>
                         <br>

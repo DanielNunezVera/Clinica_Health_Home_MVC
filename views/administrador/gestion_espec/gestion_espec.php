@@ -134,6 +134,25 @@
 
 
     </script>
-    
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        <?php
+
+            if(isset($act_esp)){
+                if ($act_esp == 1) {
+                    echo "var act_esp = '$act_esp';";
+                    echo "var alerta_gestion_especialidades = '1';";
+                }
+            }
+
+            if (isset($esp_reg)) {
+                if ($esp_reg == 1) {
+                    echo "var esp_reg = '$esp_reg';";
+                    echo "var alerta_gestion_especialidades = '2';";
+                }
+            }
+        ?>
+    </script>
+    <script src="assets/js-general/alertas_admin.js"></script>
 </body>
 </html>

@@ -37,7 +37,7 @@
             <div class="cover"> 
                 <div class="caja1">
                     <div class="row">
-                        <h1>Bienvenido - <?php echo $_SESSION['p_nombre_pers']." ". $_SESSION['p_apellido_pers']?></h1>
+                        <h1>Auxiliar Administrativo</h1>
                         <a href="validarprof.php" class="boton">Citas Profesionales</a>
                         <br>
                         <a href="validarpac.php" class="boton">Citas Pacientes</a>

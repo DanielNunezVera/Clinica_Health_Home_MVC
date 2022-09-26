@@ -155,6 +155,7 @@
     <script src="assets/js-general/main.js"></script>
     
     
+    
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
@@ -198,8 +199,30 @@
         });  
     </script>
  		 	  	
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        <?php
 
+            if(isset($user_reg)){
+                if($user_reg==1){
+                    echo "var user_reg = '$user_reg';";
+                    echo "var alerta_gestion_usuarios = '2';";
+                }elseif ($user_reg==0) {
+                    echo "var user_reg = '$user_reg';";
+                    echo "var alerta_gestion_usuarios = '1';";
+                }
+            }
+
+            if(isset($act_datos)){
+                if ($act_datos == 1) {
+                    echo "var act_datos = '$act_datos';";
+                    echo "var alerta_gestion_usuarios = '3';";
+                }
+            }
+        ?>
+    </script>
+    <script src="assets/js-general/alertas_admin.js"></script>
     <script src="assets/js-general/codigo.js"></script>
-
+        
 </body>
 </html>

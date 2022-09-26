@@ -1,6 +1,3 @@
-<?php
-include "../../controller/sesiones/sesiones_pac.php";
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -40,7 +37,7 @@ include "../../controller/sesiones/sesiones_pac.php";
             <div class="cover"> 
                 <div class="caja1">
                     <div class="row">
-                        <h1>Bienvenido - <?php echo $_SESSION['p_nombre_pers'],' ', $_SESSION['p_apellido_pers']?></h1>
+                        <h1>Paciente</h1>
                         <br>
                         <a href="agenda_cita/agendarcita.php" class="boton">Agendar cita</a>
                         

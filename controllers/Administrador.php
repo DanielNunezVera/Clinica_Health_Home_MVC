@@ -15,10 +15,18 @@
 
 		public function gestion_u(){
 
+			session_start();
 			$usuarios = new Administrador_model();
 			$data["pacientes"] = $usuarios->get_pacientes();
 			$data["profesionales"] = $usuarios->get_profesional();
 			$data["auxiliares"] = $usuarios->get_auxiliar();
+			if (isset($_SESSION['user_reg'])) {
+				$user_reg = $_SESSION['user_reg'];
+			}
+
+			if (isset($_SESSION['act_datos'])) {
+				$act_datos = $_SESSION['act_datos'];
+			}
 			
 			require_once "views/administrador/gestion_usuarios/gestion_usuarios.php";
 				
@@ -74,8 +82,18 @@
 
 		public function gestion_espec(){
 			
+			session_start();
+			
 			$especialidad = new Administrador_model();
 			$data["especialidad"] = $especialidad->get_especialidad();
+
+			if (isset($_SESSION['act_esp'])) {
+				$act_esp = $_SESSION['act_esp'];
+			}
+
+			if (isset($_SESSION['esp_reg'])) {
+				$esp_reg = $_SESSION['esp_reg'];
+			}
 			
 			require_once "views/administrador/gestion_espec/gestion_espec.php";
 		}
@@ -90,27 +108,51 @@
 		
 ////listar tipo doc para pacientes, profesionales y auxiliares, y listar consultorios y especialidades para profesionales  
 		public function nuevo_paciente(){
+			
+			session_start();
+			
 			$tipo_doc=  new Administrador_model();
 			$data["tipo_doc"] = $tipo_doc->get_tipo_doc();
+			if (isset($_SESSION['user_reg'])) {
+				$user_reg = $_SESSION['user_reg'];
+			}
 			require_once "views/administrador/gestion_usuarios/new_pac.php";
 		}
 
 		public function nuevo_profesional(){
+			
+			session_start();
+			
 			$paquete=  new Administrador_model();
 			$data["tipo_doc"] = $paquete->get_tipo_doc();
 			$data["consultorios"] = $paquete->get_consultorios();
 			$data["especialidad"] = $paquete->get_especialidad();
+			if (isset($_SESSION['user_reg'])) {
+				$user_reg = $_SESSION['user_reg'];
+			}
 			require_once "views/administrador/gestion_usuarios/new_prof.php";
 		}
 
 		public function nuevo_auxiliar(){
+			
+			session_start();
+			
 			$tipo_doc=  new Administrador_model();
 			$data["tipo_doc"] = $tipo_doc->get_tipo_doc();
+			if (isset($_SESSION['user_reg'])) {
+				$user_reg = $_SESSION['user_reg'];
+			}
 			require_once "views/administrador/gestion_usuarios/new_aux.php";
 		}
 
 		public function nuevo_espec(){
+			
+			session_start();
+
 			$tipo_doc=  new Administrador_model();
+			if (isset($_SESSION['esp_reg'])) {
+				$esp_reg = $_SESSION['esp_reg'];
+			}
 			require_once "views/administrador/gestion_espec/new_espec.php";
 		}
 
@@ -138,6 +180,8 @@
 		
 		public function guarda_paciente(){
 			
+			session_start();
+
 			$id_tipo_doc = $_POST['id_tipo_doc'];
 			$num_doc_pac = $_POST['num_doc_pac'];
 			$nombres_pac = $_POST['nombres_pac'];
@@ -147,13 +191,17 @@
 			$sexo_pac = $_POST['sexo_pac'];
 			
 			$usuarios = new Administrador_model();
-			$usuarios->insertar_pac($id_tipo_doc, $num_doc_pac, $nombres_pac, $apellidos_pac, $tel_pac, $correo_pac, $sexo_pac);
+			$resultado = $usuarios->insertar_pac($id_tipo_doc, $num_doc_pac, $nombres_pac, $apellidos_pac, $tel_pac, $correo_pac, $sexo_pac);
 
+			$_SESSION['user_reg'] = $resultado;
 			header('location:index.php?c=Administrador&a=gestion_u');
+			
 
 		}
 
 		public function guarda_profesional(){
+
+			session_start();
 			
 			$num_doc_prof = $_POST['num_doc_prof'];
 			$id_tipo_doc = $_POST['id_tipo_doc'];
@@ -167,13 +215,16 @@
 			$franja_horaria = $_POST['franja_horaria'];
 			
 			$usuarios = new Administrador_model();
-			$usuarios->insertar_prof($num_doc_prof, $id_tipo_doc, $id_consultorios, $id_especialidad, $nombres_prof, $apellidos_prof, $tel_prof, $correo_prof, $dias_laborales, $franja_horaria);
+			$resultado = $usuarios->insertar_prof($num_doc_prof, $id_tipo_doc, $id_consultorios, $id_especialidad, $nombres_prof, $apellidos_prof, $tel_prof, $correo_prof, $dias_laborales, $franja_horaria);
 
+			$_SESSION['user_reg'] = $resultado;
 			header('location:index.php?c=Administrador&a=gestion_u');
 			
 		}
 
 		public function guarda_auxiliar(){
+			
+			session_start();
 			
 			$id_tipo_doc = $_POST['id_tipo_doc'];
 			$num_doc_aux = $_POST['num_doc_aux'];
@@ -183,18 +234,24 @@
 			$correo_aux = $_POST['correo_aux'];
 			
 			$usuarios = new Administrador_model();
-			$usuarios->insertar_aux($id_tipo_doc, $num_doc_aux, $nombres_aux, $apellidos_aux, $tel_aux, $correo_aux);
+			$resultado = $usuarios->insertar_aux($id_tipo_doc, $num_doc_aux, $nombres_aux, $apellidos_aux, $tel_aux, $correo_aux);
+			
+			$_SESSION['user_reg'] = $resultado;
 			header('location:index.php?c=Administrador&a=gestion_u');
 
 		}
 
 		public function guarda_espec(){
 			
+			session_start();
+			
 			$descrip_espec = $_POST['descrip_espec'];
 			$costo_espec = $_POST['costo_espec'];
 			
 			$espec = new Administrador_model();
-			$espec->insertar_espec($descrip_espec, $costo_espec);
+			$resultado = $espec->insertar_espec($descrip_espec, $costo_espec);
+
+			$_SESSION['esp_reg'] = $resultado;
 			header('location:index.php?c=Administrador&a=gestion_espec');
 
 		}
@@ -211,34 +268,58 @@
 ////actualizar usuarios		
 		public function actualizar_pac($id){
 			
+			session_start();
+			
 			$paciente = new Administrador_model();
 			$data["tipo_doc"] = $paciente->get_tipo_doc();
 			$data["paciente"] = $paciente->get_paciente($id);
+			if (isset($_SESSION['act_datos'])) {
+				$act_datos = $_SESSION['act_datos'];
+			}
+
 			require_once "views/administrador/gestion_usuarios/update_pac.php";
 		}
 
 		public function actualizar_prof($id){
+			
+			session_start();
 			
 			$profesional = new Administrador_model();
 			$data["consultorios"] = $profesional->get_consultorios();
 			$data["especialidad"] = $profesional->get_especialidad();
 			$data["tipo_doc"] = $profesional->get_tipo_doc();
 			$data["profesional"] = $profesional->get_prof($id);
+			if (isset($_SESSION['act_datos'])) {
+				$act_datos = $_SESSION['act_datos'];
+			}
+
 			require_once "views/administrador/gestion_usuarios/update_prof.php";
 		}
 
 		public function actualizar_aux($id){
 			
+			session_start();
+			
 			$auxiliar = new Administrador_model();
 			$data["tipo_doc"] = $auxiliar->get_tipo_doc();
 			$data["auxiliar"] = $auxiliar->get_aux($id);
+			if (isset($_SESSION['act_datos'])) {
+				$act_datos = $_SESSION['act_datos'];
+			}
+
 			require_once "views/administrador/gestion_usuarios/update_aux.php";
 		}
 
 		public function actualizar_espec($id){
 			
+			session_start();
+			
 			$especialidad = new Administrador_model();
 			$data["especialidad"] = $especialidad->get_espec($id);
+			if (isset($_SESSION['act_esp'])) {
+				$act_esp = $_SESSION['act_esp'];
+			}
+
 			require_once "views/administrador/gestion_espec/update_espec.php";
 		}
 
@@ -251,17 +332,23 @@
 		
 		public function modificar_pac(){
 
+			session_start();
+			
 			$id_paciente = $_POST['id_paciente'];
 			$id_tipo_doc = $_POST['id_tipo_doc'];
 			$tel_pac = $_POST['tel_pac'];
 			$correo_pac = $_POST['correo_pac'];
 
 			$paciente = new Administrador_model();
-			$paciente->modificar_paciente($id_paciente, $id_tipo_doc, $tel_pac, $correo_pac);
+			$resultado = $paciente->modificar_paciente($id_paciente, $id_tipo_doc, $tel_pac, $correo_pac);
+			
+			$_SESSION['act_datos'] = $resultado;
 			header('location:index.php?c=Administrador&a=gestion_u');
 		}
 
 		public function modificar_prof(){
+			
+			session_start();
 			
 			$id_profesional = $_POST['id_profesional'];
 			$id_tipo_doc = $_POST['id_tipo_doc'];
@@ -274,30 +361,40 @@
 
 
 			$paciente = new Administrador_model();
-			$paciente->modificar_profesional($id_profesional, $id_tipo_doc, $id_consultorios, $id_especialidad, $tel_prof, $correo_prof, $dias_laborales, $franja_horaria);
+			$resultado = $paciente->modificar_profesional($id_profesional, $id_tipo_doc, $id_consultorios, $id_especialidad, $tel_prof, $correo_prof, $dias_laborales, $franja_horaria);
+			
+			$_SESSION['act_datos'] = $resultado;
 			header('location:index.php?c=Administrador&a=gestion_u');
 		}
 
 		public function modificar_aux(){
 
+			session_start();
+			
 			$id_auxiliar = $_POST['id_auxiliar'];
 			$id_tipo_doc = $_POST['id_tipo_doc'];
 			$tel_aux = $_POST['tel_aux'];
 			$correo_aux = $_POST['correo_aux'];
 
 			$auxiliar = new Administrador_model();
-			$auxiliar->modificar_auxiliar($id_auxiliar, $id_tipo_doc, $tel_aux, $correo_aux);
+			$resultado = $auxiliar->modificar_auxiliar($id_auxiliar, $id_tipo_doc, $tel_aux, $correo_aux);
+
+			$_SESSION['act_datos'] = $resultado;
 			header('location:index.php?c=Administrador&a=gestion_u');
 		}
 
 		public function modificar_espec(){
 
+			session_start();
+			
 			$id_especialidad = $_POST['id_especialidad'];
 			$costo_espec = $_POST['costo_espec'];
 
 
 			$espec = new Administrador_model();
-			$espec->modificar_especialidad($id_especialidad, $costo_espec);
+			$resultado = $espec->modificar_especialidad($id_especialidad, $costo_espec);
+
+			$_SESSION['act_esp'] = $resultado;
 			header('location:index.php?c=Administrador&a=gestion_espec');
 		}
 
