@@ -447,5 +447,8 @@
 			
 			header('location:index.php?c=Administrador&a=gestion_agenda_2&id='.$_SESSION['id_profesional']);
 		}
+		public function ayuda(){
+			require_once "views/administrador/manual_usuario/manual_de_usuario.html";
+		}
 	}
 ?>
