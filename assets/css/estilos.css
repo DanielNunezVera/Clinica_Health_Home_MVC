@@ -1,3 +1,12 @@
+iframe { 
+    position: absolute;
+    top:0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+
 /*Css general*/
 * {
     margin: 0;
@@ -7,14 +16,14 @@
 
 /*Css general del header*/
 
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+
+html{
+    height: 100%;
 }
 
 body{
     font-family: 'Montserrat', sans-serif;
+    min-height: 100%;
 }
 
 .header{
@@ -302,7 +311,7 @@ header nav ul li:hover {
 
     .container__cover {
         background-image: none;
-        background-color: #ffffff;
+
     }
 
     .container__cover .caja2 img {
@@ -619,8 +628,9 @@ header nav ul li:hover {
 
 
 table thead{
-    background-color: white;
+    background-color: linear-gradient(62deg, rgba(1, 75, 160, 1) 29%, rgba(0, 105, 192, 1) 46%, rgba(30, 145, 237, 1) 64%, rgba(124, 183, 248, 1) 80%);
 }
+
 
 
 

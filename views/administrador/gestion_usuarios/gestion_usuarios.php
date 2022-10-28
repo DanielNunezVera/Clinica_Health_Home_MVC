@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -127,8 +126,8 @@
 
   
 <!-- Modal 1 -->
-<div id="modal1" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="modal3Title" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-scrollable" role="document">
+<div id="modal1" class="modal" role="dialog" aria-labelledby="modal3Title" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="modal3Title">Seleccione el tipo de usuario a registrar</h5>
@@ -197,9 +196,6 @@
                 });
         });  
     </script>
- 		 	  	
-
     <script src="assets/js-general/codigo.js"></script>
-
 </body>
 </html>

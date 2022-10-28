@@ -198,14 +198,6 @@
 
 		}
 
-		public function confirmapago_1_aux($id){
-			
-			$cit = new Auxiliar_model();
-			$cit->confirmapago_aux1($id);
-			$this->gestion_u();
-
-		}
-
 		public function cancelar_cita_prof($id){
 
 			session_start();					

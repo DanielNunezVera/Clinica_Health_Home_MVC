@@ -107,20 +107,20 @@
 
 		////Métodos para crear usuarios
 
-		public function insertar_pac($id_tipo_doc, $num_doc_pac, $nombres_pac, $apellidos_pac, $tel_pac, $correo_pac, $sexo_pac){
+		public function insertar_pac($id_tipo_doc, $num_doc_pac, $nombres_pac, $apellidos_pac, $tel_pac, $correo_pac, $sexo_pac, $pass_pac){
 			
-			$resultado = $this->db->query("INSERT INTO paciente (id_tipo_doc, num_doc_pac, nombres_pac, apellidos_pac, tel_pac, correo_pac, sexo_pac, estado_pac, pass_pac, create_pac) VALUES ('$id_tipo_doc', '$num_doc_pac', '$nombres_pac', '$apellidos_pac', '$tel_pac', '$correo_pac', '$sexo_pac', 1, '$num_doc_pac', CURRENT_TIMESTAMP)");
+			$resultado = $this->db->query("INSERT INTO paciente (id_tipo_doc, num_doc_pac, nombres_pac, apellidos_pac, tel_pac, correo_pac, sexo_pac, estado_pac, pass_pac, create_pac) VALUES ('$id_tipo_doc', '$num_doc_pac', '$nombres_pac', '$apellidos_pac', '$tel_pac', '$correo_pac', '$sexo_pac', 1, '$pass_pac', CURRENT_TIMESTAMP)");
 		}
 
-		public function insertar_prof($num_doc_prof, $id_tipo_doc, $id_consultorios, $id_especialidad, $nombres_prof, $apellidos_prof, $tel_prof, $correo_prof, $dias_laborales, $franja_horaria){
+		public function insertar_prof($num_doc_prof, $id_tipo_doc, $id_consultorios, $id_especialidad, $nombres_prof, $apellidos_prof, $tel_prof, $correo_prof, $dias_laborales, $franja_horaria, $pass_prof){
 			
-			$resultado = $this->db->query("INSERT INTO profesional (num_doc_prof, id_tipo_doc, id_consultorios, id_especialidad, nombres_prof, apellidos_prof, tel_prof, correo_prof, dias_laborales, franja_horaria, estado_prof, pass_prof, create_prof) VALUES ('$num_doc_prof', '$id_tipo_doc', '$id_consultorios', '$id_especialidad', '$nombres_prof', '$apellidos_prof', '$tel_prof', '$correo_prof', '$dias_laborales', '$franja_horaria', 1, '$num_doc_prof', CURRENT_TIMESTAMP)");
+			$resultado = $this->db->query("INSERT INTO profesional (num_doc_prof, id_tipo_doc, id_consultorios, id_especialidad, nombres_prof, apellidos_prof, tel_prof, correo_prof, dias_laborales, franja_horaria, estado_prof, pass_prof, create_prof) VALUES ('$num_doc_prof', '$id_tipo_doc', '$id_consultorios', '$id_especialidad', '$nombres_prof', '$apellidos_prof', '$tel_prof', '$correo_prof', '$dias_laborales', '$franja_horaria', 1, '$pass_prof', CURRENT_TIMESTAMP)");
 			
 		}
 
-		public function insertar_aux($id_tipo_doc, $num_doc_aux, $nombres_aux, $apellidos_aux, $tel_aux, $correo_aux){
+		public function insertar_aux($id_tipo_doc, $num_doc_aux, $nombres_aux, $apellidos_aux, $tel_aux, $correo_aux, $pass_aux){
 			
-			$resultado = $this->db->query("INSERT INTO auxiliar (id_tipo_doc, num_doc_aux, nombres_aux, apellidos_aux, tel_aux, correo_aux, estado_aux, pass_aux, create_aux) VALUES ('$id_tipo_doc', '$num_doc_aux', '$nombres_aux', '$apellidos_aux', '$tel_aux', '$correo_aux', 1, '$num_doc_aux', CURRENT_TIMESTAMP)");
+			$resultado = $this->db->query("INSERT INTO auxiliar (id_tipo_doc, num_doc_aux, nombres_aux, apellidos_aux, tel_aux, correo_aux, estado_aux, pass_aux, create_aux) VALUES ('$id_tipo_doc', '$num_doc_aux', '$nombres_aux', '$apellidos_aux', '$tel_aux', '$correo_aux', 1, '$pass_aux', CURRENT_TIMESTAMP)");
 		}
 
 		public function insertar_espec($descrip_espec, $costo_espec){
@@ -146,7 +146,7 @@
 			}elseif ($tipo_franja == "b") {
 				$fecha_i = '2022/'.$tipo_franja_la.'/01 6:00';
 				$fecha_f = '2022/'.$tipo_franja_la.'/01 14:00';
-			}elseif ($tipo_franja == "b") {
+			}elseif ($tipo_franja == "c") {
 				$fecha_i = '2022/'.$tipo_franja_la.'/01 14:00';
 				$fecha_f = '2022/'.$tipo_franja_la.'/01 22:00';
 			}
