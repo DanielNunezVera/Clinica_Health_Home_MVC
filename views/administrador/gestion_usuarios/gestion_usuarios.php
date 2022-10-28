@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -127,8 +126,8 @@
 
   
 <!-- Modal 1 -->
-<div id="modal1" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="modal3Title" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-scrollable" role="document">
+<div id="modal1" class="modal" role="dialog" aria-labelledby="modal3Title" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="modal3Title">Seleccione el tipo de usuario a registrar</h5>
@@ -198,6 +197,7 @@
                 });
         });  
     </script>
+<<<<<<< HEAD
  		 	  	
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
@@ -224,5 +224,8 @@
     <script src="assets/js-general/alertas_admin.js"></script>
     <script src="assets/js-general/codigo.js"></script>
         
+=======
+    <script src="assets/js-general/codigo.js"></script>
+>>>>>>> 14edefa19b0dac4707925d5cd7db13acf246303a
 </body>
 </html>

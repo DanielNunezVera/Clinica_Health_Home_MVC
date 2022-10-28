@@ -64,6 +64,7 @@ if (typeof alerta_gestion_usuarios !== 'undefined') {
     case "3":
       if (act_datos == 1) {
         Swal.fire(
+<<<<<<< HEAD
           '¡Actualización exitosa!',
           'Datos de usuario actualizados',
           'success'
@@ -71,6 +72,16 @@ if (typeof alerta_gestion_usuarios !== 'undefined') {
       }
       break;
   } 
+=======
+            '¡Alerta!',
+            'El dia seleccionado no tiene agenda creada',
+            'warning'
+            )
+    }
+    break;
+
+    
+>>>>>>> 14edefa19b0dac4707925d5cd7db13acf246303a
 }
 
 if (typeof alerta_gestion_especialidades !== 'undefined') {
