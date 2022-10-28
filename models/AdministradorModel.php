@@ -146,7 +146,7 @@
 			}elseif ($tipo_franja == "b") {
 				$fecha_i = '2022/'.$tipo_franja_la.'/01 6:00';
 				$fecha_f = '2022/'.$tipo_franja_la.'/01 14:00';
-			}elseif ($tipo_franja == "b") {
+			}elseif ($tipo_franja == "c") {
 				$fecha_i = '2022/'.$tipo_franja_la.'/01 14:00';
 				$fecha_f = '2022/'.$tipo_franja_la.'/01 22:00';
 			}

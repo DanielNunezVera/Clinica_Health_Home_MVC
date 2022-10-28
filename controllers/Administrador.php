@@ -1,20 +1,35 @@
 <?php
-	
+	require 'Sesiones.php';
+	$inc = new SesionesController();
+	if(empty($_SESSION["Admin"])){
+		$inc->redireccionar();
+	}
 	class AdministradorController {
-		
+
 		public function __construct(){
 			require_once "models/AdministradorModel.php";
 		}
 
 		public function index(){
 			
+			require_once "views/administrador/menu_admin.php";
+		}
+
+		public function acciones(){
+			
 			require_once "views/administrador/index_admin.php";
+		}
+
+		public function cerrarsesion(){
+			session_destroy();
+			header ("Location: index.php?c=Login&a=index");
 		}
 
 ////listar todos los usuarios
 
 		public function gestion_u(){
 
+			
 			$usuarios = new Administrador_model();
 			$data["pacientes"] = $usuarios->get_pacientes();
 			$data["profesionales"] = $usuarios->get_profesional();
@@ -35,7 +50,6 @@
 
 		public function gestion_agenda_2($id){
 
-			session_start();
 			$_SESSION['id_profesional'] = $id;
 			$agenda =  new Administrador_model();
 			$data["profesional"] = $agenda->get_prof($id);
@@ -122,7 +136,7 @@
 
 		public function nueva_agenda(){
 
-			session_start();
+			
 			$id_profesional = $_POST['id_profesional'];
 			$tipo_franja_la = $_POST['tipo_franja_la'];
 			$tipo_franja = $_POST['tipo_franja'];
@@ -348,7 +362,7 @@
 		}
 
 		public function eliminar_agenda($id){
-			session_start();
+			
 			$agenda = new Administrador_model();
 			$agenda -> eliminar_agend($id);
 			header('location:index.php?c=Administrador&a=gestion_agenda_2&id='.$_SESSION['id_profesional']);
@@ -434,7 +448,7 @@
 
 		public function excepciones(){
 			
-			session_start();
+			
 			$dia_eliminar = $_POST['dia_eliminar'];
 			$id_profesional = $_POST['id_profesional'];
 
