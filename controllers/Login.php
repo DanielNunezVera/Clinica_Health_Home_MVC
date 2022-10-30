@@ -43,8 +43,18 @@ class LoginController{
                 $_SESSION["Login_error_2"] = "2";
                 header ("Location: index.php?c=Login&a=index");
             }
+        } elseif($tipo_rol == "2"){
+            foreach ($resultado["usuario"] as $dato){}
+            if(password_verify($pass, $dato["pass_aux"])){
+                $_SESSION[] = $dato["id_auxiliar"];
+                header ("Location: index.php?c=Auxiliar&a=index");
+            }else{
+                $_SESSION["Login_error_2"] = "2";
+                header ("Location: index.php?c=Login&a=index");
+            }
         }
 
+       
 
         // if($resultado == "4"){
         //     $_SESSION["rol_activo"] = $resultado;

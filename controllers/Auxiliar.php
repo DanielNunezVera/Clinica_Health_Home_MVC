@@ -10,13 +10,22 @@
 
 		public function index(){
 			
-			require_once "views/administrador/index_admin.php";
+			require_once "views/auxiliar_admin/menu_aux.php";
+		}
+
+		public function acciones(){
+			require_once "views/auxiliar_admin/index_aux.php";
 		}
 		
 		public function buscar_pacientei(){
 			$tipo_doc=  new Administrador_model();
 			$data["tipo_doc"] = $tipo_doc->get_tipo_doc();
 			require_once "views/auxiliar_admin/agenda_cita/buscar_pac.php";
+		}
+
+		public function cerrarsesion(){
+			session_destroy();
+			header ("Location: index.php?c=login&a=index");
 		}
 
 		public function buscar_pacientef(){	
