@@ -24,8 +24,8 @@
                 <nav id="nav">
                     <img src="assets/images/ajustes.png" alt="">
                     <ul>
-                        <li><a href="index.php?c=Administrador&a=index" >Inicio</a></li>
-                        <li><a href="../../../controller/sesiones/cerrarsesion.php">Cerrar sesion</a></li>
+                        <li><a href="index.php?c=Profesional&a=index" >Inicio</a></li>
+                        <li><a href="index.php?c=Profesional&a=cerrarsesion">Cerrar sesion</a></li>
                     </ul>
                 </nav>
             </div>
@@ -70,8 +70,8 @@
                                 </p>
                                 
                                 <p>
-                                    <label>Contraseña</label>
-                                    <input name="pass" value="Cambiar contraseña" onclick="contraseña()" style="color:blue;">
+                                    <label><br></label>
+                                    <a href="index.php?c=Profesional&a=actualizar_pass" class="btn btn-outline-primary">Actualizar contraseña</a>
                                 </p>
                                 <p class="block">
                                     <button class="btn btn-primary btn-lg btn-block" name="registrar" id="registrar" type="submit">Actualizar</button>
@@ -84,10 +84,5 @@
         </div>
     </main>
     <script src="assets/js-general/menu-responsive.js"></script>
-    <script>
-        function contraseña(){
-            window.location = "index.php?c=Profesional&a=actualizar_pass"
-        }
-    </script>
 </body>
 </html>
