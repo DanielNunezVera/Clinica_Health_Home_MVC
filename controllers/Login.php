@@ -57,6 +57,32 @@ class LoginController{
         // header('location:index.php?c=Login&a=index');
     }
 
+    public function buscar_paciente(){
+
+        $validar = new Login_model();
+        $id_tipo_doc = $_POST['id_tipo_doc'];
+        $num_doc = $_POST['num_doc'];
+        $pass = $_POST['pass'];
+
+        $resultado['usuario'] = $validar->validar_paciente($id_tipo_doc, $num_doc);
+
+        foreach($resultado['usuario'] as $dato){}
+
+        if(password_verify($pass, $dato["pass_pac"])){
+
+            $_SESSION['pac'] = $dato['id_paciente'];
+
+            header ("Location: index.php?c=Paciente&a=index");
+
+        } else {
+
+            $_SESSION['Login_error_2'] = '2';
+
+            header ("Location: index.php?c=Login&a=index");
+
+        }
+
+    }
 
 }
 
