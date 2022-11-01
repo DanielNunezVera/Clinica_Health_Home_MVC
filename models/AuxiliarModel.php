@@ -91,7 +91,7 @@
 		}
 
 		public function get_aux(){
-			$sql = "SELECT * FROM auxiliar WHERE id_auxiliar=2 LIMIT 1";
+			$sql = "SELECT * FROM auxiliar WHERE id_auxiliar=1 LIMIT 1";
 			$resultado = $this->db->query($sql);
 			$row = $resultado->fetch_assoc();
 
