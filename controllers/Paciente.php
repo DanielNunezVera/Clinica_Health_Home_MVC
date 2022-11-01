@@ -8,6 +8,12 @@
             require_once "models/PacienteModel.php";
 		}
 
+        public function index(){
+
+            require_once "views/pacientes/index_pac.php";
+            
+        }
+
         public function agendar_cita_i(){
             $paquete=  new Administrador_model();
             $data["especialidad"] = $paquete->get_especialidad();

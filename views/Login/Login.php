@@ -54,7 +54,7 @@
 				</form>
 
 				<!--Formulario de pacientes-->
-				<form action="index.php?c=Login&a=buscar_funcionario" class="formulario__register" method="POST">
+				<form action="index.php?c=Login&a=buscar_paciente" class="formulario__register" method="POST">
 					<h2>Iniciar sesion pacientes</h2>
 					<select class="Selectordoc" name="id_tipo_doc" id="id_tipo_doc" required>
 					<option value="">Seleccione</option>

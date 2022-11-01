@@ -39,9 +39,9 @@
                     <div class="row">
                         <h1>Bienvenido - pac</h1>
                         <br>
-                        <a href="agenda_cita/agendarcita.php" class="boton">Agendar cita</a>
+                        <a href="index.php?c=Paciente&a=agendar_cita_i" class="boton">Agendar cita</a>
                         
-                        <a href="view_citas/view_citas.php" class="boton">Citas agendadas</a>
+                        <a href="index.php?c=Paciente&a=citas_agendadas" class="boton">Citas agendadas</a>
                     </div>
                 </div>
                 <div class="caja2">
