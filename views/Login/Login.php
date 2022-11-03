@@ -1,6 +1,3 @@
-<?php
-include "../../controller/sesiones/contencionsesiones.php";
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,13 +5,15 @@ include "../../controller/sesiones/contencionsesiones.php";
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Inicio de sesion tienda virtual</title>
 <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0 300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/estilos.css">
+<link rel="stylesheet" href="assets/css/estilos_login.css">
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script src="https://kit.fontawesome.com/2d830bca63.js" crossorigin="anonymous"></script>
 
 </head>
 <body>
 	<main>
+
+		<br>
 		<div class="contenedor__todo">
 			<div class="caja__trasera">
 				<div class="caja__trasera-login">
@@ -32,23 +31,22 @@ include "../../controller/sesiones/contencionsesiones.php";
 			<!--Formulario de funcionarios-->
 			<div class="contenedor__login-register">
 				<!--Formulario de funcionarios-->
-				<form action="../../controller/verificar-usuarios/verify_fun.php" class="formulario__login" method="POST">
+				<form action="index.php?c=Login&a=buscar_funcionario" class="formulario__login" method="POST">
 					<h2>Iniciar sesion funcionarios</h2>
-					<select class="Selectordoc" name="tipo_rol" id="tipo_rol">
-						<option >Rol</option>
+					<select class="Selectordoc" name="tipo_rol" id="tipo_rol" required>
+						<option value="">Rol</option>
 							<option value=1>Profesional</option>
 							<option value=2>Auxiliar administrativo</option>
 							<option value=4>Administrador</option>
 						</select>
-					<select class="Selectordoc" name="tipo_doc" id="tipo_doc">
-					    <option >Elige el tipo de documento</option>
-						<option value="CC">Cedula de ciudadania</option>
-						<option value="TI">Tarjeta de identidad</option>
-						<option value="PAP">Pasaporte</option>
-						<option value="CE">Cedula de extranjeria</option>
-					</select>
-					<input type="text" placeholder="Numero de documento" id="numerodedocuemto" name="num_doc_pers" class="contenedor1"> 
-					<input type="password" placeholder="Contraseña" id="password" name="pass" class="contenedor1" >
+						<select class="Selectordoc" name="id_tipo_doc" id="id_tipo_doc" required>
+						<option value="">Seleccione</option>
+								<?php foreach ($data["tipo_doc"] as $dato) {
+								echo "<option value='".$dato["id_tipo_doc"]."'>".$dato["tipo_doc"]."</option>";
+							}?>
+						</select>
+					<input type="text" placeholder="Numero de documento" id="num_doc" name="num_doc" class="contenedor1"> 
+					<input type="password" placeholder="Contraseña" id="pass" name="pass" class="contenedor1" >
 					<input type="submit" name="login" class="boton" placeholder="Iniciar sesion"></input>
 					<br>
 					<br>
@@ -56,17 +54,16 @@ include "../../controller/sesiones/contencionsesiones.php";
 				</form>
 
 				<!--Formulario de pacientes-->
-				<form action="../../controller/verificar-usuarios/verify_pac.php" class="formulario__register" method="POST">
+				<form action="index.php?c=Login&a=buscar_paciente" class="formulario__register" method="POST">
 					<h2>Iniciar sesion pacientes</h2>
-					<select class="Selectordoc" name="tipo_doc">
-					<option >Elige el tipo de documento</option>
-						<option value="CC">Cedula de ciudadania</option>
-						<option value="TI">Tarjeta de identidad</option>
-						<option value="PAP">Pasaporte</option>
-						<option value="CE">Cedula de extranjeria</option>
+					<select class="Selectordoc" name="id_tipo_doc" id="id_tipo_doc" required>
+					<option value="">Seleccione</option>
+							<?php foreach ($data["tipo_doc"] as $dato) {
+							echo "<option value='".$dato["id_tipo_doc"]."'>".$dato["tipo_doc"]."</option>";
+						}?>
 					</select>
-					<input type="text" placeholder="Numero de documento" id="numerodedocuemto" name="num_doc_pers" class="contenedor1"> 
-					<input type="password" placeholder="Contraseña" id="password" name="pass" class="contenedor1">
+					<input type="text" placeholder="Numero de documento" id="num_doc" name="num_doc" class="contenedor1"> 
+					<input type="password" placeholder="Contraseña" id="pass" name="pass" class="contenedor1">
 					<input type="submit" name="login" class="boton" placeholder="Iniciar sesion"></input>
 					<br>
 					<br>
@@ -75,30 +72,46 @@ include "../../controller/sesiones/contencionsesiones.php";
 				</form>
 			</div>
 		</div>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
 	</main>
-	<script type="text/javascript" src = "assets/js/login.js"></script>
+	<script type="text/javascript" src = "assets/js-general/login.js"></script>
 	<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 	<script src="https://code.jquery.com/jquery-3.1.0.js"></script>
 	<script type="text/javascript">
     $("#tipo_rol").change(function() {
             if($("#tipo_rol").val() == "4"){
-            $('#tipo_doc').prop('disabled', 'disabled');
+            $('#id_tipo_doc').prop('disabled', 'disabled');
           }else{
-            $('#tipo_doc').prop('disabled', false);
+            $('#id_tipo_doc').prop('disabled', false);
           }
         });
-</script>
-<br>
-<br>
-<br>
-<br>
+	</script>
+	<script>
+		<?php
+
+			if(isset($_SESSION["Login_error_2"])){
+				if($_SESSION["Login_error_2"]=="2"){
+					echo "var alert_datos_incorrectos = '2';";
+					echo "var tipo_alerta = '2';";
+					unset($_SESSION["Login_error_2"]);
+				}
+			}
+		?>
+		// var alerta_agenda_repetida = "<?php  ?>";s
+	</script>
+	<script src="assets/js-general/alertas_login.js"></script>
 </body>
 <footer class="pie-pagina">
         <div class="grupo-1">
             <div class="box">
                 <figure>
                     <a href="#">
-                        <img src="assets/css/Logo2.png" alt="Logo de SLee Dw">
+                        <img src="assets/images/Logo2.png" alt="Logo de SLee Dw">
                     </a>
                 </figure>
             </div>

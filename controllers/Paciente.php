@@ -8,6 +8,12 @@
             require_once "models/PacienteModel.php";
 		}
 
+        public function index(){
+
+            require_once "views/pacientes/index_pac.php";
+            
+        }
+
         public function agendar_cita_i(){
             $paquete=  new Administrador_model();
             $data["especialidad"] = $paquete->get_especialidad();
@@ -69,10 +75,9 @@
             if ($_POST["pass_pac"] == $_POST["repeat_pass_pac"]) {
                 
                 $id_paciente = $_POST['id_paciente'];
-                $pass_pac = $_POST['pass_pac'];
-                $repeat_pass_pac = $_POST['repeat_pas_pac'];
+                $pass_pac = password_hash($_POST['pass_pac'], PASSWORD_BCRYPT);
 
-                var_dump($_POST['id_paciente'], $_POST["pass_pac"], $_POST["repeat_pass_pac"]);
+                // var_dump($_POST['id_paciente'], $_POST["pass_pac"], $_POST["repeat_pass_pac"]);
 
                 $paquete = new Paciente_model;
                 $paquete -> update_pass_pac($id_paciente, $pass_pac);
