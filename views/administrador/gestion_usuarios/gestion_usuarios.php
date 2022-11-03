@@ -197,6 +197,10 @@
                 });
         });  
     </script>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 2903c3c52cb869376484267fa7f0fef4a9099f8b
  		 	  	
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
@@ -223,5 +227,11 @@
     <script src="assets/js-general/alertas_admin.js"></script>
     <script src="assets/js-general/codigo.js"></script>
         
+<<<<<<< HEAD
+=======
+=======
+    <script src="assets/js-general/codigo.js"></script>
+>>>>>>> 14edefa19b0dac4707925d5cd7db13acf246303a
+>>>>>>> 2903c3c52cb869376484267fa7f0fef4a9099f8b
 </body>
 </html>

@@ -126,12 +126,6 @@
 		public function insertar_espec($descrip_espec, $costo_espec){
 			
 			$resultado = $this->db->query("INSERT INTO especialidad (descrip_espec, costo_espec, estado_espec, create_espec) VALUES ('$descrip_espec', '$costo_espec', 1, CURRENT_TIMESTAMP)");
-			$confirm = $this->db->affected_rows;
-				if ($confirm > 1) {
-					return $confirm;
-				}else{
-					return $confirm;
-				}
 		}
 
 		public function insertar_consult($id_consultorios){
@@ -206,45 +200,22 @@
 		public function modificar_paciente($id_paciente, $id_tipo_doc ,$tel_pac, $correo_pac){
 			
 			$resultado = $this->db->query("UPDATE paciente SET id_tipo_doc='$id_tipo_doc', tel_pac='$tel_pac', correo_pac='$correo_pac' WHERE id_paciente= '$id_paciente'");
-			$confirm = $this->db->affected_rows;
-			if ($confirm > 1) {
-				return $confirm;
-			}else{
-				return $confirm;
-			}
+
 		}
 
 		public function modificar_profesional($id_profesional, $id_tipo_doc, $id_consultorios, $id_especialidad, $tel_prof, $correo_prof,$dias_laborales, $franja_horaria){
 			
 			$resultado = $this->db->query("UPDATE profesional SET id_tipo_doc='$id_tipo_doc', tel_prof='$tel_prof', correo_prof='$correo_prof', id_consultorios='$id_consultorios', id_especialidad='$id_especialidad',dias_laborales='$dias_laborales', franja_horaria='$franja_horaria' WHERE id_profesional = '$id_profesional'");			
-			$confirm = $this->db->affected_rows;
-			if ($confirm > 1) {
-				return $confirm;
-			}else{
-				return $confirm;
-			}
 		}
 
 		public function modificar_auxiliar($id_auxiliar, $id_tipo_doc, $tel_aux, $correo_aux){
 			
 			$resultado = $this->db->query("UPDATE auxiliar SET id_tipo_doc='$id_tipo_doc', tel_aux='$tel_aux', correo_aux='$correo_aux' WHERE id_auxiliar= '$id_auxiliar'");			
-			$confirm = $this->db->affected_rows;
-			if ($confirm > 1) {
-				return $confirm;
-			}else{
-				return $confirm;
-			}
 		}
 
 		public function modificar_especialidad($id_especialidad, $costo_espec){
 			
-			$resultado = $this->db->query("UPDATE especialidad SET costo_espec='$costo_espec' WHERE id_especialidad= '$id_especialidad'");
-			$confirm = $this->db->affected_rows;
-			if ($confirm > 1) {
-				return $confirm;
-			}else {
-				return $confirm;
-			}
+			$resultado = $this->db->query("UPDATE especialidad SET costo_espec='$costo_espec' WHERE id_especialidad= '$id_especialidad'");			
 		}
 
 		/*public function modificar_consultorio($id_consultorios, $id_consultorios_a){

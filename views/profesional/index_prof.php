@@ -13,25 +13,6 @@
     </style>
 </head>
 <body>
-    <header>
-        <div class="container__menu">
-            <div class="logo">
-                <img src="assets/images/Logo2.png" alt="">
-            </div>
-            <div class="menu">
-                <i class="fas fa-bars" id="btn_menu"></i>
-                <div id="back_menu"></div>
-                <nav id="nav">
-                    <img src="assets/images/ajustes.png" alt="">
-                    <ul>
-                        <li><a href="">Inicio</a></li>
-                        <li><a href="">Actualizar datos</a></li>
-                        <li><a href="">Cerrar sesion</a></li>
-                    </ul>
-                </nav>
-            </div>
-        </div>
-    </header>
     <main>
         <div class="container__cover">
             <div class="cover">
@@ -39,7 +20,7 @@
                     <div class="row">
                         <h1>Bienvenido prof</h1>
                         <br>
-                        <a href="citas_programadas/citas_programadas.php" class="boton">Citas Programadas</a>
+                        <a href="index.php?c=Profesional&a=set_citas_prom_prof" class="boton">Citas Programadas</a>
                         <br>
                     </div>
                 </div>
@@ -49,6 +30,6 @@
             </div>
         </div>
     </main>
-    <script src="assets/js-general/menu-responsive.js"></script>
+    <script src="views/Links/js.php"></script>
 </body>
 </html>
