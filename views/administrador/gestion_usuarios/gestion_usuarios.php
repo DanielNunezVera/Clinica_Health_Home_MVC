@@ -21,24 +21,6 @@
     </style>
 </head>
 <body>
-    <header>
-        <div class="container__menu">
-            <div class="logo">
-                <img src="assets/images/Logo2.png" alt="">
-            </div>
-            <div class="menu">
-                <i class="fas fa-bars" id="btn_menu"></i>
-                <div id="back_menu"></div>
-                <nav id="nav">
-                    <img src="assets/images/ajustes.png" alt="">
-                    <ul>
-                        <li><a href="index.php?c=Administrador&a=index">Inicio</a></li>
-                        <li><a href="">Cerrar sesion</a></li>
-                    </ul>
-                </nav>
-            </div>
-        </div>
-    </header>
     <main>
         <div class="container__cover">
             <div class="cover"> 
@@ -197,10 +179,6 @@
                 });
         });  
     </script>
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> 2903c3c52cb869376484267fa7f0fef4a9099f8b
  		 	  	
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
@@ -227,11 +205,6 @@
     <script src="assets/js-general/alertas_admin.js"></script>
     <script src="assets/js-general/codigo.js"></script>
         
-<<<<<<< HEAD
-=======
-=======
     <script src="assets/js-general/codigo.js"></script>
->>>>>>> 14edefa19b0dac4707925d5cd7db13acf246303a
->>>>>>> 2903c3c52cb869376484267fa7f0fef4a9099f8b
 </body>
 </html>

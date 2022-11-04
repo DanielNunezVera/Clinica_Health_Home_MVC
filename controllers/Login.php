@@ -3,9 +3,17 @@
 require 'Sesiones.php';
 $inc = new SesionesController();
     if(!empty($_SESSION["Admin"])){
+
         unset($_SESSION["Admin"]);
         $_SESSION["Login_error_1"]= "1";
         $inc->redireccionar();
+        
+    } elseif (!empty($_SESSION['pac'])){
+
+        unset($_SESSION['pac']);
+        $_SESSION["Login_error_1"] = "1";
+        $inc->redireccionar();
+
     }
 
 class LoginController{
@@ -89,6 +97,12 @@ class LoginController{
         if(password_verify($pass, $dato["pass_pac"])){
 
             $_SESSION['pac'] = $dato['id_paciente'];
+            $_SESSION['num_doc_pac'] = $dato['num_doc_pac'];
+            $_SESSION['nombres_pac'] = $dato['nombres_pac'];
+            $_SESSION['apellidos_pac'] = $dato['apellidos_pac'];
+            $_SESSION['tel_pac'] = $dato['tel_pac'];
+            $_SESSION['correo_pac'] = $dato['correo_pac'];
+            $_SESSION['sexo_pac'] = $dato['sexo_pac'];
 
             header ("Location: index.php?c=Paciente&a=index");
 

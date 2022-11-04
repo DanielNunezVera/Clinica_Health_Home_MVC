@@ -33,7 +33,8 @@
                     <img src="assets/images/ajustes.png" alt="">
                     <ul>
                         <li><a href="index.php?c=Administrador&a=index">Inicio</a></li>
-                        <li><a href="">Cerrar sesion</a></li>
+                        <li><a href="index.php?c=Paciente&a=get_paciente">Actualizar datos</a></li>
+                        <li><a href="index.php?c=Paciente&a=cerrar_sesion">Cerrar sesion</a></li>
                     </ul>
                 </nav>
             </div>
@@ -66,7 +67,7 @@
                                       echo"<td>
                                             <form action='index.php?c=Paciente&a=agendar_cita_f' method=POST>
                                             <input type='hidden' name='id_cita' id='id_cita' value='".$dato["id_cita"]."'>
-                                            <input type='hidden' name='id_paciente' id='id_paciente' value='1'>
+                                            <input type='hidden' name='id_paciente' id='id_paciente' value='".$_SESSION['pac']."'>
                                             <button class='btn btn-light active' type='submit'>Agendar</button>
                                             </form>
                                             </td>

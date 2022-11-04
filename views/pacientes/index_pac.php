@@ -37,15 +37,23 @@
             <div class="cover"> 
                 <div class="caja1">
                     <div class="row">
-<<<<<<< HEAD
-                        <h1>Bienvenido - pac</h1>
-=======
-<<<<<<< HEAD
-                        <h1>Paciente</h1>
-=======
-                        <h1>Bienvenido - pac</h1>
->>>>>>> 14edefa19b0dac4707925d5cd7db13acf246303a
->>>>>>> 2903c3c52cb869376484267fa7f0fef4a9099f8b
+                        <?php 
+                        
+                        if ($_SESSION['sexo_pac'] == "Masculino"){
+
+                            echo "<h1>Bienvenido"." - ".$_SESSION['nombres_pac']."</h1>";
+
+                        } elseif ($_SESSION['sexo_pac'] == "Femenino"){
+
+                            echo "<h1>Bienvenida"." - ".$_SESSION['nombres_pac']."</h1>";
+
+                        } else {
+
+                            echo "<h1>Bienvenido(a)"." - ".$_SESSION['nombres_pac']."</h1>";
+
+                        }
+                        
+                        ?>
                         <br>
                         <a href="index.php?c=Paciente&a=agendar_cita_i" class="boton">Agendar cita</a>
                         

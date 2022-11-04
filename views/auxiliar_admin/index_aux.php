@@ -18,19 +18,8 @@
             <div class="cover"> 
                 <div class="caja1">
                     <div class="row">
-<<<<<<< HEAD
-                        <h1>Auxiliar Administrativo</h1>
-<<<<<<< HEAD
-=======
-=======
-                        <h1>Bienvenido - aux</h1>
->>>>>>> 14edefa19b0dac4707925d5cd7db13acf246303a
->>>>>>> 2903c3c52cb869376484267fa7f0fef4a9099f8b
-                        <a href="validarprof.php" class="boton">Citas Profesionales</a>
-=======
                         <h1>Bienvenido - aux</h1>
                         <a href="index.php?c=Auxiliar&a=citas_pac" class="boton">Citas Pacientes</a>
->>>>>>> 35d0f67688fdef1d4c3752bffe24d963c1cfaee8
                         <br>
                         <a href="index.php?c=Auxiliar&a=citas_prof" class="boton">Citas Profesionales</a>
                     </div>

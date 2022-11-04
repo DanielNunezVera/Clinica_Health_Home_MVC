@@ -29,7 +29,7 @@
 
 		public function gestion_u(){
 
-			session_start();
+			
 			$usuarios = new Administrador_model();
 			$data["pacientes"] = $usuarios->get_pacientes();
 			$data["profesionales"] = $usuarios->get_profesional();
