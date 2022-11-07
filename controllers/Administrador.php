@@ -160,7 +160,7 @@
 			$pass_pac = password_hash($num_doc_pac, PASSWORD_BCRYPT);
 			
 			$usuarios = new Administrador_model();
-			$usuarios->insertar_pac($id_tipo_doc, $num_doc_pac, $nombres_pac, $apellidos_pac, $tel_pac, $correo_pac, $sexo_pac, $pass_pac);
+			$resultado = $usuarios->insertar_pac($id_tipo_doc, $num_doc_pac, $nombres_pac, $apellidos_pac, $tel_pac, $correo_pac, $sexo_pac, $pass_pac);
 
 			header('location:index.php?c=Administrador&a=gestion_u');
 
@@ -181,7 +181,7 @@
 			$pass_prof = password_hash($num_doc_prof, PASSWORD_BCRYPT);
 			
 			$usuarios = new Administrador_model();
-			$usuarios->insertar_prof($num_doc_prof, $id_tipo_doc, $id_consultorios, $id_especialidad, $nombres_prof, $apellidos_prof, $tel_prof, $correo_prof, $dias_laborales, $franja_horaria, $pass_prof);
+			$resultado = $usuarios->insertar_prof($num_doc_prof, $id_tipo_doc, $id_consultorios, $id_especialidad, $nombres_prof, $apellidos_prof, $tel_prof, $correo_prof, $dias_laborales, $franja_horaria, $pass_prof);
 
 			header('location:index.php?c=Administrador&a=gestion_u');
 			
@@ -198,7 +198,9 @@
 			$pass_aux = password_hash($num_doc_aux, PASSWORD_BCRYPT);
 			
 			$usuarios = new Administrador_model();
-			$usuarios->insertar_aux($id_tipo_doc, $num_doc_aux, $nombres_aux, $apellidos_aux, $tel_aux, $correo_aux, $pass_aux);
+			$resultado = $usuarios->insertar_aux($id_tipo_doc, $num_doc_aux, $nombres_aux, $apellidos_aux, $tel_aux, $correo_aux, $pass_aux);
+			
+			$_SESSION['user_reg'] = $resultado;
 			header('location:index.php?c=Administrador&a=gestion_u');
 
 		}

@@ -1,27 +1,3 @@
-<?php
-    // include "../../../controller/conexion-db/db_connect.php";
-
-    // include "../../../controller/sesiones/sesiones_pac.php";
-
-    // $consulta = "SELECT * FROM personas INNER JOIN pacientes ON personas.id_pers = pacientes.id_pac";
-
-    // $resultado = mysqli_query($conectar, $consulta) or die(mysqli_error());
-
-    // $fila = mysqli_fetch_assoc($resultado);
-
-    // $filas = mysqli_num_rows($resultado);
-
-    // if($filas == 1){
-        
-    //     $_SESSION['id_pac'] = $fila['id_pac'];
-    //     $_SESSION['genero'] = $fila['genero'];
-    //     $_SESSION['fecha_nacimiento'] = $fila['fecha_nacimiento'];
-    //     $_SESSION['creacion'] = $fila['creacion'];
-    //     $_SESSION['actualizacion'] = $fila['actualizacion'];
-    //     $_SESSION['delete'] = $fila['delete'];
-    // }
-
-?>
 <!DOCTYPE html>
 <html lang="es"> 
 <head>
@@ -50,9 +26,9 @@
                 <nav id="nav">
                     <img src="assets/images/ajustes.png" alt="">
                     <ul>
-                        <li><a href="index.php?c=Administrador&a=index">Inicio</a></li>
+                        <li><a href="index.php?c=Paciente&a=index">Inicio</a></li>
                         <li><a href="index.php?c=Paciente&a=get_paciente">Actualizar datos</a></li>
-                        <li><a href="../../../controller/sesiones/cerrarsesion.php">Cerrar sesion</a></li>
+                        <li><a href="index.php?c=Paciente&a=cerrar_sesion">Cerrar sesion</a></li>
                     </ul>
                 </nav>
             </div>
@@ -66,16 +42,16 @@
                     <div class="contact-wrapper animated bounceInUp">
                         <div class="contact-form">
                             <form action="index.php?c=Paciente&a=update_password" method="POST">
-                                <input type="hidden" name="id_paciente" id="id_paciente" value="<?php echo $data["paciente"]["id_paciente"] ?>">
+                                <input type="hidden" name="id_paciente" id="id_paciente" value="<?php echo $_SESSION['pac'] ?>">
                                 <p>
                                     <label>Nueva contraseña</label>
-                                    <input type="text" name="pass_pac" id="pass_pac" required>
+                                    <input type="password" name="pass_pac" id="pass_pac" required>
                                 </p>
                                 <p>
                                     <label>Repita contraseña</label>
-                                    <input type="text" name="repeat_pass_pac" id="repeat_pass_pac" required>
+                                    <input type="password" name="repeat_pass_pac" id="repeat_pass_pac" required>
                                 </p>
-                                <p class="block">
+                                <p class="block d-grid gap-2">
                                     <button class="btn btn-primary btn-lg btn-block" name="update_pass" id="update_pass" type="submit">
                                         Actualizar
                                     </button>

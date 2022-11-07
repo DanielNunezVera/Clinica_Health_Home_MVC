@@ -42,13 +42,34 @@
                     $this->usuario[] = $row;
                 }
                 return $this->usuario;
-			}
+			}elseif ($tipo_rol=="1") {
+                $sql = "SELECT * FROM profesional WHERE id_tipo_doc = '$id_tipo_doc' AND num_doc_prof = '$num_doc'";
+                $resultado = $this->db->query($sql);
+                while ($row = $resultado->fetch_assoc()) {
+                    $this->usuario[] = $row;
+                }
+                return $this->usuario;
+            }
 			// while($row = $resultado->fetch_assoc())
 			// {
 			// 	$this->tipo_doc[] = $row;
 			// }
 			// return $this->tipo_doc;
 		}
+
+        public function validar_paciente($id_tipo_doc, $num_doc){
+
+            $sql = "SELECT * FROM paciente WHERE id_tipo_doc = '$id_tipo_doc' AND num_doc_pac = '$num_doc'";
+            $resultado = $this->db->query($sql);
+            while($row = $resultado->fetch_assoc()){
+
+                $this->usuario[] = $row;
+
+            }
+
+            return $this->usuario;
+
+        }
 
     }
 

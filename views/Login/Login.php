@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Inicio de sesion tienda virtual</title>
+<title>Inicio de sesión - Clínica Health Home</title>
 <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0 300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/estilos_login.css">
 <script src="http://code.jquery.com/jquery-latest.js"></script>
@@ -54,7 +54,7 @@
 				</form>
 
 				<!--Formulario de pacientes-->
-				<form action="index.php?c=Login&a=buscar_funcionario" class="formulario__register" method="POST">
+				<form action="index.php?c=Login&a=buscar_paciente" class="formulario__register" method="POST">
 					<h2>Iniciar sesion pacientes</h2>
 					<select class="Selectordoc" name="id_tipo_doc" id="id_tipo_doc" required>
 					<option value="">Seleccione</option>

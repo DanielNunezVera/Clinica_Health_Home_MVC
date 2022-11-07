@@ -8,7 +8,16 @@
 
 		public function index(){
 			
-			require_once "views/administrador/index_admin.php";
+			require_once "views/profesional/menu_prof.php";
+		}
+
+		public function acciones(){
+			require_once "views/profesional/index_prof.php";
+		}
+
+		public function cerrarsesion(){
+			session_destroy();
+			header ("Location: index.php?c=login&a=index");
 		}
 		
         public function set_citas_prom_prof(){

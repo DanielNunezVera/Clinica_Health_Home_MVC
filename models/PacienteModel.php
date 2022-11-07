@@ -29,15 +29,15 @@
 
 			}
 
-			public function get_paciente(){
+			// public function get_paciente(){
 
-				$sql = "SELECT paciente.id_paciente, paciente.num_doc_pac, paciente.nombres_pac, paciente.apellidos_pac, paciente.correo_pac, paciente.tel_pac, paciente.sexo_pac FROM paciente WHERE paciente.id_paciente = 1 LIMIT 1";
-				$resultado = $this->db->query($sql);
-				$row = $resultado -> fetch_assoc();
+			// 	$sql = "SELECT paciente.id_paciente, paciente.num_doc_pac, paciente.nombres_pac, paciente.apellidos_pac, paciente.correo_pac, paciente.tel_pac, paciente.sexo_pac FROM paciente WHERE paciente.id_paciente =  LIMIT 1";
+			// 	$resultado = $this->db->query($sql);
+			// 	$row = $resultado -> fetch_assoc();
 
-				return $row;
+			// 	return $row;
 				
-			}
+			// }
 
 			public function update_info_pac($id_paciente, $correo_pac, $tel_pac){
 
@@ -51,7 +51,7 @@
 
 			}
 
-			public function citas_agendadas(){
+			public function citas_agendadas($id_paciente){
 
 				$sql = "SELECT cita.id_cita,
 				cita.fechacita_horainicio,
@@ -59,7 +59,7 @@
 				profesional.nombres_prof,
 				profesional.apellidos_prof,
 				especialidad.costo_espec
-				FROM ((cita INNER JOIN profesional ON cita.id_profesional = profesional.id_profesional) INNER JOIN especialidad ON profesional.id_especialidad = especialidad.id_especialidad) WHERE cita.fechacita_horainicio >= CURRENT_TIMESTAMP AND cita.estado_cita = 1 AND cita.id_paciente = 1";
+				FROM ((cita INNER JOIN profesional ON cita.id_profesional = profesional.id_profesional) INNER JOIN especialidad ON profesional.id_especialidad = especialidad.id_especialidad) WHERE cita.fechacita_horainicio >= CURRENT_TIMESTAMP AND cita.estado_cita = 1 AND cita.id_paciente = '$id_paciente'";
 				$resultado = $this->db->query($sql);
 				while($row = $resultado -> fetch_assoc()){
 

@@ -21,24 +21,6 @@
     </style>
 </head>
 <body>
-    <header>
-        <div class="container__menu">
-            <div class="logo">
-                <img src="assets/images/Logo2.png" alt="">
-            </div>
-            <div class="menu">
-                <i class="fas fa-bars" id="btn_menu"></i>
-                <div id="back_menu"></div>
-                <nav id="nav">
-                    <img src="assets/images/ajustes.png" alt="">
-                    <ul>
-                        <li><a href="index.php?c=Administrador&a=index">Inicio</a></li>
-                        <li><a href="">Cerrar sesion</a></li>
-                    </ul>
-                </nav>
-            </div>
-        </div>
-    </header>
     <main>
         <div class="container__cover">
             <div class="cover"> 
@@ -46,7 +28,7 @@
                     <h1>Usuarios del sistema</h1>
                     <div class="row">
                         <div class="col-lg-12">
-                            <table id="example" class="table table-bordered  display nowrap" cellspacing="0" width="100%">
+                            <table id="example" class="table table-bordered display nowrap" cellspacing="0" width="100%">
                                 <thead>
                                     <tr>
                                         <th>Tipo documento</th>
@@ -154,6 +136,7 @@
     <script src="assets/js-general/main.js"></script>
     
     
+    
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
@@ -196,6 +179,32 @@
                 });
         });  
     </script>
+ 		 	  	
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        <?php
+
+            if(isset($user_reg)){
+                if($user_reg==1){
+                    echo "var user_reg = '$user_reg';";
+                    echo "var alerta_gestion_usuarios = '2';";
+                }elseif ($user_reg==0) {
+                    echo "var user_reg = '$user_reg';";
+                    echo "var alerta_gestion_usuarios = '1';";
+                }
+            }
+
+            if(isset($act_datos)){
+                if ($act_datos == 1) {
+                    echo "var act_datos = '$act_datos';";
+                    echo "var alerta_gestion_usuarios = '3';";
+                }
+            }
+        ?>
+    </script>
+    <script src="assets/js-general/alertas_admin.js"></script>
+    <script src="assets/js-general/codigo.js"></script>
+        
     <script src="assets/js-general/codigo.js"></script>
 </body>
 </html>
