@@ -1,4 +1,11 @@
 <?php
+
+		require 'Sesiones.php';
+		$inc = new SesionesController();
+		if(empty($_SESSION["auxiliar"])){
+			$inc->redireccionar();
+		}
+
 		class AuxiliarController {
 
 		public function __construct(){
