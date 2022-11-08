@@ -14,6 +14,11 @@ $inc = new SesionesController();
         $_SESSION["Login_error_1"] = "1";
         $inc->redireccionar();
 
+    } elseif(!empty($_SESSION["auxiliar"])){
+        unset($_SESSION["auxiliar"]);
+        $_SESSION["Login_error_1"]="1";
+        $inc->redireccionar();
+
     }
 
 class LoginController{
@@ -54,9 +59,12 @@ class LoginController{
         } elseif($tipo_rol == "2"){
             foreach ($resultado["usuario"] as $dato){}
             if(password_verify($pass, $dato["pass_aux"])){
-                $_SESSION[] = $dato["id_auxiliar"];
+                $_SESSION["auxiliar"] = $dato["id_auxiliar"];
                 header ("Location: index.php?c=Auxiliar&a=index");
 
+            }else{
+                $_SESSION["Login_error_2"] = "2";
+                header ("Location: index.php?c=Login&a=index");
             }
 
         }elseif($tipo_rol == "1"){

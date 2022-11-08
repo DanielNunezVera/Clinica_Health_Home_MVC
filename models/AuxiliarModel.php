@@ -6,6 +6,7 @@
 		private $citas_pac;
     	private $citas_prof;
 		
+		
 		public function __construct(){
 			$this->db = Conectar::conexion();
 			$this->citas_pac = array();
@@ -90,20 +91,20 @@
 			return $this->especialidad;
 		}
 
-		public function get_aux(){
-			$sql = "SELECT * FROM auxiliar WHERE id_auxiliar=1 LIMIT 1";
+		public function get_aux($id_aux){
+			$sql = "SELECT * FROM auxiliar WHERE id_auxiliar=$id_aux LIMIT 1";
 			$resultado = $this->db->query($sql);
 			$row = $resultado->fetch_assoc();
 
 			return $row;
 		}
 
-		public function modificar_auxiliar($tel_aux, $correo_aux){
-			$resultado = $this->db->query("UPDATE auxiliar SET tel_aux='$tel_aux', correo_aux='$correo_aux' WHERE id_auxiliar=2 ");
+		public function modificar_auxiliar($tel_aux, $correo_aux, $id_aux){
+			$resultado = $this->db->query("UPDATE auxiliar SET tel_aux='$tel_aux', correo_aux='$correo_aux' WHERE id_auxiliar='$id_aux' ");
 		}
 		
-		public function update_password($newpass){
-			$resultado = $this->db->query("UPDATE auxiliar SET pass_aux='$newpass' WHERE id_auxiliar=2 ");
+		public function update_password($new_pass, $id_aux){
+			$resultado = $this->db->query("UPDATE auxiliar SET pass_aux='$new_pass' WHERE id_auxiliar=$id_aux ");
 		}
 	} 	
 ?>

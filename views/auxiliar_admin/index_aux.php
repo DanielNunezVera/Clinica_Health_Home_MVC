@@ -13,12 +13,32 @@
     </style>
 </head>
 <body>
+<header>
+        <div class="container__menu">
+            <div class="logo">
+                <img src="assets/images/Logo2.png" alt="">
+            </div>
+            <div class="menu">
+                <i class="fas fa-bars" id="btn_menu"></i>
+                <div id="back_menu"></div>
+                <nav id="nav">
+                    <img src="assets/images/ajustes.png" alt="">
+                    <ul>
+                        <li><a href="index.php?c=Auxiliar&a=index" >Inicio</a></li>
+                        <li><a href="index.php?c=Auxiliar&a=actualizar_aux">Actualizar</a></li>
+                        <li><a href="index.php?c=Auxiliar&a=cerrarsesion">Cerrar sesion</a></li>
+                        <li><a href="index.php?c=Administrador&a=ayuda" >ayuda</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
     <main>
         <div class="container__cover">
             <div class="cover"> 
                 <div class="caja1">
                     <div class="row">
-                        <h1>Bienvenido - aux</h1>
+                        <h1>Bienvenido - Aux</h1>
                         <a href="index.php?c=Auxiliar&a=citas_pac" class="boton">Citas Pacientes</a>
                         <br>
                         <a href="index.php?c=Auxiliar&a=citas_prof" class="boton">Citas Profesionales</a>

@@ -26,14 +26,16 @@
                 <nav id="nav">
                     <img src="assets/images/ajustes.png" alt="">
                     <ul>
-                        <li><a href="index.php?c=Administrador&a=index">Inicio</a></li>
-                        <li><a href="../../../controller/sesiones/cerrarsesion.php">Cerrar sesion</a></li>
+                        <li><a href="index.php?c=Auxiliar&a=index" >Inicio</a></li>
+                        <li><a href="index.php?c=Auxiliar&a=cerrarsesion">Cerrar sesion</a></li>
+                        <li><a href="index.php?c=Administrador&a=ayuda" >ayuda</a></li>
                     </ul>
                 </nav>
             </div>
         </div>
     </header>
     <main>
+        
         <div class="container__cover">
             <div class="cover"> 
                 <div class="caja3">
@@ -54,23 +56,23 @@
                                     <label>Nombre</label>
                                     <input type="text" name="fullnombre" value="<?php echo $data["auxiliar"]["nombres_aux"]." ".$data["auxiliar"]["apellidos_aux"]?>" disabled>
                                 </p>
-
+                               
                                 <p>
                                     <label>Email</label>
-                                    <input type="email" name="correo_aux" value="<?php echo $data["auxiliar"]["correo_aux"]?>" required>
+                                    <input type="email" name="correo_aux" id="correo_aux" value="<?php echo $data["auxiliar"]["correo_aux"]?>" required>
                                 </p>
 
                                 <p>
                                     <label>Teléfono</label>
-                                    <input type="number" name="tel_aux" value="<?php echo $data["auxiliar"]["tel_aux"];?>" required>
+                                    <input type="number" name="tel_aux" id="tel_aux" value="<?php echo $data["auxiliar"]["tel_aux"];?>" required>
                                 </p>
 
                                 <p>
-                                    <label>Contraseña</label>
-                                    <input style="color:blue;" name="pass" value="Cambiar contraseña" onclick="contraseña()">
+                                    <label><br></label>
+                                    <a href="index.php?c=Auxiliar&a=actualizar_pass" class="btn btn-outline-primary btn-lg btn-block">Actualizar contraseña</a>
                                 </p>
 
-                                <p class="block">
+                                <p class="block d-grid gap-2">
                                 <button class="btn btn-primary btn-lg btn-block" name="registrar" id="registrar" type="submit">Actualizar</button>
                                 </p>
                             </form>
@@ -81,10 +83,6 @@
         </div>
     </main>
     <script src="assets/js-general/menu-responsive.js"></script>
-    <script>
-        function contraseña(){
-            window.location = "index.php?c=Auxiliar&a=actualizar_pass"
-        }
-    </script>
+    
 </body>
 </html>

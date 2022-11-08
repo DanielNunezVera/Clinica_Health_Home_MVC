@@ -18,6 +18,7 @@
 		public function index(){
 			
 			require_once "views/auxiliar_admin/menu_aux.php";
+			
 		}
 
 		public function acciones(){
@@ -142,77 +143,6 @@
 				
 		// }
 
-		public function gestion_agenda(){
-
-			$agenda =  new Administrador_model();
-			$data["profesionales"] = $agenda->get_profesional();
-			$data["tipo_doc"] = $agenda->get_tipo_doc();
-			require_once "views/administrador/gestion_agenda/gestion_agenda.php";
-
-		}
-
-		public function gestion_agenda_2(){
-
-			require_once "views/administrador/gestion_agenda/new_agenda.php";
-
-		}
-
-		public function gestion_espec(){
-			
-			$especialidad = new Administrador_model();
-			$data["especialidad"] = $especialidad->get_especialidad();
-			
-			require_once "views/administrador/gestion_espec/gestion_espec.php";
-		}
-
-		public function gestion_consult(){
-			
-			$consult = new Administrador_model();
-			$data["consultorios"] = $consult->get_consultorios();
-			
-			require_once "views/administrador/gestion_consult/gestion_consult.php";
-		}
-		
-		public function nuevo_paciente(){
-			$tipo_doc=  new Administrador_model();
-			$data["tipo_doc"] = $tipo_doc->get_tipo_doc();
-			require_once "views/administrador/gestion_usuarios/new_pac.php";
-		}
-
-		public function nuevo_profesional(){
-			$paquete=  new Administrador_model();
-			$data["tipo_doc"] = $paquete->get_tipo_doc();
-			$data["consultorios"] = $paquete->get_consultorios();
-			$data["especialidad"] = $paquete->get_especialidad();
-			require_once "views/administrador/gestion_usuarios/new_prof.php";
-		}
-
-		public function nuevo_auxiliar(){
-			$tipo_doc=  new Administrador_model();
-			$data["tipo_doc"] = $tipo_doc->get_tipo_doc();
-			require_once "views/administrador/gestion_usuarios/new_aux.php";
-		}
-
-		public function nuevo_espec(){
-			$tipo_doc=  new Administrador_model();
-			require_once "views/administrador/gestion_espec/new_espec.php";
-		}
-
-		public function nuevo_consult(){
-			require_once "views/administrador/gestion_consult/new_consult.php";
-		}
-		
-		public function guarda_paciente(){
-			
-			$id_paciente = $_POST['id_paciente'];
-			$id_tipo_doc = $_POST['id_tipo_doc'];
-			$nombres_pac = $_POST['nombres_pac'];
-			$apellidos_pac = $_POST['apellidos_pac'];
-			$tel_pac = $_POST['tel_pac'];
-			$correo_pac = $_POST['correo_pac'];
-			$sexo_pac = $_POST['sexo_pac'];
-
-		}
 
 		public function cancelar_cita_prof($id){
 
@@ -233,66 +163,49 @@
 			}
 		}
 
-		public function guarda_consult(){
-			
-			$id_consultorios = $_POST['id_consultorios'];
-			
-			$consult = new Administrador_model();
-			$consult->insertar_consult($id_consultorios);
-			$this->gestion_consult();
-
-		}
+	    
 		
-		public function actualizar_pac($id, $t_doc){
-			
-			$paciente = new Administrador_model();
-			$data["tipo_doc"] = $paciente->get_tipo_doc();
-			$data["paciente"] = $paciente->get_paciente($id, $t_doc);
-			require_once "views/administrador/gestion_usuarios/update_pac.php";
-		}
-
-		public function actualizar_prof($id, $t_doc){
-			
-			$profesional = new Administrador_model();
-			$data["consultorios"] = $profesional->get_consultorios();
-			$data["especialidad"] = $profesional->get_especialidad();
-			$data["tipo_doc"] = $profesional->get_tipo_doc();
-			$data["profesional"] = $profesional->get_prof($id, $t_doc);
-			require_once "views/administrador/gestion_usuarios/update_prof.php";
-		}
 
 		public function actualizar_aux(){
-			
+
+			$id_aux = $_SESSION['auxiliar'];
+		    if(isset($_SESSION['auxiliar'])){
 			$auxiliar = new Auxiliar_model();
-			$data["auxiliar"] = $auxiliar->get_aux();
+			$data["auxiliar"] = $auxiliar->get_aux($id_aux);
 			require_once "views/auxiliar_admin/update_info_aux/update_aux.php";
-			
+		    }
 		}
 
 		public function actualizar_pass(){
 
+			$id_aux = $_SESSION['auxiliar'];
 			$auxiliar = new Auxiliar_model();
-			$data["auxiliar"] = $auxiliar->get_aux();
+			$data["auxiliar"] = $auxiliar->get_aux($id_aux);
 			require_once "views/auxiliar_admin/update_info_aux/update_pass.php";
 		}
 
 		public function modificar_aux(){
 
-			$tel_aux = $_POST['tel_aux'];
-			$correo_aux = $_POST['correo_aux'];
-
+			$tel_aux = $_POST["tel_aux"];
+			$correo_aux = $_POST["correo_aux"];
+            $id_aux = $_SESSION['auxiliar'];
 			$auxiliar = new Auxiliar_model();
-			$auxiliar->modificar_auxiliar($tel_aux, $correo_aux);
-			header('location:index.php?c=Administrador&a=index');
+			$auxiliar->modificar_auxiliar($tel_aux, $correo_aux, $id_aux);
+			header('location:index.php?c=Auxiliar&a=index');
 		}
 
 		public function modificar_pass(){
+			$id_aux = $_SESSION['auxiliar'];
 			$newpass = $_POST['newpass'];
+			$repass  = $_POST['repass'];
+			if($newpass == $repass){
 
-			$password = new Auxiliar_model();
-			$password -> update_password($newpass);
-			header('location:index.php?c=Administrador&a=index');
-
+				$new_pass = password_hash($newpass, PASSWORD_BCRYPT);
+				
+				$password = new Auxiliar_model();
+				$password -> update_password($new_pass, $id_aux);
+				header('location:index.php?c=Auxiliar&a=index');
+			}
 		}
 
 
@@ -309,8 +222,8 @@
 
 			$id_especialidad = $_POST['id_especialidad'];
 			$fecha = $_POST['fecha'];
-      $paquete=  new Paciente_model();
-      $data["cita"] = $paquete->get_citas($fecha, $id_especialidad);
+     	 	$paquete=  new Paciente_model();
+     		$data["cita"] = $paquete->get_citas($fecha, $id_especialidad);
 			require_once "views/auxiliar_admin/agenda_cita/citas_dis_aux.php";
 				
 		}
