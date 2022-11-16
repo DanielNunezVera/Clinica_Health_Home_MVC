@@ -95,7 +95,7 @@
 			$sql = "SELECT * FROM auxiliar WHERE id_auxiliar=$id_aux LIMIT 1";
 			$resultado = $this->db->query($sql);
 			$row = $resultado->fetch_assoc();
-
+			$this->db->close();
 			return $row;
 		}
 
@@ -105,6 +105,9 @@
 		
 		public function update_password($new_pass, $id_aux){
 			$resultado = $this->db->query("UPDATE auxiliar SET pass_aux='$new_pass' WHERE id_auxiliar=$id_aux ");
+			$resultado2 = $this->db->affected_rows;
+			$this->db->close();
+			return $resultado2;
 		}
 	} 	
 ?>

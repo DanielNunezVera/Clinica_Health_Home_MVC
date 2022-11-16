@@ -199,12 +199,23 @@
 			$newpass = $_POST['newpass'];
 			$repass  = $_POST['repass'];
 			if($newpass == $repass){
-
+ 
 				$new_pass = password_hash($newpass, PASSWORD_BCRYPT);
 				
 				$password = new Auxiliar_model();
-				$password -> update_password($new_pass, $id_aux);
-				header('location:index.php?c=Auxiliar&a=index');
+				$resultado = $password -> update_password($new_pass, $id_aux);
+
+				if($resultado > 0){
+					$_SESSION["update_pass"]  = "1";
+					header('location:index.php?c=Auxiliar&a=actualizar_pass');
+				}else{
+					$_SESSION["update_pass"]  = "0";
+					header('location:index.php?c=Auxiliar&a=actualizar_pass');
+				}
+				
+			}else{
+				$_SESSION["update_pass"] = "0";
+				header('location:index.php?c=Auxiliar&a=actualizar_pass');
 			}
 		}
 

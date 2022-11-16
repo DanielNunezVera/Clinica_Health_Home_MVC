@@ -62,5 +62,22 @@
         </div>
     </main>
     <script src="assets/js-general/menu-responsive.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script >
+        <?php
+            if(isset($_SESSION["update_pass"])){
+                if ($_SESSION["update_pass"]!="0") {
+                    echo "var alerta_pass_update = '1';";
+                    echo "var alerta_aux = '1';";
+                    unset($_SESSION["update_pass"]);
+                }else {
+                    echo "var alerta_pass_update = '0';";
+                    echo "var alerta_aux  = '1';";
+                    unset($_SESSION["update_pass"]);
+                }
+            }
+        ?>
+    </script>
+    <script src="assets/js-general/alertas_aux.js"></script>
 </body>
 </html>
