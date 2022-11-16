@@ -16,5 +16,22 @@ if (typeof alerta_aux !=="undefined"){
                     )
             }
             break;
+        
+        case "2":
+            if(alerta_update_info == "2"){
+                Swal.fire(
+                    '¡Correcto!',
+                    'Su informacion se ha actualizado correctamente',
+                    'success'
+                    )
+            }else{
+                Swal.fire(
+                    '¡Error!',
+                    'Sus datos no se actulizaron',
+                    'warning'
+                    )
+            }
+            break;
+
     }
 }

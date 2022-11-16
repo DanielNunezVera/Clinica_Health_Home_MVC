@@ -83,6 +83,23 @@
         </div>
     </main>
     <script src="assets/js-general/menu-responsive.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script >
+        <?php
+            if(isset($_SESSION["update_info"])){
+                if ($_SESSION["update_info"]!="0") {
+                    echo "var alerta_update_info  = '1';";
+                    echo "var alerta_aux = '2';";
+                    unset($_SESSION["update_info"]);
+                }else {
+                    echo "var var alerta_update_info = '0';";
+                    echo "var alerta_aux  = '2';";
+                    unset($_SESSION["update_info"]);
+                }
+            }
+        ?>
+    </script>
+    <script src="assets/js-general/alertas_aux.js"></script>
     
 </body>
 </html>

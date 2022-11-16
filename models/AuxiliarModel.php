@@ -101,6 +101,9 @@
 
 		public function modificar_auxiliar($tel_aux, $correo_aux, $id_aux){
 			$resultado = $this->db->query("UPDATE auxiliar SET tel_aux='$tel_aux', correo_aux='$correo_aux' WHERE id_auxiliar='$id_aux' ");
+			$resultado2 = $this->db->affected_rows;
+			$this->db->close();
+			return $resultado2;
 		}
 		
 		public function update_password($new_pass, $id_aux){
