@@ -105,32 +105,53 @@
 			return $this->sched_res;
 		}
 
-		////Métodos para crear usuarios
+		////Métodos para crear usuarios y validarlos 
+
 
 		public function insertar_pac($id_tipo_doc, $num_doc_pac, $nombres_pac, $apellidos_pac, $tel_pac, $correo_pac, $sexo_pac, $pass_pac){
 			
-			$resultado = $this->db->query("INSERT INTO paciente (id_tipo_doc, num_doc_pac, nombres_pac, apellidos_pac, tel_pac, correo_pac, sexo_pac, estado_pac, pass_pac, create_pac) VALUES ('$id_tipo_doc', '$num_doc_pac', '$nombres_pac', '$apellidos_pac', '$tel_pac', '$correo_pac', '$sexo_pac', 1, '$pass_pac', CURRENT_TIMESTAMP)");
+
+			$resultado = $this->db->query("CALL inser_vali_pac('$id_tipo_doc', '$num_doc_pac', '$nombres_pac', '$apellidos_pac', '$tel_pac', '$correo_pac', '$sexo_pac', 1, '$pass_pac', CURRENT_TIMESTAMP)");
+			$resultado2 = $this ->db->affected_rows;
+			$this->db->close();
+			return $resultado2;
+			 
 		}
 
 		public function insertar_prof($num_doc_prof, $id_tipo_doc, $id_consultorios, $id_especialidad, $nombres_prof, $apellidos_prof, $tel_prof, $correo_prof, $dias_laborales, $franja_horaria, $pass_prof){
 			
-			$resultado = $this->db->query("INSERT INTO profesional (num_doc_prof, id_tipo_doc, id_consultorios, id_especialidad, nombres_prof, apellidos_prof, tel_prof, correo_prof, dias_laborales, franja_horaria, estado_prof, pass_prof, create_prof) VALUES ('$num_doc_prof', '$id_tipo_doc', '$id_consultorios', '$id_especialidad', '$nombres_prof', '$apellidos_prof', '$tel_prof', '$correo_prof', '$dias_laborales', '$franja_horaria', 1, '$pass_prof', CURRENT_TIMESTAMP)");
+			
+			$resultado = $this->db->query("CALL inser_vali_prof('$id_tipo_doc', '$num_doc_prof', '$id_consultorios', '$id_especialidad', '$nombres_prof', '$apellidos_prof', '$tel_prof', '$correo_prof', '$dias_laborales', '$franja_horaria', 1, '$pass_prof', CURRENT_TIMESTAMP)");
+			$resultado2 = $this ->db->affected_rows;
+			$this->db->close();
+			return $resultado2;
+		
 			
 		}
 
 		public function insertar_aux($id_tipo_doc, $num_doc_aux, $nombres_aux, $apellidos_aux, $tel_aux, $correo_aux, $pass_aux){
 			
-			$resultado = $this->db->query("INSERT INTO auxiliar (id_tipo_doc, num_doc_aux, nombres_aux, apellidos_aux, tel_aux, correo_aux, estado_aux, pass_aux, create_aux) VALUES ('$id_tipo_doc', '$num_doc_aux', '$nombres_aux', '$apellidos_aux', '$tel_aux', '$correo_aux', 1, '$pass_aux', CURRENT_TIMESTAMP)");
+
+			$resultado = $this->db->query("CALL inser_vali_aux('$id_tipo_doc', '$num_doc_aux', '$nombres_aux', '$apellidos_aux', '$tel_aux', '$correo_aux', 1, '$pass_aux', CURRENT_TIMESTAMP)");
+			$resultado2 = $this ->db->affected_rows;
+			$this->db->close();
+			return $resultado2;
 		}
 
 		public function insertar_espec($descrip_espec, $costo_espec){
 			
-			$resultado = $this->db->query("INSERT INTO especialidad (descrip_espec, costo_espec, estado_espec, create_espec) VALUES ('$descrip_espec', '$costo_espec', 1, CURRENT_TIMESTAMP)");
+			$resultado = $this->db->query("CALL inser_vali_espec('$descrip_espec', $costo_espec, 1, CURRENT_TIMESTAMP)");
+			$resultado2 = $this ->db->affected_rows;
+			$this->db->close();
+			return $resultado2;
 		}
 
 		public function insertar_consult($id_consultorios){
 			
-			$resultado = $this->db->query("INSERT INTO consultorios (id_consultorios, estado_consult, create_consult) VALUES ('$id_consultorios', 1, CURRENT_TIMESTAMP)");
+			$resultado = $this->db->query("CALL inser_vali_consultorio('$id_consultorios', 1, CURRENT_TIMESTAMP)");
+			$resultado2 = $this ->db->affected_rows;
+			$this->db->close();
+			return $resultado2;
 		}
 
 
@@ -141,20 +162,21 @@
 		public function insertar_agenda($id_profesional, $tipo_franja_la, $tipo_franja){
 
 			if($tipo_franja == "a"){
-				$fecha_i = '2022/'.$tipo_franja_la.'/01 8:00';
-				$fecha_f = '2022/'.$tipo_franja_la.'/01 16:00';
+				$fecha_i = date('Y')."/".$tipo_franja_la.'/01 8:00';
+				$fecha_f = date('Y')."/".$tipo_franja_la.'/01 16:00';
 			}elseif ($tipo_franja == "b") {
-				$fecha_i = '2022/'.$tipo_franja_la.'/01 6:00';
-				$fecha_f = '2022/'.$tipo_franja_la.'/01 14:00';
+				$fecha_i = date('Y')."/".$tipo_franja_la.'/01 6:00';
+				$fecha_f = date('Y')."/".$tipo_franja_la.'/01 14:00';
 			}elseif ($tipo_franja == "c") {
-				$fecha_i = '2022/'.$tipo_franja_la.'/01 14:00';
-				$fecha_f = '2022/'.$tipo_franja_la.'/01 22:00';
+				$fecha_i = date('Y')."/".$tipo_franja_la.'/01 14:00';
+				$fecha_f = date('Y')."/".$tipo_franja_la.'/01 22:00';
 			}
 			$fecha_i_P = $fecha_i;
 			$fecha_i_P_2 = date("Y-m",strtotime($fecha_i_P));
 			$sql = "SELECT fechacita_horainicio FROM cita WHERE fechacita_horainicio LIKE ('%$fecha_i_P_2%') AND id_profesional = $id_profesional";
 			$resultado = $this->db->query($sql);
 			$filas = mysqli_num_rows($resultado);
+			
 
 			if($filas<1){
 
@@ -191,6 +213,7 @@
 					$fecha_i = date("Y-m-d H:i",strtotime($fecha_i." 1 day"));
 					$fecha_f = date("Y-m-d H:i",strtotime($fecha_f." 1 day"));
 				}
+				$this->db->close();
 				return "1";
 			}else{
 				return "0";
@@ -200,22 +223,34 @@
 		public function modificar_paciente($id_paciente, $id_tipo_doc ,$tel_pac, $correo_pac){
 			
 			$resultado = $this->db->query("UPDATE paciente SET id_tipo_doc='$id_tipo_doc', tel_pac='$tel_pac', correo_pac='$correo_pac' WHERE id_paciente= '$id_paciente'");
+			$resultado2 = $this ->db->affected_rows;
+			$this->db->close();
+			return $resultado2;
 
 		}
 
 		public function modificar_profesional($id_profesional, $id_tipo_doc, $id_consultorios, $id_especialidad, $tel_prof, $correo_prof,$dias_laborales, $franja_horaria){
 			
-			$resultado = $this->db->query("UPDATE profesional SET id_tipo_doc='$id_tipo_doc', tel_prof='$tel_prof', correo_prof='$correo_prof', id_consultorios='$id_consultorios', id_especialidad='$id_especialidad',dias_laborales='$dias_laborales', franja_horaria='$franja_horaria' WHERE id_profesional = '$id_profesional'");			
+			$resultado = $this->db->query("UPDATE profesional SET id_tipo_doc='$id_tipo_doc', tel_prof='$tel_prof', correo_prof='$correo_prof', id_consultorios='$id_consultorios', id_especialidad='$id_especialidad',dias_laborales='$dias_laborales', franja_horaria='$franja_horaria' WHERE id_profesional = '$id_profesional'");
+			$resultado2 = $this ->db->affected_rows;
+			$this->db->close();
+			return $resultado2;			
 		}
 
 		public function modificar_auxiliar($id_auxiliar, $id_tipo_doc, $tel_aux, $correo_aux){
 			
-			$resultado = $this->db->query("UPDATE auxiliar SET id_tipo_doc='$id_tipo_doc', tel_aux='$tel_aux', correo_aux='$correo_aux' WHERE id_auxiliar= '$id_auxiliar'");			
+			$resultado = $this->db->query("UPDATE auxiliar SET id_tipo_doc='$id_tipo_doc', tel_aux='$tel_aux', correo_aux='$correo_aux' WHERE id_auxiliar= '$id_auxiliar'");
+			$resultado2 = $this ->db->affected_rows;
+			$this->db->close();
+			return $resultado2;			
 		}
 
 		public function modificar_especialidad($id_especialidad, $costo_espec){
 			
-			$resultado = $this->db->query("UPDATE especialidad SET costo_espec='$costo_espec' WHERE id_especialidad= '$id_especialidad'");			
+			$resultado = $this->db->query("UPDATE especialidad SET costo_espec='$costo_espec' WHERE id_especialidad= '$id_especialidad'");	
+			$resultado2 = $this ->db->affected_rows;
+			$this->db->close();
+			return $resultado2;				
 		}
 
 		/*public function modificar_consultorio($id_consultorios, $id_consultorios_a){
@@ -272,11 +307,6 @@
 			
 		}
 
-		public function eliminar_espec_3($id_especialidad){
-
-			$resultado = $this->db->query("DELETE FROM especialidad WHERE id_especialidad='$id_especialidad'");
-
-		}
 
 		public function eliminar_consult_2($id_consultorios){
 			
@@ -339,35 +369,47 @@
 		
 		public function eliminar_pac($id){
 
-			$sql_1 = "UPDATE cita SET id_paciente = null WHERE id_paciente = '$id'";
-			$resultado = $this->db->query($sql_1);
-			$sql_2 = "DELETE FROM paciente WHERE id_paciente = '$id'";
-			$resultado = $this->db->query($sql_2);
+			$resultado = $this->db->query("CALL eliminar_pac($id)");
+			$resultado2 = $this ->db->affected_rows;
+			$this->db->close();
+			return $resultado2;
 
 		}
 
 		public function eliminar_prof($id){
 
-			$sql_1 = "DELETE FROM cita WHERE id_profesional = '$id'";
-			$resultado = $this->db->query($sql_1);
-			$sql_2 = "DELETE FROM profesional WHERE id_profesional = '$id'";
-			$resultado = $this->db->query($sql_2);
+			$resultado = $this->db->query("CALL eliminar_prof($id)");
+			$resultado2 = $this ->db->affected_rows;
+			$this->db->close();
+			return $resultado2;
 
 		}
 
 		public function eliminar_aux($id){
 
-			$sql = "DELETE FROM auxiliar WHERE id_auxiliar = '$id'";
-			$resultado = $this->db->query($sql);
+
+			$resultado = $this->db->query("CALL eliminar_aux($id)");
+			$resultado2 = $this ->db->affected_rows;
+			$this->db->close();
+			return $resultado2;
 
 		}
 
-		public function eliminar_consul($id){
+		public function eliminar_consult($id){
 			
-			$sql_1= "UPDATE profesional SET id_consultorios = null WHERE id_consultorios = '$id'";
-			$resultado = $this->db->query($sql_1);
-			$sql_2= "DELETE FROM consultorios WHERE id_consultorios = '$id'";
-			$resultado = $this ->db->query($sql_2);
+			$resultado = $this->db->query("CALL eliminar_consult('$id')");
+			$resultado2 = $this ->db->affected_rows;
+			$this->db->close();
+			return $resultado2;
+		}
+
+		public function eliminar_espec_3($id_especialidad){
+
+			$resultado = $this->db->query("CALL eliminar_espec('$id_especialidad')");
+			$resultado2 = $this ->db->affected_rows;
+			$this->db->close();
+			return $resultado2;
+
 		}
 
 		public function eliminar_agend($id){
@@ -378,15 +420,10 @@
 
 		public function excepciones_agenda($dia_eliminar, $id_profesional){
 
-			$sql= "DELETE FROM cita WHERE id_profesional = '$id_profesional' AND fechacita_horainicio LIKE ('%$dia_eliminar%') AND fechacita_horafin LIKE ('%$dia_eliminar%')";
+			$sql= "CALL excepciones ($id_profesional, '%$dia_eliminar%', '%$dia_eliminar%')";
 			$resultado = $this ->db->query($sql);
 			$resultado1 = $this ->db->affected_rows;
-			if($resultado1 > 1){
-				$palabra="1";
-			}elseif($resultado1 < 1 ){
-				$palabra="0";
-			}
-			return $palabra;
+			return $resultado1;
 		}
 	} 	
 ?>

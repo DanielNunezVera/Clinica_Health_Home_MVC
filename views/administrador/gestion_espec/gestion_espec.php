@@ -55,7 +55,8 @@
                                       echo "<td>".$dato["costo_espec"]."</td>";
                                       echo "<td><a href='"."$url".$dato["id_especialidad"]."' ".$boton."</td>";
                                       echo "<td><a href='index.php?c=Administrador&a=actualizar_espec&id=".$dato["id_especialidad"]."' class='btn btn-light active' role='button' aria-pressed='true'>Actualizar</a></td>";
-                                      echo "<td><a href='"."index.php?c=Administrador&a=eliminar_espec&id=".$dato["id_especialidad"]."' "."class='btn btn-danger active' role='button' aria-pressed='true'>&nbsp&nbspEliminar&nbsp&nbsp</a>"."</td>";
+                                      echo "<td><a onclick='eliminar_espec(".$dato["id_especialidad"].")'  class='btn btn-danger active ' role='button' aria-pressed='true'>&nbsp&nbspEliminar&nbsp&nbsp</a>
+                                      </td>";
                                       echo "</tr>";
                                     }
                                     ?>
@@ -114,8 +115,46 @@
                 });
         });  
 
+        <?php
+            if(isset($_SESSION["espec_insert_1"])){
+                    if ($_SESSION["espec_insert_1"]!="0") {
+                        echo "var alert_espec_insert = '1';";
+                        echo "var alerta_espec = '1';";
+                        unset($_SESSION["espec_insert_1"]);
+                    }else {
+                        echo "var alert_espec_insert = '0';";
+                        echo "var alerta_espec = '1';";
+                        unset($_SESSION["espec_insert_1"]);
+                    }
+            }
 
+            if(isset($_SESSION["espec_eliminado"])){
+                if ($_SESSION["espec_eliminado"]!="0") {
+                    echo "var alert_espec_eliminado = '1';";
+                    echo "var alerta_espec = '2';";
+                    unset($_SESSION["espec_eliminado"]);
+                }else {
+                    echo "var alert_espec_eliminado = '0';";
+                    echo "var alerta_espec = '2';";
+                    unset($_SESSION["espec_eliminado"]);
+                }
+            }
+
+            if(isset($_SESSION["espec_update"])){
+                if ($_SESSION["espec_update"]!="0") {
+                    echo "var alert_espec_update = '1';";
+                    echo "var alerta_espec = '3';";
+                    unset($_SESSION["espec_update"]);
+                }else {
+                    echo "var alert_espec_update = '0';";
+                    echo "var alerta_espec = '3';";
+                    unset($_SESSION["espec_update"]);
+                }
+            }
+
+        ?>
     </script>
+    <script src="assets/js-general/alertas.js"></script>
     
 </body>
 </html>

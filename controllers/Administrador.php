@@ -55,31 +55,10 @@
 			$data["profesional"] = $agenda->get_prof($id);
 			$data["sched_res"] = $agenda->get_agenda_prof($id);
 
-			if(sizeof($data["sched_res"])==0){
-				$alert_agenda_no_exitente="1";
+			if(sizeof($data["sched_res"])!=0){
+				$_SESSION["prof_agenda"] = "1" ;
 			}else{
-				$alert_agenda_no_exitente="0";
-			}
-
-			if(isset($_SESSION['alerta_agenda_repetida']) AND $_SESSION['contador']==1){
-				if($_SESSION['alerta_agenda_repetida']=="0"){
-					$alerta_agenda_repetida = "1";
-					$_SESSION['contador']= 2;
-					$_SESSION['alerta_agenda_repetida']=null;
-				}else{
-					$alerta_agenda_repetida = "0";
-					$_SESSION['contador']= 2;
-				}
-			}
-
-			if(isset($_SESSION["alert_dia_eliminado"]) AND $_SESSION['contador']==1){
-				if($_SESSION['alert_dia_eliminado']=="0"){
-					$alert_dia_eliminado = "0";
-					$_SESSION['contador']= 2;
-				}else{
-					$alert_dia_eliminado = "1";
-					$_SESSION['contador']= 2;
-				}
+				$_SESSION["prof_agenda"] = "0" ;
 			}
 
 			require_once "views/administrador/gestion_agenda/new_agenda.php";
@@ -142,8 +121,11 @@
 			$tipo_franja = $_POST['tipo_franja'];
 			$agenda = new Administrador_model();
 			$resultado = $agenda->insertar_agenda($id_profesional, $tipo_franja_la, $tipo_franja);
-			$_SESSION["alerta_agenda_repetida"] = $resultado;
-			$_SESSION["contador"] = 1;
+			if ($resultado > 0 ) {
+				$_SESSION["agenda_insert"] = "1" ;
+			} else {
+				$_SESSION["agenda_insert"] = "0";
+			}
 			header('location:index.php?c=Administrador&a=gestion_agenda_2&id='.$id_profesional);
 
 		}
@@ -160,7 +142,12 @@
 			$pass_pac = password_hash($num_doc_pac, PASSWORD_BCRYPT);
 			
 			$usuarios = new Administrador_model();
-			$usuarios->insertar_pac($id_tipo_doc, $num_doc_pac, $nombres_pac, $apellidos_pac, $tel_pac, $correo_pac, $sexo_pac, $pass_pac);
+			$resultado = $usuarios->insertar_pac($id_tipo_doc, $num_doc_pac, $nombres_pac, $apellidos_pac, $tel_pac, $correo_pac, $sexo_pac, $pass_pac);
+			if ($resultado > 0 ) {
+				$_SESSION["pac_insert_1"] = "1" ;
+			} else {
+				$_SESSION["pac_insert_1"] = "0";
+			}
 
 			header('location:index.php?c=Administrador&a=gestion_u');
 
@@ -181,7 +168,12 @@
 			$pass_prof = password_hash($num_doc_prof, PASSWORD_BCRYPT);
 			
 			$usuarios = new Administrador_model();
-			$usuarios->insertar_prof($num_doc_prof, $id_tipo_doc, $id_consultorios, $id_especialidad, $nombres_prof, $apellidos_prof, $tel_prof, $correo_prof, $dias_laborales, $franja_horaria, $pass_prof);
+			$resultado = $usuarios->insertar_prof($num_doc_prof, $id_tipo_doc, $id_consultorios, $id_especialidad, $nombres_prof, $apellidos_prof, $tel_prof, $correo_prof, $dias_laborales, $franja_horaria, $pass_prof);
+			if ($resultado > 0 ) {
+				$_SESSION["prof_insert_1"] = "1" ;
+			} else {
+				$_SESSION["prof_insert_1"] = "0";
+			}
 
 			header('location:index.php?c=Administrador&a=gestion_u');
 			
@@ -198,7 +190,12 @@
 			$pass_aux = password_hash($num_doc_aux, PASSWORD_BCRYPT);
 			
 			$usuarios = new Administrador_model();
-			$usuarios->insertar_aux($id_tipo_doc, $num_doc_aux, $nombres_aux, $apellidos_aux, $tel_aux, $correo_aux, $pass_aux);
+			$resultado = $usuarios->insertar_aux($id_tipo_doc, $num_doc_aux, $nombres_aux, $apellidos_aux, $tel_aux, $correo_aux, $pass_aux);
+			if ($resultado > 0 ) {
+				$_SESSION["aux_insert_1"] = "1" ;
+			} else {
+				$_SESSION["aux_insert_1"] = "0";
+			}
 			header('location:index.php?c=Administrador&a=gestion_u');
 
 		}
@@ -209,7 +206,12 @@
 			$costo_espec = $_POST['costo_espec'];
 			
 			$espec = new Administrador_model();
-			$espec->insertar_espec($descrip_espec, $costo_espec);
+			$resultado = $espec->insertar_espec($descrip_espec, $costo_espec);
+			if ($resultado > 0 ) {
+				$_SESSION["espec_insert_1"] = "1" ;
+			} else {
+				$_SESSION["espec_insert_1"] = "0";
+			}
 			header('location:index.php?c=Administrador&a=gestion_espec');
 
 		}
@@ -219,7 +221,12 @@
 			$id_consultorios = $_POST['id_consultorios'];
 			
 			$consult = new Administrador_model();
-			$consult->insertar_consult($id_consultorios);
+			$resultado = $consult->insertar_consult($id_consultorios);
+			if ($resultado > 0 ) {
+				$_SESSION["consult_insert_1"] = "1" ;
+			} else {
+				$_SESSION["consult_insert_1"] = "0";
+			}
 			header('location:index.php?c=Administrador&a=gestion_consult');
 
 		}
@@ -272,7 +279,12 @@
 			$correo_pac = $_POST['correo_pac'];
 
 			$paciente = new Administrador_model();
-			$paciente->modificar_paciente($id_paciente, $id_tipo_doc, $tel_pac, $correo_pac);
+			$resultado = $paciente->modificar_paciente($id_paciente, $id_tipo_doc, $tel_pac, $correo_pac);
+			if ($resultado > 0 ) {
+				$_SESSION["pac_update"] = "1" ;
+			} else {
+				$_SESSION["pac_update"] = "0";
+			}
 			header('location:index.php?c=Administrador&a=gestion_u');
 		}
 
@@ -288,8 +300,13 @@
 			$franja_horaria = $_POST['franja_horaria'];
 
 
-			$paciente = new Administrador_model();
-			$paciente->modificar_profesional($id_profesional, $id_tipo_doc, $id_consultorios, $id_especialidad, $tel_prof, $correo_prof, $dias_laborales, $franja_horaria);
+			$profesional = new Administrador_model();
+			$resultado = $profesional->modificar_profesional($id_profesional, $id_tipo_doc, $id_consultorios, $id_especialidad, $tel_prof, $correo_prof, $dias_laborales, $franja_horaria);
+			if ($resultado > 0 ) {
+				$_SESSION["prof_update"] = "1" ;
+			} else {
+				$_SESSION["prof_update"] = "0";
+			}
 			header('location:index.php?c=Administrador&a=gestion_u');
 		}
 
@@ -301,7 +318,12 @@
 			$correo_aux = $_POST['correo_aux'];
 
 			$auxiliar = new Administrador_model();
-			$auxiliar->modificar_auxiliar($id_auxiliar, $id_tipo_doc, $tel_aux, $correo_aux);
+			$resultado = $auxiliar->modificar_auxiliar($id_auxiliar, $id_tipo_doc, $tel_aux, $correo_aux);
+			if ($resultado > 0 ) {
+				$_SESSION["aux_update"] = "1" ;
+			} else {
+				$_SESSION["aux_update"] = "0";
+			}
 			header('location:index.php?c=Administrador&a=gestion_u');
 		}
 
@@ -312,7 +334,12 @@
 
 
 			$espec = new Administrador_model();
-			$espec->modificar_especialidad($id_especialidad, $costo_espec);
+			$resultado = $espec->modificar_especialidad($id_especialidad, $costo_espec);
+			if ($resultado > 0 ) {
+				$_SESSION["espec_update"] = "1" ;
+			} else {
+				$_SESSION["espec_update"] = "0";
+			}
 			header('location:index.php?c=Administrador&a=gestion_espec');
 		}
 
@@ -330,28 +357,48 @@
 		public function eliminar_pac($id){
 
 			$usu = new Administrador_model();
-			$usu->eliminar_pac($id);
+			$resultado= $usu->eliminar_pac($id);
+			if ($resultado > 0 ) {
+				$_SESSION["pac_eliminado"] = "1" ;
+			} else {
+				$_SESSION["pac_eliminado"] = "0";
+			}
 			$this->gestion_u();
 		}
 
 		public function eliminar_aux($id){
 
 			$usu = new Administrador_model();
-			$usu->eliminar_aux($id);
+			$resultado = $usu->eliminar_aux($id);
+			if ($resultado > 0 ) {
+				$_SESSION["aux_eliminado"] = "1" ;
+			} else {
+				$_SESSION["aux_eliminado"] = "0";
+			}
 			$this->gestion_u();
 		}
 
 		public function eliminar_prof($id){
 
 			$usu = new Administrador_model();
-			$usu->eliminar_prof($id);
+			$resultado = $usu->eliminar_prof($id);
+			if ($resultado > 0 ) {
+				$_SESSION["prof_eliminado"] = "1" ;
+			} else {
+				$_SESSION["prof_eliminado"] = "0";
+			}
 			$this->gestion_u();
 		}
 
 		public function eliminar_espec($id){
 
 			$consult = new Administrador_model();
-			$consult->eliminar_espec_3($id);
+			$resultado = $consult->eliminar_espec_3($id);
+			if ($resultado > 0 ) {
+				$_SESSION["espec_eliminado"] = "1" ;
+			} else {
+				$_SESSION["espec_eliminado"] = "0";
+			}
 			$this->gestion_espec();
 
 		}
@@ -359,7 +406,12 @@
 		public function eliminar_consul($id){
 
 			$consul = new Administrador_model();
-			$consul -> eliminar_consul($id);
+			$resultado = $consul -> eliminar_consult($id);
+			if ($resultado > 0 ) {
+				$_SESSION["consult_eliminado"] = "1" ;
+			} else {
+				$_SESSION["consult_eliminado"] = "0";
+			}
 			$this->gestion_consult();
 
 		}
@@ -454,16 +506,20 @@
 			
 			$dia_eliminar = $_POST['dia_eliminar'];
 			$id_profesional = $_POST['id_profesional'];
-
 			$agenda = new Administrador_model();
 			$resultado = $agenda->excepciones_agenda($dia_eliminar, $id_profesional);
-			$_SESSION["alert_dia_eliminado"] = $resultado;
-			$_SESSION["contador"] = 1;
+			if ($resultado > 0 ) {
+				$_SESSION["excepciones"] = "1" ;
+			} else {
+				$_SESSION["excepciones"] = "0";
+			}
 			
 			header('location:index.php?c=Administrador&a=gestion_agenda_2&id='.$_SESSION['id_profesional']);
 		}
+
 		public function ayuda(){
 			require_once "views/administrador/manual_usuario/manual_de_usuario.html";
 		}
+
 	}
 ?>

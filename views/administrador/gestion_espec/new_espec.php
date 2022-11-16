@@ -25,11 +25,11 @@
                             <form action="index.php?c=Administrador&a=guarda_espec" method="POST">
                                 <p>
                                     <label>Especialidad</label>
-                                    <input type="text" name="descrip_espec" id="descrip_espec" >
+                                    <input type="text" name="descrip_espec" id="descrip_espec" required>
                                 </p>
                                 <p>
                                     <label>Costo</label>
-                                    <input type="number" name="costo_espec" id="costo_espec">
+                                    <input type="number" name="costo_espec" id="costo_espec" required>
                                 </p>
                                 <button class="btn btn-primary btn-lg btn-block" name="registrar" id="reistrar" type="submit">Registrar</button>
                             </form>
