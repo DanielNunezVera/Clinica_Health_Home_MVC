@@ -57,7 +57,7 @@
                                 </p>
                                 <p>
                                     <label>Teléfono</label>
-                                    <input type="tel" name="tel_prof" id="	tel_prof"required>
+                                    <input type="number" name="tel_prof" id="	tel_prof"required>
                                 </p>
                                 <p>
                                     <label>Email</label>

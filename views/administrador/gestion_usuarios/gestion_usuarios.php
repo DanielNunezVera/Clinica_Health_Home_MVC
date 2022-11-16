@@ -56,7 +56,8 @@
                                       echo "<td> Paciente </td>";
                                       echo "<td><a href='"."$url".$dato["id_paciente"]."' ".$boton."</td>";
                                       echo "<td><a href='index.php?c=Administrador&a=actualizar_pac&id=".$dato["id_paciente"]."&t_doc=".$dato["id_tipo_doc"]."' class='btn btn-light active' role='button' aria-pressed='true'>Actualizar</a></td>";
-                                      echo "<td><a href='index.php?c=Administrador&a=eliminar_pac&id=".$dato["id_paciente"]."' class='btn btn-danger active' role='button' aria-pressed='true'>&nbsp&nbspEliminar&nbsp&nbsp</a></td>";
+                                      echo "<td><a onclick='eliminar_pac(".$dato["id_paciente"].")'  class='btn btn-danger active ' role='button' aria-pressed='true'>&nbsp&nbspEliminar&nbsp&nbsp</a>
+                                      </td>";
                                       echo "</tr>";
                                     }
                                     foreach ($data["profesionales"] as $dato){
@@ -74,7 +75,8 @@
                                         echo "<td> Profesional </td>";
                                         echo "<td><a href='"."$url".$dato["id_profesional"]."' ".$boton."</td>";
                                         echo "<td><a href='index.php?c=Administrador&a=actualizar_prof&id=".$dato["id_profesional"]."&t_doc=".$dato["id_tipo_doc"]."' class='btn btn-light active' role='button' aria-pressed='true'>Actualizar</a></td>";
-                                        echo "<td><a href='index.php?c=Administrador&a=eliminar_prof&id=".$dato["id_profesional"]."' class='btn btn-danger active' role='button' aria-pressed='true'>&nbsp&nbspEliminar&nbsp&nbsp</a></td>";
+                                        echo "<td><a onclick='eliminar_prof(".$dato["id_profesional"].")'  class='btn btn-danger active ' role='button' aria-pressed='true'>&nbsp&nbspEliminar&nbsp&nbsp</a>
+                                        </td>";
                                         echo "</tr>";
                                     }
                                     foreach ($data["auxiliares"] as $dato){
@@ -92,7 +94,8 @@
                                         echo "<td> Auxiliar </td>";
                                         echo "<td><a href='"."$url".$dato["id_auxiliar"]."' ".$boton."</td>";
                                         echo "<td><a href='index.php?c=Administrador&a=actualizar_aux&id=".$dato["id_auxiliar"]."' class='btn btn-light active' role='button' aria-pressed='true'>Actualizar</a></td>";
-                                        echo "<td><a href='index.php?c=Administrador&a=eliminar_aux&id=".$dato["id_auxiliar"]."' class='btn btn-danger active' role='button' aria-pressed='true'>&nbsp&nbspEliminar&nbsp&nbsp</a></td>";
+                                        echo "<td><a onclick='eliminar_aux(".$dato["id_auxiliar"].")'  class='btn btn-danger active ' role='button' aria-pressed='true'>&nbsp&nbspEliminar&nbsp&nbsp</a>
+                                        </td>";
                                         echo "</tr>";
                                     }
                                     ?>
@@ -133,7 +136,7 @@
 
 
     <script src="assets/js-general/menu-responsive.js"></script>
-    <script src="assets/js-general/main.js"></script>
+
     
     
     
@@ -149,6 +152,7 @@
     <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
+    ////////////////////// ESTIOS DE DATATABLES///////////////////////
         function enviarform(){
             window.location = "new_consult.php"
         };
@@ -177,7 +181,120 @@
                     }
                 }
                 });
-        });  
+        });
+        <?php
+        ///ALERTAS PACIENTES//////////////////////////////////////////////////////////
+            if(isset($_SESSION["pac_insert_1"])){
+                if ($_SESSION["pac_insert_1"]!="0") {
+                    echo "var alert_pac_insert = '1';";
+                    echo "var alerta_pac = '1';";
+                    unset($_SESSION["pac_insert_1"]);
+                }else {
+                    echo "var alert_pac_insert = '0';";
+                    echo "var alerta_pac = '1';";
+                    unset($_SESSION["pac_insert_1"]);
+                }
+            }
+
+            if(isset($_SESSION["pac_eliminado"])){
+                if ($_SESSION["pac_eliminado"]!="0") {
+                    echo "var alert_pac_eliminado = '1';";
+                    echo "var alerta_pac = '2';";
+                    unset($_SESSION["pac_eliminado"]);
+                }else {
+                    echo "var alert_pac_eliminado = '0';";
+                    echo "var alerta_pac = '2';";
+                    unset($_SESSION["pac_eliminado"]);
+                }
+            }
+
+            if(isset($_SESSION["pac_update"])){
+                if ($_SESSION["pac_update"]!="0") {
+                    echo "var alert_pac_update = '1';";
+                    echo "var alerta_pac = '3';";
+                    unset($_SESSION["pac_update"]);
+                }else {
+                    echo "var alert_pac_update = '0';";
+                    echo "var alerta_pac = '3';";
+                    unset($_SESSION["pac_update"]);
+                }
+            }
+
+            ///ALERTAS PROFESIONALES ////////////////////////////////////////////////////
+            if(isset($_SESSION["prof_insert_1"])) {
+                if ($_SESSION["prof_insert_1"]!="0") {
+                    echo "var alert_prof_insert = '1';";
+                    echo "var alerta_prof = '1';";
+                    unset($_SESSION["prof_insert_1"]);
+                }else {
+                    echo "var alert_prof_insert = '0';";
+                    echo "var alerta_prof = '1';";
+                    unset($_SESSION["prof_insert_1"]);
+                }
+            }
+            
+            if(isset($_SESSION["prof_eliminado"])) {
+                if ($_SESSION["prof_eliminado"]!="0") {
+                    echo "var alert_prof_eliminado = '1';";
+                    echo "var alerta_prof = '2';";
+                    unset($_SESSION["prof_eliminado"]);
+                }else {
+                    echo "var alert_prof_eliminado = '0';";
+                    echo "var alerta_prof = '2';";
+                    unset($_SESSION["prof_eliminado"]);
+                }
+            }
+
+            if(isset($_SESSION["prof_update"])){
+                if ($_SESSION["prof_update"]!="0") {
+                    echo "var alert_prof_update = '1';";
+                    echo "var alerta_prof = '3';";
+                    unset($_SESSION["prof_update"]);
+                }else {
+                    echo "var alert_prof_update = '0';";
+                    echo "var alerta_prof = '3';";
+                    unset($_SESSION["prof_update"]);
+                }
+            }
+
+            /////////ALERTAS AUXILIARES ///////////////////////////////////////////////////////
+            if(isset($_SESSION["aux_insert_1"])) {
+                if ($_SESSION["aux_insert_1"]!="0") {
+                    echo "var alert_aux_insert = '1';";
+                    echo "var alerta_aux= '1';";
+                    unset($_SESSION["aux_insert_1"]);
+                }else {
+                    echo "var alert_aux_insert = '0';";
+                    echo "var alerta_aux = '1';";
+                    unset($_SESSION["aux_insert_1"]);
+                }
+            }
+
+            if(isset($_SESSION["aux_eliminado"])) {
+                if ($_SESSION["aux_eliminado"]!="0") {
+                    echo "var alert_aux_eliminado = '1';";
+                    echo "var alerta_aux= '2';";
+                    unset($_SESSION["aux_eliminado"]);
+                }else {
+                    echo "var alert_aux_eliminado = '0';";
+                    echo "var alerta_aux = '2';";
+                    unset($_SESSION["aux_eliminado"]);
+                }
+            }
+
+            if(isset($_SESSION["aux_update"])){
+                if ($_SESSION["aux_update"]!="0") {
+                    echo "var alert_aux_update = '1';";
+                    echo "var alerta_aux = '3';";
+                    unset($_SESSION["aux_update"]);
+                }else {
+                    echo "var alert_aux_update = '0';";
+                    echo "var alerta_aux = '3';";
+                    unset($_SESSION["aux_update"]);
+                }
+            }
+
+        ?>
     </script>
  		 	  	
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -206,5 +323,6 @@
     <script src="assets/js-general/codigo.js"></script>
         
     <script src="assets/js-general/codigo.js"></script>
+    <script src="assets/js-general/alertas.js"></script>
 </body>
 </html>
