@@ -63,7 +63,9 @@
 		public function cancelar_cita_pac($id_cita){
 			
 			$resultado = $this->db->query("UPDATE cita SET id_paciente = null, estado_cita = 0 WHERE id_cita = '$id_cita'");
-			
+			$resultado2 = $this->db->affected_rows;
+			$this->db->close();
+			return $resultado2;
 		}
 
 		public function cancelar_cita_prof($id){

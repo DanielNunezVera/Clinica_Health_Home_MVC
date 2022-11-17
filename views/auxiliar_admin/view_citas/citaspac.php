@@ -87,7 +87,7 @@
                                       echo "<td>".$dato["costo_espec"]."</td>";
                                       echo "<td>".$dato["id_consultorios"]."</td>";
                                       echo "<td><a href='"."$url".$dato["id_cita"]."' ".$boton."</td>";
-                                      echo "<td><a href='index.php?c=Auxiliar&a=cancelar_cita_pac&id=".$dato["id_cita"]."' class='btn btn-danger active' role='button' aria-pressed='true'>&nbsp&nbspEliminar&nbsp&nbsp</a></td>";
+                                      echo "<td><a onclick='eliminar_consult(\"".$dato["id_cita"]."\")'  class='btn btn-danger active' role='button' aria-pressed='true'>&nbsp&nbspEliminar&nbsp&nbsp</a></td>";
                                       echo "</tr>";  
                                 }
                                 ?>
@@ -158,5 +158,21 @@
 
 
     </script>
+    <script >
+        <?php
+            if(isset($_SESSION["cancel_cita_pac"])){
+                if ($_SESSION["cancel_cita_pac"]!="0") {
+                    echo "var alert_cita_pac_cancel = '1';";
+                    echo "var alerta_citas_pac_aux = '1';";
+                    unset($_SESSION["cancel_cita_pac"]);
+                }else {
+                    echo "var alert_cita_pac_cancel = '0';";
+                    echo "var alerta_citas_pac_aux  = '1';";
+                    unset($_SESSION["cancel_cita_pac"]);
+                }
+            }
+        ?>
+    </script>
+    <script src="assets/js-general/alertas_aux.js"></script>
 </body>
 </html>

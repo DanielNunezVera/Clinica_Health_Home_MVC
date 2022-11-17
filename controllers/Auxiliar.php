@@ -230,10 +230,19 @@
 
 		public function cancelar_cita_pac($id){
 
+			
 			$can_ci= new Auxiliar_model;
-			$can_ci->cancelar_cita_pac($id);
+			$resultado = $can_ci->cancelar_cita_pac($id);
 
-			header('location:index.php?c=Auxiliar&a=citas_pac');
+			if($resultado > 0){
+				$_SESSION["cancel_cita_pac"] = "1";
+				
+			}else{
+				$_SESSION["cancel_cita_pac"] = "0";
+				
+			}
+			$this->citas_pac();
+			
 		}
 
 
