@@ -18,7 +18,7 @@ if (typeof alerta_aux !=="undefined"){
             break;
         
         case "2":
-            if(alerta_update_info == "2"){
+            if(alerta_update_info == "1"){
                 Swal.fire(
                     '¡Correcto!',
                     'Su informacion se ha actualizado correctamente',

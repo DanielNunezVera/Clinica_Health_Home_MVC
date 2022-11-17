@@ -190,12 +190,12 @@
 			$correo_aux = $_POST["correo_aux"];
             $id_aux = $_SESSION['auxiliar'];
 			$auxiliar = new Auxiliar_model();
-			$auxiliar->modificar_auxiliar($tel_aux, $correo_aux, $id_aux);
+			$resultado = $auxiliar->modificar_auxiliar($tel_aux, $correo_aux, $id_aux);
 
 			if($resultado > 0){
 				$_SESSION["update_info"]  = "1";
 				header('location:index.php?c=Auxiliar&a=actualizar_aux');
-			} else{
+			}else{
 			 	$_SESSION["update_info"]  = "0";
 			 	header('location:index.php?c=Auxiliar&a=actualizar_aux');
 			}
