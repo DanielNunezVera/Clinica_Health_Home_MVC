@@ -38,13 +38,13 @@
 							<option value=1>Profesional</option>
 							<option value=2>Auxiliar administrativo</option>
 							<option value=4>Administrador</option>
-						</select>
-						<select class="Selectordoc" name="id_tipo_doc" id="id_tipo_doc" required>
+					</select>
+					<select class="Selectordoc" name="id_tipo_doc" id="id_tipo_doc" required>
 						<option value="">Seleccione</option>
 								<?php foreach ($data["tipo_doc"] as $dato) {
 								echo "<option value='".$dato["id_tipo_doc"]."'>".$dato["tipo_doc"]."</option>";
 							}?>
-						</select>
+					</select>
 					<input type="text" placeholder="Numero de documento" id="num_doc" name="num_doc" class="contenedor1"> 
 					<input type="password" placeholder="Contraseña" id="pass" name="pass" class="contenedor1" >
 					<input type="submit" name="login" class="boton" placeholder="Iniciar sesion"></input>
@@ -93,18 +93,19 @@
 	</script>
 	<script>
 		<?php
-
-			if(isset($_SESSION["Login_error_2"])){
-				if($_SESSION["Login_error_2"]=="2"){
-					echo "var alert_datos_incorrectos = '2';";
-					echo "var tipo_alerta = '2';";
-					unset($_SESSION["Login_error_2"]);
+			if(isset($_SESSION["Login_error"])) {
+				if($_SESSION["Login_error"]=="1"){
+					echo "var alert_sesion = '1';";
+					echo "var alerta_login = '1';";
+				}else {
+					echo "var alert_sesion = '2';";
+					echo "var alerta_login = '1';";
 				}
 			}
 		?>
 		// var alerta_agenda_repetida = "<?php  ?>";s
 	</script>
-	<script src="assets/js-general/alertas_login.js"></script>
+	<script src="assets/js-general/alertas.js"></script>
 </body>
 <footer class="pie-pagina">
         <div class="grupo-1">

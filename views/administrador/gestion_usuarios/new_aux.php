@@ -19,7 +19,7 @@
                                 <p>
                                     <label>Tipo doc</label>
                                     <select class="Selectorconsult" name="id_tipo_doc" id="id_tipo_doc" required>
-                                    <option value="">Seleccione</option>
+                                        <option value="">Seleccione</option>
                                          <?php foreach ($data["tipo_doc"] as $dato) {
                                             echo "<option value='".$dato["id_tipo_doc"]."'>".$dato["tipo_doc"]."</option>";
                                         }?>
@@ -39,7 +39,7 @@
                                 </p>
                                 <p>
                                     <label>Teléfono</label>
-                                    <input type="tel" name="tel_aux" id="	tel_aux"required>
+                                    <input type="number" name="tel_aux" id="	tel_aux"required>
                                 </p>
                                 <p>
                                     <label>Email</label>

@@ -51,7 +51,8 @@
                                       echo "<td>".$dato["id_consultorios"]."</td>";
                                       echo "<td><a href='"."$url".$dato["id_consultorios"]."' ".$boton."</td>";
                                       /*echo "<td><a href='index.php?c=Administrador&a=actualizar_consult&id=".$dato["id_consultorios"]."' class='btn btn-light active' role='button' aria-pressed='true'>Actualizar</a></td>";*/
-                                      echo "<td><a href='"."index.php?c=Administrador&a=eliminar_consul&id=".$dato["id_consultorios"]."' "."class='btn btn-danger active' role='button' aria-pressed='true'>&nbsp&nbspEliminar&nbsp&nbsp</a>"."</td>";
+                                      echo "<td><a onclick='eliminar_consult(\"".$dato["id_consultorios"]."\")'  class='btn btn-danger active ' role='button' aria-pressed='true'>&nbsp&nbspEliminar&nbsp&nbsp</a>
+                                      </td>";
                                       echo "</tr>";
                                     }
                                     ?>
@@ -77,7 +78,7 @@
     <!-- extension responsive -->
     <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
 
-
+    
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
         function enviarform(){
@@ -108,7 +109,35 @@
                     }
                 }
                 });
-        });  
+        });
+
+        <?php
+            if(isset($_SESSION["consult_insert_1"])){
+                    if ($_SESSION["consult_insert_1"]!="0") {
+                        echo "var alert_consult_insert = '1';";
+                        echo "var alerta_consult = '1';";
+                        unset($_SESSION["consult_insert_1"]);
+                    }else {
+                        echo "var alert_consult_insert = '0';";
+                        echo "var alerta_consult = '1';";
+                        unset($_SESSION["consult_insert_1"]);
+                    }
+            }
+
+            if(isset($_SESSION["consult_eliminado"])){
+                if ($_SESSION["consult_eliminado"]!="0") {
+                    echo "var alert_consult_eliminado = '1';";
+                    echo "var alerta_consult = '2';";
+                    unset($_SESSION["consult_eliminado"]);
+                }else {
+                    echo "var alert_consult_eliminado = '0';";
+                    echo "var alerta_consult = '2';";
+                    unset($_SESSION["consult_eliminado"]);
+                }
+        }
+
+        ?>
     </script> 
+    <script src="assets/js-general/alertas.js"></script>
 </body>
 </html>

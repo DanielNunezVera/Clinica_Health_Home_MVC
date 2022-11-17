@@ -15,19 +15,19 @@
                     <h1 class="titulo1">Nuevo paciente</h1>
                     <div class="contact-wrapper animated bounceInUp">
                         <div class="contact-form">
-                            <form action="index.php?c=Administrador&a=guarda_paciente" method="POST">
+                            <form action="index.php?c=Administrador&a=guarda_paciente" method="POST" >
                                 <p>
                                     <label>Tipo doc</label>
                                     <select class="Selectorconsult" name="id_tipo_doc" id="id_tipo_doc" required>
-                                    <option value="">Seleccione</option>
-                                         <?php foreach ($data["tipo_doc"] as $dato) {
+                                        <option value="">Seleccione</option>
+                                            <?php foreach ($data["tipo_doc"] as $dato) {
                                             echo "<option value='".$dato["id_tipo_doc"]."'>".$dato["tipo_doc"]."</option>";
-                                        }?>
+                                            }?>
                                     </select>
                                 </p>
                                 <p>
-                                    <label>N° documento</label>
-                                    <input type="number" name="num_doc_pac" id="num_doc_pac">
+                                    <label class="form-label">N° documento</label>
+                                    <input type="number" name="num_doc_pac" required>
                                 </p>
                                 <p>
                                     <label>Nombres</label>
@@ -39,7 +39,7 @@
                                 </p>
                                 <p>
                                     <label>Teléfono</label>
-                                    <input type="tel" name="tel_pac" id="	tel_pac"required>
+                                    <input type="number" name="tel_pac" id="	tel_pac"required>
                                 </p>
                                 <p>
                                     <label>Email</label>
@@ -48,7 +48,7 @@
                                 <p>
                                     <label>Sexo paciente</label>
                                     <select class="Selectorconsult" name="sexo_pac" id="sexo_pac" required>
-                                    <option value="">Seleccione</option>
+                                        <option value="">Seleccione</option>
                                         <option value="Femenino">Femenino</option>
                                         <option value="Masculino">Masculino</option>
                                     </select>
@@ -65,5 +65,6 @@
         </div>
     </main>
     <?php require "views/Links/js.php"?>
+
 </body>
 </html>

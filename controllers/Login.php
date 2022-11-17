@@ -5,7 +5,7 @@ $inc = new SesionesController();
     if(!empty($_SESSION["Admin"])){
 
         unset($_SESSION["Admin"]);
-        $_SESSION["Login_error_1"]= "1";
+        $_SESSION["Login_error"]="1";
         $inc->redireccionar();
         
     } elseif (!empty($_SESSION['pac'])){
@@ -49,11 +49,16 @@ class LoginController{
         
         if($tipo_rol == "4"){
             foreach ($resultado["usuario"] as $dato){}
-            if(password_verify($pass, $dato["pass_admin"])){
-                $_SESSION["Admin"] = $dato["usuario_administrador"];
-                header ("Location: index.php?c=Administrador&a=index");
+            if(isset($dato)){
+                if(password_verify($pass, $dato["pass_admin"])){
+                    $_SESSION["Admin"] = $dato["usuario_administrador"];
+                    header ("Location: index.php?c=Administrador&a=index");
+                }else{
+                    $_SESSION["Login_error"] = "2";
+                    header ("Location: index.php?c=Login&a=index");
+                }
             }else{
-                $_SESSION["Login_error_2"] = "2";
+                $_SESSION["Login_error"] = "2";
                 header ("Location: index.php?c=Login&a=index");
             }
         } elseif($tipo_rol == "2"){
@@ -77,8 +82,6 @@ class LoginController{
                 header ("Location: index.php?c=Login&a=index");
             }
         }
-
-       
 
         // if($resultado == "4"){
         //     $_SESSION["rol_activo"] = $resultado;
@@ -125,6 +128,4 @@ class LoginController{
     }
 
 }
-
-
 ?>
