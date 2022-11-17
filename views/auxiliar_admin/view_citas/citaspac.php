@@ -61,7 +61,7 @@
                                         <th>Especialidad</th>
                                         <th>Costo cita</th>
                                         <th>Consultorio</th>
-                                        <th>Estado pago cita</th>
+                                        <th> pago cita</th>
                                         <th>Cancelar cita</th>
                                     </tr>
                                 </thead>

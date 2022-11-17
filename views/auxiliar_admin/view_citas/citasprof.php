@@ -61,7 +61,7 @@
                                         <th>Paciente</th>
                                         <th>Telefono</th>
                                         <th>Correo</th>
-                                        <th>Reagendar cita paciente</th>
+                                        <th>Reagendar cita</th>
                                         <th>Cancelar cita</th>
                                     </tr>
                                 </thead>
