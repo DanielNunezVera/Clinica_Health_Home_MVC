@@ -50,13 +50,17 @@
 		public function pdte_pago1($id_cita){
 			
 			$resultado = $this->db->query("UPDATE cita SET estado_pago_cita = 0  WHERE id_cita = $id_cita ");
-			
+			$resultado2 = $this->db->affected_rows;
+			$this->db->close();
+			return $resultado2;
 		}
 
 		public function pago_ok1($id_cita){
 			
 			$resultado = $this->db->query("UPDATE cita SET estado_pago_cita = 1  WHERE id_cita = $id_cita ");
-			
+			$resultado2 = $this->db->affected_rows;
+			$this->db->close();
+			return $resultado2;
 		}
 		
 		
@@ -71,8 +75,12 @@
 		public function cancelar_cita_prof($id){
 
 			$resultado = $this->db->query("DELETE FROM cita WHERE id_cita='$id'");
-
+			$resultado2 = $this->db->affected_rows;
+			$this->db->close();
+			return $resultado2;
 		}
+
+		
 
 		public function get_paciente($num_doc_pac, $id_tipo_doc){
 			$sql = "SELECT id_paciente FROM paciente WHERE num_doc_pac='$num_doc_pac' AND id_tipo_doc='$id_tipo_doc' LIMIT 1";

@@ -38,7 +38,7 @@
 
 		public function buscar_pacientef(){	
 
-			session_start();
+			
 			$id_tipo_doc = $_POST['id_tipo_doc'];
 			$num_doc_pac = $_POST['num_doc_pac'];
 
@@ -62,16 +62,30 @@
 		public function pdte_pago($id_cita){
 			
 			$cit = new Auxiliar_model();
-			$cit-> pdte_pago1($id_cita);
-			header('location:index.php?c=Auxiliar&a=citas_pac');
+			$resultado = $cit-> pdte_pago1($id_cita);
+			
+			if($resultado > 0){
+				$_SESSION["pediente_pago"] = "1";
+				
+			}else{
+				$_SESSION["pediente_pago"] = "0";
+				
+			}
+			$this->citas_pac();
 
 		}
 
 		public function pago_ok($id_cita){
 			
 			$cit = new Auxiliar_model();
-			$cit-> pago_ok1($id_cita);
-			header('location:index.php?c=Auxiliar&a=citas_pac');
+			$resultado = $cit-> pago_ok1($id_cita);
+
+			if($resultado = 0 ){
+				$_SESSION["pago_ok"] = "1";
+			}else{
+				$_SESSION["pago_ok"] = "0";
+			}
+			$this->citas_pac();
 		}
 
 		public function citas_prof(){
@@ -146,24 +160,55 @@
 
 		public function cancelar_cita_prof($id){
 
-			session_start();					
+			$id_c=$id;
+			$can_ci= new Auxiliar_model;
+			$resultado = $can_ci->cancelar_cita_prof($id_c);
+
+			// if(isset($_POST['id_paciente'])){
+			// 	header('location:index.php?c=Auxiliar&a=agendar_cita_i');
+			// } else{
+			// 	header('location:index.php?c=Auxiliar&a=citas_prof');
+			// }
+			if($resultado > 0){
+				$_SESSION["cancel_cita_prof"] = "1";
+				header('location:index.php?c=Auxiliar&a=citas_prof');
+			}else{
+				$_SESSION["cancel_cita_prof"] = "0";
+				header('location:index.php?c=Auxiliar&a=citas_prof');
+			}
+
+		}
+
+	    public function reagendar($id){
+			
+			session_start();
 			if(isset($_POST['id_paciente'])){
 				$id_paciente = $_POST['id_paciente'];
 				$_SESSION["id_paciente"]=$id_paciente;
 			}
-			
-			$id_c=$id;
-			$can_ci= new Auxiliar_model;
-			$can_ci->cancelar_cita_prof($id_c);
 
+			$id_c = $id;
+			$rea = new Auxiliar_model;
+
+			$resultado = $rea->cancelar_cita_prof($id);
+
+			if($resultado > 0){
+				$_SESSION["reagendar_pac_aux"] = "1"; 
+
+				if(isset($_POST['id_paciente'])){
+					header('location:index.php?c=Auxiliar&a=agendar_cita_i');
+				}else{
+					$_SESSION["reagendar_pac_aux"] = "0";
+				}
+			}else{
+				$_SESSION["reagendar_pac_aux"] = "0";
+			}
 			if(isset($_POST['id_paciente'])){
 				header('location:index.php?c=Auxiliar&a=agendar_cita_i');
-			} else{
-				header('location:index.php?c=Auxiliar&a=citas_prof');
+			}else{
+				$_SESSION["reagendar_pac_aux"] = "0";
 			}
 		}
-
-	    
 		
 
 		public function actualizar_aux(){
@@ -267,4 +312,4 @@
 
 		}
 	}
-?>		
+?>

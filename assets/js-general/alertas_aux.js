@@ -1,4 +1,3 @@
-
 if (typeof alerta_aux !=="undefined"){
     switch(alerta_aux){
         case "1": 
@@ -35,27 +34,9 @@ if (typeof alerta_aux !=="undefined"){
 
            
     }
-if(typeof alerta_citas_pac_aux !=="undefined"){
-    switch(alerta_citas_pac_aux){
-        case "1":
-            if(alert_cita_pac_cancel == '1'){
-                Swal.fire(
-                    'Correcto',
-                    'El consultorio ha sido eliminado',
-                    'success'
-                    )
-            }else{
-                Swal.fire(
-                '¡Alerta!',
-                'El consultorio esta asignado a algun profesional, actualice informacion del profesional y vuelva a intentarlo',
-                'warning'
-                )
-            }
-            break;
-    }
 }
-    function cancelar_cita_pac(a){
-    const resultado = a
+function cancelar_cita_pac(a){
+    const etiqueta = a
     Swal.fire({
       title: '¿Esta seguro de cancelar la cita?',
       text: "Esta accion es irreversible",
@@ -63,15 +44,84 @@ if(typeof alerta_citas_pac_aux !=="undefined"){
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
-      confirmButtonText: 'Cancelar',
+      confirmButtonText: 'Confirmar',
       cancelButtonText:'Volver'
     }).then((result) => {
       if (result.isConfirmed) {
-        location.href = "index.php?c=Auxiliar&a=cancelar_cita_pac&id=" + resultado ;
+        location.href = "index.php?c=Auxiliar&a=cancelar_cita_pac&id=" + etiqueta;
       }
     })
-  }    
+  }
+  function pdte_pago(a){
+    const etiqueta = a
+    Swal.fire({
+      title: '¿Esta seguro de confirmar pago?',
+      text: "Confirme esta accion",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Confirmar',
+      cancelButtonText:'Volver'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        location.href = "index.php?c=Auxiliar&a=pago_ok&id=" + etiqueta;
+      }
+    })
+  }
+  
+function pago_ok(a){
+    const etiqueta = a
+    Swal.fire({
+      title: '¿Esta seguro de cambiar estado pago?',
+      text: "Confirme esta accion",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Confirmar',
+      cancelButtonText:'Volver'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        location.href = "index.php?c=Auxiliar&a=pdte_pago&id=" + etiqueta;
+      }
+    })
+  }
+  
 
-            
-    
-}
+
+function cancelar_cita_prof(a){
+    const etiqueta = a
+    Swal.fire({
+      title: '¿Esta seguro de cancelar la cita?',
+      text: "Esta accion es irreversible",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Confirmar',
+      cancelButtonText:'Volver'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        location.href = "index.php?c=Auxiliar&a=cancelar_cita_prof&id=" + etiqueta;
+      }
+    })
+  }
+
+  function reagendar_cita(a){
+    const etiqueta = a
+    Swal.fire({
+      title: '¿Esta seguro de reagendar la cita?',
+      text: "Esta accion es irreversible",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Confirmar',
+      cancelButtonText:'Volver'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        location.href = "index.php?c=Auxiliar&a=reagendar&id=" + etiqueta;
+      }
+    })
+  }

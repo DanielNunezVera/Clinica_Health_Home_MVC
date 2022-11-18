@@ -68,10 +68,10 @@
                                 <tbody>
                                 <?php foreach ($data["citas_pac"] as $dato) {
                                     if($dato["estado_pago_cita"]==1){
-                                        $url="index.php?c=Auxiliar&a=pdte_pago&id=";
+                                        $url="'pago_ok(".$dato["id_cita"].")'";
                                         $boton="class='btn btn-success active' role='button' aria-pressed='true'>&nbspPago&nbspOK&nbsp</a>";
                                       }else{
-                                        $url="index.php?c=Auxiliar&a=pago_ok&id=";
+                                        $url="'pdte_pago(".$dato["id_cita"].")'";
                                         $boton="class='btn btn-danger active' role='button' aria-pressed='true'>Pendiente Pago</a>";
                                       }
 
@@ -86,8 +86,8 @@
                                       echo "<td>".$dato["descrip_espec"]."</td>";
                                       echo "<td>".$dato["costo_espec"]."</td>";
                                       echo "<td>".$dato["id_consultorios"]."</td>";
-                                      echo "<td><a href='"."$url".$dato["id_cita"]."' ".$boton."</td>";
-                                      echo "<td><a onclick='eliminar_consult(\"".$dato["id_cita"]."\")'  class='btn btn-danger active' role='button' aria-pressed='true'>&nbsp&nbspEliminar&nbsp&nbsp</a></td>";
+                                      echo "<td><a onclick="."$url"." ".$boton."</td>";
+                                      echo "<td><a onclick='cancelar_cita_pac(".$dato["id_cita"].")'  class='btn btn-danger active' role='button' aria-pressed='true'>&nbsp&nbspEliminar&nbsp&nbsp</a></td>";
                                       echo "</tr>";  
                                 }
                                 ?>
@@ -169,6 +169,29 @@
                     echo "var alert_cita_pac_cancel = '0';";
                     echo "var alerta_citas_pac_aux  = '1';";
                     unset($_SESSION["cancel_cita_pac"]);
+                }
+            }
+
+            if(isset($_SESSION["pediente_pago"])){
+                if ($_SESSION["pediente_pago"]!="0") {
+                    echo "var alert_pdte_pago = '1';";
+                    echo "var alerta_citas_pac_aux = '2';";
+                    unset($_SESSION["pediente_pago"]);
+                }else {
+                    echo "var alert_pdte_pago = '0';";
+                    echo "var alerta_citas_pac_aux  = '2';";
+                    unset($_SESSION["pediente_pago"]);
+                }
+            }
+            if(isset($_SESSION["pago_ok"])){
+                if ($_SESSION["pago_ok"]!="0") {
+                    echo "var alert_pdte_pago = '1';";
+                    echo "var alerta_citas_pac_aux = '2';";
+                    unset($_SESSION["pago_ok"]);
+                }else {
+                    echo "var alert_pdte_pago = '0';";
+                    echo "var alerta_citas_pac_aux  = '2';";
+                    unset($_SESSION["pago_ok"]);
                 }
             }
         ?>
