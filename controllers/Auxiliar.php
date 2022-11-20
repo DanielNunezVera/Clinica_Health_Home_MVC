@@ -45,8 +45,14 @@
 			$paciente = new Auxiliar_model();
 			$data["paciente"] = $paciente->get_paciente($num_doc_pac, $id_tipo_doc);
 			$data["especialidades"] = $paciente->get_especialidad();
-			$_SESSION['id_paciente']= $data["paciente"]['id_paciente'];
-			require_once "views/auxiliar_admin/agenda_cita/cita_aux.php";
+			if(isset($data["paciente"])){
+				require_once "views/auxiliar_admin/agenda_cita/cita_aux.php";
+				$_SESSION['id_paciente']= $data["paciente"]['id_paciente'];
+			}else{
+				$_SESSION["descti_pac_age"] = "0";
+				$this->buscar_pacientei();
+			}
+			
 			
 		}
 
@@ -80,7 +86,7 @@
 			$cit = new Auxiliar_model();
 			$resultado = $cit-> pago_ok1($id_cita);
 
-			if($resultado = 0 ){
+			if($resultado !== 0 ){
 				$_SESSION["pago_ok"] = "1";
 			}else{
 				$_SESSION["pago_ok"] = "0";
@@ -160,54 +166,28 @@
 
 		public function cancelar_cita_prof($id){
 
+			session_start();					
+			if(isset($_POST['id_paciente'])){
+				$id_paciente = $_POST['id_paciente'];
+				$_SESSION["id_paciente"]=$id_paciente;
+			}
+			
 			$id_c=$id;
 			$can_ci= new Auxiliar_model;
 			$resultado = $can_ci->cancelar_cita_prof($id_c);
 
-			// if(isset($_POST['id_paciente'])){
-			// 	header('location:index.php?c=Auxiliar&a=agendar_cita_i');
-			// } else{
-			// 	header('location:index.php?c=Auxiliar&a=citas_prof');
-			// }
-			if($resultado > 0){
-				$_SESSION["cancel_cita_prof"] = "1";
-				header('location:index.php?c=Auxiliar&a=citas_prof');
+			if($resultado !== 0 ){
+				if(isset($_POST['id_paciente'])){
+					header('location:index.php?c=Auxiliar&a=agendar_cita_i');
+				} else{
+					$_SESSION["cancel_cita_prof"] = "1";
+					header('location:index.php?c=Auxiliar&a=citas_prof');
+				}
 			}else{
 				$_SESSION["cancel_cita_prof"] = "0";
 				header('location:index.php?c=Auxiliar&a=citas_prof');
 			}
 
-		}
-
-	    public function reagendar($id){
-			
-			session_start();
-			if(isset($_POST['id_paciente'])){
-				$id_paciente = $_POST['id_paciente'];
-				$_SESSION["id_paciente"]=$id_paciente;
-			}
-
-			$id_c = $id;
-			$rea = new Auxiliar_model;
-
-			$resultado = $rea->cancelar_cita_prof($id);
-
-			if($resultado > 0){
-				$_SESSION["reagendar_pac_aux"] = "1"; 
-
-				if(isset($_POST['id_paciente'])){
-					header('location:index.php?c=Auxiliar&a=agendar_cita_i');
-				}else{
-					$_SESSION["reagendar_pac_aux"] = "0";
-				}
-			}else{
-				$_SESSION["reagendar_pac_aux"] = "0";
-			}
-			if(isset($_POST['id_paciente'])){
-				header('location:index.php?c=Auxiliar&a=agendar_cita_i');
-			}else{
-				$_SESSION["reagendar_pac_aux"] = "0";
-			}
 		}
 		
 

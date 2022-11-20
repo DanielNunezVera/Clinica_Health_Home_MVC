@@ -83,10 +83,10 @@
 		
 
 		public function get_paciente($num_doc_pac, $id_tipo_doc){
-			$sql = "SELECT id_paciente FROM paciente WHERE num_doc_pac='$num_doc_pac' AND id_tipo_doc='$id_tipo_doc' LIMIT 1";
+			$sql = ("SELECT id_paciente FROM paciente WHERE num_doc_pac='$num_doc_pac' AND id_tipo_doc='$id_tipo_doc' AND estado_pac=1 LIMIT 1");
 			$resultado = $this->db->query($sql);
 			$row = $resultado->fetch_assoc();
-
+			// $this->db->close();
 			return $row;
 		}
 
@@ -98,6 +98,7 @@
 			{
 				$this->especialidad[] = $row;
 			}
+			$this->db->close();
 			return $this->especialidad;
 		}
 

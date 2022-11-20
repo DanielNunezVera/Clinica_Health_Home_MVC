@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -77,12 +76,12 @@
                                       echo "<td>".$dato["tel_pac"]."</td>";
                                       echo "<td>".$dato["correo_pac"]."</td>";
                                       echo"<td>
-                                            <form onclick='cancelar_cita_pac(".$dato["id_cita"].")' method=POST>                                            
-                                            <input type='hidden' name='id_paciente' id='id_paciente' value='".$dato["id_paciente"]."'>
-                                            <button class='btn btn-light active' type='submit'>Reagendar</button>
-                                            </form>
-                                            </td>
-                                      ";
+                                        <form onsubmit='reagendar_cita(".$dato["id_cita"].")' method=POST>                                            
+                                        <input type='hidden' name='id_paciente' id='id_paciente' value='".$dato["id_paciente"]."'>
+                                        <button class='btn btn-light active' type='submit'>Reagendar</button>
+                                        </form>
+                                        </td>
+                                        ";
                                       echo "<td><a onclick='cancelar_cita_prof(".$dato["id_cita"].")' class='btn btn-danger active' role='button' aria-pressed='true'>&nbsp&nbspCancelar&nbsp&nbsp</a>"."</td>";
                                       echo "</tr>";
                                     }
@@ -143,12 +142,12 @@
         <?php
             if(isset($_SESSION["cancel_cita_prof"])){
                 if ($_SESSION["cancel_cita_prof"]!="0") {
-                    echo "var alerta_citas_prof_aux = '1';";
-                    echo "var alerta_citas_pac_aux = '1';";
-                    unset($_SESSION["cancel_cita_pac"]);
+                    echo "var alerta_cita_cancel = '1';";
+                    echo "var alerta_aux = '3';";
+                    unset($_SESSION["cancel_cita_prof"]);
                 }else {
-                    echo "alerta_citas_prof_aux = '0';";
-                    echo "var alerta_citas_pac_aux  = '1';";
+                    echo "var alerta_cita_cancel = '0';";
+                    echo "var alerta_aux  = 3';";
                     unset($_SESSION["cancel_cita_prof"]);
                 }
             }

@@ -162,35 +162,35 @@
         <?php
             if(isset($_SESSION["cancel_cita_pac"])){
                 if ($_SESSION["cancel_cita_pac"]!="0") {
-                    echo "var alert_cita_pac_cancel = '1';";
-                    echo "var alerta_citas_pac_aux = '1';";
+                    echo "var alerta_ccl_ct_pc = '1';";
+                    echo "var alerta_aux = '6';";
                     unset($_SESSION["cancel_cita_pac"]);
                 }else {
-                    echo "var alert_cita_pac_cancel = '0';";
-                    echo "var alerta_citas_pac_aux  = '1';";
+                    echo "var alerta_ccl_ct_pc = '0';";
+                    echo "var alerta_aux  = '6';";
                     unset($_SESSION["cancel_cita_pac"]);
                 }
             }
 
             if(isset($_SESSION["pediente_pago"])){
                 if ($_SESSION["pediente_pago"]!="0") {
-                    echo "var alert_pdte_pago = '1';";
-                    echo "var alerta_citas_pac_aux = '2';";
+                    echo "var alerta_pdte_pa = '1';";
+                    echo "var alerta_aux = '5';";
                     unset($_SESSION["pediente_pago"]);
                 }else {
-                    echo "var alert_pdte_pago = '0';";
-                    echo "var alerta_citas_pac_aux  = '2';";
+                    echo "var alerta_pdte_pa = '0';";
+                    echo "var alerta_aux  = '5';";
                     unset($_SESSION["pediente_pago"]);
                 }
             }
             if(isset($_SESSION["pago_ok"])){
                 if ($_SESSION["pago_ok"]!="0") {
                     echo "var alert_pdte_pago = '1';";
-                    echo "var alerta_citas_pac_aux = '2';";
+                    echo "var alerta_aux = '4';";
                     unset($_SESSION["pago_ok"]);
                 }else {
-                    echo "var alert_pdte_pago = '0';";
-                    echo "var alerta_citas_pac_aux  = '2';";
+                    echo "var alert_pdte_pago  = '0';";
+                    echo "var alerta_aux = '4';";
                     unset($_SESSION["pago_ok"]);
                 }
             }
