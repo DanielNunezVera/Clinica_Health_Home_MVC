@@ -11,9 +11,9 @@ class Profesional_model{
 
     }
 
-    public function get_citas_programadas(){
+    public function get_citas_programadas($id_prof){
 
-        $sql="SELECT * FROM citas_programadas_prof WHERE id_profesional='1'";
+        $sql="SELECT * FROM citas_programadas_prof WHERE id_profesional=$id_prof";
         $resultado = $this->db->query($sql);
 		while($row = $resultado->fetch_assoc())
 		{
@@ -21,34 +21,34 @@ class Profesional_model{
 		}
 
 		return $this->citas_progr;
-        
     }
 
-    public function asistencia_cita_1($id_cita){
+    public function asistencia_cita($asist, $id_cita){
 
-		$resultado = $this->db->query("UPDATE cita SET asistencia_cita=0 WHERE id_cita = '$id_cita'");
-			
-
-    }
-    public function asistencia_cita_2($id_cita){
-
-        $resultado = $this->db->query("UPDATE cita SET asistencia_cita=1 WHERE id_cita = '$id_cita'");
-        
+        $resultado = $this->db->query("CALL asistencia_cita('$asist', '$id_cita')");
+        $this->db->close();   
     }
 
-    public function get_prof(){
-        $sql = "SELECT * FROM profesional WHERE id_profesional=1 LIMIT 1 ";
+    public function get_prof($id_prof){
+        $sql = "SELECT * FROM profesional WHERE id_profesional=$id_prof LIMIT 1 ";
         $resultado = $this->db->query($sql);
         $row = $resultado->fetch_assoc();
+        $this->db->close();
         return $row;
     }
 
-    public function modificar_profesional($tel_prof, $correo_prof){
-        $resultado = $this->db->query("UPDATE profesional SET tel_prof='$tel_prof', correo_prof='$correo_prof' WHERE id_profesional=1 ");
+    public function modificar_profesional($tel_prof, $correo_prof, $id_prof){
+        $resultado = $this->db->query("UPDATE profesional SET tel_prof='$tel_prof', correo_prof='$correo_prof' WHERE id_profesional=$id_prof ");
+        $resultado2 = $this->db->affected_rows;
+        $this->db->close();
+        return $resultado2;
     }
 
-    public function update_password($newpass){
-        $resultado = $this->db->query("UPDATE profesional SET pass_prof='$newpass' WHERE id_profesional=1 ");
+    public function update_password($newpass, $id_prof){
+        $resultado = $this->db->query("UPDATE profesional SET pass_prof='$newpass' WHERE id_profesional=$id_prof ");
+        $resultado2 = $this->db->affected_rows;
+        $this->db->close();
+        return $resultado2;
     }
 }
 

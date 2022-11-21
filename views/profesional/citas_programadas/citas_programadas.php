@@ -1,6 +1,3 @@
-<?php
-
-?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -46,10 +43,10 @@
                                 <tbody>
                                     <?php foreach ($data["citas_prof"] as $dato) {
                                        if($dato["asistencia_cita"]==0){
-                                        $url="index.php?c=Profesional&a=asistencia_cita_1&id=";
+                                        $url="onclick='asistencia(".$dato["id_cita"].")'";
                                         $boton="class='btn btn-success active' role='button' aria-pressed='true'>Asistió</a>";
                                       }else{
-                                        $url="index.php?c=Profesional&a=asistencia_cita_2&id=";
+                                        $url="onclick='asistencia_2(".$dato["id_cita"].")'";
                                         $boton="class='btn btn-danger  active' role='button' aria-pressed='true'>&nbsp&nbsp&nbspNo asistió&nbsp&nbsp&nbsp</a>";
                                       }
                                       echo "<tr>";
@@ -59,7 +56,7 @@
                                       echo "<td>".$dato["nombres_pac"].' '.$dato["apellidos_pac"]."</td>";                                                                                                       
                                       echo "<td>".$dato["tel_pac"]."</td>";
                                       echo "<td>".$dato["correo_pac"]."</td>";
-                                      echo "<td><a href='"."$url".$dato["id_cita"]."' ".$boton."</td>";
+                                      echo "<td><a ".$url." ".$boton."</td>";
                                       echo "</tr>";
                                     }
                                     ?>
@@ -85,7 +82,22 @@
 
 
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    
+<script>
+    <?php 
+        if (isset($_SESSION["asistencia"])) {
+            if ($_SESSION["asistencia"] != "0") {
+                echo "var asistencia_confirm = '1';";
+                echo "var alertas = '1';";
+                unset($_SESSION["asistencia"]);
+            }else {
+                echo "var asistencia_confirm = '0';";
+                echo "var alertas = '1';";
+                unset($_SESSION["asistencia"]);
+            }
+        }
+    ?>
+</script>
+<script src="assets/js-general/alertas_prof.js"></script>
 <script>
     $(document).ready(function() {
         $('#example').DataTable({
