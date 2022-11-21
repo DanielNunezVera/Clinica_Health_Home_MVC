@@ -92,7 +92,7 @@
                     echo "var alerta_aux = '2';";
                     unset($_SESSION["update_info"]);
                 }else {
-                    echo "var var alerta_update_info = '0';";
+                    echo "var alerta_update_info = '0';";
                     echo "var alerta_aux  = '2';";
                     unset($_SESSION["update_info"]);
                 }

@@ -1,6 +1,3 @@
-<?php
-// include "../../../controller/sesiones/sesiones_aux.php";
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -61,7 +58,7 @@
                                         <th>Paciente</th>
                                         <th>Telefono</th>
                                         <th>Correo</th>
-                                        <th>Reagendar cita paciente</th>
+                                        <th>Reagendar cita</th>
                                         <th>Cancelar cita</th>
                                     </tr>
                                 </thead>
@@ -79,13 +76,13 @@
                                       echo "<td>".$dato["tel_pac"]."</td>";
                                       echo "<td>".$dato["correo_pac"]."</td>";
                                       echo"<td>
-                                            <form action='index.php?c=Auxiliar&a=cancelar_cita_prof&id=".$dato["id_cita"]."' method=POST>                                            
-                                            <input type='hidden' name='id_paciente' id='id_paciente' value='".$dato["id_paciente"]."'>
-                                            <button class='btn btn-light active' type='submit'>Reagendar</button>
-                                            </form>
-                                            </td>
-                                      ";
-                                      echo "<td><a href='"."index.php?c=Auxiliar&a=cancelar_cita_prof&id=".$dato["id_cita"]."' "."class='btn btn-danger active' role='button' aria-pressed='true'>&nbsp&nbspCancelar&nbsp&nbsp</a>"."</td>";
+                                        <form onsubmit='reagendar_cita(".$dato["id_cita"].")' method=POST>                                            
+                                        <input type='hidden' name='id_paciente' id='id_paciente' value='".$dato["id_paciente"]."'>
+                                        <button class='btn btn-light active' type='submit'>Reagendar</button>
+                                        </form>
+                                        </td>
+                                        ";
+                                      echo "<td><a onclick='cancelar_cita_prof(".$dato["id_cita"].")' class='btn btn-danger active' role='button' aria-pressed='true'>&nbsp&nbspCancelar&nbsp&nbsp</a>"."</td>";
                                       echo "</tr>";
                                     }
                                     ?>
@@ -141,5 +138,33 @@
 
 
     </script>
+    <script >
+        <?php
+            if(isset($_SESSION["cancel_cita_prof"])){
+                if ($_SESSION["cancel_cita_prof"]!="0") {
+                    echo "var alerta_cita_cancel = '1';";
+                    echo "var alerta_aux = '3';";
+                    unset($_SESSION["cancel_cita_prof"]);
+                }else {
+                    echo "var alerta_cita_cancel = '0';";
+                    echo "var alerta_aux  = 3';";
+                    unset($_SESSION["cancel_cita_prof"]);
+                }
+            }
+
+            if(isset($_SESSION["reagendar_pac_aux"])){
+                if ($_SESSION["reagendar_pac_aux"]!="0") {
+                    echo "var alerta_citas_prof_aux = '1';";
+                    echo "var alerta_citas_pac_aux = '1';";
+                    unset($_SESSION["reagendar_pac_aux"]);
+                }else {
+                    echo "alerta_citas_prof_aux = '0';";
+                    echo "var alerta_citas_pac_aux  = '1';";
+                    unset($_SESSION["reagendar_pac_aux"]);
+                }
+            }
+        ?>
+    </script>
+    <script src="assets/js-general/alertas_aux.js"></script>
 </body>
 </html>

@@ -38,15 +38,21 @@
 
 		public function buscar_pacientef(){	
 
-			session_start();
+			
 			$id_tipo_doc = $_POST['id_tipo_doc'];
 			$num_doc_pac = $_POST['num_doc_pac'];
 
 			$paciente = new Auxiliar_model();
 			$data["paciente"] = $paciente->get_paciente($num_doc_pac, $id_tipo_doc);
 			$data["especialidades"] = $paciente->get_especialidad();
-			$_SESSION['id_paciente']= $data["paciente"]['id_paciente'];
-			require_once "views/auxiliar_admin/agenda_cita/cita_aux.php";
+			if(isset($data["paciente"])){
+				require_once "views/auxiliar_admin/agenda_cita/cita_aux.php";
+				$_SESSION['id_paciente']= $data["paciente"]['id_paciente'];
+			}else{
+				$_SESSION["descti_pac_age"] = "0";
+				$this->buscar_pacientei();
+			}
+			
 			
 		}
 
@@ -62,16 +68,30 @@
 		public function pdte_pago($id_cita){
 			
 			$cit = new Auxiliar_model();
-			$cit-> pdte_pago1($id_cita);
-			header('location:index.php?c=Auxiliar&a=citas_pac');
+			$resultado = $cit-> pdte_pago1($id_cita);
+			
+			if($resultado > 0){
+				$_SESSION["pediente_pago"] = "1";
+				
+			}else{
+				$_SESSION["pediente_pago"] = "0";
+				
+			}
+			$this->citas_pac();
 
 		}
 
 		public function pago_ok($id_cita){
 			
 			$cit = new Auxiliar_model();
-			$cit-> pago_ok1($id_cita);
-			header('location:index.php?c=Auxiliar&a=citas_pac');
+			$resultado = $cit-> pago_ok1($id_cita);
+
+			if($resultado !== 0 ){
+				$_SESSION["pago_ok"] = "1";
+			}else{
+				$_SESSION["pago_ok"] = "0";
+			}
+			$this->citas_pac();
 		}
 
 		public function citas_prof(){
@@ -154,16 +174,21 @@
 			
 			$id_c=$id;
 			$can_ci= new Auxiliar_model;
-			$can_ci->cancelar_cita_prof($id_c);
+			$resultado = $can_ci->cancelar_cita_prof($id_c);
 
-			if(isset($_POST['id_paciente'])){
-				header('location:index.php?c=Auxiliar&a=agendar_cita_i');
-			} else{
+			if($resultado !== 0 ){
+				if(isset($_POST['id_paciente'])){
+					header('location:index.php?c=Auxiliar&a=agendar_cita_i');
+				} else{
+					$_SESSION["cancel_cita_prof"] = "1";
+					header('location:index.php?c=Auxiliar&a=citas_prof');
+				}
+			}else{
+				$_SESSION["cancel_cita_prof"] = "0";
 				header('location:index.php?c=Auxiliar&a=citas_prof');
 			}
-		}
 
-	    
+		}
 		
 
 		public function actualizar_aux(){
@@ -190,12 +215,12 @@
 			$correo_aux = $_POST["correo_aux"];
             $id_aux = $_SESSION['auxiliar'];
 			$auxiliar = new Auxiliar_model();
-			$auxiliar->modificar_auxiliar($tel_aux, $correo_aux, $id_aux);
+			$resultado = $auxiliar->modificar_auxiliar($tel_aux, $correo_aux, $id_aux);
 
 			if($resultado > 0){
 				$_SESSION["update_info"]  = "1";
 				header('location:index.php?c=Auxiliar&a=actualizar_aux');
-			} else{
+			}else{
 			 	$_SESSION["update_info"]  = "0";
 			 	header('location:index.php?c=Auxiliar&a=actualizar_aux');
 			}
@@ -230,10 +255,19 @@
 
 		public function cancelar_cita_pac($id){
 
+			
 			$can_ci= new Auxiliar_model;
-			$can_ci->cancelar_cita_pac($id);
+			$resultado = $can_ci->cancelar_cita_pac($id);
 
-			header('location:index.php?c=Auxiliar&a=citas_pac');
+			if($resultado > 0){
+				$_SESSION["cancel_cita_pac"] = "1";
+				
+			}else{
+				$_SESSION["cancel_cita_pac"] = "0";
+				
+			}
+			$this->citas_pac();
+			
 		}
 
 
@@ -258,4 +292,4 @@
 
 		}
 	}
-?>		
+?>

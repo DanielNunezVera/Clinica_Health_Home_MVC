@@ -61,17 +61,17 @@
                                         <th>Especialidad</th>
                                         <th>Costo cita</th>
                                         <th>Consultorio</th>
-                                        <th>Estado pago cita</th>
+                                        <th> pago cita</th>
                                         <th>Cancelar cita</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                 <?php foreach ($data["citas_pac"] as $dato) {
                                     if($dato["estado_pago_cita"]==1){
-                                        $url="index.php?c=Auxiliar&a=pdte_pago&id=";
+                                        $url="'pago_ok(".$dato["id_cita"].")'";
                                         $boton="class='btn btn-success active' role='button' aria-pressed='true'>&nbspPago&nbspOK&nbsp</a>";
                                       }else{
-                                        $url="index.php?c=Auxiliar&a=pago_ok&id=";
+                                        $url="'pdte_pago(".$dato["id_cita"].")'";
                                         $boton="class='btn btn-danger active' role='button' aria-pressed='true'>Pendiente Pago</a>";
                                       }
 
@@ -86,8 +86,8 @@
                                       echo "<td>".$dato["descrip_espec"]."</td>";
                                       echo "<td>".$dato["costo_espec"]."</td>";
                                       echo "<td>".$dato["id_consultorios"]."</td>";
-                                      echo "<td><a href='"."$url".$dato["id_cita"]."' ".$boton."</td>";
-                                      echo "<td><a href='index.php?c=Auxiliar&a=cancelar_cita_pac&id=".$dato["id_cita"]."' class='btn btn-danger active' role='button' aria-pressed='true'>&nbsp&nbspEliminar&nbsp&nbsp</a></td>";
+                                      echo "<td><a onclick="."$url"." ".$boton."</td>";
+                                      echo "<td><a onclick='cancelar_cita_pac(".$dato["id_cita"].")'  class='btn btn-danger active' role='button' aria-pressed='true'>&nbsp&nbspEliminar&nbsp&nbsp</a></td>";
                                       echo "</tr>";  
                                 }
                                 ?>
@@ -158,5 +158,44 @@
 
 
     </script>
+    <script >
+        <?php
+            if(isset($_SESSION["cancel_cita_pac"])){
+                if ($_SESSION["cancel_cita_pac"]!="0") {
+                    echo "var alerta_ccl_ct_pc = '1';";
+                    echo "var alerta_aux = '6';";
+                    unset($_SESSION["cancel_cita_pac"]);
+                }else {
+                    echo "var alerta_ccl_ct_pc = '0';";
+                    echo "var alerta_aux  = '6';";
+                    unset($_SESSION["cancel_cita_pac"]);
+                }
+            }
+
+            if(isset($_SESSION["pediente_pago"])){
+                if ($_SESSION["pediente_pago"]!="0") {
+                    echo "var alerta_pdte_pa = '1';";
+                    echo "var alerta_aux = '5';";
+                    unset($_SESSION["pediente_pago"]);
+                }else {
+                    echo "var alerta_pdte_pa = '0';";
+                    echo "var alerta_aux  = '5';";
+                    unset($_SESSION["pediente_pago"]);
+                }
+            }
+            if(isset($_SESSION["pago_ok"])){
+                if ($_SESSION["pago_ok"]!="0") {
+                    echo "var alert_pdte_pago = '1';";
+                    echo "var alerta_aux = '4';";
+                    unset($_SESSION["pago_ok"]);
+                }else {
+                    echo "var alert_pdte_pago  = '0';";
+                    echo "var alerta_aux = '4';";
+                    unset($_SESSION["pago_ok"]);
+                }
+            }
+        ?>
+    </script>
+    <script src="assets/js-general/alertas_aux.js"></script>
 </body>
 </html>
