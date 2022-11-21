@@ -105,21 +105,31 @@ class LoginController{
 
         foreach($resultado['usuario'] as $dato){}
 
-        if(password_verify($pass, $dato["pass_pac"])){
+        if (isset ($dato)){
 
-            $_SESSION['pac'] = $dato['id_paciente'];
-            $_SESSION['num_doc_pac'] = $dato['num_doc_pac'];
-            $_SESSION['nombres_pac'] = $dato['nombres_pac'];
-            $_SESSION['apellidos_pac'] = $dato['apellidos_pac'];
-            $_SESSION['tel_pac'] = $dato['tel_pac'];
-            $_SESSION['correo_pac'] = $dato['correo_pac'];
-            $_SESSION['sexo_pac'] = $dato['sexo_pac'];
+            if(password_verify($pass, $dato["pass_pac"])){
 
-            header ("Location: index.php?c=Paciente&a=index");
+                $_SESSION['pac'] = $dato['id_paciente'];
+                $_SESSION['num_doc_pac'] = $dato['num_doc_pac'];
+                $_SESSION['nombres_pac'] = $dato['nombres_pac'];
+                $_SESSION['apellidos_pac'] = $dato['apellidos_pac'];
+                $_SESSION['tel_pac'] = $dato['tel_pac'];
+                $_SESSION['correo_pac'] = $dato['correo_pac'];
+                $_SESSION['sexo_pac'] = $dato['sexo_pac'];
+    
+                header ("Location: index.php?c=Paciente&a=index");
+    
+            } else {
+    
+                $_SESSION['Login_error'] = '2';
+    
+                header ("Location: index.php?c=Login&a=index");
+    
+            }
 
         } else {
 
-            $_SESSION['Login_error_2'] = '2';
+            $_SESSION['Login_error'] = '2';
 
             header ("Location: index.php?c=Login&a=index");
 

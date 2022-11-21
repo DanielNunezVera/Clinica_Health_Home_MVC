@@ -53,9 +53,21 @@
 
 			$id_especialidad = $_POST['id_especialidad'];
 			$fecha = $_POST['fecha'];
-            $paquete=  new Paciente_model();
-            $data["cita"] = $paquete->get_citas($fecha, $id_especialidad);
-			require_once "views/pacientes/agenda_cita/citasdisponibles.php";
+            $fecha_entrada = strtotime($fecha);
+            $fecha_actual = strtotime(date("d-m-Y H:i:00", time()));
+
+            if ($fecha_entrada >= $fecha_actual) {
+             
+                $paquete=  new Paciente_model();
+                $data["cita"] = $paquete->get_citas($fecha, $id_especialidad);
+                require_once "views/pacientes/agenda_cita/citasdisponibles.php";   
+
+            } else {
+
+                $_SESSION['error_cita'] = "1";
+                $this->agendar_cita_i();
+
+            }
 				
 		}
 
@@ -103,8 +115,6 @@
                 
                 $id_paciente = $_POST['id_paciente'];
                 $pass_pac = password_hash($_POST['pass_pac'], PASSWORD_BCRYPT);
-
-                // var_dump($_POST['id_paciente'], $_POST["pass_pac"], $_POST["repeat_pass_pac"]);
 
                 $paquete = new Paciente_model;
                 $paquete -> update_pass_pac($id_paciente, $pass_pac);

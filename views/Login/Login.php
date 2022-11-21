@@ -90,8 +90,6 @@
             $('#id_tipo_doc').prop('disabled', false);
           }
         });
-	</script>
-	<script>
 		<?php
 			if(isset($_SESSION["Login_error"])) {
 				if($_SESSION["Login_error"]=="1"){
@@ -103,7 +101,6 @@
 				}
 			}
 		?>
-		// var alerta_agenda_repetida = "<?php  ?>";s
 	</script>
 	<script src="assets/js-general/alertas.js"></script>
 </body>

@@ -21,25 +21,6 @@
     </style>
 </head>
 <body>
-    <header>
-        <div class="container__menu">
-            <div class="logo">
-                <img src="assets/images/Logo2.png" alt="">
-            </div>
-            <div class="menu">
-                <i class="fas fa-bars" id="btn_menu"></i>
-                <div id="back_menu"></div>
-                <nav id="nav">
-                    <img src="assets/images/ajustes.png" alt="">
-                    <ul>
-                        <li><a href="index.php?c=Administrador&a=index">Inicio</a></li>
-                        <li><a href="index.php?c=Paciente&a=get_paciente">Actualizar datos</a></li>
-                        <li><a href="index.php?c=Paciente&a=cerrar_sesion">Cerrar sesion</a></li>
-                    </ul>
-                </nav>
-            </div>
-        </div>
-    </header>
     <main>
         <div class="container__cover">
             <div class="cover"> 
@@ -65,13 +46,12 @@
                                       echo "<td>".$dato["fechacita_horainicio"]."</td>";
                                       echo "<td>".$dato["costo_espec"]."</td>";
                                       echo"<td>
-                                            <form action='index.php?c=Paciente&a=agendar_cita_f' method=POST>
-                                            <input type='hidden' name='id_cita' id='id_cita' value='".$dato["id_cita"]."'>
-                                            <input type='hidden' name='id_paciente' id='id_paciente' value='".$_SESSION['pac']."'>
-                                            <button class='btn btn-light active' type='submit'>Agendar</button>
+                                            <form id='formulario_cita' name='formulario_cita' action='index.php?c=Paciente&a=agendar_cita_f' method=POST >
+                                                <input type='hidden' name='id_cita' id='id_cita' value='".$dato["id_cita"]."'>
+                                                <input type='hidden' name='id_paciente' id='id_paciente' value='".$_SESSION['pac']."'>
+                                                <a onclick='form_cita(\"".$dato["descrip_espec"]."\",\"".$dato["nombres_prof"]."\",\"".$dato["apellidos_prof"]."\",\"".$dato["fechacita_horainicio"]."\",\"".$dato["id_consultorios"]."\",\"".$dato["costo_espec"]."\")'  class='btn btn-light active ' role='button' aria-pressed='true'>&nbsp&nbspAgendar&nbsp&nbsp</a>
                                             </form>
-                                            </td>
-                                      ";
+                                            </td> ";
                                       echo "</tr>";
                                     }
                                     ?>
@@ -83,8 +63,6 @@
             </div> 
         </div>
     </main>
-
-
 
     <script src="assets/js-general/menu-responsive.js"></script>
     <script src="assets/js-general/main.js"></script>
@@ -130,10 +108,16 @@
                     }
                 }
                 });
-        });  
+        });
+        <?php
+        
+        
+
+        ?>
     </script>
  		 	  	
     <script src="assets/js-general/codigo.js"></script>
+    <script src="assets/js-general/alertas.js"></script>
 
 </body>
 </html>
