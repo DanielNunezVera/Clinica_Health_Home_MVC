@@ -402,3 +402,64 @@ function eliminar_aux(a){
     }
   })
 }
+
+////////////////////////////////////// ALERTAS MODULO PACIENTE //////////////////////////////////////
+
+if (typeof (error_cita) !== 'undefined') {
+
+  switch (error_cita){
+
+    case "1":
+
+      if (error_cita_fecha == '1') {
+
+        Swal.fire(
+          '¡Alerta!',
+          'No hay citas disponibles para el día seleccionado',
+          'warning'
+        )
+
+      }
+    break;
+
+    case "2":
+
+      if (error_cita_fecha == '2') {
+
+        Swal.fire(
+          '¡Alerta!',
+          'No es posible agendar una cita el día seleccionado',
+          'warning'
+        )
+
+      }
+    break;
+
+  }
+
+}
+
+function form_cita(e, n, a, f, c, k){
+
+  const esp = e
+  const nom = n
+  const ape = a
+  const fec = f
+  const con = c
+  const cos = k
+
+  Swal.fire({
+    title: 'Resumen de cita',
+    text: "Su cita es de " + e + ", con el profesional " + n + " " + a + " el día y hora " + f + ", en el consultorio " + c + ", con un costo de " + "$" + k + ". " + "¿Desea continuar?",
+    icon: 'info',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Aceptar',
+    cancelButtonText:'Cancelar'
+  }).then((result) => {
+    if (result.isConfirmed) {
+      document.getElementById('formulario_cita').submit();
+    }
+  })
+}

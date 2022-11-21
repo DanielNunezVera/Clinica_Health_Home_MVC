@@ -13,25 +13,6 @@
     </style>
 </head>
 <body>
-    <header>
-        <div class="container__menu">
-            <div class="logo">
-                <img src="assets/images/Logo2.png" alt="">
-            </div>
-            <div class="menu">
-                <i class="fas fa-bars" id="btn_menu"></i>
-                <div id="back_menu"></div>
-                <nav id="nav">
-                    <img src="assets/images/pacientemenu.png" alt="">
-                    <ul>
-                        <li><a href="index.php?c=Administrador&a=index">Inicio</a></li>
-                        <li><a href="index.php?c=Paciente&a=get_paciente">Actualizar datos</a></li>
-                        <li><a href="index.php?c=Paciente&a=cerrar_sesion">Cerrar sesion</a></li>
-                    </ul>
-                </nav>
-            </div>
-        </div>
-    </header>
     <main>
     <div class="container__cover">
             <div class="cover"> 
@@ -65,6 +46,28 @@
             </div> 
         </div>
     </main>
+    <script>
+
+        <?php
+            
+            if (isset($_SESSION['error_cita'])) {
+
+                if ($_SESSION['error_cita'] == "1"){
+
+                    echo "var error_cita_fecha = '1';";
+                    echo "var error_cita = '1';";
+
+                    unset($_SESSION['error_cita']);
+
+                }
+
+            }
+
+        ?>
+
+    </script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="assets/js-general/menu-responsive.js"></script>
+    <script src="assets/js-general/alertas.js"></script>
 </body>
 </html>

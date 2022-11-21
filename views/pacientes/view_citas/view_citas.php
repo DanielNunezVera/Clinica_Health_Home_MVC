@@ -23,25 +23,6 @@
     </style>
 </head>
 <body>
-    <header>
-        <div class="container__menu">
-            <div class="logo">
-                <img src="assets/images/Logo2.png" alt="">
-            </div>
-            <div class="menu">
-                <i class="fas fa-bars" id="btn_menu"></i>
-                <div id="back_menu"></div>
-                <nav id="nav">
-                    <img src="assets/images/ajustes.png" alt="">
-                    <ul>
-                        <li><a href="index.php?c=Administrador&a=index">Inicio</a></li>
-                        <li><a href="index.php?c=Paciente&a=get_paciente">Actualizar datos</a></li>
-                        <li><a href="../../../controller/sesiones/cerrarsesion.php">Cerrar sesion</a></li>
-                    </ul>
-                </nav>
-            </div>
-        </div>
-    </header>
     <main>
         <div class="container__cover">
             <div class="cover"> 
@@ -55,6 +36,7 @@
                                         <th>Id</th>
                                         <th>Fecha y hora cita</th>
                                         <th>Especialidad</th>
+                                        <th>Consultorio</th>
                                         <th>Profesional</th>
                                         <th>Costo</th>
                                         <th>Acción</th>
@@ -69,6 +51,7 @@
                                         echo "<td>".$dato['id_cita']."</td>";
                                         echo "<td>".$dato['fechacita_horainicio']."</td>";
                                         echo "<td>".$dato['descrip_espec']."</td>";
+                                        echo "<td>".$dato['id_consultorios']."</td>";
                                         echo "<td>".$dato['nombres_prof']." ".$dato['apellidos_prof']."</td>";
                                         echo "<td>"."$".$dato['costo_espec']."</td>";
                                         echo "<td><a href='index.php?c=Paciente&a=cancel_agendada&id=".$dato['id_cita']."'>Cancelar cita</a></td>";
