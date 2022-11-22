@@ -64,9 +64,10 @@
                                       echo "<td>".$dato["fechacita_horainicio"]."</td>";
                                       echo "<td>".$dato["costo_espec"]."</td>";
                                       echo"<td>
-                                            <form action='index.php?c=Auxiliar&a=agendar_cita_f' method=POST>
+                                            <form id='form_cita_aux' name='form_cita_aux' action='index.php?c=Auxiliar&a=agendar_cita_f' method=POST>
                                             <input type='hidden' name='id_cita' id='id_cita' value='".$dato["id_cita"]."'>                                            
-                                            <button class='btn btn-light active' type='submit'>Agendar</button>
+                                            <a onclick='form_ci_aux(\"".$dato["descrip_espec"]."\",\"".$dato["nombres_prof"]."\",\"".$dato["apellidos_prof"]."\",\"".$dato["fechacita_horainicio"]."\",\"".$dato["id_consultorios"]."\",\"".$dato["costo_espec"]."\")'  
+                                            class='btn btn-light active ' role='button' aria-pressed='true'>&nbsp&nbspAgendar&nbsp&nbsp</a>
                                             </form>
                                             </td>
                                       ";
@@ -132,6 +133,7 @@
     </script>
  		 	  	
     <script src="assets/js-general/codigo.js"></script>
+    <script src="assets/js-general/alertas_aux.js"></script>
 
 </body>
 </html>

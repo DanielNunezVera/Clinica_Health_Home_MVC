@@ -104,64 +104,12 @@
 		}
 
 		public function agendar_cita_i(){
-            $paquete=  new Administrador_model();
+            $paquete=  new Auxiliar_model();
             $data["especialidades"] = $paquete->get_especialidad();
 			require_once "views/auxiliar_admin/agenda_cita/cita_aux.php";
 				
 		}
 
-		// public function cancelar_cita_prof($id){
-
-		// 	session_start();					
-		// 	if(isset($_POST['id_paciente'])){
-		// 		$id_paciente = $_POST['id_paciente'];
-		// 		$_SESSION["id_paciente"]=$id_paciente;
-		// 	}
-			
-		// 	$id_c=$id;
-		// 	$can_ci= new Auxiliar_model;
-		// 	$can_ci->cancelar_cita_prof($id_c);
-
-		// 	if(isset($_POST['id_paciente'])){
-		// 		header('location:index.php?c=Auxiliar&a=agendar_cita_i');
-		// 	} else{
-		// 		header('location:index.php?c=Auxiliar&a=citas_prof');
-		// 	}
-
-			
-
-		// }
-
-		// public function buscar_cita(){
-
-		// 	$id_especialidad = $_POST['id_especialidad'];
-		// 	$fecha = $_POST['fecha'];
-    //         $paquete=  new Paciente_model();
-    //         $data["cita"] = $paquete->get_citas($fecha, $id_especialidad);
-		// 	require_once "views/auxiliar_admin/agenda_cita/citas_dis_aux.php";
-				
-		// }
-		// public function agendar_cita_f(){
-
-		// 	session_start();
-		// 	$id_cita = $_POST['id_cita'];
-		// 	$id_paciente=$_SESSION['id_paciente'];
-		// 	$paquete = new Paciente_model();
-		// 	$paquete->agendar_cita($id_cita, $id_paciente);
-		// 	header('location:index.php?c=Auxiliar&a=citas_prof');
-		// }
-
-
-		// public function citas_prof(){
-			
-		// 	$usuarios = new Administrador_model();
-		// 	$data["pacientes"] = $usuarios->get_pacientes();
-		// 	$data["profesionales"] = $usuarios->get_profesional();
-		// 	$data["auxiliares"] = $usuarios->get_auxiliar();
-			
-		// 	require_once "views/auxiliar_admin/view_citas/citasprof.php";
-				
-		// }
 
 
 		public function cancelar_cita_prof($id){
@@ -170,6 +118,7 @@
 			if(isset($_POST['id_paciente'])){
 				$id_paciente = $_POST['id_paciente'];
 				$_SESSION["id_paciente"]=$id_paciente;
+				$_SESSION["cont_pac"] = "1";
 			}
 			
 			$id_c=$id;
@@ -275,10 +224,17 @@
 
 			$id_especialidad = $_POST['id_especialidad'];
 			$fecha = $_POST['fecha'];
-     	 	$paquete=  new Paciente_model();
-     		$data["cita"] = $paquete->get_citas($fecha, $id_especialidad);
-			require_once "views/auxiliar_admin/agenda_cita/citas_dis_aux.php";
-				
+			$fecha_entrada = strtotime($fecha);
+            $fecha_actual = strtotime(date("d-m-Y H:i:00", time()));
+
+			if($fecha_entrada >= $fecha_actual){
+				$paquete=  new Paciente_model();
+				$data["cita"] = $paquete->get_citas($fecha, $id_especialidad);
+				require_once "views/auxiliar_admin/agenda_cita/citas_dis_aux.php";
+			}else{
+				$_SESSION["error_cita"] = "1";
+				$this->agendar_cita_i();
+			}
 		}
 
 		public function agendar_cita_f(){
@@ -288,8 +244,13 @@
 			$id_paciente=$_SESSION['id_paciente'];
 			$paquete = new Paciente_model();
 			$paquete->agendar_cita($id_cita, $id_paciente);
-			header('location:index.php?c=Auxiliar&a=citas_pac');
 
+			if(isset($_SESSION["cont_pac"]) == "1"){
+			    header('location:index.php?c=Auxiliar&a=citas_prof');
+				unset($_SESSION["cont_pac"]);
+			}else{
+				header('location:index.php?c=Auxiliar&a=citas_pac');
+			}
 		}
 	}
 ?>

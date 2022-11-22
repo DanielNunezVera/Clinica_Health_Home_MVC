@@ -76,9 +76,9 @@
                                       echo "<td>".$dato["tel_pac"]."</td>";
                                       echo "<td>".$dato["correo_pac"]."</td>";
                                       echo"<td>
-                                        <form onsubmit='reagendar_cita(".$dato["id_cita"].")' method=POST>                                            
+                                        <form id='".$dato["id_cita"]."' name='".$dato["id_cita"]."' action='index.php?c=Auxiliar&a=cancelar_cita_prof&id=".$dato["id_cita"]."'  method=POST>                                            
                                         <input type='hidden' name='id_paciente' id='id_paciente' value='".$dato["id_paciente"]."'>
-                                        <button class='btn btn-light active' type='submit'>Reagendar</button>
+                                        <a onclick='reagendar_cita(".$dato["id_cita"].")' class='btn btn-danger active' role='button' aria-pressed='true'>Reagendar</a>
                                         </form>
                                         </td>
                                         ";

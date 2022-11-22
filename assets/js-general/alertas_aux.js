@@ -187,7 +187,7 @@ function reagendar_cita(a){
   const etiqueta = a
   Swal.fire({
     title: '¿Esta seguro de reagendar la cita?',
-    text: "Esta accion es irreversible",
+    text: "Despues de confirmar y no desea continuar con el proceso de reagendar la cita quedara cancelada",
     icon: 'warning',
     showCancelButton: true,
     confirmButtonColor: '#3085d6',
@@ -196,7 +196,26 @@ function reagendar_cita(a){
     cancelButtonText:'Volver'
   }).then((result) => {
     if (result.isConfirmed) {
-      location.href = "index.php?c=Auxiliar&a=cancelar_cita_prof&id=" + etiqueta;
+      document.getElementById(a).submit();
     }
   })
 }
+
+function form_ci_aux(e, n, a, f, c, k){
+
+  Swal.fire({
+    title: 'Resumen de cita',
+    text: "Su cita es de " + e + ", con el profesional " + n + " " + a + " el día y hora " + f + ", en el consultorio " + c + ", con un costo de " + "$" + k + ". " + "¿Desea continuar?",
+    icon: 'info',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Aceptar',
+    cancelButtonText:'Cancelar'
+  }).then((result) => {
+    if (result.isConfirmed) {
+      document.getElementById('form_cita_aux').submit();
+    }
+  })
+}
+

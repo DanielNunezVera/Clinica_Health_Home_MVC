@@ -68,7 +68,23 @@
               'warning'
               )
           }
-          break;    
+          break;
+          
+        case "2":
+          if(alert_aux_des == '1'){
+            Swal.fire(
+                '¡Alerta!',
+                '¡Usuario no resgitrado o desactivado!',
+                'warning'
+                )
+          }else{
+            Swal.fire(
+              '¡Alerta!',
+              '¡Se ha cerrado su sesion!',
+              'warning'
+              )
+          }
+          break; 
       }
  }
 

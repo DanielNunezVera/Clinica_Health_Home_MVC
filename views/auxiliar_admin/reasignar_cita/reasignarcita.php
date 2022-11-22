@@ -1,5 +1,5 @@
-<?php
-include "../../../controller/sesiones/sesiones_aux.php";
+<!-- <?php
+// include "../../../controller/sesiones/sesiones_aux.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -86,4 +86,4 @@ include "../../../controller/sesiones/sesiones_aux.php";
     <script src="../../assets/js-general/menu-responsive.js"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
-</html>
+</html> -->

@@ -100,6 +100,12 @@
 					echo "var alerta_login = '1';";
 				}
 			}
+			if(isset($_SESSION["aux_desct_login"])) {
+				if($_SESSION["aux_desct_login"]=="1"){
+					echo "var alert_aux_des = '1';";
+					echo "var alerta_login = '2';";
+				}
+			}
 		?>
 	</script>
 	<script src="assets/js-general/alertas.js"></script>

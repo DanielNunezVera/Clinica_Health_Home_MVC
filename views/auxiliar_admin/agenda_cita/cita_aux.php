@@ -48,6 +48,28 @@
             </div> 
         </div>
     </main>
+    <script>
+
+        <?php
+            
+            if (isset($_SESSION['error_cita'])) {
+
+                if ($_SESSION['error_cita'] == "1"){
+
+                    echo "var error_cita_fecha = '1';";
+                    echo "var error_cita = '1';";
+
+                    unset($_SESSION['error_cita']);
+
+                }
+
+            }
+
+        ?>
+
+    </script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="assets/js-general/menu-responsive.js"></script>
+    <script src="assets/js-general/alertas.js"></script>
 </body>
 </html>

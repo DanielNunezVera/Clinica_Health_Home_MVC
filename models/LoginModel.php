@@ -35,7 +35,7 @@
                 return $this->usuario;
             }
 			elseif ($tipo_rol=="2") {
-				$sql = "SELECT * FROM auxiliar WHERE id_tipo_doc = '$id_tipo_doc' AND num_doc_aux = '$num_doc'";
+				$sql = "SELECT * FROM auxiliar WHERE id_tipo_doc = '$id_tipo_doc' AND num_doc_aux = '$num_doc' AND estado_aux=1";
                 $resultado = $this->db->query($sql);
                 while($row = $resultado->fetch_assoc())
                 {

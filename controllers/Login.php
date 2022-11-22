@@ -63,13 +63,19 @@ class LoginController{
             }
         } elseif($tipo_rol == "2"){
             foreach ($resultado["usuario"] as $dato){}
-            if(password_verify($pass, $dato["pass_aux"])){
-                $_SESSION["auxiliar"] = $dato["id_auxiliar"];
-                header ("Location: index.php?c=Auxiliar&a=index");
+            if(isset($dato)){
+                if(password_verify($pass, $dato["pass_aux"])){
+                    $_SESSION["auxiliar"] = $dato["id_auxiliar"];
+                    header ("Location: index.php?c=Auxiliar&a=index");
 
+                }else{
+                    $_SESSION["Login_error_2"] = "2";
+                    header ("Location: index.php?c=Login&a=index");
+                }
             }else{
-                $_SESSION["Login_error_2"] = "2";
-                header ("Location: index.php?c=Login&a=index");
+                $_SESSION["aux_desct_login"] = "1";
+                $this->index();
+
             }
 
         }elseif($tipo_rol == "1"){
