@@ -26,7 +26,7 @@
                     <ul>
                         <li><a href="index.php?c=Profesional&a=index" >Inicio</a></li>
                         <li><a href="index.php?c=Profesional&a=actualizar_prof">Actualizar datos</a></li>
-                        <li><a href="index.php?c=Profesional&a=cerrarsesion">Cerrar sesion</a></li>
+                        <li><a style="cursor:pointer;" onclick="cerrarsesion()">Cerrar sesion</a></li>
                     </ul>
                 </nav>
             </div>
@@ -59,5 +59,7 @@
         </div>
     </main>
     <script src="assets/js-general/menu-responsive.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="assets/js-general/alertas_prof.js"></script>
 </body>
 </html>

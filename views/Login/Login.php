@@ -33,6 +33,7 @@
 				<!--Formulario de funcionarios-->
 				<form action="index.php?c=Login&a=buscar_funcionario" class="formulario__login" method="POST">
 					<h2>Iniciar sesion funcionarios</h2>
+					<?php //echo $_SESSION["prof_des"];?>
 					<select class="Selectordoc" name="tipo_rol" id="tipo_rol" required>
 						<option value="">Rol</option>
 							<option value=1>Profesional</option>
@@ -98,6 +99,14 @@
 				}else {
 					echo "var alert_sesion = '2';";
 					echo "var alerta_login = '1';";
+				}
+			}
+
+			if (isset($_SESSION["prof_des"])) {
+				if ($_SESSION["prof_des"] == '1') {
+					echo "var alert_prof_des = '1';";
+					echo "var alerta_login = '3';";
+					unset($_SESSION["prof_des"]);
 				}
 			}
 		?>

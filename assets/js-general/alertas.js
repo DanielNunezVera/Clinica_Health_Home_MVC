@@ -68,7 +68,17 @@
               'warning'
               )
           }
-          break;    
+          break;
+        
+        case "3":
+          if (alert_prof_des == '1') {
+            Swal.fire(
+              '¡Alerta!',
+              '¡Usuario no resgitrado o desactivado!',
+              'warning'
+              )
+          }
+          break;
       }
  }
 

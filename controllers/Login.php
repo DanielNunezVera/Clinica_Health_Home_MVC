@@ -74,13 +74,19 @@ class LoginController{
 
         }elseif($tipo_rol == "1"){
             foreach ($resultado["usuario"] as $dato){}
-            if(password_verify($pass, $dato["pass_prof"])){
-                $_SESSION["prof"] = $dato["id_profesional"];
-                header ("Location: index.php?c=Profesional&a=index");
-            }else{
-                $_SESSION["Login_error_2"] = "2";
-                header ("Location: index.php?c=Login&a=index");
+            if (isset($dato)) {
+                if(password_verify($pass, $dato["pass_prof"])){
+                    $_SESSION["prof"] = $dato["id_profesional"];
+                    header ("Location: index.php?c=Profesional&a=index");
+                }else{
+                    $_SESSION["Login_error_2"] = "2";
+                    header ("Location: index.php?c=Login&a=index");
+                }
+            }else {
+                $_SESSION["prof_des"] = "1";
+                $this->index();
             }
+            
         }
 
         // if($resultado == "4"){

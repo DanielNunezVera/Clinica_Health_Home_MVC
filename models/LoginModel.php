@@ -43,7 +43,7 @@
                 }
                 return $this->usuario;
 			}elseif ($tipo_rol=="1") {
-                $sql = "SELECT * FROM profesional WHERE id_tipo_doc = '$id_tipo_doc' AND num_doc_prof = '$num_doc'";
+                $sql = "SELECT * FROM profesional WHERE id_tipo_doc = '$id_tipo_doc' AND num_doc_prof = '$num_doc' AND estado_prof=1";
                 $resultado = $this->db->query($sql);
                 while ($row = $resultado->fetch_assoc()) {
                     $this->usuario[] = $row;
