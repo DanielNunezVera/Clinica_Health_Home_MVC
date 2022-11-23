@@ -60,5 +60,11 @@ class LoginController{
         // }
         // header('location:index.php?c=Login&a=index');
     }
+
+    public function restablecer_contraseña(){
+        $tipo_doc = new Login_Model();
+        $data["tipo_doc"] = $tipo_doc->get_tipo_doc();
+        require_once "views/restablecer_contra/restablecer_pass.php";
+    }
 }
 ?>

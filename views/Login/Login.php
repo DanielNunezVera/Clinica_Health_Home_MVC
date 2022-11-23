@@ -50,7 +50,7 @@
 					<input type="submit" name="login" class="boton" placeholder="Iniciar sesion"></input>
 					<br>
 					<br>
-					<input onclick="recuperarcontraseña()" type="button"  value="recuperar contraseña" class="boton1"></input>
+					<a href="index.php?c=Login&a=restablecer_contraseña">Restablecer contraseña</a>
 				</form>
 
 				<!--Formulario de pacientes-->
@@ -67,7 +67,7 @@
 					<input type="submit" name="login" class="boton" placeholder="Iniciar sesion"></input>
 					<br>
 					<br>
-					<input onclick="recuperarcontraseña()" type="button"  value="recuperar contraseña" class="boton1" ></input>
+					<a href="index.php?c=Login&a=restablecer_contraseña">Restablecer contraseña</a>
 					<div id="dvTabla"></div>
 				</form>
 			</div>
