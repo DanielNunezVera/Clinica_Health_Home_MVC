@@ -9,6 +9,30 @@
 					$this->db = Conectar::conexion();
 					$this->citas = array();
 					$this->agendadas = array();
+					$this->especialidad = array();
+			}
+
+			public function validar_no_repet_cita($id_especialidad,$id_pac){
+                $coun_cita = $this->db->query("SELECT id_cita FROM cita INNER JOIN profesional ON cita.id_profesional = profesional.id_profesional
+                INNER JOIN especialidad ON profesional.id_especialidad = especialidad.id_especialidad WHERE cita.id_paciente = '$id_pac'
+                AND cita.fechacita_horainicio >= CURRENT_TIMESTAMP AND especialidad.id_especialidad = '$id_especialidad'");
+                $filas = mysqli_num_rows($coun_cita);
+                return $filas;
+            }
+
+			public function get_especialidad(){
+
+				$sql = "SELECT especialidad.id_especialidad, especialidad.descrip_espec, especialidad.costo_espec, especialidad.estado_espec FROM profesional INNER JOIN especialidad ON profesional.id_especialidad = especialidad.id_especialidad WHERE estado_espec = '1'";
+				$resultado = $this->db->query($sql);
+				while($row = $resultado -> fetch_assoc())
+				{
+
+					$this -> especialidad[] = $row;
+
+				}
+
+				return $this -> especialidad;
+
 			}
 
 			public function get_citas($fecha, $id_especialidad){
@@ -26,6 +50,11 @@
 				
 				$sql = "UPDATE cita SET id_paciente = $id_paciente, estado_cita = 1 WHERE id_cita = '$id_cita'";
 				$resultado = $this->db->query($sql);
+				$resultado1 = $this->db->affected_rows;
+
+				$this->db->close();
+
+				return $resultado1;
 
 			}
 

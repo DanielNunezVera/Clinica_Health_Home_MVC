@@ -415,7 +415,7 @@ if (typeof (error_cita) !== 'undefined') {
 
         Swal.fire(
           '¡Alerta!',
-          'No hay citas disponibles para el día seleccionado',
+          'No hay citas disponibles para el día seleccionado.',
           'warning'
         )
 
@@ -424,11 +424,11 @@ if (typeof (error_cita) !== 'undefined') {
 
     case "2":
 
-      if (error_cita_fecha == '2') {
+      if (error_cita_fecha == '1') {
 
         Swal.fire(
           '¡Alerta!',
-          'No es posible agendar una cita el día seleccionado',
+          'Seleccione un día disponible y vuelva a intentar.',
           'warning'
         )
 
@@ -439,14 +439,55 @@ if (typeof (error_cita) !== 'undefined') {
 
 }
 
-function form_cita(e, n, a, f, c, k){
+if (typeof (cita_success) !== 'undefined') {
 
-  const esp = e
-  const nom = n
-  const ape = a
-  const fec = f
-  const con = c
-  const cos = k
+  switch (cita_success){
+
+    case "1":
+
+      if(cita_agendada == '1') {
+
+        Swal.fire(
+          'Correcto',
+          'Su cita fue agendada exitosamente',
+          'success'
+        )
+
+      }
+    break;
+
+    case "2":
+
+      if (cita_agendada == '1') {
+
+        Swal.fire(
+          '¡Alerta!',
+          'No ha sido posible agendar su cita. Intente de nuevo o conmuniquese con un auxiliar.',
+          'warning'
+        )
+
+      }
+    break;
+
+    case "3":
+
+      if (cita_agendada == '1') {
+
+        Swal.fire(
+          '¡Ops!',
+          'Parece que ya hay una cita agendada de esta especialidad. No es posible agendar dos citas de la misma especialidad.',
+          'info'
+        )
+
+      }
+
+    break;
+
+  }
+
+}
+
+function form_cita(i, e, n, a, f, c, k){
 
   Swal.fire({
     title: 'Resumen de cita',
@@ -459,7 +500,7 @@ function form_cita(e, n, a, f, c, k){
     cancelButtonText:'Cancelar'
   }).then((result) => {
     if (result.isConfirmed) {
-      document.getElementById('formulario_cita').submit();
+      document.getElementById(i).submit();
     }
   })
 }
