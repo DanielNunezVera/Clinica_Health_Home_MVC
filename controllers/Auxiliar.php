@@ -235,18 +235,28 @@
 
 			if($fecha_entrada >= $fecha_actual){
                 
-				if(isset($resultado2)){
-					if($resultado2 == 0){
-						 require_once "views/auxiliar_admin/agenda_cita/citas_dis_aux.php";
-					}else {
-                        
-						$_SESSION["cita_esp_age"] = "3";
-						$this->agendar_cita_i();
+				if ($data["cita"] == TRUE) {
+
+					if(isset($resultado2)){
+						if($resultado2 == 0){
+							 require_once "views/auxiliar_admin/agenda_cita/citas_dis_aux.php";
+						}else {
+							
+							$_SESSION["cita_esp_age"] = "3";
+							$this->agendar_cita_i();
+						}
+					}else{
+						 $_SESSION["error_cita"] = "1";
+						 $this->agendar_cita_i();
 					}
-				}else{
-					 $_SESSION["error_cita"] = "1";
-					 $this->agendar_cita_i();
-				}
+
+                } else {
+
+                    $_SESSION['error_cita'] = "1";
+                    $this->agendar_cita_i();
+
+                }
+				
 			}else{
 				$_SESSION["error_cita"] = "1";
 				$this->agendar_cita_i();

@@ -35,7 +35,7 @@
                                     <input type="date" name="fecha" id="fecha" required>
                                 </p> 
                                 <p class="block">
-                                <a href="gestion_usuarios.php">
+                                <a href="index.php?c=Paciente&a=buscar_cita">
                                 <button class="btn btn-primary btn-lg btn-block" name="registrar" id="reistrar" type="submit">Buscar</button>
                                 </a>
                                 </p>
@@ -49,7 +49,7 @@
     <script>
 
         <?php
-            
+
             if (isset($_SESSION['error_cita'])) {
 
                 if ($_SESSION['error_cita'] == "1"){
@@ -58,6 +58,40 @@
                     echo "var error_cita = '1';";
 
                     unset($_SESSION['error_cita']);
+
+                } elseif ($_SESSION['error_cita'] == "2") {
+
+                    echo "var error_cita_fecha = '1';";
+                    echo "var error_cita = '2';";
+
+                    unset($_SESSION['error_cita']);
+
+                }
+
+            }
+
+            if (isset($_SESSION['cita_success'])) {
+
+                if ($_SESSION['cita_success'] == "1") {
+
+                    echo "var cita_agendada = '1';";
+                    echo "var cita_success = '1';";
+
+                    unset($_SESSION['cita_success']);
+                    
+                } elseif ($_SESSION['cita_success'] == "2") {
+
+                    echo "var cita_agendada = '1';";
+                    echo "var cita_success = '2';";
+
+                    unset($_SESSION['cita_success']);
+
+                } elseif ($_SESSION['cita_success'] == "3") {
+
+                    echo "var cita_agendada = '1';";
+                    echo "var cita_success = '3';";
+        
+                    unset ($_SESSION['cita_success']);
 
                 }
 

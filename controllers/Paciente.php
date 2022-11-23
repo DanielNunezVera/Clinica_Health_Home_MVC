@@ -33,43 +33,75 @@
 
         public function agendar_cita_i(){
             
-            $paquete=  new Administrador_model();
+            $paquete=  new Paciente_model();
             $data["especialidad"] = $paquete->get_especialidad();
 			require_once "views/pacientes/agenda_cita/agendarcita.php";
 				
 		}
 
         public function agendar_cita_f(){
+                
+                $id_cita = $_POST['id_cita'];
+                $id_paciente = $_POST['id_paciente'];
+                $paquete = new Paciente_model();
+                $resultado = $paquete->agendar_cita($id_cita, $id_paciente);
 
-            $id_cita = $_POST['id_cita'];
-			$id_paciente = $_POST['id_paciente'];
-            $paquete = new Paciente_model();
-            $paquete->agendar_cita($id_cita, $id_paciente);
-            header('location:index.php?c=Paciente&a=agendar_cita_i');
-		
+                if ($resultado == TRUE){
+                    
+                    $_SESSION['cita_success'] = "1";
+                    header('location:index.php?c=Paciente&a=agendar_cita_i');
+
+                } else {
+
+                    $_SESSION['cita_success'] = "2";
+                    $this->buscar_cita();
+                    
+                }
+
         }
 
         public function buscar_cita(){
 
+            $id_paciente = $_SESSION['pac'];
 			$id_especialidad = $_POST['id_especialidad'];
 			$fecha = $_POST['fecha'];
             $fecha_entrada = strtotime($fecha);
             $fecha_actual = strtotime(date("d-m-Y H:i:00", time()));
 
+            $paquete = new Paciente_model();
+            $data["cita"] = $paquete->get_citas($fecha, $id_especialidad);
+            $resultado1 = $paquete->validar_no_repet_cita($id_especialidad, $id_paciente);
+
             if ($fecha_entrada >= $fecha_actual) {
-             
-                $paquete=  new Paciente_model();
-                $data["cita"] = $paquete->get_citas($fecha, $id_especialidad);
-                require_once "views/pacientes/agenda_cita/citasdisponibles.php";   
+            
+                if ($data["cita"] == TRUE) {
+
+                    if ($resultado1 == 0) {
+    
+                        require_once "views/pacientes/agenda_cita/citasdisponibles.php";
+    
+                    } else {
+    
+                        $_SESSION['cita_success'] = "3";
+                        $this->agendar_cita_i();
+    
+                    }
+                    
+                } else {
+
+                    $_SESSION['error_cita'] = "1";
+                    $this->agendar_cita_i();
+
+                }
 
             } else {
 
-                $_SESSION['error_cita'] = "1";
-                $this->aagendar_cita_f();
+                $_SESSION['error_cita'] = "2";
+                $this->agendar_cita_i();
 
             }
-				
-		}
+
+        }
 
         public function get_paciente(){
 

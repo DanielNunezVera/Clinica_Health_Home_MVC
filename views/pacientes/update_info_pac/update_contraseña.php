@@ -45,11 +45,11 @@
                                 <input type="hidden" name="id_paciente" id="id_paciente" value="<?php echo $_SESSION['pac'] ?>">
                                 <p>
                                     <label>Nueva contraseña</label>
-                                    <input type="password" name="pass_pac" id="pass_pac" required>
+                                    <input type="password" name="pass_pac" id="pass_pac" minlength="8" required>
                                 </p>
                                 <p>
                                     <label>Repita contraseña</label>
-                                    <input type="password" name="repeat_pass_pac" id="repeat_pass_pac" required>
+                                    <input type="password" name="repeat_pass_pac" id="repeat_pass_pac" minlength="8" required>
                                 </p>
                                 <p class="block d-grid gap-2">
                                     <button class="btn btn-primary btn-lg btn-block" name="update_pass" id="update_pass" type="submit">

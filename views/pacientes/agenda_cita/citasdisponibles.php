@@ -44,12 +44,12 @@
                                       echo "<td>".$dato["descrip_espec"]."</td>";
                                       echo "<td>".$dato["nombres_prof"]."&nbsp".$dato["apellidos_prof"]."</td>";
                                       echo "<td>".$dato["fechacita_horainicio"]."</td>";
-                                      echo "<td>".$dato["costo_espec"]."</td>";
+                                      echo "<td>$".$dato["costo_espec"]."</td>";
                                       echo"<td>
-                                            <form id='formulario_cita' name='formulario_cita' action='index.php?c=Paciente&a=agendar_cita_f' method=POST >
+                                            <form id='".$dato["id_cita"]."' name='".$dato["id_cita"]."' action='index.php?c=Paciente&a=agendar_cita_f' method=POST >
                                                 <input type='hidden' name='id_cita' id='id_cita' value='".$dato["id_cita"]."'>
                                                 <input type='hidden' name='id_paciente' id='id_paciente' value='".$_SESSION['pac']."'>
-                                                <a onclick='form_cita(\"".$dato["descrip_espec"]."\",\"".$dato["nombres_prof"]."\",\"".$dato["apellidos_prof"]."\",\"".$dato["fechacita_horainicio"]."\",\"".$dato["id_consultorios"]."\",\"".$dato["costo_espec"]."\")'  class='btn btn-light active ' role='button' aria-pressed='true'>&nbsp&nbspAgendar&nbsp&nbsp</a>
+                                                <a onclick='form_cita(".$dato["id_cita"].",\"".$dato["descrip_espec"]."\",\"".$dato["nombres_prof"]."\",\"".$dato["apellidos_prof"]."\",\"".$dato["fechacita_horainicio"]."\",\"".$dato["id_consultorios"]."\",\"".$dato["costo_espec"]."\")'  class='btn btn-light active ' role='button' aria-pressed='true'>&nbsp&nbspAgendar&nbsp&nbsp</a>
                                             </form>
                                             </td> ";
                                       echo "</tr>";
@@ -109,11 +109,6 @@
                 }
                 });
         });
-        <?php
-        
-        
-
-        ?>
     </script>
  		 	  	
     <script src="assets/js-general/codigo.js"></script>
