@@ -96,9 +96,11 @@
 				if($_SESSION["Login_error"]=="1"){
 					echo "var alert_sesion = '1';";
 					echo "var alerta_login = '1';";
+					unset($_SESSION["Login_error"]);
 				}else {
 					echo "var alert_sesion = '2';";
 					echo "var alerta_login = '1';";
+					unset($_SESSION["Login_error"]);
 				}
 			}
 
@@ -107,6 +109,15 @@
 					echo "var alert_prof_des = '1';";
 					echo "var alerta_login = '3';";
 					unset($_SESSION["prof_des"]);
+
+				}
+			}
+
+			if(isset($_SESSION["aux_desct_login"])) {
+				if($_SESSION["aux_desct_login"]=="1"){
+					echo "var alert_aux_des = '1';";
+					echo "var alerta_login = '2';";
+					unset($_SESSION["aux_desct_login"]);
 				}
 			}
 		?>

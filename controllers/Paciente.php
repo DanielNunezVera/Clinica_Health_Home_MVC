@@ -65,7 +65,7 @@
             } else {
 
                 $_SESSION['error_cita'] = "1";
-                $this->agendar_cita_i();
+                $this->aagendar_cita_f();
 
             }
 				

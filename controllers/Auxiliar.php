@@ -104,64 +104,12 @@
 		}
 
 		public function agendar_cita_i(){
-            $paquete=  new Administrador_model();
+            $paquete=  new Auxiliar_model();
             $data["especialidades"] = $paquete->get_especialidad();
 			require_once "views/auxiliar_admin/agenda_cita/cita_aux.php";
 				
 		}
 
-		// public function cancelar_cita_prof($id){
-
-		// 	session_start();					
-		// 	if(isset($_POST['id_paciente'])){
-		// 		$id_paciente = $_POST['id_paciente'];
-		// 		$_SESSION["id_paciente"]=$id_paciente;
-		// 	}
-			
-		// 	$id_c=$id;
-		// 	$can_ci= new Auxiliar_model;
-		// 	$can_ci->cancelar_cita_prof($id_c);
-
-		// 	if(isset($_POST['id_paciente'])){
-		// 		header('location:index.php?c=Auxiliar&a=agendar_cita_i');
-		// 	} else{
-		// 		header('location:index.php?c=Auxiliar&a=citas_prof');
-		// 	}
-
-			
-
-		// }
-
-		// public function buscar_cita(){
-
-		// 	$id_especialidad = $_POST['id_especialidad'];
-		// 	$fecha = $_POST['fecha'];
-    //         $paquete=  new Paciente_model();
-    //         $data["cita"] = $paquete->get_citas($fecha, $id_especialidad);
-		// 	require_once "views/auxiliar_admin/agenda_cita/citas_dis_aux.php";
-				
-		// }
-		// public function agendar_cita_f(){
-
-		// 	session_start();
-		// 	$id_cita = $_POST['id_cita'];
-		// 	$id_paciente=$_SESSION['id_paciente'];
-		// 	$paquete = new Paciente_model();
-		// 	$paquete->agendar_cita($id_cita, $id_paciente);
-		// 	header('location:index.php?c=Auxiliar&a=citas_prof');
-		// }
-
-
-		// public function citas_prof(){
-			
-		// 	$usuarios = new Administrador_model();
-		// 	$data["pacientes"] = $usuarios->get_pacientes();
-		// 	$data["profesionales"] = $usuarios->get_profesional();
-		// 	$data["auxiliares"] = $usuarios->get_auxiliar();
-			
-		// 	require_once "views/auxiliar_admin/view_citas/citasprof.php";
-				
-		// }
 
 
 		public function cancelar_cita_prof($id){
@@ -170,6 +118,7 @@
 			if(isset($_POST['id_paciente'])){
 				$id_paciente = $_POST['id_paciente'];
 				$_SESSION["id_paciente"]=$id_paciente;
+				$_SESSION["cont_pac"] = "1";
 			}
 			
 			$id_c=$id;
@@ -240,7 +189,7 @@
 
 				if($resultado > 0){
 					$_SESSION["update_pass"]  = "1";
-					header('location:index.php?c=Auxiliar&a=actualizar_pass');
+					header('location:index.php?c=Auxiliar&a=actualizar_aux');
 				 } //else{
 				// // 	$_SESSION["update_pass"]  = "0";
 				// // 	header('location:index.php?c=Auxiliar&a=actualizar_pass');
@@ -270,26 +219,71 @@
 			
 		}
 
+		
 
 		public function buscar_cita(){
 
 			$id_especialidad = $_POST['id_especialidad'];
+			$id_pac = $_SESSION["id_paciente"];
 			$fecha = $_POST['fecha'];
-     	 	$paquete=  new Paciente_model();
-     		$data["cita"] = $paquete->get_citas($fecha, $id_especialidad);
-			require_once "views/auxiliar_admin/agenda_cita/citas_dis_aux.php";
-				
+			$fecha_entrada = strtotime($fecha);
+            $fecha_actual = strtotime(date("d-m-Y H:i:00", time()));
+
+			$paquete=  new Paciente_model();
+			$data["cita"] = $paquete->get_citas($fecha, $id_especialidad);
+			$resultado2 = $paquete->validar_no_repet_cita($id_especialidad , $id_pac);
+
+			if($fecha_entrada >= $fecha_actual){
+                
+				if(isset($resultado2)){
+					if($resultado2 == 0){
+						 require_once "views/auxiliar_admin/agenda_cita/citas_dis_aux.php";
+					}else {
+                        
+						$_SESSION["cita_esp_age"] = "3";
+						$this->agendar_cita_i();
+					}
+				}else{
+					 $_SESSION["error_cita"] = "1";
+					 $this->agendar_cita_i();
+				}
+			}else{
+				$_SESSION["error_cita"] = "1";
+				$this->agendar_cita_i();
+			}
+			
 		}
 
 		public function agendar_cita_f(){
 
-			session_start();
+			// session_start();
 			$id_cita = $_POST['id_cita'];
 			$id_paciente=$_SESSION['id_paciente'];
 			$paquete = new Paciente_model();
-			$paquete->agendar_cita($id_cita, $id_paciente);
-			header('location:index.php?c=Auxiliar&a=citas_pac');
+			$resultado = $paquete->agendar_cita($id_cita, $id_paciente);
 
+			if(isset($_SESSION["cont_pac"]) == "1"){
+				if($resultado > 0){
+					$_SESSION["confi_cit_aux"] = "1";
+					unset($_SESSION["cont_pac"]);
+					$this->citas_prof();
+					
+				}else{
+					$_SESSION["confi_cit_aux"] = "0";
+					$this->buscar_cita();
+				}
+			}else{
+				if($resultado > 0){
+					$_SESSION["confi_cit_aux"] = "1";
+					unset($_SESSION["cont_pac"]);
+					header('location:index.php?c=Auxiliar&a=citas_pac');
+					
+				}else{
+					$_SESSION["confi_cit_aux"] = "0";
+					$this->buscar_cita();
+				}
+				
+			}
 		}
 	}
 ?>

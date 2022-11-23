@@ -35,17 +35,7 @@
 			return $this->citas_prof;
 		}
 
-		// public function cancelar_cita_pac(){
 
-		// }
-
-
-		/*public function modificar_auxiliar($id_auxiliar, $id_tipo_doc, $tel_aux, $correo_aux){
-			
-			$resultado = $this->db->query("UPDATE auxiliar SET id_tipo_doc='$id_tipo_doc', tel_aux='$tel_aux', correo_aux='$correo_aux' WHERE id_auxiliar= '$id_auxiliar'");			
-		}*/
-		
-		// public function confirmapago_aux1($id_cita){ 
 				
 		public function pdte_pago1($id_cita){
 			
@@ -92,7 +82,7 @@
 
 		public function get_especialidad()
 		{
-			$sql = "SELECT * FROM especialidad";
+			$sql = "SELECT especialidad.id_especialidad, especialidad.descrip_espec, especialidad.costo_espec, especialidad.estado_espec FROM profesional INNER JOIN especialidad ON profesional.id_especialidad = especialidad.id_especialidad WHERE estado_espec = '1'";
 			$resultado = $this->db->query($sql);
 			while($row = $resultado->fetch_assoc())
 			{

@@ -20,25 +20,6 @@
     </style>
 </head>
 <body>
-    <header>
-        <div class="container__menu">
-            <div class="logo">
-                <img src="../../assets/images/Logo2.png" alt="">
-            </div>
-            <div class="menu">
-                <i class="fas fa-bars" id="btn_menu"></i>
-                <div id="back_menu"></div>
-                <nav id="nav">
-                    <img src="assets/images/icon_auxadmin.png" alt="">
-                    <ul>
-                        <li><a href="index.php?c=Administrador&a=index">Inicio</a></li>
-                        <li><a href="index.php?c=Auxiliar&a=actualizar_aux">Actualizar datos</a></li>
-                        <li><a href="../../../controller/sesiones/cerrarsesion.php">Cerrar sesión</a></li>
-                    </ul>
-                </nav>
-            </div>
-        </div>
-    </header>
     <main>
         <div class="container__cover">
             <div class="cover"> 
@@ -76,13 +57,13 @@
                                       echo "<td>".$dato["tel_pac"]."</td>";
                                       echo "<td>".$dato["correo_pac"]."</td>";
                                       echo"<td>
-                                        <form onsubmit='reagendar_cita(".$dato["id_cita"].")' method=POST>                                            
+                                        <form id='".$dato["id_cita"]."' name='".$dato["id_cita"]."' action='index.php?c=Auxiliar&a=cancelar_cita_prof&id=".$dato["id_cita"]."'  method=POST>                                            
                                         <input type='hidden' name='id_paciente' id='id_paciente' value='".$dato["id_paciente"]."'>
-                                        <button class='btn btn-light active' type='submit'>Reagendar</button>
+                                        <a onclick='reagendar_cita(".$dato["id_cita"].")' class='btn btn-danger active' role='button' aria-pressed='true'>Reagendar</a>
                                         </form>
                                         </td>
                                         ";
-                                      echo "<td><a onclick='cancelar_cita_prof(".$dato["id_cita"].")' class='btn btn-danger active' role='button' aria-pressed='true'>&nbsp&nbspCancelar&nbsp&nbsp</a>"."</td>";
+                                      echo "<td><a onclick='cancelar_cita_prof_aux(".$dato["id_cita"].")' class='btn btn-danger active' role='button' aria-pressed='true'>&nbsp&nbspCancelar&nbsp&nbsp</a>"."</td>";
                                       echo "</tr>";
                                     }
                                     ?>
@@ -143,28 +124,28 @@
             if(isset($_SESSION["cancel_cita_prof"])){
                 if ($_SESSION["cancel_cita_prof"]!="0") {
                     echo "var alerta_cita_cancel = '1';";
-                    echo "var alerta_aux = '3';";
+                    echo "var alerta_m_aux = '3';";
                     unset($_SESSION["cancel_cita_prof"]);
                 }else {
                     echo "var alerta_cita_cancel = '0';";
-                    echo "var alerta_aux  = 3';";
+                    echo "var alerta_m_aux  = 3';";
                     unset($_SESSION["cancel_cita_prof"]);
                 }
             }
 
-            if(isset($_SESSION["reagendar_pac_aux"])){
-                if ($_SESSION["reagendar_pac_aux"]!="0") {
-                    echo "var alerta_citas_prof_aux = '1';";
-                    echo "var alerta_citas_pac_aux = '1';";
-                    unset($_SESSION["reagendar_pac_aux"]);
+            if(isset($_SESSION["confi_cit_aux"])){
+                if ($_SESSION["confi_cit_aux"]!="0") {
+                    echo "var alerta_cita_pac_aux = '1';";
+                    echo "var alerta_m_aux = '8';";
+                    unset($_SESSION["confi_cit_aux"]);
                 }else {
-                    echo "alerta_citas_prof_aux = '0';";
-                    echo "var alerta_citas_pac_aux  = '1';";
-                    unset($_SESSION["reagendar_pac_aux"]);
+                    echo "var alerta_cita_pac_aux = '0';";
+                    echo "var alerta_m_aux  = '8';";
+                    unset($_SESSION["confi_cit_aux"]);
                 }
             }
         ?>
     </script>
-    <script src="assets/js-general/alertas_aux.js"></script>
+    <script src="assets/js-general/alertas.js"></script>
 </body>
 </html>

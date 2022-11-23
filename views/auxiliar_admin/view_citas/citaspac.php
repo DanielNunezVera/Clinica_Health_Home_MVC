@@ -87,7 +87,7 @@
                                       echo "<td>".$dato["costo_espec"]."</td>";
                                       echo "<td>".$dato["id_consultorios"]."</td>";
                                       echo "<td><a onclick="."$url"." ".$boton."</td>";
-                                      echo "<td><a onclick='cancelar_cita_pac(".$dato["id_cita"].")'  class='btn btn-danger active' role='button' aria-pressed='true'>&nbsp&nbspEliminar&nbsp&nbsp</a></td>";
+                                      echo "<td><a onclick='cancelar_cita_pac_aux(".$dato["id_cita"].")'  class='btn btn-danger active' role='button' aria-pressed='true'>&nbsp&nbspEliminar&nbsp&nbsp</a></td>";
                                       echo "</tr>";  
                                 }
                                 ?>
@@ -163,11 +163,11 @@
             if(isset($_SESSION["cancel_cita_pac"])){
                 if ($_SESSION["cancel_cita_pac"]!="0") {
                     echo "var alerta_ccl_ct_pc = '1';";
-                    echo "var alerta_aux = '6';";
+                    echo "var alerta_m_aux = '6';";
                     unset($_SESSION["cancel_cita_pac"]);
                 }else {
                     echo "var alerta_ccl_ct_pc = '0';";
-                    echo "var alerta_aux  = '6';";
+                    echo "var alerta_m_aux  = '6';";
                     unset($_SESSION["cancel_cita_pac"]);
                 }
             }
@@ -175,27 +175,38 @@
             if(isset($_SESSION["pediente_pago"])){
                 if ($_SESSION["pediente_pago"]!="0") {
                     echo "var alerta_pdte_pa = '1';";
-                    echo "var alerta_aux = '5';";
+                    echo "var alerta_m_aux = '5';";
                     unset($_SESSION["pediente_pago"]);
                 }else {
                     echo "var alerta_pdte_pa = '0';";
-                    echo "var alerta_aux  = '5';";
+                    echo "var alerta_m_aux  = '5';";
                     unset($_SESSION["pediente_pago"]);
                 }
             }
             if(isset($_SESSION["pago_ok"])){
                 if ($_SESSION["pago_ok"]!="0") {
                     echo "var alert_pdte_pago = '1';";
-                    echo "var alerta_aux = '4';";
+                    echo "var alerta_m_aux = '4';";
                     unset($_SESSION["pago_ok"]);
                 }else {
                     echo "var alert_pdte_pago  = '0';";
-                    echo "var alerta_aux = '4';";
+                    echo "var alerta_m_aux = '4';";
                     unset($_SESSION["pago_ok"]);
+                }
+            }
+            if(isset($_SESSION["confi_cit_aux"])){
+                if ($_SESSION["confi_cit_aux"]!="0") {
+                    echo "var alerta_cita_pac_aux = '1';";
+                    echo "var alerta_m_aux = '8';";
+                    unset($_SESSION["confi_cit_aux"]);
+                }else {
+                    echo "var alerta_cita_pac_aux = '0';";
+                    echo "var alerta_m_aux  = '8';";
+                    unset($_SESSION["confi_cit_aux"]);
                 }
             }
         ?>
     </script>
-    <script src="assets/js-general/alertas_aux.js"></script>
+   <script src="assets/js-general/alertas.js"></script>
 </body>
 </html>

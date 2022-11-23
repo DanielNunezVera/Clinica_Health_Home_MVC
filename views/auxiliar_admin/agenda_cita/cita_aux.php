@@ -48,6 +48,41 @@
             </div> 
         </div>
     </main>
+    <script>
+
+        <?php
+            
+            if (isset($_SESSION['error_cita'])) {
+
+                if ($_SESSION['error_cita'] == "1"){
+
+                    echo "var error_cita_fecha = '1';";
+                    echo "var error_cita = '1';";
+
+                    unset($_SESSION['error_cita']);
+
+                }
+
+            }
+
+            if (isset($_SESSION['cita_esp_age'])) {
+
+                if ($_SESSION['cita_esp_age'] == "3"){
+
+                    echo "var error_esp_cita = '3';";
+                    echo "var error_cita = '3';";
+
+                    unset($_SESSION['cita_esp_age']);
+
+                }
+
+            }
+
+        ?>
+
+    </script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="assets/js-general/menu-responsive.js"></script>
+    <script src="assets/js-general/alertas.js"></script>
 </body>
 </html>
