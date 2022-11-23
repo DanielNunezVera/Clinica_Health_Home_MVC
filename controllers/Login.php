@@ -95,15 +95,6 @@ class LoginController{
             
         }
 
-        // if($resultado == "4"){
-        //     $_SESSION["rol_activo"] = $resultado;
-        //     require_once "views/administrador/index_admin.php";
-        // }
-        // elseif ($resultado == "2") {
-        //     $_SESSION["rol_activo"] = $resultado;
-        //     require_once "views/auxiliar_admin/index_aux.php";
-        // }
-        // header('location:index.php?c=Login&a=index');
     }
 
     public function buscar_paciente(){
@@ -149,5 +140,10 @@ class LoginController{
 
     }
 
+    public function restablecer_contraseña(){
+        $tipo_doc = new Login_Model();
+        $data["tipo_doc"] = $tipo_doc->get_tipo_doc();
+        require_once "views/restablecer_contra/restablecer_pass.php";
+    }
 }
 ?>
