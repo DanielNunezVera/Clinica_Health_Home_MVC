@@ -89,17 +89,17 @@
             if(isset($_SESSION["update_info"])){
                 if ($_SESSION["update_info"]!="0") {
                     echo "var alerta_update_info  = '1';";
-                    echo "var alerta_aux = '2';";
+                    echo "var alerta_m_aux = '2';";
                     unset($_SESSION["update_info"]);
                 }else {
                     echo "var alerta_update_info = '0';";
-                    echo "var alerta_aux  = '2';";
+                    echo "var alerta_m_aux  = '2';";
                     unset($_SESSION["update_info"]);
                 }
             }
         ?>
     </script>
-    <script src="assets/js-general/alertas_aux.js"></script>
+    <script src="assets/js-general/alertas.js"></script>
     
 </body>
 </html>

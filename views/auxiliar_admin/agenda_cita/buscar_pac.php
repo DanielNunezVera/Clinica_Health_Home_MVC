@@ -63,16 +63,16 @@
             if(isset($_SESSION["descti_pac_age"])){
                 if ($_SESSION["descti_pac_age"]!="0") {
                     echo "var alerta_pac_desacti = '1';";
-                    echo "var alerta_aux = '7';";
+                    echo "var alerta_m_aux = '7';";
                     unset($_SESSION["descti_pac_age"]);
                 }else {
                     echo "var alerta_pac_desacti = '0';";
-                    echo "var alerta_aux  = '7';";
+                    echo "var alerta_m_aux  = '7';";
                     unset($_SESSION["descti_pac_age"]);
                 }
             }
         ?>
     </script>
-    <script src="assets/js-general/alertas_aux.js"></script>
+    <script src="assets/js-general/alertas.js"></script>
 </body>
 </html>

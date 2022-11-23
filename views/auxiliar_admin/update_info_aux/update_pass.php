@@ -45,11 +45,11 @@
                             <form action="index.php?c=Auxiliar&a=modificar_pass" method="POST">
                                 <p>
                                     <label>Nueva contraseña</label>
-                                    <input type="password" name="newpass">
+                                    <input type="password" name="newpass" minlength="8">
                                 </p>
                                 <p>
                                     <label>Repita contraseña</label>
-                                    <input type="password" name="repass">
+                                    <input type="password" name="repass" minlength="8">
                                 </p>
                                 <p class="block">
                                 <button class="btn btn-primary btn-lg btn-block" name="registrar" id="registrar" type="submit">Actualizar</button>
@@ -68,16 +68,16 @@
             if(isset($_SESSION["update_pass"])){
                 if ($_SESSION["update_pass"]!="0") {
                     echo "var alerta_pass_update = '1';";
-                    echo "var alerta_aux = '1';";
+                    echo "var alerta_m_aux = '1';";
                     unset($_SESSION["update_pass"]);
                 }else {
                     echo "var alerta_pass_update = '0';";
-                    echo "var alerta_aux  = '1';";
+                    echo "var alerta_m_aux  = '1';";
                     unset($_SESSION["update_pass"]);
                 }
             }
         ?>
     </script>
-    <script src="assets/js-general/alertas_aux.js"></script>
+    <script src="assets/js-general/alertas.js"></script>
 </body>
 </html>

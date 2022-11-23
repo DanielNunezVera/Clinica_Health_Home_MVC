@@ -65,6 +65,19 @@
 
             }
 
+            if (isset($_SESSION['cita_esp_age'])) {
+
+                if ($_SESSION['cita_esp_age'] == "3"){
+
+                    echo "var error_esp_cita = '3';";
+                    echo "var error_cita = '3';";
+
+                    unset($_SESSION['cita_esp_age']);
+
+                }
+
+            }
+
         ?>
 
     </script>
