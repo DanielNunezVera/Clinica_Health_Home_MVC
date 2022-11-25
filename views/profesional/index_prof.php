@@ -31,7 +31,5 @@
         </div>
     </main>
     <script src="views/Links/js.php"></script>
-    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="assets/js-general/alertas_prof.js"></script>
 </body>
 </html>
