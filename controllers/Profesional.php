@@ -76,10 +76,10 @@
             $resultado = $profesional->modificar_profesional($tel_prof, $correo_prof, $id_prof);
 			if ($resultado > 0) {
 				$_SESSION["update_prof"] = "1";
-				header('location:index.php?c=Profesional&a=index');
+				header('location:index.php?c=Profesional&a=actualizar_prof');
 			}else {
 				$_SESSION["update_prof"] = "0";
-				header('location:index.php?c=Profesional&a=index');
+				header('location:index.php?c=Profesional&a=actualizar_prof');
 			}    
         }
 
@@ -104,12 +104,12 @@
 
 				if ($resultado > 0) {
 					$_SESSION["update_pass"] = "1";
-					header('location:index.php?c=Profesional&a=index');
+					header('location:index.php?c=Profesional&a=actualizar_prof');
 				}            	
-			}else {
-				$_SESSION["update_pass"] = "0";
-				header('location:index.php?c=Profesional&a=index');
-			}
+				}else {
+					$_SESSION["update_pass"] = "0";
+					header('location:index.php?c=Profesional&a=actualizar_prof');
+				}
         	
 			
         }

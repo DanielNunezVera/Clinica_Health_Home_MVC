@@ -42,11 +42,11 @@
                         <form action="index.php?c=Profesional&a=modificar_pass" method="POST">
                                 <p>
                                     <label>Nueva contraseña</label>
-                                    <input type="password" name="newpass">
+                                    <input type="password" name="newpass" minlength="8">
                                 </p>
                                 <p>
                                     <label>Repita contraseña</label>
-                                    <input type="password" name="repass">
+                                    <input type="password" name="repass" minlength="8">
                                 </p>
                                 <p class="block">
                                     <button class="btn btn-primary btn-lg btn-block" name="registrar" id="registrar" type="submit">Actualizar</button>
