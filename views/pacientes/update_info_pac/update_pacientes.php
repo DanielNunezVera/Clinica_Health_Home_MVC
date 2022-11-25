@@ -28,7 +28,8 @@
                     <ul>
                         <li><a href="index.php?c=Paciente&a=index">Inicio</a></li>
                         <li><a href="index.php?c=Paciente&a=get_paciente">Actualizar datos</a></li>
-                        <li><a href="index.php?c=Paciente&a=cerrar_sesion">Cerrar sesion</a></li>
+                        <li><a style="cursor: pointer;" onclick="cerrarsesionpac()">Cerrar sesion</a></li>
+                        <li><a href="index.php?c=Paciente&a=ayuda" >ayuda</a></li>
                     </ul>
                 </nav>
             </div>
@@ -45,23 +46,23 @@
                                 <input type="hidden" name="id_paciente" id="id_paciente" value="<?php echo $_SESSION['pac'];?>">
                                 <p>
                                     <label>N° documento</label>
-                                    <input type="number" name="num_doc_pac" value="<?php echo $_SESSION['num_doc_pac']?>" readonly>
+                                    <input type="number" name="num_doc_pac" value="<?php echo $dato["num_doc_pac"];?>" readonly>
                                 </p>
                                 <p>
                                     <label>Nombre completo</label>
-                                    <input type="text" name="nombrecompleto" id="nombrecompleto" value="<?php echo $_SESSION['nombres_pac']." ". $_SESSION['apellidos_pac'];?>" readonly>
+                                    <input type="text" name="nombrecompleto" id="nombrecompleto" value="<?php echo $dato["nombres_pac"]." ". $dato["apellidos_pac"];?>" readonly>
                                 </p>
                                 <p>
                                     <label>Email</label>
-                                    <input type="email" name="correo_pac" id="correo_pac" value="<?php echo $_SESSION['correo_pac'] ?>" required>
+                                    <input type="email" name="correo_pac" id="correo_pac" value="<?php echo $dato["correo_pac"];?>" required>
                                 </p>
                                 <p>
                                     <label>Teléfono</label>
-                                    <input type="tel" name="tel_pac" id="tel_pac" value="<?php echo $_SESSION['tel_pac'] ?>" required>
+                                    <input type="tel" name="tel_pac" id="tel_pac" value="<?php echo $dato["tel_pac"];?>" required>
                                 </p>
                                 <p>
                                     <label>Genero</label>
-                                    <input type="text" name="sexo_pac" value="<?php echo $_SESSION['sexo_pac'] ?>" readonly>
+                                    <input type="text" name="sexo_pac" value="<?php echo $dato["sexo_pac"];?>" readonly>
                                 </p>
                                 <p>
                                     <label><br></label>
@@ -80,25 +81,51 @@
         </div>
     </main>
     <script src="assets/js-general/menu-responsive.js"></script>
-    <script src="assets/js-general/alertas_actualizar_datos.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- <script src="assets/js-general/alertas_actualizar_datos.js"></script> -->
     <script>
 
         <?php
         
-        if (isset($alert_datos_actualizados)){
+        if (isset($_SESSION['datos'])){
 
-            echo "var alertas = '1';";
+            if ($_SESSION['datos'] == "1") {
+
+                echo "var update_datos = '1';";
+                echo "var datos = '1';";
+                
+                unset($_SESSION['datos']);
+                
+            } else {
+                
+                echo "var update_datos = '0';";
+                echo "var datos = '1';";
+
+                unset($_SESSION['datos']);
+
+            }
 
         }
 
-        if (isset($alert_error)){
+        if (isset($_SESSION['password'])) {
 
+            if ($_SESSION['password'] == "1") {
 
+                // var_dump($_SESSION['password']);
+                // echo $_SESSION['password'];
+
+                echo "var update_datos = '1';";
+                echo "var datos = '2';";
+
+                unset($_SESSION['password']);
+
+            }
 
         }
-        
+
         ?>
 
     </script>
+    <script src="assets/js-general/alertas.js"></script>
 </body>
 </html>

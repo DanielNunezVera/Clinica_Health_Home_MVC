@@ -295,5 +295,11 @@
 				
 			}
 		}
+
+		public function ayuda() {
+
+            require_once "views/administrador/manual_usuario/manual_de_usuario.html";
+
+        }
 	}
 ?>

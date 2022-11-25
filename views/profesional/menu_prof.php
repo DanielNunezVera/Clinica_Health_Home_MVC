@@ -25,9 +25,9 @@
                     <img src="assets/images/ajustes.png" alt="">
                     <ul>
                         <li><a href="index.php?c=Profesional&a=index" >Inicio</a></li>
-                        <li><a href="index.php?c=Profesional&a=actualizar_prof">Actualizar</a></li>
+                        <li><a href="index.php?c=Profesional&a=actualizar_prof">Actualizar Datos</a></li>
                         <li><a style="cursor:pointer;" onclick="cerrarsesion()">Cerrar sesion</a></li>
-                        <li><a href="index.php?c=Administrador&a=ayuda" >ayuda</a></li>
+                        <li><a href="index.php?c=Profesional&a=ayuda" >ayuda</a></li>
                     </ul>
                 </nav>
             </div>

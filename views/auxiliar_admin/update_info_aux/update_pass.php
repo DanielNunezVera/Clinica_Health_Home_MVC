@@ -26,10 +26,10 @@
                 <nav id="nav">
                     <img src="assets/images/ajustes.png" alt="">
                     <ul>
-                        <li><a href="index.php?c=Administrador&a=index">Inicio</a></li>
+                        <li><a href="index.php?c=Auxiliar&a=index">Inicio</a></li>
                         <li><a href="index.php?c=Auxiliar&a=actualizar_aux">Actualizar datos</a></li>
-                        <li><a href="index.php?c=Auxiliar&a=cerrarsesion">Cerrar sesion</a></li>
-                        <li><a href="index.php?c=Administrador&a=ayuda" >ayuda</a></li>
+                        <li><a style="cursor: pointer;" onclick="cerrarsesionaux()">Cerrar sesion</a></li>
+                        <li><a href="index.php?c=Auxiliar&a=ayuda" >ayuda</a></li>
                     </ul>
                 </nav>
             </div>

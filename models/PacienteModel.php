@@ -10,6 +10,7 @@
 					$this->citas = array();
 					$this->agendadas = array();
 					$this->especialidad = array();
+					$this->paciente = array();
 			}
 
 			public function validar_no_repet_cita($id_especialidad,$id_pac){
@@ -19,6 +20,20 @@
                 $filas = mysqli_num_rows($coun_cita);
                 return $filas;
             }
+
+			public function paciente($id_paciente) {
+
+				$sql = "SELECT num_doc_pac, nombres_pac, apellidos_pac, tel_pac, correo_pac, sexo_pac FROM paciente WHERE id_paciente = $id_paciente";
+				$resultado = $this->db->query($sql);
+				while($row = $resultado -> fetch_assoc()){
+
+					$this -> paciente[] = $row;
+
+				}
+
+				return $this -> paciente;
+
+			}
 
 			public function get_especialidad(){
 
@@ -59,12 +74,22 @@
 			public function update_info_pac($id_paciente, $correo_pac, $tel_pac){
 
 				$resultado = $this->db->query("UPDATE paciente SET correo_pac = '$correo_pac', tel_pac = '$tel_pac' WHERE id_paciente = '$id_paciente'");
+				$resultado1 = $this->db->affected_rows;
+
+				$this->db->close();
+
+				return $resultado1;
 
 			}
 
 			public function update_pass_pac($id_paciente, $pass_pac){
 
 				$resultado = $this->db->query("UPDATE paciente SET pass_pac = '$pass_pac' WHERE id_paciente = '$id_paciente'");
+				$resultado1 = $this->db->affected_rows;
+
+				$this->db->close();
+
+				return $resultado1;
 
 			}
 
@@ -93,6 +118,11 @@
 
 				$sql = "UPDATE cita SET cita.id_paciente = null, cita.estado_cita = 0 WHERE cita.id_cita = '$id'";
 				$resultado = $this->db->query($sql);
+				$resultado1 = $this->db->affected_rows;
+				
+				$this->db->close();
+
+				return $resultado1;
 
 			}
 

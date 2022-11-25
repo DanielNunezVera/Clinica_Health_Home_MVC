@@ -32,33 +32,6 @@
     </main>
     <script src="views/Links/js.php"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script>
-        <?php
-            if(isset($_SESSION["update_pass"])){
-                if ($_SESSION["update_pass"]!="0") {
-                    echo "var update_pass = '1';";
-                    echo "var alertas = '2';";
-                    unset($_SESSION["update_pass"]);
-                }else {
-                    echo "var update_pass = '0';";
-                    echo "var alertas  = '2';";
-                    unset($_SESSION["update_pass"]);
-                }
-            }
-
-            if (isset($_SESSION["update_prof"])) {
-                if ($_SESSION["update_prof"] != "0") {
-                    echo "var update_prof = '1';";
-                    echo "var alertas = '3';";
-                    unset($_SESSION["update_prof"]);
-                }else {
-                    echo "var update_prof = '0';";
-                    echo "var alertas = '3';";
-                    unset($_SESSION["update_prof"]);
-                }
-            }
-        ?>
-    </script>
     <script src="assets/js-general/alertas_prof.js"></script>
 </body>
 </html>

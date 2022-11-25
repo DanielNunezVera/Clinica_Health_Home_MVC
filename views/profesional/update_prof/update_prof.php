@@ -26,6 +26,7 @@
                     <ul>
                         <li><a href="index.php?c=Profesional&a=index" >Inicio</a></li>
                         <li><a style="cursor:pointer;" onclick="cerrarsesion()">Cerrar sesion</a></li>
+                        <li><a href="index.php?c=Profesional&a=ayuda" >ayuda</a></li>
                     </ul>
                 </nav>
             </div>
@@ -71,9 +72,9 @@
                                 
                                 <p>
                                     <label><br></label>
-                                    <a href="index.php?c=Profesional&a=actualizar_pass" class="btn btn-outline-primary">Actualizar contraseña</a>
+                                    <a href="index.php?c=Profesional&a=actualizar_pass" class="btn btn-outline-primary btn-lg btn-block">Actualizar contraseña</a>
                                 </p>
-                                <p class="block">
+                                <p class="block d-grid gap-2">
                                     <button class="btn btn-primary btn-lg btn-block" name="registrar" id="registrar" type="submit">Actualizar</button>
                                 </p>
                             </form>
@@ -85,6 +86,31 @@
     </main>
     <script src="assets/js-general/menu-responsive.js"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        <?php
+
+        if (isset($_SESSION["update_prof"])) {
+            if ($_SESSION["update_prof"] != "0") {
+                echo "var update_prof = '1';";
+                echo "var alertas = '3';";
+                unset($_SESSION["update_prof"]);
+            }else {
+                echo "var update_prof = '0';";
+                echo "var alertas = '3';";
+                unset($_SESSION["update_prof"]);
+            }
+        }
+
+        if(isset($_SESSION["update_pass"])){
+            if ($_SESSION["update_pass"]!="0") {
+                echo "var update_pass = '1';";
+                echo "var alertas = '2';";
+                unset($_SESSION["update_pass"]);
+            }
+        }
+        
+        ?>
+    </script>
     <script src="assets/js-general/alertas_prof.js"></script>
 </body>
 </html>

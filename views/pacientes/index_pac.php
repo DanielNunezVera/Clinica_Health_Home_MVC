@@ -19,18 +19,18 @@
                 <div class="caja1">
                     <div class="row">
                         <?php 
-                        
-                        if ($_SESSION['sexo_pac'] == "Masculino"){
 
-                            echo "<h1>Bienvenido"." - ".$_SESSION['nombres_pac']."</h1>";
+                        if ($dato["sexo_pac"] == "Masculino"){
 
-                        } elseif ($_SESSION['sexo_pac'] == "Femenino"){
+                            echo "<h1>Bienvenido"." - ".$dato["nombres_pac"]."</h1>";
 
-                            echo "<h1>Bienvenida"." - ".$_SESSION['nombres_pac']."</h1>";
+                        } elseif ($dato["sexo_pac"] == "Femenino"){
+
+                            echo "<h1>Bienvenida"." - ".$dato["apellidos_pac"]."</h1>";
 
                         } else {
 
-                            echo "<h1>Bienvenido(a)"." - ".$_SESSION['nombres_pac']."</h1>";
+                            echo "<h1>Bienvenido(a)"." - ".$dato["nombres_pac"]."</h1>";
 
                         }
                         
