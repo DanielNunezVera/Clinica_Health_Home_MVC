@@ -49,7 +49,7 @@ class RecuperarpController {
                     $mail->Host       = 'smtp-mail.outlook.com';                    //Set the SMTP server to send through
                     $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
                     $mail->Username   = 't.h.n.e.d.i@outlook.com';                     //SMTP username
-                    $mail->Password   = 'septiembre20';                               //SMTP password
+                    $mail->Password   = 'Septiembre202001';                               //SMTP password
                     $mail->SMTPSecure = SSL;            //Enable implicit TLS encryption
                     $mail->Port       = 587;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
                 
@@ -70,17 +70,19 @@ class RecuperarpController {
                     $mail->Subject = 'Codigo de acceso a la plataforma';
                     $mail->Body    = 'La nueva contraseña para poder inresar a los servicios es:<b>'.$key.'</b>';
                     // $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
-                
+                    $_SESSION["rec_contra"]="1";
                     $mail->send();
-                    echo 'Message has been sent';
+                    header ("Location: index.php?c=Login&a=index");
                 } catch (Exception $e) {
-                    echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+                    $_SESSION["rec_contra"]="Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+                    header ("Location: index.php?c=Login&a=index");
                 }
             }else {
-                echo ("No se pudo recuperar la contraseña");
+                $_SESSION["rec_contra"]="0";
+                header ("Location: index.php?c=Login&a=index");
+
             }
     }
-
 
         }
 

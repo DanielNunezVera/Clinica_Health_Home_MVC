@@ -59,7 +59,7 @@
 
         public function validar_paciente($id_tipo_doc, $num_doc){
 
-            $sql = "SELECT * FROM paciente WHERE id_tipo_doc = '$id_tipo_doc' AND num_doc_pac = '$num_doc'";
+            $sql = "SELECT * FROM paciente WHERE id_tipo_doc = '$id_tipo_doc' AND num_doc_pac = '$num_doc' AND estado_pac=1";
             $resultado = $this->db->query($sql);
             while($row = $resultado->fetch_assoc()){
 

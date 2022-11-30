@@ -1,5 +1,4 @@
 <?php 
-
 require 'Sesiones.php';
 $inc = new SesionesController();
     if(!empty($_SESSION["Admin"])){

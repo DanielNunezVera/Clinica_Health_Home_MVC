@@ -120,6 +120,23 @@
 					unset($_SESSION["aux_desct_login"]);
 				}
 			}
+			
+			if(isset($_SESSION["rec_contra"])) {
+				if($_SESSION["rec_contra"]=="1"){
+					echo "var recuperar_pass = '1';";
+					echo "var alerta_login = '4';";
+					unset($_SESSION["rec_contra"]);
+				}elseif ($_SESSION["rec_contra"]=='0') {
+					echo "var recuperar_pass = '0';";
+					echo "var alerta_login = '4';";
+					unset($_SESSION["rec_contra"]);
+				}else{
+					echo "var recuperar_pass = '2';";
+					echo "var alerta_login = '4';";
+					echo "var message =".$_SESSION['rec_contra'].";";
+					unset($_SESSION["rec_contra"]);
+				}
+			}
 		?>
 	</script>
 	<script src="assets/js-general/alertas.js"></script>
