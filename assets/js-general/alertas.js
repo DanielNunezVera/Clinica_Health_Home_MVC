@@ -95,6 +95,28 @@
               )
           }
           break;
+          case "4":
+            if (recuperar_pass == '1') {
+              Swal.fire(
+                'Correcto',
+                'Se ha enviado la contraseña a su correo electronico',
+                'success'
+                )
+            }
+            else if(recuperar_pass == '0'){
+              Swal.fire(
+                '¡Alerta!',
+                'El usuario no existe o esta descativado',
+                'warning'
+                )
+            }else if(recuperar_pass == '2'){
+              Swal.fire(
+                '¡Información!',
+                 message,
+                'info'
+                )
+            }
+            break;
       }
  }
 

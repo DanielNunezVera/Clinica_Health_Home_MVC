@@ -6,11 +6,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Formulario Restablecimiento Password</title>
   	<link rel="stylesheet" href="assets/css/all.min.css">
-    <link rel="stylesheet" href="assets/css/estilos_login.css">
+    <!-- <link rel="stylesheet" href="assets/css/estilos_login.css"> -->
   	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css">
   	<link rel="stylesheet" href="assets/css/adminlte.min.css">
   	<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
-
 </head>
 
 <body class="hold-transition login-page">
@@ -21,8 +20,6 @@
   <div class="card">
     <div class="card-body login-card-body">
       <p class="login-box-msg">Has olvidado la contraseña? ingresa los datos y podras restaurar la contraseña.</p>
-    <span id="aviso" class="text-success text-bold">Alerta</span>
-    <span id="aviso2" class="text-danger text-bold">Alerta2</span>
       <form id="form-recuperar" action="index.php?c=Recuperarp&a=restablecer_pass" method="post">
         <div class="input-group mb-3">
           <select class="form-control" name="tipo_usuario" id="tipo_usuario" required>
