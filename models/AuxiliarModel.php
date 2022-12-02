@@ -15,7 +15,7 @@
 		
 		public function get_citas_pac()
 		{
-			$sql = "SELECT * FROM cita_paciente";
+			$sql = "CALL cita_paciente";
 			$resultado = $this->db->query($sql);
 			while($row = $resultado->fetch_assoc())
 			{
@@ -26,7 +26,7 @@
 
 		public function get_citas_prof()
 		{
-			$sql = "SELECT * FROM cita_profesional";
+			$sql = "CALL cita_profesional";
 			$resultado = $this->db->query($sql);
 			while($row = $resultado->fetch_assoc())
 			{

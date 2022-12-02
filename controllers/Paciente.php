@@ -20,8 +20,21 @@
 
         public function acciones(){
 
-            require_once "views/pacientes/index_pac.php";
+            $id_paciente = $_SESSION['pac'];
+
+            if (isset($_SESSION['pac'])){
+
+                $paciente = new Paciente_model();
+                $data["paciente"] = $paciente -> paciente($id_paciente);
+
+                foreach ($data["paciente"] as $dato){
+
+                    require_once "views/pacientes/index_pac.php";
+
+                }
             
+            }
+
         }
 
         public function cerrar_sesion(){
@@ -105,7 +118,16 @@
 
         public function get_paciente(){
 
-            require_once "views/pacientes/update_info_pac/update_pacientes.php";
+            $id_paciente = $_SESSION['pac'];
+
+            $paquete = new Paciente_model();
+            $data["paciente"] = $paquete -> paciente($id_paciente);
+
+            foreach($data["paciente"] as $dato){   
+
+                require_once "views/pacientes/update_info_pac/update_pacientes.php";
+
+            }
             
         }
 
@@ -116,20 +138,17 @@
             $tel_pac = $_POST['tel_pac'];
 
             $paquete = new Paciente_model;
-            $paquete -> update_info_pac($id_paciente, $correo_pac, $tel_pac);
+            $resultado = $paquete -> update_info_pac($id_paciente, $correo_pac, $tel_pac);
 
-            $_SESSION['correo_pac'] = $correo_pac;
-            $_SESSION['tel_pac'] = $tel_pac;
-
-            header ('location:index.php?c=Paciente&a=get_paciente');
-
-            if($_SESSION['correo_pac'] == $correo_pac AND $_SESSION['tel_pac'] == $tel_pac){
-
-                $alert_datos_actualizados = "1";
+            if($resultado == TRUE){
+                
+                $_SESSION['datos'] = "1";
+                header ('location:index.php?c=Paciente&a=get_paciente');
 
             } else {
 
-                $alert_error = "1";
+                $_SESSION['datos'] = "0";
+                $this->get_paciente();
 
             }
 
@@ -149,12 +168,23 @@
                 $pass_pac = password_hash($_POST['pass_pac'], PASSWORD_BCRYPT);
 
                 $paquete = new Paciente_model;
-                $paquete -> update_pass_pac($id_paciente, $pass_pac);
-                                    
-                header ('Location:index.php?c=Paciente&a=get_paciente');
+                $prueba = $paquete -> update_pass_pac($id_paciente, $pass_pac);
+
+                if ($prueba == TRUE) {
+
+                    $_SESSION['password'] = "1";
+                    header ('Location:index.php?c=Paciente&a=get_paciente');
+
+                } else {
+
+                    $_SESSION['password'] = "2";
+                    $this->password();
+
+                }
 
             } else{
 
+                $_SESSION['password'] = "0";
                 header('Location:index.php?c=Paciente&a=password');
 
             }
@@ -175,9 +205,25 @@
         public function cancel_agendada($id){
 
             $paquete = new Paciente_model;
-            $paquete -> cancelar_agendada($id);
+            $resultado = $paquete -> cancelar_agendada($id);
 
-            header("Location:index.php?c=Paciente&a=citas_agendadas");
+            if ($resultado == TRUE) {
+
+                $_SESSION['cancel_cita'] = "1";
+                header("Location:index.php?c=Paciente&a=citas_agendadas");
+
+            } else {
+
+                $_SESSION['cancel_cita'] = "0";
+                header("Location:index.php?c=Paciente&a=citas_agendadas");
+
+            }
+
+        }
+
+        public function ayuda() {
+
+            require_once "views/administrador/manual_usuario/manual_de_usuario.html";
 
         }
 

@@ -1,13 +1,10 @@
-<?php
-// include "../../../controller/sesiones/sesiones_aux.php";
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Citas</title>
+    <title>Gestión Consultorios</title>
     <script src="https://kit.fontawesome.com/41bcea2ae3.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="assets/css/estilos.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
@@ -23,75 +20,47 @@
     </style>
 </head>
 <body>
-    <header>
-        <div class="container__menu">
-            <div class="logo">
-                <img src="../../assets/images/Logo2.png" alt="">
-            </div>
-            <div class="menu">
-                <i class="fas fa-bars" id="btn_menu"></i>
-                <div id="back_menu"></div>
-                <nav id="nav">
-                    <img src="assets/images/icon_auxadmin.png" alt="">
-                    <ul>
-                        <li><a href="index.php?c=Administrador&a=index">Inicio</a></li>
-                        <li><a href="index.php?c=Auxiliar&a=actualizar_aux">Actualizar datos</a></li>
-                        <li><a href="../../../controller/sesiones/cerrarsesion.php">Cerrar sesión</a></li>
-                    </ul>
-                </nav>
-            </div>
-        </div>
-    </header>
     <main>
         <div class="container__cover">
             <div class="cover"> 
                 <div class="caja3">
-                    <h1>Citas profesional</h1>
+                    <h1>Consultorios</h1>
                     <div class="row">
                         <div class="col-lg-12">
                             <table id="example" class="table table-bordered  display nowrap" cellspacing="0" width="100%">
                                 <thead>
-                                    <tr>                                       
-                                        <th>N° documento Prof</th>
-                                        <th>Profesional</th>
-                                        <th>Fecha de la cita</th>
-                                        <th>Especialidad</th>
-                                        <th>Tipo doc</th>
-                                        <th>N° documento Pac</th>
-                                        <th>Paciente</th>
-                                        <th>Telefono</th>
-                                        <th>Correo</th>
-                                        <th>Reagendar cita</th>
-                                        <th>Cancelar cita</th>
+                                    <tr>
+                                        <th>Id_consultorio</th>
+                                        <th>Estado</th>
+                                        <!--<th>Modificar</th>-->
+                                        <th>Eliminar</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php foreach ($data["citas_profe"] as $dato) {
-                                      
+                                    <?php foreach ($data["consultorios"] as $dato) {
+                                      if($dato["estado_consult"]==1){
+                                        // $estado="Activo";
+                                        $url="index.php?c=Administrador&a=cambio_estado_1_consult&id=";
+                                        $boton="class='btn btn-secondary active' role='button' aria-pressed='true'>Desactivar</a>";
+                                      }else{
+                                        // $estado="Inactivo";
+                                        $url="index.php?c=Administrador&a=cambio_estado_2_consult&id=";
+                                        $boton="class='btn btn-success active' role='button' aria-pressed='true'>&nbsp&nbsp&nbspActivar&nbsp&nbsp&nbsp</a>";
+                                      }
                                       echo "<tr>";
-                                      echo "<td>".$dato["num_doc_prof"]."</td>";
-                                      echo "<td>".$dato["nombres_prof"].' '.$dato["apellidos_prof"]."</td>";
-                                      echo "<td>".$dato["fechacita_horainicio"]."</td>";
-                                      echo "<td>".$dato["descrip_espec"]."</td>";
-                                      echo "<td>".$dato["id_tipo_doc"]."</td>";
-                                      echo "<td>".$dato["num_doc_pac"]."</td>";
-                                      echo "<td>".$dato["nombres_pac"].' '.$dato["apellidos_pac"]."</td>";
-                                      echo "<td>".$dato["tel_pac"]."</td>";
-                                      echo "<td>".$dato["correo_pac"]."</td>";
-                                      echo"<td>
-                                            <form action='index.php?c=Auxiliar&a=cancelar_cita_prof&id=".$dato["id_cita"]."' method=POST>                                            
-                                            <input type='hidden' name='id_paciente' id='id_paciente' value='".$dato["id_paciente"]."'>
-                                            <button class='btn btn-light active' type='submit'>Reagendar</button>
-                                            </form>
-                                            </td>
-                                      ";
-                                      echo "<td><a onclick='cancelar_cita_prof(".$dato["id_cita"].")' class='btn btn-danger active' role='button' aria-pressed='true'>&nbsp&nbspCancelar&nbsp&nbsp</a>"."</td>";
+                                      echo "<td>".$dato["id_consultorios"]."</td>";
+                                      echo "<td><a href='"."$url".$dato["id_consultorios"]."' ".$boton."</td>";
+                                      /*echo "<td><a href='index.php?c=Administrador&a=actualizar_consult&id=".$dato["id_consultorios"]."' class='btn btn-light active' role='button' aria-pressed='true'>Actualizar</a></td>";*/
+                                      echo "<td><a onclick='eliminar_consult(\"".$dato["id_consultorios"]."\")'  class='btn btn-danger active ' role='button' aria-pressed='true'>&nbsp&nbspEliminar&nbsp&nbsp</a>
+                                      </td>";
                                       echo "</tr>";
                                     }
                                     ?>
                                 </tbody>
+                            </table>  
                         </div>
                     </div> 
+                    <a href="index.php?c=Administrador&a=nuevo_consult" class="btn btn-primary btn-lg btn-block" role="button" aria-pressed="true">Registrar</a>
                 </div>
             </div> 
         </div>
@@ -109,10 +78,13 @@
     <!-- extension responsive -->
     <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
 
-
-    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
+        function enviarform(){
+            window.location = "new_consult.php"
+        };
+
         $(document).ready(function() {
             $('#example').DataTable({
                 responsive: true,
@@ -137,25 +109,35 @@
                     }
                 }
                 });
-        });  
+        });
 
-
-    </script>
-    <script >
         <?php
-            if(isset($_SESSION["cancel_cita_prof"])){
-                if ($_SESSION["cancel_cita_prof"]!="0") {
-                    echo "var alerta_citas_prof_aux = '1';";
-                    echo "var alerta_citas_pac_aux = '1';";
-                    unset($_SESSION["cancel_cita_pac"]);
-                }else {
-                    echo "alerta_citas_prof_aux = '0';";
-                    echo "var alerta_citas_pac_aux  = '1';";
-                    unset($_SESSION["cancel_cita_prof"]);
-                }
+            if(isset($_SESSION["consult_insert_1"])){
+                    if ($_SESSION["consult_insert_1"]!="0") {
+                        echo "var alert_consult_insert = '1';";
+                        echo "var alerta_consult = '1';";
+                        unset($_SESSION["consult_insert_1"]);
+                    }else {
+                        echo "var alert_consult_insert = '0';";
+                        echo "var alerta_consult = '1';";
+                        unset($_SESSION["consult_insert_1"]);
+                    }
             }
+
+            if(isset($_SESSION["consult_eliminado"])){
+                if ($_SESSION["consult_eliminado"]!="0") {
+                    echo "var alert_consult_eliminado = '1';";
+                    echo "var alerta_consult = '2';";
+                    unset($_SESSION["consult_eliminado"]);
+                }else {
+                    echo "var alert_consult_eliminado = '0';";
+                    echo "var alerta_consult = '2';";
+                    unset($_SESSION["consult_eliminado"]);
+                }
+        }
+
         ?>
-    </script>
-    <script src="assets/js-general/alertas_aux.js"></script>
+    </script> 
+    <script src="assets/js-general/alertas.js"></script>
 </body>
 </html>

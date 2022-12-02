@@ -10,7 +10,7 @@ $inc = new SesionesController();
     } elseif (!empty($_SESSION['pac'])){
 
         unset($_SESSION['pac']);
-        $_SESSION["Login_error_1"] = "1";
+        $_SESSION["Login_error"] = "1";
         $inc->redireccionar();
 
     } elseif(!empty($_SESSION["auxiliar"])){
@@ -98,26 +98,20 @@ class LoginController{
 
     public function buscar_paciente(){
 
-        $validar = new Login_model();
         $id_tipo_doc = $_POST['id_tipo_doc'];
         $num_doc = $_POST['num_doc'];
         $pass = $_POST['pass'];
+        
+        $validar = new Login_model();
+        $resultado["usuario"] = $validar->validar_paciente($id_tipo_doc, $num_doc);
 
-        $resultado['usuario'] = $validar->validar_paciente($id_tipo_doc, $num_doc);
-
-        foreach($resultado['usuario'] as $dato){}
+        foreach($resultado["usuario"] as $dato){}
 
         if (isset ($dato)){
 
             if(password_verify($pass, $dato["pass_pac"])){
 
-                $_SESSION['pac'] = $dato['id_paciente'];
-                $_SESSION['num_doc_pac'] = $dato['num_doc_pac'];
-                $_SESSION['nombres_pac'] = $dato['nombres_pac'];
-                $_SESSION['apellidos_pac'] = $dato['apellidos_pac'];
-                $_SESSION['tel_pac'] = $dato['tel_pac'];
-                $_SESSION['correo_pac'] = $dato['correo_pac'];
-                $_SESSION['sexo_pac'] = $dato['sexo_pac'];
+                $_SESSION['pac'] = $dato["id_paciente"];
     
                 header ("Location: index.php?c=Paciente&a=index");
     

@@ -54,7 +54,7 @@
                                         echo "<td>".$dato['id_consultorios']."</td>";
                                         echo "<td>".$dato['nombres_prof']." ".$dato['apellidos_prof']."</td>";
                                         echo "<td>"."$".$dato['costo_espec']."</td>";
-                                        echo "<td><a href='index.php?c=Paciente&a=cancel_agendada&id=".$dato['id_cita']."'>Cancelar cita</a></td>";
+                                        echo "<td><a onclick='cancelar_paciente(".$dato['id_cita'].")' class='btn btn-danger active' role='button' aria-pressed='true'>Cancelar cita</a></td>";
                                         echo "<tr>";
 
                                     }
@@ -110,9 +110,31 @@
                 }
                 });
         });  
+        <?php
+        
+        if (isset($_SESSION['cancel_cita'])){
 
+            if ($_SESSION['cancel_cita'] == "1") {
 
+                echo "var cancelar_success = '1';";
+                echo "var cita_success = '4';";
+
+                unset($_SESSION['cancel_cita']);
+
+            } else {
+
+                echo "var cancelar_success = '0';";
+                echo "var cita_success = '4';";
+
+                unset($_SESSION['cancel_cita']);
+
+            }
+
+        }
+
+        ?>
     </script>
+    <script src="assets/js-general/alertas.js"></script>
     
 </body>
 </html>

@@ -161,61 +161,70 @@
 
 		public function insertar_agenda($id_profesional, $tipo_franja_la, $tipo_franja){
 
-			if($tipo_franja == "a"){
-				$fecha_i = date('Y')."/".$tipo_franja_la.'/01 8:00';
-				$fecha_f = date('Y')."/".$tipo_franja_la.'/01 16:00';
-			}elseif ($tipo_franja == "b") {
-				$fecha_i = date('Y')."/".$tipo_franja_la.'/01 6:00';
-				$fecha_f = date('Y')."/".$tipo_franja_la.'/01 14:00';
-			}elseif ($tipo_franja == "c") {
-				$fecha_i = date('Y')."/".$tipo_franja_la.'/01 14:00';
-				$fecha_f = date('Y')."/".$tipo_franja_la.'/01 22:00';
-			}
-			$fecha_i_P = $fecha_i;
-			$fecha_i_P_2 = date("Y-m",strtotime($fecha_i_P));
-			$sql = "SELECT fechacita_horainicio FROM cita WHERE fechacita_horainicio LIKE ('%$fecha_i_P_2%') AND id_profesional = $id_profesional";
-			$resultado = $this->db->query($sql);
-			$filas = mysqli_num_rows($resultado);
-			
 
-			if($filas<1){
+			$fecha_actual = strtotime(date("Y-m"));
+			$fecha_entrante = strtotime(date("Y")."-".$tipo_franja_la);
+			if($fecha_entrante>=$fecha_actual){
 
-				for($i = 0; $i < 30; $i++){
-
-					$count = 0;
-					$begin = new DateTime($fecha_i);
-					$end = new DateTime($fecha_f);
-					$end = $end->modify( '30 minute' );
-					$interval = new DateInterval('PT30M');
-					$daterange = new DatePeriod($begin, $interval ,$end);
-				
-					foreach($daterange as $date){
-
-						if(date('l', strtotime($date->format("Y-m-d H:i"))) == 'Sunday'){
-							////////  no se que poner aqui :v///////////////////////////
-						} else {
-							$count = $count + 1;
-							if($count == 1){
-								$fecha_i_1 = $date->format("Y-m-d H:i");
-							}elseif ($count == 2) {
-								$fecha_f_1 = $date->format("Y-m-d H:i");
-							}
-							if($count > 2){
-								$resultado = $this->db->query("INSERT INTO `cita` (`id_profesional`,`fechacita_horainicio`,`fechacita_horafin`,`estado_cita`,`estado_pago_cita`,`asistencia_cita`,`create_cita`) VALUES ('$id_profesional','$fecha_i_1','$fecha_f_1',0,0,0, CURRENT_TIMESTAMP)"); 
-								$count = 1;
-								$fecha_i_2 = $date->format("Y-m-d H:i");
-								$resultado = $this->db->query("INSERT INTO `cita` (`id_profesional`,`fechacita_horainicio`,`fechacita_horafin`,`estado_cita`,`estado_pago_cita`,`asistencia_cita`,`create_cita`) VALUES ('$id_profesional','$fecha_f_1','$fecha_i_2',0,0,0, CURRENT_TIMESTAMP)"); 
-								$fecha_i_1 = $date->format("Y-m-d H:i");
-							}
-						}
-
-					}
-					$fecha_i = date("Y-m-d H:i",strtotime($fecha_i." 1 day"));
-					$fecha_f = date("Y-m-d H:i",strtotime($fecha_f." 1 day"));
+				if($tipo_franja == "a"){
+					$fecha_i = date('Y')."/".$tipo_franja_la.'/01 8:00';
+					$fecha_f = date('Y')."/".$tipo_franja_la.'/01 16:00';
+				}elseif ($tipo_franja == "b") {
+					$fecha_i = date('Y')."/".$tipo_franja_la.'/01 6:00';
+					$fecha_f = date('Y')."/".$tipo_franja_la.'/01 14:00';
+				}elseif ($tipo_franja == "c") {
+					$fecha_i = date('Y')."/".$tipo_franja_la.'/01 14:00';
+					$fecha_f = date('Y')."/".$tipo_franja_la.'/01 22:00';
 				}
-				$this->db->close();
-				return "1";
-			}else{
+				$fecha_i_P = $fecha_i;
+				$fecha_i_P_2 = date("Y-m",strtotime($fecha_i_P));
+				$sql = "SELECT fechacita_horainicio FROM cita WHERE fechacita_horainicio LIKE ('%$fecha_i_P_2%') AND id_profesional = $id_profesional";
+				$resultado = $this->db->query($sql);
+				$filas = mysqli_num_rows($resultado);
+				
+
+				if($filas<1){
+
+					for($i = 0; $i < 30; $i++){
+
+						$count = 0;
+						$begin = new DateTime($fecha_i);
+						$end = new DateTime($fecha_f);
+						$end = $end->modify( '30 minute' );
+						$interval = new DateInterval('PT30M');
+						$daterange = new DatePeriod($begin, $interval ,$end);
+					
+						foreach($daterange as $date){
+
+							if(date('l', strtotime($date->format("Y-m-d H:i"))) == 'Sunday'){
+								////////  no se que poner aqui :v///////////////////////////
+							} else {
+								$count = $count + 1;
+								if($count == 1){
+									$fecha_i_1 = $date->format("Y-m-d H:i");
+								}elseif ($count == 2) {
+									$fecha_f_1 = $date->format("Y-m-d H:i");
+								}
+								if($count > 2){
+									$resultado = $this->db->query("INSERT INTO `cita` (`id_profesional`,`fechacita_horainicio`,`fechacita_horafin`,`estado_cita`,`estado_pago_cita`,`asistencia_cita`,`create_cita`) VALUES ('$id_profesional','$fecha_i_1','$fecha_f_1',0,0,0, CURRENT_TIMESTAMP)"); 
+									$count = 1;
+									$fecha_i_2 = $date->format("Y-m-d H:i");
+									$resultado = $this->db->query("INSERT INTO `cita` (`id_profesional`,`fechacita_horainicio`,`fechacita_horafin`,`estado_cita`,`estado_pago_cita`,`asistencia_cita`,`create_cita`) VALUES ('$id_profesional','$fecha_f_1','$fecha_i_2',0,0,0, CURRENT_TIMESTAMP)"); 
+									$fecha_i_1 = $date->format("Y-m-d H:i");
+								}
+							}
+
+						}
+						$fecha_i = date("Y-m-d H:i",strtotime($fecha_i." 1 day"));
+						$fecha_f = date("Y-m-d H:i",strtotime($fecha_f." 1 day"));
+					}
+					$this->db->close();
+					return "1";
+				}else{
+					return "0";
+				}
+
+			}else {
 				return "0";
 			}
 		}

@@ -27,6 +27,7 @@
                         <li><a href="index.php?c=Profesional&a=index" >Inicio</a></li>
                         <li><a href="index.php?c=Profesional&a=actualizar_prof">Actualizar datos</a></li>
                         <li><a style="cursor:pointer;" onclick="cerrarsesion()">Cerrar sesion</a></li>
+                        <li><a href="index.php?c=Profesional&a=ayuda" >ayuda</a></li>
                     </ul>
                 </nav>
             </div>
@@ -42,11 +43,11 @@
                         <form action="index.php?c=Profesional&a=modificar_pass" method="POST">
                                 <p>
                                     <label>Nueva contraseña</label>
-                                    <input type="password" name="newpass">
+                                    <input type="password" name="newpass" minlength="8">
                                 </p>
                                 <p>
                                     <label>Repita contraseña</label>
-                                    <input type="password" name="repass">
+                                    <input type="password" name="repass" minlength="8">
                                 </p>
                                 <p class="block">
                                     <button class="btn btn-primary btn-lg btn-block" name="registrar" id="registrar" type="submit">Actualizar</button>
@@ -60,6 +61,23 @@
     </main>
     <script src="assets/js-general/menu-responsive.js"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        <?php
+        
+        if (isset($_SESSION["update_pass"])) {
+            
+            if ($_SESSION["update_pass"] == "0") {
+
+                echo "var update_pass = '0';";
+                echo "var alertas  = '2';";
+                unset($_SESSION["update_pass"]);
+
+            }
+
+        }
+
+        ?>
+    </script>
     <script src="assets/js-general/alertas_prof.js"></script>
 </body>
 </html>

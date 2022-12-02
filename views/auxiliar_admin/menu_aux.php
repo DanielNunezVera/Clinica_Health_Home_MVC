@@ -25,9 +25,9 @@
                     <img src="assets/images/ajustes.png" alt="">
                     <ul>
                         <li><a href="index.php?c=Auxiliar&a=index" >Inicio</a></li>
-                        <li><a href="index.php?c=Auxiliar&a=actualizar_aux">Actualizar</a></li>
-                        <li><a href="index.php?c=Auxiliar&a=cerrarsesion">Cerrar sesion</a></li>
-                        <li><a href="index.php?c=Administrador&a=ayuda" >ayuda</a></li>
+                        <li><a href="index.php?c=Auxiliar&a=actualizar_aux">Actualizar Datos</a></li>
+                        <li><a style="cursor: pointer;" onclick="cerrarsesionaux()">Cerrar sesion</a></li>
+                        <li><a href="index.php?c=Auxiliar&a=ayuda" >ayuda</a></li>
                     </ul>
                 </nav>
             </div>
@@ -36,6 +36,7 @@
     <div class="container-fluid">
         <iframe src="index.php?c=Auxiliar&a=acciones" name="header"></iframe>
     </div>
+    <script src="assets/js-general/alertas.js"></script>
     <?php require "views/Links/js.php"?>
 </body>
 </html>

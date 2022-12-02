@@ -28,7 +28,8 @@
                     <ul>
                         <li><a href="index.php?c=Paciente&a=index">Inicio</a></li>
                         <li><a href="index.php?c=Paciente&a=get_paciente">Actualizar datos</a></li>
-                        <li><a href="index.php?c=Paciente&a=cerrar_sesion">Cerrar sesion</a></li>
+                        <li><a style="cursor: pointer;" onclick="cerrarsesionpac()">Cerrar sesion</a></li>
+                        <li><a href="index.php?c=Paciente&a=ayuda" >ayuda</a></li>
                     </ul>
                 </nav>
             </div>
@@ -64,5 +65,34 @@
         </div>
     </main>
     <script src="assets/js-general/menu-responsive.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+
+        <?php
+        
+        if (isset($_SESSION['password'])) {
+
+            if ($_SESSION['password'] == "0") {
+
+                echo "var update_datos = '0';";
+                echo "var datos = '2';";
+
+                unset($_SESSION['password']);
+
+            } else {
+
+                echo "var update_datos = '2';";
+                echo "var datos = '2';";
+
+                unset($_SESSION['password']);
+
+            }
+            
+        }
+        
+        ?>
+
+    </script>
+    <script src="assets/js-general/alertas.js"></script>
 </body>
 </html>

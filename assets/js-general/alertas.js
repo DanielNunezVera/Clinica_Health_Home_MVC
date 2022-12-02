@@ -1,5 +1,26 @@
+//////////////ALERTAS MODULO ADMINISTRADOR///////
+
+function cerrarsesionadmin(){
+  Swal.fire({
+    title: 'Cerrar sesion',
+    text: "¿Desea cerrar la sesion?",
+    icon: 'question',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Confirmar',
+    cancelButtonText:'Cancelar'
+  }).then((result) => {
+    if (result.isConfirmed) {
+      location.href = "index.php?c=Administrador&a=cerrarsesion";
+    }
+  })
+}
  
- 
+
+
+
+
  ////////////ALERTAS AGENDA////////////////
  if (typeof alerta_agenda !=="undefined") {
       switch (alerta_agenda) {
@@ -28,7 +49,7 @@
           }else{
               Swal.fire(
                 '¡Error!',
-                'La agenda ya se encuentra creada',
+                'La agenda ya se encuentra creada o se ha seleccionado un dia invalido',
                 'error'
                 )
           }
@@ -489,7 +510,7 @@ if (typeof (error_cita) !== 'undefined') {
 
         Swal.fire(
           '¡Alerta!',
-          'No es posible agendar una cita con esta especialidad, ya hay una agendada',
+          'No es posible agendar una cita con esta especialidad, ya hay una agendada.',
           'warning'
         )
 
@@ -535,17 +556,112 @@ if (typeof (cita_success) !== 'undefined') {
       if (cita_agendada == '1') {
 
         Swal.fire(
-          '¡Ops!',
-          'Parece que ya hay una cita agendada de esta especialidad. No es posible agendar dos citas de la misma especialidad.',
-          'info'
+          '¡Alerta!',
+          'No es posible agendar una cita con esta especialidad, ya hay una agendada.',
+          'warning'
         )
 
       }
 
     break;
 
+    case "4":
+
+      if(cancelar_success == "1"){
+        Swal.fire(
+            '¡Correcto!',
+            'La cita se canceló con exito',
+            'success'
+            )
+      }else{
+          Swal.fire(
+              '¡Error!',
+              'No se pudo cancelar la cita',
+              'warning'
+              )
+      }
+
+    break;
+
   }
 
+}
+
+if (typeof datos !== 'undefined') {
+
+  switch (datos) {
+
+    case "1":
+
+      if (update_datos == "1") {
+
+        Swal.fire(
+          '¡Correcto!',
+          'Datos actualizados correctamente.',
+          'success'
+        )
+
+      } else {
+
+        Swal.fire(
+          '¡Alerta!',
+          'Por alguna razón no se pudieron actualizar los datos. Intente nuevamente.',
+          'warning'
+        )
+
+      }
+
+    break;
+
+    case "2":
+
+      if (update_datos === "1") {
+
+        Swal.fire(
+          '¡Correcto!',
+          'Su contraseña se ha actualizado correctamente.',
+          'success'
+        )
+
+      } else if (update_datos === "0") {
+
+        Swal.fire(
+          '¡Alerta!',
+          'Las contraseñas no coinciden. Intente nuevamente',
+          'warning'
+        )
+
+      } else if (update_datos === "2") {
+
+          Swal.fire(
+            '¡Alerta!',
+            'Ha habido un error al intentar actualizar su contraseña. Intentelo de nuevo.',
+            'warning'
+          )
+
+      }
+    
+    break;
+
+  }
+
+}
+
+function cerrarsesionpac(){
+  Swal.fire({
+    title: 'Cerrar sesion',
+    text: "¿Desea cerrar la sesion?",
+    icon: 'question',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Confirmar',
+    cancelButtonText:'Cancelar'
+  }).then((result) => {
+    if (result.isConfirmed) {
+      location.href = "index.php?c=Paciente&a=cerrar_sesion";
+    }
+  })
 }
 
 function form_cita(i, e, n, a, f, c, k){
@@ -564,6 +680,25 @@ function form_cita(i, e, n, a, f, c, k){
       document.getElementById(i).submit();
     }
   })
+}
+
+function cancelar_paciente(a){
+
+  Swal.fire({
+    title: '¿Esta seguro de cancelar la cita?',
+    text: "Esta accion es irreversible",
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Confirmar',
+    cancelButtonText:'Volver'
+  }).then((result) => {
+    if (result.isConfirmed) {
+      location.href = "index.php?c=Paciente&a=cancel_agendada&id=" + a;
+    }
+  })
+
 }
 
 //////////// MODULO AUXILIAR ADMINISTRATIVO ///////////////
@@ -588,13 +723,13 @@ if (typeof alerta_m_aux !=="undefined"){
           if(alerta_update_info == "1"){
               Swal.fire(
                   '¡Correcto!',
-                  'Su informacion se ha actualizado correctamente',
+                  'Datos actualizados correctamente.',
                   'success'
                   )
           }else{
               Swal.fire(
-                  '¡Error!',
-                  'Sus datos no se actulizaron',
+                  '¡Alerta!',
+                  'Por alguna razón no se pudieron actualizar los datos. Intente nuevamente.',
                   'warning'
                   )
           }
@@ -799,6 +934,23 @@ function form_ci_aux(e, n, a, f, c, k){
   }).then((result) => {
     if (result.isConfirmed) {
       document.getElementById('form_cita_aux').submit();
+    }
+  })
+}
+
+function cerrarsesionaux(){
+  Swal.fire({
+    title: 'Cerrar sesion',
+    text: "¿Desea cerrar la sesion?",
+    icon: 'question',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Confirmar',
+    cancelButtonText:'Cancelar'
+  }).then((result) => {
+    if (result.isConfirmed) {
+      location.href = "index.php?c=Auxiliar&a=cerrarsesion";
     }
   })
 }
