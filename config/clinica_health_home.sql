@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.1.3
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 17-11-2022 a las 23:32:29
--- Versión del servidor: 10.4.22-MariaDB
--- Versión de PHP: 8.1.2
+-- Tiempo de generación: 02-12-2022 a las 15:45:37
+-- Versión del servidor: 10.4.24-MariaDB
+-- Versión de PHP: 7.4.28
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -25,88 +25,121 @@ DELIMITER $$
 --
 -- Procedimientos
 --
-CREATE DEFINER=`root`@`localhost` PROCEDURE `asistencia_cita` (IN `asistencia` INT, IN `id` INT)  BEGIN
-UPDATE cita SET asistencia_cita = asistencia WHERE id_cita = id;
-END$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `eliminar_aux` (`a` INT(20))   DELETE FROM auxiliar WHERE id_auxiliar = a$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `eliminar_aux` (`a` INT(20))  DELETE FROM auxiliar WHERE id_auxiliar = a$$
-
-CREATE DEFINER=`root`@`localhost` PROCEDURE `eliminar_cita` (IN `a` INT(20))  BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `eliminar_cita` (IN `a` INT(20))   BEGIN
 	DELETE FROM cita WHERE id_profesional=a;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `eliminar_consult` (IN `a` VARCHAR(3))  BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `eliminar_consult` (IN `a` VARCHAR(3))   BEGIN
 	IF(SELECT COUNT(*) FROM profesional WHERE id_consultorios=a)=0 THEN 
     DELETE FROM consultorios WHERE id_consultorios = a; 
     END IF;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `eliminar_espec` (IN `a` TINYINT(2))  BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `eliminar_espec` (IN `a` TINYINT(2))   BEGIN
  	IF(SELECT COUNT(*) FROM profesional WHERE id_especialidad=a)=0 THEN 
     DELETE FROM especialidad WHERE id_especialidad =a;
     END IF; 
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `eliminar_pac` (IN `a` INT(20))  BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `eliminar_pac` (IN `a` INT(20))   BEGIN
 	IF (SELECT COUNT(*) FROM cita WHERE id_paciente=a)=0 THEN 
     DELETE FROM paciente WHERE id_paciente=a;
     END IF;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `eliminar_prof` (IN `a` INT(20))  BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `eliminar_prof` (IN `a` INT(20))   BEGIN
 	IF (SELECT COUNT(*) FROM cita WHERE id_profesional=a AND id_paciente<>0)=0 then 
     CALL eliminar_cita(a);
     DELETE FROM profesional WHERE id_profesional=a;
     end if;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `excepciones` (IN `a` INT(20), IN `b` VARCHAR(40), IN `c` VARCHAR(40))  BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `email` (`a` VARCHAR(5), `b` VARCHAR(20), `c` VARCHAR(5))   BEGIN
+    IF (c='1') THEN SELECT correo_prof FROM profesional WHERE id_tipo_doc=a AND num_doc_prof=b;
+    ELSEIF (c='2') THEN SELECT correo_aux FROM auxiliar WHERE id_tipo_doc=a AND num_doc_aux=b;
+    ELSEIF (c='3') THEN SELECT correo_pac FROM paciente WHERE id_tipo_doc=a AND num_doc_pac=b;
+    END IF;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `excepciones` (IN `a` INT(20), IN `b` VARCHAR(40), IN `c` VARCHAR(40))   BEGIN
 	IF (SELECT COUNT(*) FROM cita WHERE id_profesional=a AND id_paciente <>0 AND fechacita_horainicio LIKE (b) AND 		         fechacita_horafin LIKE (c))=0 THEN 
     DELETE FROM cita WHERE id_profesional = a AND fechacita_horainicio LIKE (b) AND fechacita_horafin LIKE (c);
     END IF;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `insertar_agenda` (IN `a` INT(20), `b` DATETIME, `c` DATETIME, `d` TINYINT(1), `e` TINYINT(1), `f` TINYINT(1), `g` DATETIME)  BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `insertar_agenda` (IN `a` INT(20), `b` DATETIME, `c` DATETIME, `d` TINYINT(1), `e` TINYINT(1), `f` TINYINT(1), `g` DATETIME)   BEGIN
 	INSERT INTO cita (id_profesional,fechacita_horainicio,fechacita_horafin,estado_cita,estado_pago_cita,asistencia_cita,create_cita) VALUES 
     (a, b, c, d, e, f, g); 
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `inser_vali_aux` (`a` VARCHAR(5), `b` VARCHAR(20), `c` VARCHAR(40), `d` VARCHAR(40), `e` BIGINT(10), `f` VARCHAR(30), `g` TINYINT(1), `h` VARCHAR(220), `i` DATETIME)  INSERT INTO auxiliar (id_tipo_doc, num_doc_aux, nombres_aux, apellidos_aux, tel_aux, correo_aux, estado_aux, pass_aux, create_aux)
+CREATE DEFINER=`root`@`localhost` PROCEDURE `inser_vali_aux` (`a` VARCHAR(5), `b` VARCHAR(20), `c` VARCHAR(40), `d` VARCHAR(40), `e` BIGINT(10), `f` VARCHAR(30), `g` TINYINT(1), `h` VARCHAR(220), `i` DATETIME)   INSERT INTO auxiliar (id_tipo_doc, num_doc_aux, nombres_aux, apellidos_aux, tel_aux, correo_aux, estado_aux, pass_aux, create_aux)
 SELECT a, b, c, d, e, f, g, h, i
 FROM dual
 WHERE not exists (SELECT * 
                   FROM auxiliar
                   WHERE id_tipo_doc=a AND num_doc_aux=b)$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `inser_vali_consultorio` (`a` VARCHAR(3), `b` TINYINT(1), `c` DATETIME)  INSERT INTO consultorios (id_consultorios, estado_consult, create_consult)
+CREATE DEFINER=`root`@`localhost` PROCEDURE `inser_vali_consultorio` (`a` VARCHAR(3), `b` TINYINT(1), `c` DATETIME)   INSERT INTO consultorios (id_consultorios, estado_consult, create_consult)
 SELECT a, b, c
 FROM dual
 WHERE not exists (SELECT * 
                   FROM consultorios 
                   WHERE id_consultorios=a)$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `inser_vali_espec` (`a` VARCHAR(30), `b` INT(6), `c` TINYINT(1), `d` DATETIME)  INSERT INTO especialidad (descrip_espec, costo_espec, estado_espec, create_espec)
+CREATE DEFINER=`root`@`localhost` PROCEDURE `inser_vali_espec` (`a` VARCHAR(30), `b` INT(6), `c` TINYINT(1), `d` DATETIME)   INSERT INTO especialidad (descrip_espec, costo_espec, estado_espec, create_espec)
 SELECT a, b, c, d
 FROM dual
 WHERE not exists (SELECT * 
                   FROM especialidad 
                   WHERE descrip_espec=a)$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `inser_vali_pac` (IN `a` VARCHAR(5), IN `b` VARCHAR(20), IN `c` VARCHAR(40), IN `d` VARCHAR(40), IN `e` BIGINT(10), IN `f` VARCHAR(30), IN `g` VARCHAR(15), IN `h` TINYINT(1), IN `i` VARCHAR(220), IN `j` DATETIME)  INSERT INTO paciente (id_tipo_doc, num_doc_pac, nombres_pac, apellidos_pac, tel_pac, correo_pac, sexo_pac, estado_pac, pass_pac, create_pac)
+CREATE DEFINER=`root`@`localhost` PROCEDURE `inser_vali_pac` (IN `a` VARCHAR(5), IN `b` VARCHAR(20), IN `c` VARCHAR(40), IN `d` VARCHAR(40), IN `e` BIGINT(10), IN `f` VARCHAR(30), IN `g` VARCHAR(15), IN `h` TINYINT(1), IN `i` VARCHAR(220), IN `j` DATETIME)   INSERT INTO paciente (id_tipo_doc, num_doc_pac, nombres_pac, apellidos_pac, tel_pac, correo_pac, sexo_pac, estado_pac, pass_pac, create_pac)
 SELECT a, b, c, d, e, f, g, h, i, j
 FROM dual
 WHERE not exists (SELECT * 
                   FROM paciente 
                   WHERE id_tipo_doc=a AND num_doc_pac=b)$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `inser_vali_prof` (`a` VARCHAR(5), `b` VARCHAR(20), `c` VARCHAR(3), `d` TINYINT(2), `e` VARCHAR(40), `f` VARCHAR(40), `g` BIGINT(10), `h` VARCHAR(30), `i` TEXT, `j` VARCHAR(30), `k` TINYINT(1), `l` VARCHAR(220), `m` DATETIME)  INSERT INTO profesional (id_tipo_doc, num_doc_prof, id_consultorios, id_especialidad, nombres_prof, apellidos_prof, tel_prof, correo_prof, dias_laborales, franja_horaria, estado_prof, pass_prof, create_prof)
+CREATE DEFINER=`root`@`localhost` PROCEDURE `inser_vali_prof` (`a` VARCHAR(5), `b` VARCHAR(20), `c` VARCHAR(3), `d` TINYINT(2), `e` VARCHAR(40), `f` VARCHAR(40), `g` BIGINT(10), `h` VARCHAR(30), `i` TEXT, `j` VARCHAR(30), `k` TINYINT(1), `l` VARCHAR(220), `m` DATETIME)   INSERT INTO profesional (id_tipo_doc, num_doc_prof, id_consultorios, id_especialidad, nombres_prof, apellidos_prof, tel_prof, correo_prof, dias_laborales, franja_horaria, estado_prof, pass_prof, create_prof)
 SELECT a, b, c, d, e, f, g, h, i, j, k, l, m
 FROM dual
 WHERE not exists (SELECT * 
                   FROM profesional 
                   WHERE id_tipo_doc=a AND num_doc_prof=b)$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `verificar_agenda` (IN `a` VARCHAR(10), IN `b` INT(20))  BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `pass_recuperado` (IN `a` VARCHAR(5), IN `b` VARCHAR(20), IN `c` VARCHAR(5), IN `d` VARCHAR(220))   BEGIN
+    IF (c='1') THEN UPDATE profesional SET pass_prof=d WHERE id_tipo_doc=a AND num_doc_prof=b;
+    ELSEIF (c='2') THEN UPDATE auxiliar SET pass_aux=d WHERE id_tipo_doc=a AND num_doc_aux=b;
+    ELSEIF (c='3') THEN UPDATE paciente SET pass_pac=d WHERE id_tipo_doc=a AND num_doc_pac=b;
+    END IF;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `recuperar_password` (`a` VARCHAR(5), `b` VARCHAR(20), `c` VARCHAR(5))   BEGIN
+    IF (c='1') THEN SELECT * FROM profesional WHERE id_tipo_doc=a AND num_doc_prof=b;
+    ELSEIF (c='2') THEN SELECT * FROM auxiliar WHERE id_tipo_doc=a AND num_doc_aux=b;
+    ELSEIF (c='3') THEN SELECT * FROM paciente WHERE id_tipo_doc=a AND num_doc_pac=b;
+    END IF;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `vali_rec_password` (IN `a` VARCHAR(5), IN `b` VARCHAR(20), IN `c` VARCHAR(5), IN `d` VARCHAR(220))   BEGIN
+    IF (c='1') THEN 
+    	IF (SELECT COUNT(*) FROM profesional WHERE id_tipo_doc=a AND num_doc_prof=b)>0 THEN
+        	UPDATE profesional SET pass_prof=d WHERE id_tipo_doc=a AND num_doc_prof=b;
+            END IF; 
+    ELSEIF (c='2') THEN 
+    	IF (SELECT COUNT(*) FROM auxiliar WHERE id_tipo_doc=a AND num_doc_aux=b)>0 THEN 
+            UPDATE auxiliar SET pass_aux=d WHERE id_tipo_doc=a AND num_doc_aux=b;
+            END IF;
+    ELSEIF (c='3') THEN 
+    	IF (SELECT COUNT(*) FROM paciente WHERE id_tipo_doc=a AND num_doc_pac=b)>0 THEN
+        	UPDATE paciente SET pass_pac=d WHERE id_tipo_doc=a AND num_doc_pac=b;
+            END IF;
+    END IF;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `verificar_agenda` (IN `a` VARCHAR(10), IN `b` INT(20))   BEGIN
 	SELECT fechacita_horainicio FROM cita WHERE fechacita_horainicio LIKE (a) AND id_profesional = b;
 END$$
 
@@ -155,7 +188,7 @@ CREATE TABLE `auxiliar` (
 --
 
 INSERT INTO `auxiliar` (`id_auxiliar`, `id_tipo_doc`, `num_doc_aux`, `nombres_aux`, `apellidos_aux`, `tel_aux`, `correo_aux`, `estado_aux`, `pass_aux`, `create_aux`) VALUES
-(6, 'CC', '55555', 'qqqqqqqqq', 'rrrrrrrrrrrrrrrrr', 5545, 'yhyh@hotmail.com', 1, '$2y$10$Zl81O6l8eUm3gGcMQgysH.jn4EmZifYvPt8cKNhJCx0BPHfv1LBl2', '2022-11-13 17:56:29');
+(6, 'CC', '55555', 'qqqqqqqqq', 'rrrrrrrrrrrrrrrrr', 5545, 'gerardogeet@hotmail.com', 1, '$2y$10$mEsszXKekyVw623jEm5AR.jxdgU5GHsNA8S1/sxuywJJovKKH0jee', '2022-11-13 17:56:29');
 
 -- --------------------------------------------------------
 
@@ -469,7 +502,7 @@ INSERT INTO `cita` (`id_cita`, `id_paciente`, `id_profesional`, `fechacita_horai
 (4996, NULL, 19, '2022-11-22 15:00:00', '2022-11-22 15:30:00', 0, 0, 0, '2022-11-14 12:54:57'),
 (4997, NULL, 19, '2022-11-22 15:30:00', '2022-11-22 16:00:00', 0, 0, 0, '2022-11-14 12:54:57'),
 (4998, NULL, 19, '2022-11-23 08:00:00', '2022-11-23 08:30:00', 0, 0, 0, '2022-11-14 12:54:57'),
-(4999, 22, 19, '2022-11-23 08:30:00', '2022-11-23 09:00:00', 1, 0, 1, '2022-11-14 12:54:57'),
+(4999, NULL, 19, '2022-11-23 08:30:00', '2022-11-23 09:00:00', 0, 0, 0, '2022-11-14 12:54:57'),
 (5000, NULL, 19, '2022-11-23 09:00:00', '2022-11-23 09:30:00', 0, 0, 0, '2022-11-14 12:54:57'),
 (5001, NULL, 19, '2022-11-23 09:30:00', '2022-11-23 10:00:00', 0, 0, 0, '2022-11-14 12:54:57'),
 (5002, NULL, 19, '2022-11-23 10:00:00', '2022-11-23 10:30:00', 0, 0, 0, '2022-11-14 12:54:57'),
@@ -724,7 +757,9 @@ CREATE TABLE `paciente` (
 --
 
 INSERT INTO `paciente` (`id_paciente`, `id_tipo_doc`, `num_doc_pac`, `nombres_pac`, `apellidos_pac`, `tel_pac`, `correo_pac`, `sexo_pac`, `estado_pac`, `pass_pac`, `create_pac`) VALUES
-(22, 'CC', '32323', 'ddwed', 'deded', 3333, 'dsdgfdf@fdfg', 'Femenino', 1, '$2y$10$J7POv/BTqG/gbdEaTzsS/OymhZ1667bfDdomfj6XBiCkCE4.j6pRm', '2022-11-13 15:10:25');
+(22, 'CC', '32323', 'ddwed', 'deded', 3333, 'dananuez@misena.edu.co', 'Femenino', 1, '$2y$10$jb8oL7gubvoVyEgeUQwk4e7JR8xso6cN.S13Yi7WARzgWgtnu3fY2', '2022-11-13 15:10:25'),
+(24, 'CC', '1234', 'El kevin', 'Garcia', 321321321, 'kevinchugarcia20046@gmail.com', 'Femenino', 1, '$2y$10$njxzJqZd.UqHFbwIJ3SqI.TFANCBWCndX9CjNP1h7itwo6isMMetS', '2022-11-24 17:48:48'),
+(25, 'CC', '1212', 'elalejandro', 'elalejandro', 21212, 't.h.n.e.d.i89@gmail.com', 'Femenino', 1, '$2y$10$EQYbwoiGgVuFgIBJGEPSsemqmMDaVWAw2SLgSIl5pESAnY5cGFXLi', '2022-11-30 10:19:16');
 
 -- --------------------------------------------------------
 
@@ -754,7 +789,7 @@ CREATE TABLE `profesional` (
 --
 
 INSERT INTO `profesional` (`id_profesional`, `id_tipo_doc`, `num_doc_prof`, `id_consultorios`, `id_especialidad`, `nombres_prof`, `apellidos_prof`, `tel_prof`, `correo_prof`, `dias_laborales`, `franja_horaria`, `estado_prof`, `pass_prof`, `create_prof`) VALUES
-(19, 'CC', '76776', 'C01', 1, 'sssss', 'qqq', 96567, 'sdf@sdf.cosl', 'sss', 'ss', 1, '$2y$10$Yqz0oCgcfDXNFVdLKFJ/kOvIaCihGVdvOMo0LJNoWxLT6B0j7vnrC', '2022-11-14 12:49:49');
+(19, 'CC', '76776', 'C01', 1, 'sssss', 'qqq', 9656, 'dede@hotjail.com', 'sss', 'ss', 1, '$2y$10$8gdu8me1s88WV9W0HevcMuktbxOAcV6mwAceKZ.cB1yRiOKjo0J66', '2022-11-14 12:49:49');
 
 -- --------------------------------------------------------
 
@@ -787,7 +822,7 @@ INSERT INTO `tipo_doc` (`id_tipo_doc`, `tipo_doc`, `create_tipo_doc`) VALUES
 --
 DROP TABLE IF EXISTS `citas_programadas_prof`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `citas_programadas_prof`  AS SELECT `cita`.`id_cita` AS `id_cita`, `cita`.`fechacita_horainicio` AS `fechacita_horainicio`, `paciente`.`id_paciente` AS `id_paciente`, `paciente`.`id_tipo_doc` AS `id_tipo_doc`, `paciente`.`num_doc_pac` AS `num_doc_pac`, `paciente`.`nombres_pac` AS `nombres_pac`, `paciente`.`apellidos_pac` AS `apellidos_pac`, `paciente`.`tel_pac` AS `tel_pac`, `paciente`.`correo_pac` AS `correo_pac`, `profesional`.`id_profesional` AS `id_profesional`, `cita`.`asistencia_cita` AS `asistencia_cita` FROM ((`cita` join `paciente` on(`cita`.`id_paciente` = `paciente`.`id_paciente`)) join `profesional` on(`cita`.`id_profesional` = `profesional`.`id_profesional`)) WHERE `cita`.`fechacita_horainicio` >= current_timestamp() AND `cita`.`estado_cita` = 1 ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `citas_programadas_prof`  AS SELECT `cita`.`id_cita` AS `id_cita`, `cita`.`fechacita_horainicio` AS `fechacita_horainicio`, `paciente`.`id_paciente` AS `id_paciente`, `paciente`.`id_tipo_doc` AS `id_tipo_doc`, `paciente`.`num_doc_pac` AS `num_doc_pac`, `paciente`.`nombres_pac` AS `nombres_pac`, `paciente`.`apellidos_pac` AS `apellidos_pac`, `paciente`.`tel_pac` AS `tel_pac`, `paciente`.`correo_pac` AS `correo_pac`, `profesional`.`id_profesional` AS `id_profesional`, `cita`.`asistencia_cita` AS `asistencia_cita` FROM ((`cita` join `paciente` on(`cita`.`id_paciente` = `paciente`.`id_paciente`)) join `profesional` on(`cita`.`id_profesional` = `profesional`.`id_profesional`)) WHERE `cita`.`fechacita_horainicio` >= current_timestamp() AND `cita`.`estado_cita` = 11  ;
 
 -- --------------------------------------------------------
 
@@ -796,7 +831,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `cita_paciente`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `cita_paciente`  AS SELECT `cita`.`id_cita` AS `id_cita`, `cita`.`fechacita_horainicio` AS `fechacita_horainicio`, `paciente`.`id_paciente` AS `id_paciente`, `paciente`.`id_tipo_doc` AS `id_tipo_doc`, `paciente`.`num_doc_pac` AS `num_doc_pac`, `paciente`.`nombres_pac` AS `nombres_pac`, `paciente`.`apellidos_pac` AS `apellidos_pac`, `paciente`.`tel_pac` AS `tel_pac`, `paciente`.`sexo_pac` AS `sexo_pac`, `profesional`.`id_profesional` AS `id_profesional`, `profesional`.`num_doc_prof` AS `num_doc_prof`, `profesional`.`nombres_prof` AS `nombres_prof`, `profesional`.`apellidos_prof` AS `apellidos_prof`, `especialidad`.`descrip_espec` AS `descrip_espec`, `especialidad`.`costo_espec` AS `costo_espec`, `consultorios`.`id_consultorios` AS `id_consultorios`, `cita`.`estado_cita` AS `estado_cita`, `cita`.`asistencia_cita` AS `asistencia_cita`, `cita`.`estado_pago_cita` AS `estado_pago_cita` FROM ((((`cita` join `paciente` on(`cita`.`id_paciente` = `paciente`.`id_paciente`)) join `profesional` on(`cita`.`id_profesional` = `profesional`.`id_profesional`)) join `especialidad` on(`profesional`.`id_especialidad` = `especialidad`.`id_especialidad`)) join `consultorios` on(`profesional`.`id_consultorios` = `consultorios`.`id_consultorios`)) WHERE `cita`.`fechacita_horainicio` >= current_timestamp() AND `cita`.`estado_cita` = 11 ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `cita_paciente`  AS SELECT `cita`.`id_cita` AS `id_cita`, `cita`.`fechacita_horainicio` AS `fechacita_horainicio`, `paciente`.`id_paciente` AS `id_paciente`, `paciente`.`id_tipo_doc` AS `id_tipo_doc`, `paciente`.`num_doc_pac` AS `num_doc_pac`, `paciente`.`nombres_pac` AS `nombres_pac`, `paciente`.`apellidos_pac` AS `apellidos_pac`, `paciente`.`tel_pac` AS `tel_pac`, `paciente`.`sexo_pac` AS `sexo_pac`, `profesional`.`id_profesional` AS `id_profesional`, `profesional`.`num_doc_prof` AS `num_doc_prof`, `profesional`.`nombres_prof` AS `nombres_prof`, `profesional`.`apellidos_prof` AS `apellidos_prof`, `especialidad`.`descrip_espec` AS `descrip_espec`, `especialidad`.`costo_espec` AS `costo_espec`, `consultorios`.`id_consultorios` AS `id_consultorios`, `cita`.`estado_cita` AS `estado_cita`, `cita`.`asistencia_cita` AS `asistencia_cita`, `cita`.`estado_pago_cita` AS `estado_pago_cita` FROM ((((`cita` join `paciente` on(`cita`.`id_paciente` = `paciente`.`id_paciente`)) join `profesional` on(`cita`.`id_profesional` = `profesional`.`id_profesional`)) join `especialidad` on(`profesional`.`id_especialidad` = `especialidad`.`id_especialidad`)) join `consultorios` on(`profesional`.`id_consultorios` = `consultorios`.`id_consultorios`)) WHERE `cita`.`fechacita_horainicio` >= current_timestamp() AND `cita`.`estado_cita` = 11  ;
 
 -- --------------------------------------------------------
 
@@ -805,7 +840,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `cita_profesional`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `cita_profesional`  AS SELECT `cita`.`id_cita` AS `id_cita`, `cita`.`fechacita_horainicio` AS `fechacita_horainicio`, `paciente`.`id_paciente` AS `id_paciente`, `paciente`.`id_tipo_doc` AS `id_tipo_doc`, `paciente`.`num_doc_pac` AS `num_doc_pac`, `paciente`.`nombres_pac` AS `nombres_pac`, `paciente`.`apellidos_pac` AS `apellidos_pac`, `paciente`.`tel_pac` AS `tel_pac`, `paciente`.`correo_pac` AS `correo_pac`, `profesional`.`id_profesional` AS `id_profesional`, `profesional`.`num_doc_prof` AS `num_doc_prof`, `profesional`.`nombres_prof` AS `nombres_prof`, `profesional`.`apellidos_prof` AS `apellidos_prof`, `especialidad`.`descrip_espec` AS `descrip_espec`, `cita`.`estado_cita` AS `estado_cita` FROM (((`cita` join `paciente` on(`cita`.`id_paciente` = `paciente`.`id_paciente`)) join `profesional` on(`cita`.`id_profesional` = `profesional`.`id_profesional`)) join `especialidad` on(`profesional`.`id_especialidad` = `especialidad`.`id_especialidad`)) WHERE `cita`.`fechacita_horainicio` >= current_timestamp() AND `cita`.`estado_cita` = 11 ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `cita_profesional`  AS SELECT `cita`.`id_cita` AS `id_cita`, `cita`.`fechacita_horainicio` AS `fechacita_horainicio`, `paciente`.`id_paciente` AS `id_paciente`, `paciente`.`id_tipo_doc` AS `id_tipo_doc`, `paciente`.`num_doc_pac` AS `num_doc_pac`, `paciente`.`nombres_pac` AS `nombres_pac`, `paciente`.`apellidos_pac` AS `apellidos_pac`, `paciente`.`tel_pac` AS `tel_pac`, `paciente`.`correo_pac` AS `correo_pac`, `profesional`.`id_profesional` AS `id_profesional`, `profesional`.`num_doc_prof` AS `num_doc_prof`, `profesional`.`nombres_prof` AS `nombres_prof`, `profesional`.`apellidos_prof` AS `apellidos_prof`, `especialidad`.`descrip_espec` AS `descrip_espec`, `cita`.`estado_cita` AS `estado_cita` FROM (((`cita` join `paciente` on(`cita`.`id_paciente` = `paciente`.`id_paciente`)) join `profesional` on(`cita`.`id_profesional` = `profesional`.`id_profesional`)) join `especialidad` on(`profesional`.`id_especialidad` = `especialidad`.`id_especialidad`)) WHERE `cita`.`fechacita_horainicio` >= current_timestamp() AND `cita`.`estado_cita` = 11  ;
 
 --
 -- Índices para tablas volcadas
@@ -892,7 +927,7 @@ ALTER TABLE `especialidad`
 -- AUTO_INCREMENT de la tabla `paciente`
 --
 ALTER TABLE `paciente`
-  MODIFY `id_paciente` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id_paciente` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT de la tabla `profesional`
