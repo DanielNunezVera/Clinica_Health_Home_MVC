@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 02-12-2022 a las 15:45:37
+-- Tiempo de generación: 07-12-2022 a las 17:40:39
 -- Versión del servidor: 10.4.24-MariaDB
 -- Versión de PHP: 7.4.28
 
@@ -757,9 +757,9 @@ CREATE TABLE `paciente` (
 --
 
 INSERT INTO `paciente` (`id_paciente`, `id_tipo_doc`, `num_doc_pac`, `nombres_pac`, `apellidos_pac`, `tel_pac`, `correo_pac`, `sexo_pac`, `estado_pac`, `pass_pac`, `create_pac`) VALUES
-(22, 'CC', '32323', 'ddwed', 'deded', 3333, 'dananuez@misena.edu.co', 'Femenino', 1, '$2y$10$jb8oL7gubvoVyEgeUQwk4e7JR8xso6cN.S13Yi7WARzgWgtnu3fY2', '2022-11-13 15:10:25'),
+(22, 'CC', '32323', 'ddwed', 'deded', 3333, 'dananuez@misena.edu.co', 'Femenino', 1, '$2y$10$kcucFWq8qG10Dubk4/SWou07wP9fAqqOUTlmIPAhDo9vOy2aZ3Pwm', '2022-11-13 15:10:25'),
 (24, 'CC', '1234', 'El kevin', 'Garcia', 321321321, 'kevinchugarcia20046@gmail.com', 'Femenino', 1, '$2y$10$njxzJqZd.UqHFbwIJ3SqI.TFANCBWCndX9CjNP1h7itwo6isMMetS', '2022-11-24 17:48:48'),
-(25, 'CC', '1212', 'elalejandro', 'elalejandro', 21212, 't.h.n.e.d.i89@gmail.com', 'Femenino', 1, '$2y$10$EQYbwoiGgVuFgIBJGEPSsemqmMDaVWAw2SLgSIl5pESAnY5cGFXLi', '2022-11-30 10:19:16');
+(25, 'CC', '1212', 'elalejandro', 'elalejandro', 21212, 't.h.n.e.d.i89@gmail.com', 'Femenino', 1, '$2y$10$T6cySjMVH148.6Yxj7PtBeg/iJuB7qijADpzRBxCoxbk5Wj09JeOm', '2022-11-30 10:19:16');
 
 -- --------------------------------------------------------
 

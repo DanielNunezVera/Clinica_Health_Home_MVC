@@ -22,7 +22,22 @@
 		}
 
 		public function acciones(){
-			require_once "views/auxiliar_admin/index_aux.php";
+
+			$id_auxiliar = $_SESSION["auxiliar"];
+
+			if (isset($_SESSION["auxiliar"])){
+
+                $auxiliar = new Auxiliar_model();
+                $data["auxiliar"] = $auxiliar -> get_aux($id_auxiliar);
+
+                foreach ($data["auxiliar"] as $dato){
+
+                    require_once "views/auxiliar_admin/index_aux.php";
+
+                }
+            
+            }
+
 		}
 		
 		public function buscar_pacientei(){
@@ -146,7 +161,13 @@
 		    if(isset($_SESSION['auxiliar'])){
 			$auxiliar = new Auxiliar_model();
 			$data["auxiliar"] = $auxiliar->get_aux($id_aux);
-			require_once "views/auxiliar_admin/update_info_aux/update_aux.php";
+			
+				foreach ($data["auxiliar"] as $dato){
+
+					require_once "views/auxiliar_admin/update_info_aux/update_aux.php";
+
+				}
+
 		    }
 		}
 

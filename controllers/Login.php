@@ -18,6 +18,10 @@ $inc = new SesionesController();
         $_SESSION["Login_error_1"]="1";
         $inc->redireccionar();
 
+    } elseif(!empty($_SESSION["prof"])){
+        unset($_SESSION["prof"]);
+        $_SESSION["Login_error_1"]="1";
+        $inc->redireccionar();
     }
 
 class LoginController{
@@ -68,7 +72,7 @@ class LoginController{
                     header ("Location: index.php?c=Auxiliar&a=index");
 
                 }else{
-                    $_SESSION["Login_error_2"] = "2";
+                    $_SESSION["Login_error"] = "2";
                     header ("Location: index.php?c=Login&a=index");
                 }
             }else{

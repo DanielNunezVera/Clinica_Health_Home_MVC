@@ -11,11 +11,12 @@
 			$this->db = Conectar::conexion();
 			$this->citas_pac = array();
       		$this->citas_prof = array();
+			$this->auxiliar = array();
 		}
 		
 		public function get_citas_pac()
 		{
-			$sql = "SELECT * FROM cita_paciente";
+			$sql = "CALL cita_paciente";
 			$resultado = $this->db->query($sql);
 			while($row = $resultado->fetch_assoc())
 			{
@@ -26,7 +27,7 @@
 
 		public function get_citas_prof()
 		{
-			$sql = "SELECT * FROM cita_profesional";
+			$sql = "CALL cita_profesional";
 			$resultado = $this->db->query($sql);
 			while($row = $resultado->fetch_assoc())
 			{
@@ -82,7 +83,7 @@
 
 		public function get_especialidad()
 		{
-			$sql = "SELECT especialidad.id_especialidad, especialidad.descrip_espec, especialidad.costo_espec, especialidad.estado_espec FROM profesional INNER JOIN especialidad ON profesional.id_especialidad = especialidad.id_especialidad WHERE estado_espec = '1'";
+			$sql = "SELECT DISTINCT especialidad.id_especialidad, especialidad.descrip_espec, especialidad.costo_espec, especialidad.estado_espec FROM profesional INNER JOIN especialidad ON profesional.id_especialidad = especialidad.id_especialidad WHERE estado_espec = '1'";
 			$resultado = $this->db->query($sql);
 			while($row = $resultado->fetch_assoc())
 			{
@@ -95,9 +96,14 @@
 		public function get_aux($id_aux){
 			$sql = "SELECT * FROM auxiliar WHERE id_auxiliar=$id_aux LIMIT 1";
 			$resultado = $this->db->query($sql);
-			$row = $resultado->fetch_assoc();
+			while($row = $resultado->fetch_assoc()){
+
+				$this->auxiliar[] = $row;
+
+			}
 			$this->db->close();
-			return $row;
+
+			return $this->auxiliar;
 		}
 
 		public function modificar_auxiliar($tel_aux, $correo_aux, $id_aux){
