@@ -26,7 +26,7 @@ if (typeof alertas !== "undefined") {
             } else{
                 Swal.fire(
                     '¡Error!',
-                    'Las contraseñas no coinciden, vuelva a intentarlo',
+                    'Error en los datos, vuelva a intentarlo',
                     'warning'
                     )
             }

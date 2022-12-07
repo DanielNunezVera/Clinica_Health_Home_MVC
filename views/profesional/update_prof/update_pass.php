@@ -40,14 +40,18 @@
                     <h1 class="titulo1">Actualizar Contraseña</h1>
                     <div class="contact-wrapper animated bounceInUp">
                         <div class="contact-form">
-                        <form action="index.php?c=Profesional&a=modificar_pass" method="POST">
+                            <form action="index.php?c=Profesional&a=modificar_pass" method="POST">
+                                <p>
+                                    <label>Contraseña actual</label>
+                                    <input type="password" name="pass" required>
+                                </p>
                                 <p>
                                     <label>Nueva contraseña</label>
-                                    <input type="password" name="newpass" minlength="8">
+                                    <input type="password" name="newpass" minlength="8" required>
                                 </p>
                                 <p>
                                     <label>Repita contraseña</label>
-                                    <input type="password" name="repass" minlength="8">
+                                    <input type="password" name="repass" minlength="8" required>
                                 </p>
                                 <p class="block">
                                     <button class="btn btn-primary btn-lg btn-block" name="registrar" id="registrar" type="submit">Actualizar</button>
@@ -64,18 +68,13 @@
     <script>
         <?php
         
-        if (isset($_SESSION["update_pass"])) {
-            
+        if (isset($_SESSION["update_pass"])) {         
             if ($_SESSION["update_pass"] == "0") {
-
                 echo "var update_pass = '0';";
                 echo "var alertas  = '2';";
                 unset($_SESSION["update_pass"]);
-
             }
-
         }
-
         ?>
     </script>
     <script src="assets/js-general/alertas_prof.js"></script>
