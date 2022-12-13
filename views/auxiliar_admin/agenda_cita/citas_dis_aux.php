@@ -57,7 +57,10 @@
                                     }
                                     ?>
                                 </tbody>
-                            </table>  
+                            </table>
+                            <a href = "index.php?c=Auxiliar&a=cambi_esp_ci_aux">
+                            <button value='".$dato["id_paciente"]."' class="btn btn-primary btn-lg btn-block">Cambiar especialidad</button>
+                            </a>  
                         </div>
                     </div>
                 </div>

@@ -38,7 +38,6 @@
 
 		public function buscar_pacientef(){	
 
-			
 			$id_tipo_doc = $_POST['id_tipo_doc'];
 			$num_doc_pac = $_POST['num_doc_pac'];
 
@@ -52,6 +51,27 @@
 				$_SESSION["descti_pac_age"] = "0";
 				$this->buscar_pacientei();
 			}
+			
+			
+		}
+
+		public function cambi_esp_ci_aux(){	
+
+			$id_pac = $_POST["id_paciente"];
+			
+			$paciente = new Auxiliar_model();
+			$data["especialidades"] = $paciente->get_especialidad();
+			
+				
+			if(isset($id_pac)){
+				require_once "views/auxiliar_admin/agenda_cita/cita_aux.php";
+				$_SESSION['id_paciente']= $id_pac;
+		
+			}else{
+					$_SESSION["descti_pac_age"] = "0";
+					$this->buscar_pacientei();
+			}
+			
 			
 			
 		}
