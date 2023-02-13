@@ -49,7 +49,11 @@
                             <input type="text" placeholder="Numero de documento" id="num_doc_pac" name="num_doc_pac" class="contenedor1" required> 
                             <br>
                             <br>
-                            <button class="btn btn-primary btn-lg btn-block">Buscar</button>
+                            <p>
+                            <label></label>
+                                <a href="index.php?c=Auxiliar&a=citas_pac" style="float: left;" class="btn btn-lg btn-outline-danger">Volver</a>
+                                <button class="btn btn-primary btn-lg btn-block" style="float: right;">Buscar</button>
+                            <p>
                         </form>
                     </div>
                   </div>

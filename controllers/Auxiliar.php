@@ -53,7 +53,6 @@
 
 		public function buscar_pacientef(){	
 
-			
 			$id_tipo_doc = $_POST['id_tipo_doc'];
 			$num_doc_pac = $_POST['num_doc_pac'];
 
@@ -71,11 +70,32 @@
 			
 		}
 
+		public function cambi_esp_ci_aux(){	
+
+			$id_pac = $_POST["id_paciente"];
+			
+			$paciente = new Auxiliar_model();
+			$data["especialidades"] = $paciente->get_especialidad();
+			
+				
+			if(isset($id_pac)){
+				require_once "views/auxiliar_admin/agenda_cita/cita_aux.php";
+				$_SESSION['id_paciente']= $id_pac;
+		
+			}else{
+					$_SESSION["descti_pac_age"] = "0";
+					$this->buscar_pacientei();
+			}
+			
+			
+			
+		}
+
 		public function citas_pac(){
 			
 			$citas_pac = new Auxiliar_model();
 			$data["citas_pac"] = $citas_pac->get_citas_pac();
-						
+			$_SESSION["cont"]=1;			
 			require_once "views/auxiliar_admin/view_citas/citaspac.php";
 				
 		}
@@ -113,7 +133,7 @@
 			
 			$citas_prof = new Auxiliar_model();
 			$data["citas_profe"] = $citas_prof->get_citas_prof();
-						
+			$_SESSION["cont"]=2;			
 			require_once "views/auxiliar_admin/view_citas/citasprof.php";
 				
 		}
@@ -322,5 +342,17 @@
             require_once "views/administrador/manual_usuario/manual_de_usuario.html";
 
         }
+
+		public function  volver_a_citas_aux(){
+  
+
+			$paciente = new Auxiliar_model();
+			$data["especialidades"] = $paciente->get_especialidad();
+			if(isset($_SESSION['id_paciente'])){
+				require_once "views/auxiliar_admin/agenda_cita/cita_aux.php";
+			}else{
+				$this->buscar_pacientei();
+			}
+		}
 	}
 ?>

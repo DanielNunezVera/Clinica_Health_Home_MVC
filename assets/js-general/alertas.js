@@ -950,3 +950,20 @@ function cerrarsesionaux(){
     }
   })
 }
+
+function Cambiar_esp_ci_aux(){
+  Swal.fire({
+    title: '¿Esta seguro de cancelar la cita?',
+    text: "Esta accion es irreversible",
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Confirmar',
+    cancelButtonText:'Volver'
+  }).then((result) => {
+    if (result.isConfirmed) {
+      location.href = "index.php?c=Auxiliar&a=buscar_pacientef";
+    }
+  })
+}
