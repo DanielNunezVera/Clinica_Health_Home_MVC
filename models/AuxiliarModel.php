@@ -11,6 +11,7 @@
 			$this->db = Conectar::conexion();
 			$this->citas_pac = array();
       		$this->citas_prof = array();
+			$this->auxiliar = array();
 		}
 		
 		public function get_citas_pac()
@@ -82,7 +83,7 @@
 
 		public function get_especialidad()
 		{
-			$sql = "SELECT especialidad.id_especialidad, especialidad.descrip_espec, especialidad.costo_espec, especialidad.estado_espec FROM profesional INNER JOIN especialidad ON profesional.id_especialidad = especialidad.id_especialidad WHERE estado_espec = '1'";
+			$sql = "SELECT DISTINCT especialidad.id_especialidad, especialidad.descrip_espec, especialidad.costo_espec, especialidad.estado_espec FROM profesional INNER JOIN especialidad ON profesional.id_especialidad = especialidad.id_especialidad WHERE estado_espec = '1'";
 			$resultado = $this->db->query($sql);
 			while($row = $resultado->fetch_assoc())
 			{

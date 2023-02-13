@@ -34,7 +34,8 @@ class RecuperarpController {
                 $resultado_2 = $rest_pass -> send_email($key, $email);
                 if($resultado_2=="1"){
                     $_SESSION["rec_contra"]="1";
-                    header ("Location: index.php?c=Login&a=index");
+                    header ("Location: index.php?c=Login&a=restablecer_contraseña");
+                    // echo $_SESSION["rec_contra"];
                 }else {
                     $_SESSION["rec_contra"]=$resultado_2;
                 }
@@ -45,4 +46,4 @@ class RecuperarpController {
 
         }
 
-    ?>
+?>

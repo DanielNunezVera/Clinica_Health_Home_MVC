@@ -153,12 +153,7 @@
 			$this->db->close();
 			return $resultado2;
 		}
-
-
-
-
-
-
+		
 		public function insertar_agenda($id_profesional, $tipo_franja_la, $tipo_franja){
 
 

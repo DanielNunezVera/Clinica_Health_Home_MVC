@@ -37,9 +37,18 @@
                                     <input type="date" name="fecha" id="fecha" required>
                                 </p> 
                                 <p class="block">
-                                
-                                <button class="btn btn-primary btn-lg btn-block" name="registrar" id="reistrar" type="submit">Buscar</button>
-                                
+                                    <label></label>
+                                    <?php
+                                        if(isset($_SESSION["cont"])){
+                                            if($_SESSION["cont"] ==1){
+                                                $link = "buscar_pacientei";
+                                            }else{
+                                                $link = "citas_prof";
+                                            }
+                                        }
+                                    ?>
+                                    <a href="index.php?c=Auxiliar&a=<?php echo $link?>" class="btn btn-lg btn-outline-danger">Volver</a>
+                                    <button class="btn btn-primary btn-lg btn-block" style="float: right;" name="registrar" id="reistrar" type="submit">Buscar</button>
                                 </p>
                             </form>
                         </div>

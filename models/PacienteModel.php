@@ -35,6 +35,14 @@
 
 			}
 
+			public function get_paciente($id_paciente){
+				$sql = "SELECT * FROM paciente WHERE id_paciente=$id_paciente LIMIT 1";
+				$resultado = $this->db->query($sql);
+        		$row = $resultado->fetch_assoc();
+        		$this->db->close();
+        		return $row;
+			}
+
 			public function get_especialidad(){
 
 				$sql = "SELECT DISTINCT especialidad.id_especialidad, especialidad.descrip_espec, especialidad.costo_espec, especialidad.estado_espec FROM profesional INNER JOIN especialidad ON profesional.id_especialidad = especialidad.id_especialidad WHERE estado_espec = '1'";
@@ -82,13 +90,11 @@
 
 			}
 
-			public function update_pass_pac($id_paciente, $pass_pac){
+			public function update_password($newpass, $id_paciente){
 
-				$resultado = $this->db->query("UPDATE paciente SET pass_pac = '$pass_pac' WHERE id_paciente = '$id_paciente'");
+				$resultado = $this->db->query("UPDATE paciente SET pass_pac = '$newpass' WHERE id_paciente=$id_paciente");
 				$resultado1 = $this->db->affected_rows;
-
 				$this->db->close();
-
 				return $resultado1;
 
 			}

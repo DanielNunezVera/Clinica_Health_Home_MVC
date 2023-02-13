@@ -24,18 +24,16 @@
                 <nav id="nav">
                     <img src="assets/images/ajustes.png" alt="">
                     <ul>
-                        <li><a href="index.php?c=Paciente&a=index" >Inicio</a></li>
-                        <li><a href="index.php?c=Paciente&a=actualizar_pac">Actualizar Datos</a></li>
-                        <li><a style="cursor: pointer;" onclick="cerrarsesionpac()">Cerrar sesion</a></li>
+                        <li><a href="index.php?c=Login&a=index" >Iniciar Sesión</a></li>
                         <li><a href="index.php?c=Paciente&a=ayuda" >ayuda</a></li>
                     </ul>
                 </nav>
             </div>
         </div>
     </header>
-    <div class="container-fluid">
-        <iframe src="index.php?c=Paciente&a=acciones" name="header"></iframe>
-    </div>
+    <!-- <div class="container-fluid">
+        <iframe src="index.php?c=Paciente&a=ayuda" name="header"></iframe>
+    </div> -->
     <script src="assets/js-general/alertas.js"></script>
     <?php require "views/Links/js.php"?>
 </body>

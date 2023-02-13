@@ -58,6 +58,10 @@
                                     ?>
                                 </tbody>
                             </table>  
+                            <p>
+                                <label><br></label>
+                                <a href="index.php?c=Auxiliar&a=volver_a_citas_aux" class="btn btn-outline-danger">Volver</a>
+                            </p>
                         </div>
                     </div>
                 </div>

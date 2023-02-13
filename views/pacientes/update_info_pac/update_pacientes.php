@@ -27,7 +27,6 @@
                     <img src="assets/images/ajustes.png" alt="">
                     <ul>
                         <li><a href="index.php?c=Paciente&a=index">Inicio</a></li>
-                        <li><a href="index.php?c=Paciente&a=get_paciente">Actualizar datos</a></li>
                         <li><a style="cursor: pointer;" onclick="cerrarsesionpac()">Cerrar sesion</a></li>
                         <li><a href="index.php?c=Paciente&a=ayuda" >ayuda</a></li>
                     </ul>
@@ -43,30 +42,29 @@
                     <div class="contact-wrapper animated bounceInUp">
                         <div class="contact-form">
                             <form action="index.php?c=Paciente&a=update_pac" method="POST">
-                                <input type="hidden" name="id_paciente" id="id_paciente" value="<?php echo $_SESSION['pac'];?>">
                                 <p>
                                     <label>N° documento</label>
-                                    <input type="number" name="num_doc_pac" value="<?php echo $dato["num_doc_pac"];?>" readonly>
+                                    <input type="number" name="num_doc_pac" value="<?php echo $data['paciente']["num_doc_pac"];?>" readonly>
                                 </p>
                                 <p>
                                     <label>Nombre completo</label>
-                                    <input type="text" name="nombrecompleto" id="nombrecompleto" value="<?php echo $dato["nombres_pac"]." ". $dato["apellidos_pac"];?>" readonly>
+                                    <input type="text" name="nombrecompleto" id="nombrecompleto" value="<?php echo $data['paciente']["nombres_pac"]." ". $data['paciente']["apellidos_pac"];?>" readonly>
                                 </p>
                                 <p>
                                     <label>Email</label>
-                                    <input type="email" name="correo_pac" id="correo_pac" value="<?php echo $dato["correo_pac"];?>" required>
+                                    <input type="email" name="correo_pac" id="correo_pac" value="<?php echo $data['paciente']["correo_pac"];?>" required>
                                 </p>
                                 <p>
                                     <label>Teléfono</label>
-                                    <input type="tel" name="tel_pac" id="tel_pac" value="<?php echo $dato["tel_pac"];?>" required>
+                                    <input type="tel" name="tel_pac" id="tel_pac" value="<?php echo $data['paciente']["tel_pac"];?>" required>
                                 </p>
                                 <p>
                                     <label>Genero</label>
-                                    <input type="text" name="sexo_pac" value="<?php echo $dato["sexo_pac"];?>" readonly>
+                                    <input type="text" name="sexo_pac" value="<?php echo $data['paciente']["sexo_pac"];?>" readonly>
                                 </p>
                                 <p>
                                     <label><br></label>
-                                    <a href="index.php?c=Paciente&a=password" class="btn btn-outline-primary btn-lg btn-block">Actualizar contraseña</a>
+                                    <a href="index.php?c=Paciente&a=actualizar_pass" class="btn btn-outline-primary btn-lg btn-block">Actualizar contraseña</a>
                                 </p>
                                 <p class="block d-grid gap-2">
                                     <button class="btn btn-primary btn-lg btn-block" name="update" id="update" type="submit">
@@ -107,20 +105,14 @@
 
         }
 
-        if (isset($_SESSION['password'])) {
-
-            if ($_SESSION['password'] == "1") {
-
-                // var_dump($_SESSION['password']);
-                // echo $_SESSION['password'];
-
-                echo "var update_datos = '1';";
+        if(isset($_SESSION["update_pass"])){
+            if ($_SESSION["update_pass"]!="0") {
+                echo "var update_pass = '1';";
                 echo "var datos = '2';";
-
-                unset($_SESSION['password']);
-
+                unset($_SESSION["update_pass"]);
+            }else {
+                echo "var update_pass = ";
             }
-
         }
 
         ?>

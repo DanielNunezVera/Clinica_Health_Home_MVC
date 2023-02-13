@@ -13,7 +13,7 @@ class Profesional_model{
 
     public function get_citas_programadas($id_prof){
 
-        $sql="CALL citas_programadas_prof ($id_prof)";
+        $sql="CALL citas_programadas_prof('$id_prof')";
         $resultado = $this->db->query($sql);
 		while($row = $resultado->fetch_assoc())
 		{

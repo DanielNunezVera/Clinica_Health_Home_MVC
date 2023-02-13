@@ -22,7 +22,22 @@
 		}
 
 		public function acciones(){
-			require_once "views/auxiliar_admin/index_aux.php";
+
+			$id_auxiliar = $_SESSION["auxiliar"];
+
+			if (isset($_SESSION["auxiliar"])){
+
+                $auxiliar = new Auxiliar_model();
+                $data["auxiliar"] = $auxiliar -> get_aux($id_auxiliar);
+
+                foreach ($data["auxiliar"] as $dato){
+
+                    require_once "views/auxiliar_admin/index_aux.php";
+
+                }
+            
+            }
+
 		}
 		
 		public function buscar_pacientei(){
@@ -38,7 +53,6 @@
 
 		public function buscar_pacientef(){	
 
-			
 			$id_tipo_doc = $_POST['id_tipo_doc'];
 			$num_doc_pac = $_POST['num_doc_pac'];
 
@@ -56,11 +70,32 @@
 			
 		}
 
+		public function cambi_esp_ci_aux(){	
+
+			$id_pac = $_POST["id_paciente"];
+			
+			$paciente = new Auxiliar_model();
+			$data["especialidades"] = $paciente->get_especialidad();
+			
+				
+			if(isset($id_pac)){
+				require_once "views/auxiliar_admin/agenda_cita/cita_aux.php";
+				$_SESSION['id_paciente']= $id_pac;
+		
+			}else{
+					$_SESSION["descti_pac_age"] = "0";
+					$this->buscar_pacientei();
+			}
+			
+			
+			
+		}
+
 		public function citas_pac(){
 			
 			$citas_pac = new Auxiliar_model();
 			$data["citas_pac"] = $citas_pac->get_citas_pac();
-						
+			$_SESSION["cont"]=1;			
 			require_once "views/auxiliar_admin/view_citas/citaspac.php";
 				
 		}
@@ -98,7 +133,7 @@
 			
 			$citas_prof = new Auxiliar_model();
 			$data["citas_profe"] = $citas_prof->get_citas_prof();
-						
+			$_SESSION["cont"]=2;			
 			require_once "views/auxiliar_admin/view_citas/citasprof.php";
 				
 		}
@@ -146,7 +181,13 @@
 		    if(isset($_SESSION['auxiliar'])){
 			$auxiliar = new Auxiliar_model();
 			$data["auxiliar"] = $auxiliar->get_aux($id_aux);
-			require_once "views/auxiliar_admin/update_info_aux/update_aux.php";
+			
+				foreach ($data["auxiliar"] as $dato){
+
+					require_once "views/auxiliar_admin/update_info_aux/update_aux.php";
+
+				}
+
 		    }
 		}
 
@@ -155,6 +196,7 @@
 			$id_aux = $_SESSION['auxiliar'];
 			$auxiliar = new Auxiliar_model();
 			$data["auxiliar"] = $auxiliar->get_aux($id_aux);
+			$_SESSION["pass_aux"] = $data["auxiliar"]["pass_aux"];
 			require_once "views/auxiliar_admin/update_info_aux/update_pass.php";
 		}
 
@@ -178,24 +220,26 @@
 
 		public function modificar_pass(){
 			$id_aux = $_SESSION['auxiliar'];
-			$newpass = $_POST['newpass'];
-			$repass  = $_POST['repass'];
-			if($newpass == $repass){
- 
-				$new_pass = password_hash($newpass, PASSWORD_BCRYPT);
-				
-				$password = new Auxiliar_model();
-				$resultado = $password -> update_password($new_pass, $id_aux);
+			$pass = $_POST['pass'];
+            $newpass = $_POST['newpass'];
+            $repass = $_POST['repass'];
 
-				if($resultado > 0){
-					$_SESSION["update_pass"]  = "1";
-					header('location:index.php?c=Auxiliar&a=actualizar_aux');
-				 } //else{
-				// // 	$_SESSION["update_pass"]  = "0";
-				// // 	header('location:index.php?c=Auxiliar&a=actualizar_pass');
-				// // }
-				
-			}else{
+			if (password_verify($pass, $_SESSION["pass_aux"])) {
+				if ($newpass == $repass) {
+					$new_pass = password_hash($newpass, PASSWORD_BCRYPT);
+	
+					$password = new Auxiliar_model();
+					$resultado = $password->update_password($new_pass, $id_aux);
+	
+					if ($resultado > 0) {
+						$_SESSION["update_pass"] = "1";
+						header('location:index.php?c=Auxiliar&a=actualizar_aux');
+					}            	
+				}else {
+					$_SESSION["update_pass"] = "0";
+					header('location:index.php?c=Auxiliar&a=actualizar_pass');
+				}
+			}else {
 				$_SESSION["update_pass"] = "0";
 				header('location:index.php?c=Auxiliar&a=actualizar_pass');
 			}
@@ -301,5 +345,17 @@
             require_once "views/administrador/manual_usuario/manual_de_usuario.html";
 
         }
+
+		public function  volver_a_citas_aux(){
+  
+
+			$paciente = new Auxiliar_model();
+			$data["especialidades"] = $paciente->get_especialidad();
+			if(isset($_SESSION['id_paciente'])){
+				require_once "views/auxiliar_admin/agenda_cita/cita_aux.php";
+			}else{
+				$this->buscar_pacientei();
+			}
+		}
 	}
 ?>

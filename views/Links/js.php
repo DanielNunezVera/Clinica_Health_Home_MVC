@@ -1,5 +1,7 @@
-<script src="assets/js-general/menu-responsive.js"></script>
+<!-- Alertas      -->
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="assets/js-general/alertas.js"></script>
+<script src="assets/js-general/menu-responsive.js"></script>
     
     
  <!-- jquery y bootstrap -->
@@ -28,12 +30,6 @@
 <script type="text/javascript" src="https://cdn.datatables.net/v/dt/jszip-2.5.0/dt-1.12.1/b-2.2.3/b-colvis-2.2.3/b-html5-2.2.3/b-print-2.2.3/r-2.3.0/sl-1.4.0/datatables.min.js"></script>
 <script type="text/javascript" src="https://cdn.datatables.net/responsive/2.3.0/js/dataTables.responsive.min.js"></script>
 <script type="text/javascript" src="https://cdn.datatables.net/responsive/2.3.0/js/responsive.bulma.min.js"></script>
-
-
-
-<!-- Alertas      -->
-<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
 
 <script src="assets/js-general/codigo.js"></script>
 

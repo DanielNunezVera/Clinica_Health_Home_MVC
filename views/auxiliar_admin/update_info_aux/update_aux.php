@@ -43,10 +43,6 @@
                     <div class="contact-wrapper animated bounceInUp">
                         <div class="contact-form">
                             <form action="index.php?c=Auxiliar&a=modificar_aux" method="POST">
-                                <!-- <p>
-                                    <label>Tipo de documento</label>
-                                    <input type="text" name="t_doc" disabled>
-                                </p> -->
                                 <p>
                                     <label>N° documento</label>
                                     <input type="number" name="num_doc" value="<?php echo $data["auxiliar"]["num_doc_aux"];?>" disabled>
@@ -67,13 +63,15 @@
                                     <input type="number" name="tel_aux" id="tel_aux" value="<?php echo $data["auxiliar"]["tel_aux"];?>" required>
                                 </p>
 
-                                <p>
-                                    <label><br></label>
+                                <p class="block d-grid gap-2">
+                                    <label></label>
                                     <a href="index.php?c=Auxiliar&a=actualizar_pass" class="btn btn-outline-primary btn-lg btn-block">Actualizar contraseña</a>
                                 </p>
-
-                                <p class="block d-grid gap-2">
-                                <button class="btn btn-primary btn-lg btn-block" name="registrar" id="registrar" type="submit">Actualizar</button>
+                                <p>
+                                    <a href="index.php?c=Auxiliar&a=index" class="btn btn-lg btn-outline-danger">Volver</a>
+                                </p>
+                                <p>
+                                    <button class="btn btn-primary btn-lg btn-block" style="float: right;" name="registrar" id="registrar" type="submit">Actualizar</button>
                                 </p>
                             </form>
                         </div>
@@ -97,14 +95,13 @@
                     unset($_SESSION["update_info"]);
                 }
             }
-            if (isset($_SESSION["update_pass"])) {
 
+            if(isset($_SESSION["update_pass"])){
                 if ($_SESSION["update_pass"]!="0") {
-                    echo "var alerta_pass_update = '1';";
+                    echo "var update_pass = '1';";
                     echo "var alerta_m_aux = '1';";
                     unset($_SESSION["update_pass"]);
                 }
-
             }
         ?>
     </script>

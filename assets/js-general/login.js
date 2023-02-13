@@ -91,3 +91,24 @@ function validar() {
 		return true;
 	}
 }
+
+function recuperarcontraseña() {
+	Swal.fire({
+		title: 'Ingrese correo electronico',
+		input: 'text',
+		inputAttributes: {
+		  autocapitalize: 'off'
+		},
+		showCancelButton: true,
+		confirmButtonText: 'Recuperar contraseña',
+		showLoaderOnConfirm: true,
+	  }).then((result) => {
+		if (result.isConfirmed) {
+		  Swal.fire({
+			title: `Se ha enviado un correo electronico`,
+		  })
+		}
+	  })
+
+
+}

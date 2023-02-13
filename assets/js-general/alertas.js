@@ -17,60 +17,56 @@ function cerrarsesionadmin(){
   })
 }
  
-
-
-
-
  ////////////ALERTAS AGENDA////////////////
  if (typeof alerta_agenda !=="undefined") {
-      switch (alerta_agenda) {
-        case "1":
-          if(alert_agenda_existente == '1'){
-              Swal.fire(
-                  '¡Informacion!',
-                  'El profesional cuenta con agenda creada',
-                  'info'
-                  )
-          }else{
-            Swal.fire(
-              '¡Alerta!',
-              'El profesional no cuenta con agenda creada',
-              'warning'
-              )
-          }
-          break;
-        case "2":
-          if(alert_agenda_repetida == '1'){
-              Swal.fire(
-                  '¡Proceso exitoso!',
-                  'Agenda creada',
-                  'success'
-                  )
-          }else{
-              Swal.fire(
-                '¡Error!',
-                'La agenda ya se encuentra creada o se ha seleccionado un dia invalido',
-                'error'
-                )
-          }
-          break;
-        case "3":
-          if(alert_agenda_excepciones == '1'){
-              Swal.fire(
-                  '¡Alerta!',
-                  'El dia ha sido eliminado',
-                  'success'
-                  )
-          }else{
-            Swal.fire(
+  switch (alerta_agenda) {
+    case "1":
+      if(alert_agenda_existente == '1'){
+          Swal.fire(
               '¡Informacion!',
-              'El dia seleccionado puede que tenga una cita asignada o este vacio el campo, verifique por favor',
+              'El profesional cuenta con agenda creada',
               'info'
               )
-          }
-          break;    
+      }else{
+        Swal.fire(
+          '¡Alerta!',
+          'El profesional no cuenta con agenda creada',
+          'warning'
+          )
       }
- }
+      break;
+    case "2":
+      if(alert_agenda_repetida == '1'){
+          Swal.fire(
+              '¡Proceso exitoso!',
+              'Agenda creada',
+              'success'
+              )
+      }else{
+          Swal.fire(
+            '¡Error!',
+            'La agenda ya se encuentra creada o se ha seleccionado un dia invalido',
+            'error'
+            )
+      }
+      break;
+    case "3":
+      if(alert_agenda_excepciones == '1'){
+          Swal.fire(
+              '¡Alerta!',
+              'El dia ha sido eliminado',
+              'success'
+              )
+      }else{
+        Swal.fire(
+          '¡Informacion!',
+          'El dia seleccionado puede que tenga una cita asignada o este vacio el campo, verifique por favor',
+          'info'
+          )
+      }
+      break;
+  }
+}
 
 /////////////// ALERTAS INICIO DE SESION////////////////////////////////////////////////
  if (typeof alerta_login !=="undefined") {
@@ -615,33 +611,20 @@ if (typeof datos !== 'undefined') {
 
     case "2":
 
-      if (update_datos === "1") {
-
+      if (update_pass == "1") {
         Swal.fire(
-          '¡Correcto!',
-          'Su contraseña se ha actualizado correctamente.',
-          'success'
+            '¡Contraseña actualizada!',
+            'Se ha actualizado la contraseña con exito',
+            'success'
         )
-
-      } else if (update_datos === "0") {
-
+      } else{
         Swal.fire(
-          '¡Alerta!',
-          'Las contraseñas no coinciden. Intente nuevamente',
-          'warning'
-        )
-
-      } else if (update_datos === "2") {
-
-          Swal.fire(
-            '¡Alerta!',
-            'Ha habido un error al intentar actualizar su contraseña. Intentelo de nuevo.',
+            '¡Error!',
+            'Error en los datos, vuelva a intentarlo',
             'warning'
-          )
-
+            )
       }
-    
-    break;
+      break;
 
   }
 
@@ -705,20 +688,20 @@ function cancelar_paciente(a){
 if (typeof alerta_m_aux !=="undefined"){
   switch(alerta_m_aux){
       case "1": 
-          if(alerta_pass_update == "1"){
-              Swal.fire(
-                  '¡Correcto!',
-                  'Su contraseña se ha actualizado correctamente',
-                  'success'
-                  )
-          }else{
-              Swal.fire(
-                  '¡Error!',
-                  'Su contraseña no coincide, vuelva a intentarlo',
-                  'warning'
-                  )
-          }
-          break;
+      if (update_pass == "1") {
+        Swal.fire(
+            '¡Contraseña actualizada!',
+            'Se ha actualizado la contraseña con exito',
+            'success'
+        )
+      } else{
+        Swal.fire(
+            '¡Error!',
+            'Error en los datos, vuelva a intentarlo',
+            'warning'
+            )
+      }
+      break;
       case "2":
           if(alerta_update_info == "1"){
               Swal.fire(
@@ -951,6 +934,23 @@ function cerrarsesionaux(){
   }).then((result) => {
     if (result.isConfirmed) {
       location.href = "index.php?c=Auxiliar&a=cerrarsesion";
+    }
+  })
+}
+
+function Cambiar_esp_ci_aux(){
+  Swal.fire({
+    title: '¿Esta seguro de cancelar la cita?',
+    text: "Esta accion es irreversible",
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Confirmar',
+    cancelButtonText:'Volver'
+  }).then((result) => {
+    if (result.isConfirmed) {
+      location.href = "index.php?c=Auxiliar&a=buscar_pacientef";
     }
   })
 }
