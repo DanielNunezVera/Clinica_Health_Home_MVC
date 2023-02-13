@@ -96,14 +96,9 @@
 		public function get_aux($id_aux){
 			$sql = "SELECT * FROM auxiliar WHERE id_auxiliar=$id_aux LIMIT 1";
 			$resultado = $this->db->query($sql);
-			while($row = $resultado->fetch_assoc()){
-
-				$this->auxiliar[] = $row;
-
-			}
+			$row = $resultado->fetch_assoc();
 			$this->db->close();
-
-			return $this->auxiliar;
+			return $row;
 		}
 
 		public function modificar_auxiliar($tel_aux, $correo_aux, $id_aux){

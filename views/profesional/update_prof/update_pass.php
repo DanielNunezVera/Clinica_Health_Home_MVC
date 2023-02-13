@@ -45,6 +45,7 @@
                                     <label>Contraseña actual</label>
                                     <input type="password" name="pass" required>
                                 </p>
+                                <br>
                                 <p>
                                     <label>Nueva contraseña</label>
                                     <input type="password" name="newpass" minlength="8" required>

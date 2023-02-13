@@ -127,8 +127,15 @@
 
                 require_once "views/pacientes/update_info_pac/update_pacientes.php";
 
-            }
-            
+            } 
+        }
+
+        public function actualizar_pac(){
+            $id_paciente = $_SESSION['pac'];
+			
+			$paciente = new Paciente_model();
+			$data["paciente"] = $paciente->get_paciente($id_paciente);
+			require_once "views/pacientes/update_info_pac/update_pacientes.php";
         }
 
         public function update_pac(){
@@ -154,41 +161,43 @@
 
         }
 
-        public function password(){
+        public function actualizar_pass(){
 
+            $id_paciente = $_SESSION['pac'];
+
+			$paciente = new Paciente_model();
+			$data["paciente"] = $paciente->get_paciente($id_paciente);
+			$_SESSION["pass_pac"] = $data["paciente"]["pass_pac"];
             require_once "views/pacientes/update_info_pac/update_contraseña.php";
 
         }
 
-        public function update_password(){
+        public function modificar_pass(){
 
-            if ($_POST["pass_pac"] == $_POST["repeat_pass_pac"]) {
-                
-                $id_paciente = $_POST['id_paciente'];
-                $pass_pac = password_hash($_POST['pass_pac'], PASSWORD_BCRYPT);
-
-                $paquete = new Paciente_model;
-                $prueba = $paquete -> update_pass_pac($id_paciente, $pass_pac);
-
-                if ($prueba == TRUE) {
-
-                    $_SESSION['password'] = "1";
-                    header ('Location:index.php?c=Paciente&a=get_paciente');
-
-                } else {
-
-                    $_SESSION['password'] = "2";
-                    $this->password();
-
-                }
-
-            } else{
-
-                $_SESSION['password'] = "0";
-                header('Location:index.php?c=Paciente&a=password');
-
-            }
-
+            $id_paciente = $_SESSION['pac'];
+			$pass = $_POST['pass'];
+            $newpass = $_POST['newpass'];
+            $repass = $_POST['repass'];
+			
+			if (password_verify($pass, $_SESSION["pass_pac"])) {
+				if ($newpass == $repass) {
+					$new_pass = password_hash($newpass, PASSWORD_BCRYPT);
+	
+					$password = new Paciente_model();
+					$resultado = $password->update_password($new_pass, $id_paciente);
+	
+					if ($resultado > 0) {
+						$_SESSION["update_pass"] = "1";
+						header('location:index.php?c=Paciente&a=actualizar_pac');
+					}            	
+				}else {
+					$_SESSION["update_pass"] = "0";
+					header('location:index.php?c=Paciente&a=actualizar_pass');
+				}
+			}else {
+				$_SESSION["update_pass"] = "0";
+				header('location:index.php?c=Paciente&a=actualizar_pass');
+			}
         }
 
         public function citas_agendadas(){

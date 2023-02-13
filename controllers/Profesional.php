@@ -18,22 +18,7 @@
 		}
 
 		public function acciones(){
-
-			$id_profesional = $_SESSION['prof'];
-
-            if (isset($_SESSION['prof'])){
-
-                $profesional = new Profesional_model();
-                $data["profesional"] = $profesional -> get_prof($id_profesional);
-
-                foreach ($data["profesional"] as $dato){
-
-                    require_once "views/profesional/index_prof.php";
-
-                }
-            
-            }
-
+			require_once "views/profesional/index_prof.php";
 		}
 
 		public function cerrarsesion(){
@@ -79,12 +64,7 @@
 			
 			$profesional = new Profesional_model();
 			$data["profesional"] = $profesional->get_prof($id_prof);
-			
-			foreach ($data["profesional"] as $dato){
-
-				require_once "views/profesional/update_prof/update_prof.php";
-
-			}
+			require_once "views/profesional/update_prof/update_prof.php";			
 		}
 
         public function modificar_prof(){

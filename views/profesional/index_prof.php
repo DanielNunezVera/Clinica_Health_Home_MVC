@@ -18,9 +18,7 @@
             <div class="cover">
                 <div class="caja1">
                     <div class="row">
-                        <?php 
-                        echo "<h1>Bienvenido"." - ".$dato["nombres_prof"]."</h1>";
-                        ?>
+                        <h1>Bienvenido prof</h1>
                         <br>
                         <a href="index.php?c=Profesional&a=set_citas_prom_prof" class="boton">Citas Programadas</a>
                         <br>

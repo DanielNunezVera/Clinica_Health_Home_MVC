@@ -176,6 +176,7 @@
 			$id_aux = $_SESSION['auxiliar'];
 			$auxiliar = new Auxiliar_model();
 			$data["auxiliar"] = $auxiliar->get_aux($id_aux);
+			$_SESSION["pass_aux"] = $data["auxiliar"]["pass_aux"];
 			require_once "views/auxiliar_admin/update_info_aux/update_pass.php";
 		}
 
@@ -199,24 +200,26 @@
 
 		public function modificar_pass(){
 			$id_aux = $_SESSION['auxiliar'];
-			$newpass = $_POST['newpass'];
-			$repass  = $_POST['repass'];
-			if($newpass == $repass){
- 
-				$new_pass = password_hash($newpass, PASSWORD_BCRYPT);
-				
-				$password = new Auxiliar_model();
-				$resultado = $password -> update_password($new_pass, $id_aux);
+			$pass = $_POST['pass'];
+            $newpass = $_POST['newpass'];
+            $repass = $_POST['repass'];
 
-				if($resultado > 0){
-					$_SESSION["update_pass"]  = "1";
-					header('location:index.php?c=Auxiliar&a=actualizar_aux');
-				 } //else{
-				// // 	$_SESSION["update_pass"]  = "0";
-				// // 	header('location:index.php?c=Auxiliar&a=actualizar_pass');
-				// // }
-				
-			}else{
+			if (password_verify($pass, $_SESSION["pass_aux"])) {
+				if ($newpass == $repass) {
+					$new_pass = password_hash($newpass, PASSWORD_BCRYPT);
+	
+					$password = new Auxiliar_model();
+					$resultado = $password->update_password($new_pass, $id_aux);
+	
+					if ($resultado > 0) {
+						$_SESSION["update_pass"] = "1";
+						header('location:index.php?c=Auxiliar&a=actualizar_aux');
+					}            	
+				}else {
+					$_SESSION["update_pass"] = "0";
+					header('location:index.php?c=Auxiliar&a=actualizar_pass');
+				}
+			}else {
 				$_SESSION["update_pass"] = "0";
 				header('location:index.php?c=Auxiliar&a=actualizar_pass');
 			}

@@ -42,32 +42,32 @@
                             <form action="index.php?c=Profesional&a=modificar_prof" method="POST">
                                 <p>
                                     <label>Tipo doc</label>
-                                    <input type="text" name="t_doc" value="<?php echo $dato["id_tipo_doc"];?>" disabled>
+                                    <input type="text" name="t_doc" value="<?php echo $data["profesional"]["id_tipo_doc"];?>" disabled>
                                 </p>
                                 <p>
                                     <label>N° documento</label>
-                                    <input type="number" name="num_doc" value="<?php echo $dato["num_doc_prof"];?>" disabled>
+                                    <input type="number" name="num_doc" value="<?php echo $data["profesional"]["num_doc_prof"];?>" disabled>
                                 </p>
                                 <p>
                                     <label>Nombre </label>
-                                    <input type="text" name="fullnombre" value="<?php echo $dato["nombres_prof"]." ".$dato["apellidos_prof"];?>" disabled>
+                                    <input type="text" name="fullnombre" value="<?php echo $data["profesional"]["nombres_prof"]." ".$data["profesional"]["apellidos_prof"];?>" disabled>
                                 </p>
                                 <p>
                                     <label>Teléfono</label>
-                                    <input type="tel" name="tel_prof" value="<?php echo $dato["tel_prof"];?>" required>
+                                    <input type="tel" name="tel_prof" value="<?php echo $data["profesional"]["tel_prof"];?>" required>
                                 </p>
                                 <p>
                                     <label>Email</label>
-                                    <input type="email" name="correo_prof" value="<?php echo $dato["correo_prof"]?>" required>
+                                    <input type="email" name="correo_prof" value="<?php echo $data["profesional"]["correo_prof"]?>" required>
                                 </p>
                                 <p>
                                     <label>Dias laborales </label>
-                                    <input name="dias_laborales" value="<?php echo $dato["dias_laborales"]?>" disabled>
+                                    <input name="dias_laborales" value="<?php echo $data["profesional"]["dias_laborales"]?>" disabled>
                                 </p>
 
                                 <p>
                                     <label>Franja laboral </label>
-                                    <input name="franja_horaria" value="<?php echo $dato["franja_horaria"]?>" disabled>
+                                    <input name="franja_horaria" value="<?php echo $data["profesional"]["franja_horaria"]?>" disabled>
                                 </p>
                                 
                                 <p>
