@@ -1,55 +1,72 @@
- 
+//////////////ALERTAS MODULO ADMINISTRADOR///////
+
+function cerrarsesionadmin(){
+  Swal.fire({
+    title: 'Cerrar sesion',
+    text: "¿Desea cerrar la sesion?",
+    icon: 'question',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Confirmar',
+    cancelButtonText:'Cancelar'
+  }).then((result) => {
+    if (result.isConfirmed) {
+      location.href = "index.php?c=Administrador&a=cerrarsesion";
+    }
+  })
+}
  
  ////////////ALERTAS AGENDA////////////////
  if (typeof alerta_agenda !=="undefined") {
-      switch (alerta_agenda) {
-        case "1":
-          if(alert_agenda_existente == '1'){
-              Swal.fire(
-                  '¡Informacion!',
-                  'El profesional cuenta con agenda creada',
-                  'info'
-                  )
-          }else{
-            Swal.fire(
-              '¡Alerta!',
-              'El profesional no cuenta con agenda creada',
-              'warning'
-              )
-          }
-          break;
-        case "2":
-          if(alert_agenda_repetida == '1'){
-              Swal.fire(
-                  '¡Proceso exitoso!',
-                  'Agenda creada',
-                  'success'
-                  )
-          }else{
-              Swal.fire(
-                '¡Error!',
-                'La agenda ya se encuentra creada',
-                'error'
-                )
-          }
-          break;
-        case "3":
-          if(alert_agenda_excepciones == '1'){
-              Swal.fire(
-                  '¡Alerta!',
-                  'El dia ha sido eliminado',
-                  'success'
-                  )
-          }else{
-            Swal.fire(
+  switch (alerta_agenda) {
+    case "1":
+      if(alert_agenda_existente == '1'){
+          Swal.fire(
               '¡Informacion!',
-              'El dia seleccionado puede que tenga una cita asignada o este vacio el campo, verifique por favor',
+              'El profesional cuenta con agenda creada',
               'info'
               )
-          }
-          break;    
+      }else{
+        Swal.fire(
+          '¡Alerta!',
+          'El profesional no cuenta con agenda creada',
+          'warning'
+          )
       }
- }
+      break;
+    case "2":
+      if(alert_agenda_repetida == '1'){
+          Swal.fire(
+              '¡Proceso exitoso!',
+              'Agenda creada',
+              'success'
+              )
+      }else{
+          Swal.fire(
+            '¡Error!',
+            'La agenda ya se encuentra creada o se ha seleccionado un dia invalido',
+            'error'
+            )
+      }
+      break;
+    case "3":
+      if(alert_agenda_excepciones == '1'){
+          Swal.fire(
+              '¡Alerta!',
+              'El dia ha sido eliminado',
+              'success'
+              )
+      }else{
+        Swal.fire(
+          '¡Informacion!',
+          'El dia seleccionado puede que tenga una cita asignada o este vacio el campo, verifique por favor',
+          'info'
+          )
+      }
+      break;
+  }
+}
 
 /////////////// ALERTAS INICIO DE SESION////////////////////////////////////////////////
  if (typeof alerta_login !=="undefined") {
@@ -95,6 +112,28 @@
               )
           }
           break;
+          case "4":
+            if (recuperar_pass == '1') {
+              Swal.fire(
+                'Correcto',
+                'Se ha enviado la contraseña a su correo electronico',
+                'success'
+                )
+            }
+            else if(recuperar_pass == '0'){
+              Swal.fire(
+                '¡Alerta!',
+                'El usuario no existe o esta descativado',
+                'warning'
+                )
+            }else if(recuperar_pass == '2'){
+              Swal.fire(
+                '¡Información!',
+                 message,
+                'info'
+                )
+            }
+            break;
       }
  }
 

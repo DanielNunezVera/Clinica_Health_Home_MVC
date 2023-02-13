@@ -120,6 +120,23 @@
 					unset($_SESSION["aux_desct_login"]);
 				}
 			}
+			
+			if(isset($_SESSION["rec_contra"])) {
+				if($_SESSION["rec_contra"]=="1"){
+					echo "var recuperar_pass = '1';";
+					echo "var alerta_login = '4';";
+					unset($_SESSION["rec_contra"]);
+				}elseif ($_SESSION["rec_contra"]=='0') {
+					echo "var recuperar_pass = '0';";
+					echo "var alerta_login = '4';";
+					unset($_SESSION["rec_contra"]);
+				}else{
+					echo "var recuperar_pass = '2';";
+					echo "var alerta_login = '4';";
+					echo "var message =".$_SESSION['rec_contra'].";";
+					unset($_SESSION["rec_contra"]);
+				}
+			}
 		?>
 	</script>
 	<script src="assets/js-general/alertas.js"></script>
@@ -138,12 +155,17 @@
                 <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Magni, laboriosam? Quia mollitia reprehenderit necessitatibus possimus earum quasi vel, consequatur dicta iusto, in magni accusamus optio ad nisi fuga autem aperiam.</p>
             </div>
             <div class="box">
-                <h2>siguenos</h2>
+                <h2>CONTACTANOS</h2>
                 <div class="red-social">
                     <a href="#" class="fa fa-facebook"></a>
                     <a href="#" class="fa fa-instagram"></a>
                     <a href="#" class="fa fa-twitter"></a>
-                    <a href="#" class="fa fa-youtube"></a>
+                    <a href="#" class="fa fa-envelope"></a>
+					<br>
+					<br>
+					<h2>¿NECESITAS AYUDA?</h2>
+					<!-- <p>Revisa las Preguntas Frecuentes</p> -->
+					<a href="index.php?c=Login&a=ayuda" class="fa fa-info-circle"></a>
                 </div>
             </div>
         </div>

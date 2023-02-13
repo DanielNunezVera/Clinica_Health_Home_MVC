@@ -8,12 +8,13 @@ class Profesional_model{
     public function __construct(){
         $this->db = Conectar::conexion();
         $this->citas_progr= array();
+        $this->profesional = array();
 
     }
 
     public function get_citas_programadas($id_prof){
 
-        $sql="SELECT * FROM citas_programadas_prof WHERE id_profesional=$id_prof";
+        $sql="CALL citas_programadas_prof($id_prof)";
         $resultado = $this->db->query($sql);
 		while($row = $resultado->fetch_assoc())
 		{
@@ -26,15 +27,21 @@ class Profesional_model{
     public function asistencia_cita($asist, $id_cita){
 
         $resultado = $this->db->query("CALL asistencia_cita('$asist', '$id_cita')");
-        $this->db->close();   
+        $this->db->close();
     }
 
     public function get_prof($id_prof){
         $sql = "SELECT * FROM profesional WHERE id_profesional=$id_prof LIMIT 1 ";
         $resultado = $this->db->query($sql);
-        $row = $resultado->fetch_assoc();
+        while ($row = $resultado->fetch_assoc()){
+
+            $this->profesional[] = $row;
+
+        }
+
         $this->db->close();
-        return $row;
+        
+        return $this->profesional;
     }
 
     public function modificar_profesional($tel_prof, $correo_prof, $id_prof){

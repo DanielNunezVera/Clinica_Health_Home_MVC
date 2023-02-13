@@ -1,5 +1,4 @@
 <?php 
-
 require 'Sesiones.php';
 $inc = new SesionesController();
     if(!empty($_SESSION["Admin"])){
@@ -19,6 +18,10 @@ $inc = new SesionesController();
         $_SESSION["Login_error_1"]="1";
         $inc->redireccionar();
 
+    } elseif(!empty($_SESSION["prof"])){
+        unset($_SESSION["prof"]);
+        $_SESSION["Login_error_1"]="1";
+        $inc->redireccionar();
     }
 
 class LoginController{
@@ -69,7 +72,7 @@ class LoginController{
                     header ("Location: index.php?c=Auxiliar&a=index");
 
                 }else{
-                    $_SESSION["Login_error_2"] = "2";
+                    $_SESSION["Login_error"] = "2";
                     header ("Location: index.php?c=Login&a=index");
                 }
             }else{
@@ -138,6 +141,13 @@ class LoginController{
         $tipo_doc = new Login_Model();
         $data["tipo_doc"] = $tipo_doc->get_tipo_doc();
         require_once "views/restablecer_contra/restablecer_pass.php";
+    }
+
+    public function ayuda(){
+
+        require_once "views/Login/login_menu_ayuda.php";
+        require_once "views/Login/login_ayuda.php";
+
     }
 }
 ?>
