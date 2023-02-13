@@ -142,5 +142,12 @@ class LoginController{
         $data["tipo_doc"] = $tipo_doc->get_tipo_doc();
         require_once "views/restablecer_contra/restablecer_pass.php";
     }
+
+    public function ayuda(){
+
+        require_once "views/Login/login_menu_ayuda.php";
+        require_once "views/Login/login_ayuda.php";
+
+    }
 }
 ?>

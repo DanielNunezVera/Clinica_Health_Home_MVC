@@ -223,7 +223,8 @@
 
         public function ayuda() {
 
-            require_once "views/administrador/manual_usuario/manual_de_usuario.html";
+            require_once "views/preguntas_frecuentes/menu_ayuda.php";
+            require_once "views/preguntas_frecuentes/ayuda.php";
 
         }
 

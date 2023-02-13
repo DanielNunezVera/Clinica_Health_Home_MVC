@@ -1,0 +1,68 @@
+/* Botón de ayuda/Preguntas Frecuentes */
+
+#btn-mas{
+
+    display: none;
+
+}
+
+.help{
+
+    position: fixed;
+    bottom: 1.5em;
+    right: 1.5em;
+
+}
+
+.apartados a, .icon-plus{
+
+    display: block;
+    text-decoration: none;
+    background: linear-gradient(to right, #156fe4, #0a2c8b);
+    color: #fff;
+    width: 5em;
+    height: 5em;
+    line-height: 5em;
+    text-align: center;
+    border-radius: 50%;
+    box-shadow: 0px 0px 10px 1px rgb(0, 0, 0, 0.4);
+    transition: all 1000ms ease;
+
+}
+
+.apartados a:hover{
+
+    background: #fff;
+    color: #000;
+
+}
+
+.apartados a{
+
+    margin-bottom: -1em;
+    opacity: 0;
+    visibility: hidden;
+
+}
+
+#btn-mas:checked~ .apartados a{
+
+    margin-bottom: 1.2em;
+    opacity: 1;
+    visibility: visible;
+
+}
+
+/* Estilos de Preguntas */
+
+.lista ul li{
+
+    margin: 1em;
+    padding: 1.5em;
+    font-family: 'Merriweather Sans', sans-serif;
+    
+    /* border: 0.2em;
+    border-color: #000; */
+
+}
+

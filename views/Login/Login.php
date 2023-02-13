@@ -155,12 +155,17 @@
                 <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Magni, laboriosam? Quia mollitia reprehenderit necessitatibus possimus earum quasi vel, consequatur dicta iusto, in magni accusamus optio ad nisi fuga autem aperiam.</p>
             </div>
             <div class="box">
-                <h2>siguenos</h2>
+                <h2>CONTACTANOS</h2>
                 <div class="red-social">
                     <a href="#" class="fa fa-facebook"></a>
                     <a href="#" class="fa fa-instagram"></a>
                     <a href="#" class="fa fa-twitter"></a>
-                    <a href="#" class="fa fa-youtube"></a>
+                    <a href="#" class="fa fa-envelope"></a>
+					<br>
+					<br>
+					<h2>¿NECESITAS AYUDA?</h2>
+					<!-- <p>Revisa las Preguntas Frecuentes</p> -->
+					<a href="index.php?c=Login&a=ayuda" class="fa fa-info-circle"></a>
                 </div>
             </div>
         </div>
