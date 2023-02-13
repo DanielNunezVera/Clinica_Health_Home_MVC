@@ -611,33 +611,20 @@ if (typeof datos !== 'undefined') {
 
     case "2":
 
-      if (update_datos === "1") {
-
+      if (update_pass == "1") {
         Swal.fire(
-          '¡Correcto!',
-          'Su contraseña se ha actualizado correctamente.',
-          'success'
+            '¡Contraseña actualizada!',
+            'Se ha actualizado la contraseña con exito',
+            'success'
         )
-
-      } else if (update_datos === "0") {
-
+      } else{
         Swal.fire(
-          '¡Alerta!',
-          'Las contraseñas no coinciden. Intente nuevamente',
-          'warning'
-        )
-
-      } else if (update_datos === "2") {
-
-          Swal.fire(
-            '¡Alerta!',
-            'Ha habido un error al intentar actualizar su contraseña. Intentelo de nuevo.',
+            '¡Error!',
+            'Error en los datos, vuelva a intentarlo',
             'warning'
-          )
-
+            )
       }
-    
-    break;
+      break;
 
   }
 
@@ -701,20 +688,20 @@ function cancelar_paciente(a){
 if (typeof alerta_m_aux !=="undefined"){
   switch(alerta_m_aux){
       case "1": 
-          if(alerta_pass_update == "1"){
-              Swal.fire(
-                  '¡Correcto!',
-                  'Su contraseña se ha actualizado correctamente',
-                  'success'
-                  )
-          }else{
-              Swal.fire(
-                  '¡Error!',
-                  'Su contraseña no coincide, vuelva a intentarlo',
-                  'warning'
-                  )
-          }
-          break;
+      if (update_pass == "1") {
+        Swal.fire(
+            '¡Contraseña actualizada!',
+            'Se ha actualizado la contraseña con exito',
+            'success'
+        )
+      } else{
+        Swal.fire(
+            '¡Error!',
+            'Error en los datos, vuelva a intentarlo',
+            'warning'
+            )
+      }
+      break;
       case "2":
           if(alerta_update_info == "1"){
               Swal.fire(

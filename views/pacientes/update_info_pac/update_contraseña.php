@@ -27,7 +27,7 @@
                     <img src="assets/images/ajustes.png" alt="">
                     <ul>
                         <li><a href="index.php?c=Paciente&a=index">Inicio</a></li>
-                        <li><a href="index.php?c=Paciente&a=get_paciente">Actualizar datos</a></li>
+                        <li><a href="index.php?c=Paciente&a=actualizar_pac">Actualizar datos</a></li>
                         <li><a style="cursor: pointer;" onclick="cerrarsesionpac()">Cerrar sesion</a></li>
                         <li><a href="index.php?c=Paciente&a=ayuda" >ayuda</a></li>
                     </ul>
@@ -42,20 +42,22 @@
                     <h1 class="titulo1">Cambio de contraseña</h1>
                     <div class="contact-wrapper animated bounceInUp">
                         <div class="contact-form">
-                            <form action="index.php?c=Paciente&a=update_password" method="POST">
-                                <input type="hidden" name="id_paciente" id="id_paciente" value="<?php echo $_SESSION['pac'] ?>">
+                            <form action="index.php?c=Paciente&a=modificar_pass" method="POST">
+                                <p>
+                                    <label>Contraseña actual</label>
+                                    <input type="password" name="pass" required>
+                                </p>
+                                <br>
                                 <p>
                                     <label>Nueva contraseña</label>
-                                    <input type="password" name="pass_pac" id="pass_pac" minlength="8" required>
+                                    <input type="password" name="newpass" minlength="8" required>
                                 </p>
                                 <p>
                                     <label>Repita contraseña</label>
-                                    <input type="password" name="repeat_pass_pac" id="repeat_pass_pac" minlength="8" required>
+                                    <input type="password" name="repass" minlength="8" required>
                                 </p>
-                                <p class="block d-grid gap-2">
-                                    <button class="btn btn-primary btn-lg btn-block" name="update_pass" id="update_pass" type="submit">
-                                        Actualizar
-                                    </button>
+                                <p class="block">
+                                    <button class="btn btn-primary btn-lg btn-block" name="registrar" id="registrar" type="submit">Actualizar</button>
                                 </p>
                             </form>
                         </div>
@@ -69,27 +71,13 @@
     <script>
 
         <?php
-        
-        if (isset($_SESSION['password'])) {
-
-            if ($_SESSION['password'] == "0") {
-
-                echo "var update_datos = '0';";
-                echo "var datos = '2';";
-
-                unset($_SESSION['password']);
-
-            } else {
-
-                echo "var update_datos = '2';";
-                echo "var datos = '2';";
-
-                unset($_SESSION['password']);
-
+        if (isset($_SESSION["update_pass"])) {         
+            if ($_SESSION["update_pass"] == "0") {
+                echo "var update_pass = '0';";
+                echo "var datos  = '2';";
+                unset($_SESSION["update_pass"]);
             }
-            
         }
-        
         ?>
 
     </script>

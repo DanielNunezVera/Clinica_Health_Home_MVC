@@ -18,22 +18,7 @@
 		}
 
 		public function acciones(){
-
-			$id_profesional = $_SESSION['prof'];
-
-            if (isset($_SESSION['prof'])){
-
-                $profesional = new Profesional_model();
-                $data["profesional"] = $profesional -> get_prof($id_profesional);
-
-                foreach ($data["profesional"] as $dato){
-
-                    require_once "views/profesional/index_prof.php";
-
-                }
-            
-            }
-
+			require_once "views/profesional/index_prof.php";
 		}
 
 		public function cerrarsesion(){
@@ -79,12 +64,7 @@
 			
 			$profesional = new Profesional_model();
 			$data["profesional"] = $profesional->get_prof($id_prof);
-			
-			foreach ($data["profesional"] as $dato){
-
-				require_once "views/profesional/update_prof/update_prof.php";
-
-			}
+			require_once "views/profesional/update_prof/update_prof.php";			
 		}
 
         public function modificar_prof(){
@@ -108,30 +88,35 @@
 
 			$profesional = new Profesional_model();
 			$data["profesional"] = $profesional->get_prof($id_prof);
+			$_SESSION["pass_prof"] = $data["profesional"]["pass_prof"];
 			require_once "views/profesional/update_prof/update_pass.php";
 		}
 
         public function modificar_pass(){
 			$id_prof = $_SESSION['prof'];
+			$pass = $_POST['pass'];
             $newpass = $_POST['newpass'];
             $repass = $_POST['repass'];
-
-			if ($newpass == $repass) {
-				$new_pass = password_hash($newpass, PASSWORD_BCRYPT);
-
-				$password = new Profesional_model();
-            	$resultado = $password->update_password($new_pass, $id_prof);
-
-				if ($resultado > 0) {
-					$_SESSION["update_pass"] = "1";
-					header('location:index.php?c=Profesional&a=actualizar_prof');
-				}            	
+			
+			if (password_verify($pass, $_SESSION["pass_prof"])) {
+				if ($newpass == $repass) {
+					$new_pass = password_hash($newpass, PASSWORD_BCRYPT);
+	
+					$password = new Profesional_model();
+					$resultado = $password->update_password($new_pass, $id_prof);
+	
+					if ($resultado > 0) {
+						$_SESSION["update_pass"] = "1";
+						header('location:index.php?c=Profesional&a=actualizar_prof');
+					}            	
+				}else {
+					$_SESSION["update_pass"] = "0";
+					header('location:index.php?c=Profesional&a=actualizar_pass');
+				}
 			}else {
 				$_SESSION["update_pass"] = "0";
 				header('location:index.php?c=Profesional&a=actualizar_pass');
 			}
-        	
-			
         }
 
 		public function ayuda() {

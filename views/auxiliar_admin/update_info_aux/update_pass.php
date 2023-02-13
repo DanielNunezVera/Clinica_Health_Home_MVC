@@ -44,12 +44,17 @@
                         <div class="contact-form">
                             <form action="index.php?c=Auxiliar&a=modificar_pass" method="POST">
                                 <p>
+                                    <label>Contraseña actual</label>
+                                    <input type="password" name="pass" required>
+                                </p>
+                                <br>
+                                <p>
                                     <label>Nueva contraseña</label>
-                                    <input type="password" name="newpass" minlength="8">
+                                    <input type="password" name="newpass" minlength="8" required>
                                 </p>
                                 <p>
                                     <label>Repita contraseña</label>
-                                    <input type="password" name="repass" minlength="8">
+                                    <input type="password" name="repass" minlength="8" required>
                                 </p>
                                 <p class="block">
                                     <a href="index.php?c=Auxiliar&a=actualizar_aux" class="btn btn-lg btn-outline-danger">Volver</a>
@@ -68,7 +73,7 @@
         <?php
             if(isset($_SESSION["update_pass"])){
                 if ($_SESSION["update_pass"] == "0"){
-                    echo "var alerta_pass_update = '0';";
+                    echo "var update_pass = '0';";
                     echo "var alerta_m_aux  = '1';";
                     unset($_SESSION["update_pass"]);
                 }

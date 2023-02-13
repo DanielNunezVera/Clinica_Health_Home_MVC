@@ -43,28 +43,24 @@
                     <div class="contact-wrapper animated bounceInUp">
                         <div class="contact-form">
                             <form action="index.php?c=Auxiliar&a=modificar_aux" method="POST">
-                                <!-- <p>
-                                    <label>Tipo de documento</label>
-                                    <input type="text" name="t_doc" disabled>
-                                </p> -->
                                 <p>
                                     <label>N° documento</label>
-                                    <input type="number" name="num_doc" value="<?php echo $dato["num_doc_aux"];?>" disabled>
+                                    <input type="number" name="num_doc" value="<?php echo $data["auxiliar"]["num_doc_aux"];?>" disabled>
                                 </p>
 
                                 <p>
                                     <label>Nombre</label>
-                                    <input type="text" name="fullnombre" value="<?php echo $dato["nombres_aux"]." ".$dato["apellidos_aux"]?>" disabled>
+                                    <input type="text" name="fullnombre" value="<?php echo $data["auxiliar"]["nombres_aux"]." ".$data["auxiliar"]["apellidos_aux"]?>" disabled>
                                 </p>
                                
                                 <p>
                                     <label>Email</label>
-                                    <input type="email" name="correo_aux" id="correo_aux" value="<?php echo $dato["correo_aux"]?>" required>
+                                    <input type="email" name="correo_aux" id="correo_aux" value="<?php echo $data["auxiliar"]["correo_aux"]?>" required>
                                 </p>
 
                                 <p>
                                     <label>Teléfono</label>
-                                    <input type="number" name="tel_aux" id="tel_aux" value="<?php echo $dato["tel_aux"];?>" required>
+                                    <input type="number" name="tel_aux" id="tel_aux" value="<?php echo $data["auxiliar"]["tel_aux"];?>" required>
                                 </p>
 
                                 <p class="block d-grid gap-2">
@@ -99,14 +95,13 @@
                     unset($_SESSION["update_info"]);
                 }
             }
-            if (isset($_SESSION["update_pass"])) {
 
+            if(isset($_SESSION["update_pass"])){
                 if ($_SESSION["update_pass"]!="0") {
-                    echo "var alerta_pass_update = '1';";
+                    echo "var update_pass = '1';";
                     echo "var alerta_m_aux = '1';";
                     unset($_SESSION["update_pass"]);
                 }
-
             }
         ?>
     </script>
