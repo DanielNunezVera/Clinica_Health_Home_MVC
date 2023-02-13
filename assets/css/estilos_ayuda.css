@@ -14,7 +14,7 @@
 
 }
 
-.apartados a, .icon-plus{
+.apartados a, .icon-info{
 
     display: block;
     text-decoration: none;
@@ -55,14 +55,33 @@
 
 /* Estilos de Preguntas */
 
-.lista ul li{
+.lista{
+
+    margin-top: 1em;
+
+}
+
+.lista ul{
+
+    padding: 2.5em;
+
+}
+
+.lista ul label{
 
     margin: 1em;
     padding: 1.5em;
     font-family: 'Merriweather Sans', sans-serif;
-    
-    /* border: 0.2em;
-    border-color: #000; */
+    border: #000 1px solid;
+    width: 100%;
+    cursor: pointer;
 
 }
+
+#pregunta1, #pregunta2, #pregunta3, #pregunta4{
+
+    display: none;
+
+}
+
 

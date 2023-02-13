@@ -54,8 +54,8 @@
                 <a href="#" class="icon-phone"></a>
                 <a href="index.php?c=Paciente&a=ayuda" class="icon-help"></a>
             </div>
-            <div class="btn-mas">
-                <label for="btn-mas" class="icon-plus"></label>
+            <div>
+                <label for="btn-mas" class="icon-info"></label>
             </div>
         </div>
     </main>
