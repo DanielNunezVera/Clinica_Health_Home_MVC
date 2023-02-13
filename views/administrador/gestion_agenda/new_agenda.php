@@ -154,44 +154,43 @@
 <script>
     <?php
 
-        if(isset($_SESSION["prof_agenda"])){
-            if ($_SESSION["prof_agenda"]!="0") {
-                echo "var alert_agenda_existente = '1';";
-                echo "var alerta_agenda = '1';";
-                unset($_SESSION["prof_agenda"]);
-            }else {
-                echo "var alert_agenda_existente = '0';";
-                echo "var alerta_agenda = '1';";
-                unset($_SESSION["prof_agenda"]);
-            }
+    if(isset($_SESSION["prof_agenda"])){
+        if ($_SESSION["prof_agenda"]!="0") {
+            echo "var alert_agenda_existente = '1';";
+            echo "var alerta_agenda = '1';";
+            unset($_SESSION["prof_agenda"]);
+        }else {
+            echo "var alert_agenda_existente = '0';";
+            echo "var alerta_agenda = '1';";
+            unset($_SESSION["prof_agenda"]);
         }
+    }
 
-        if(isset($_SESSION["agenda_insert"])){
-            if ($_SESSION["agenda_insert"]!="0") {
-                echo "var alert_agenda_repetida = '1';";
-                echo "var alerta_agenda = '2';";
-                unset($_SESSION["agenda_insert"]);
-            }else {
-                echo "var alert_agenda_repetida = '0';";
-                echo "var alerta_agenda = '2';";
-                unset($_SESSION["agenda_insert"]);
-            }
+    if(isset($_SESSION["agenda_insert"])){
+        if ($_SESSION["agenda_insert"]!="0") {
+            echo "var alert_agenda_repetida = '1';";
+            echo "var alerta_agenda = '2';";
+            unset($_SESSION["agenda_insert"]);
+        }else {
+            echo "var alert_agenda_repetida = '0';";
+            echo "var alerta_agenda = '2';";
+            unset($_SESSION["agenda_insert"]);
         }
+    }
 
-        if(isset($_SESSION["excepciones"])){
-            if ($_SESSION["excepciones"]!="0") {
-                echo "var alert_agenda_excepciones = '1';";
-                echo "var alerta_agenda = '3';";
-                unset($_SESSION["excepciones"]);
-            }else {
-                echo "var alert_agenda_excepciones = '0';";
-                echo "var alerta_agenda = '3';";
-                unset($_SESSION["excepciones"]);
-            }
+    if(isset($_SESSION["excepciones"])){
+        if ($_SESSION["excepciones"]!="0") {
+            echo "var alert_agenda_excepciones = '1';";
+            echo "var alerta_agenda = '3';";
+            unset($_SESSION["excepciones"]);
+        }else {
+            echo "var alert_agenda_excepciones = '0';";
+            echo "var alerta_agenda = '3';";
+            unset($_SESSION["excepciones"]);
         }
+    }
 
     ?>
-    // var alerta_agenda_repetida = "<?php  ?>";s
 </script>
 <script>
     var scheds = $.parseJSON('<?= json_encode($data["sched_res"]) ?>')

@@ -49,22 +49,22 @@
                                 </p> -->
                                 <p>
                                     <label>N° documento</label>
-                                    <input type="number" name="num_doc" value="<?php echo $data["auxiliar"]["num_doc_aux"];?>" disabled>
+                                    <input type="number" name="num_doc" value="<?php echo $dato["num_doc_aux"];?>" disabled>
                                 </p>
 
                                 <p>
                                     <label>Nombre</label>
-                                    <input type="text" name="fullnombre" value="<?php echo $data["auxiliar"]["nombres_aux"]." ".$data["auxiliar"]["apellidos_aux"]?>" disabled>
+                                    <input type="text" name="fullnombre" value="<?php echo $dato["nombres_aux"]." ".$dato["apellidos_aux"]?>" disabled>
                                 </p>
                                
                                 <p>
                                     <label>Email</label>
-                                    <input type="email" name="correo_aux" id="correo_aux" value="<?php echo $data["auxiliar"]["correo_aux"]?>" required>
+                                    <input type="email" name="correo_aux" id="correo_aux" value="<?php echo $dato["correo_aux"]?>" required>
                                 </p>
 
                                 <p>
                                     <label>Teléfono</label>
-                                    <input type="number" name="tel_aux" id="tel_aux" value="<?php echo $data["auxiliar"]["tel_aux"];?>" required>
+                                    <input type="number" name="tel_aux" id="tel_aux" value="<?php echo $dato["tel_aux"];?>" required>
                                 </p>
 
                                 <p>
