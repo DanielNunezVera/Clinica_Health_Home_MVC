@@ -40,17 +40,17 @@
 
 		}
 		
+		public function cerrarsesion(){
+			session_destroy();
+			header ("Location: index.php?c=login&a=index");
+		}
+		
 		public function buscar_pacientei(){
 			$tipo_doc=  new Administrador_model();
 			$data["tipo_doc"] = $tipo_doc->get_tipo_doc();
 			require_once "views/auxiliar_admin/agenda_cita/buscar_pac.php";
 		}
-
-		public function cerrarsesion(){
-			session_destroy();
-			header ("Location: index.php?c=login&a=index");
-		}
-
+		
 		public function buscar_pacientef(){	
 
 			$id_tipo_doc = $_POST['id_tipo_doc'];
@@ -340,15 +340,9 @@
 			}
 		}
 
-		public function ayuda() {
-
-            require_once "views/administrador/manual_usuario/manual_de_usuario.html";
-
-        }
-
 		public function  volver_a_citas_aux(){
-  
-
+			
+			
 			$paciente = new Auxiliar_model();
 			$data["especialidades"] = $paciente->get_especialidad();
 			if(isset($_SESSION['id_paciente'])){
@@ -357,5 +351,18 @@
 				$this->buscar_pacientei();
 			}
 		}
+
+		public function ayuda() {
+	
+			require_once "views/preguntas_frecuentes/ayuda.php";
+	
+		}
+
+		public function ayuda1() {
+
+			require_once "views/preguntas_frecuentes/ayuda1.php";
+
+		}
+
 	}
-?>
+	?>

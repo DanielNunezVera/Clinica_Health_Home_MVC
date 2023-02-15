@@ -21,26 +21,32 @@
                 return $filas;
             }
 
-			public function paciente($id_paciente) {
+			// public function paciente($id_paciente) {
 
-				$sql = "SELECT num_doc_pac, nombres_pac, apellidos_pac, tel_pac, correo_pac, sexo_pac FROM paciente WHERE id_paciente = $id_paciente";
-				$resultado = $this->db->query($sql);
-				while($row = $resultado -> fetch_assoc()){
+			// 	$sql = "SELECT num_doc_pac, nombres_pac, apellidos_pac, tel_pac, correo_pac, sexo_pac FROM paciente WHERE id_paciente = $id_paciente";
+			// 	$resultado = $this->db->query($sql);
+			// 	while($row = $resultado -> fetch_assoc()){
 
-					$this -> paciente[] = $row;
+			// 		$this -> paciente[] = $row;
 
-				}
+			// 	}
 
-				return $this -> paciente;
+			// 	return $this -> paciente;
 
-			}
+			// }
 
 			public function get_paciente($id_paciente){
 				$sql = "SELECT * FROM paciente WHERE id_paciente=$id_paciente LIMIT 1";
 				$resultado = $this->db->query($sql);
-        		$row = $resultado->fetch_assoc();
+        		while($row = $resultado->fetch_assoc())
+				{
+
+					$this -> paciente[] = $row;
+
+				}
         		$this->db->close();
-        		return $row;
+        		
+				return $this -> paciente;
 			}
 
 			public function get_especialidad(){

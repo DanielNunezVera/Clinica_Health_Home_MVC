@@ -119,13 +119,18 @@
 			}
         }
 
-		public function ayuda() {
+		public function ayuda(){
 
-            require_once "views/administrador/manual_usuario/manual_de_usuario.html";
+            require_once "views/preguntas_frecuentes/ayuda.php";
 
         }
+
+		public function ayuda1(){
+
+			require_once "views/preguntas_frecuentes/ayuda1.php";
+
+		}
+
     }
-
-
 
 ?>

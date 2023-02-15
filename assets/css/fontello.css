@@ -60,7 +60,7 @@
 .icon-bell:before { content: '\e803'; } /* '' */
 .icon-chat:before { content: '\e804'; } /* '' */
 .icon-comment:before { content: '\e805'; } /* '' */
-.icon-plus:before { content: '\e806'; } /* '' */
+/* .icon-plus:before { content: '\e806'; }  */
 .icon-phone-squared:before { content: '\f098'; } /* '' */
 .icon-comment-empty:before { content: '\f0e5'; } /* '' */
 .icon-chat-empty:before { content: '\f0e6'; } /* '' */
@@ -69,3 +69,5 @@
 .icon-info:before { content: '\f129'; } /* '' */
 .icon-bell-off:before { content: '\f1f6'; } /* '' */
 .icon-info:before { content: '\e800'; } /* '' */
+.icon-plus:before { content: '\e801'; } /* '' */
+.icon-cancel:before { content: '\e802'; } /* '' */

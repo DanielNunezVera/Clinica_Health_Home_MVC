@@ -14,6 +14,75 @@
         </style>
 </head>
 <body>
+    <?php 
+    if (isset($_SESSION["pac"])) {
+    ?>
+      <header>
+        <div class="container__menu">
+            <div class="logo">
+                <img src="assets/images/Logo2.png" alt="">
+            </div>
+            <div class="menu">
+                <i class="fas fa-bars" id="btn_menu"></i>
+                <div id="back_menu"></div>
+                <nav id="nav">
+                    <img src="assets/images/ajustes.png" alt="">
+                    <ul>
+                        <li><a href="index.php?c=Paciente&a=index" >Inicio</a></li>
+                        <li><a href="index.php?c=Paciente&a=actualizar_pac">Actualizar Datos</a></li>
+                        <li><a style="cursor: pointer;" onclick="cerrarsesionpac()">Cerrar sesion</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>  
+    <?php 
+    } elseif (isset($_SESSION["auxiliar"])) {
+    ?>
+    <header>
+        <div class="container__menu">
+            <div class="logo">
+                <img src="assets/images/Logo2.png" alt="">
+            </div>
+            <div class="menu">
+                <i class="fas fa-bars" id="btn_menu"></i>
+                <div id="back_menu"></div>
+                <nav id="nav">
+                    <img src="assets/images/ajustes.png" alt="">
+                    <ul>
+                        <li><a href="index.php?c=Auxiliar&a=index" >Inicio</a></li>
+                        <li><a href="index.php?c=Auxiliar&a=actualizar_aux">Actualizar Datos</a></li>
+                        <li><a style="cursor: pointer;" onclick="cerrarsesionpac()">Cerrar sesion</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+    <?php
+    } elseif (isset($_SESSION["prof"])) {
+    ?>
+    <header>
+        <div class="container__menu">
+            <div class="logo">
+                <img src="assets/images/Logo2.png" alt="">
+            </div>
+            <div class="menu">
+                <i class="fas fa-bars" id="btn_menu"></i>
+                <div id="back_menu"></div>
+                <nav id="nav">
+                    <img src="assets/images/ajustes.png" alt="">
+                    <ul>
+                        <li><a href="index.php?c=Profesional&a=index" >Inicio</a></li>
+                        <li><a href="index.php?c=Profesional&a=actualizar_prof">Actualizar Datos</a></li>
+                        <li><a style="cursor: pointer;" onclick="cerrarsesionpac()">Cerrar sesion</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+    <?php
+    }
+    ?>
     <main>
         <div class="container__cover">
             <div class="cover"> 

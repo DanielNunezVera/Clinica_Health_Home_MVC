@@ -27,7 +27,6 @@
                         <li><a href="index.php?c=Auxiliar&a=index" >Inicio</a></li>
                         <li><a href="index.php?c=Auxiliar&a=actualizar_aux">Actualizar Datos</a></li>
                         <li><a style="cursor: pointer;" onclick="cerrarsesionaux()">Cerrar sesion</a></li>
-                        <li><a href="index.php?c=Auxiliar&a=ayuda" >ayuda</a></li>
                     </ul>
                 </nav>
             </div>

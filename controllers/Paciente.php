@@ -25,7 +25,7 @@
             if (isset($_SESSION['pac'])){
 
                 $paciente = new Paciente_model();
-                $data["paciente"] = $paciente -> paciente($id_paciente);
+                $data["paciente"] = $paciente ->get_paciente($id_paciente);
 
                 foreach ($data["paciente"] as $dato){
 
@@ -116,31 +116,37 @@
 
         }
 
-        public function get_paciente(){
+        // public function get_paciente(){
 
-            $id_paciente = $_SESSION['pac'];
+        //     $id_paciente = $_SESSION['pac'];
 
-            $paquete = new Paciente_model();
-            $data["paciente"] = $paquete -> paciente($id_paciente);
+        //     $paquete = new Paciente_model();
+        //     $data["paciente"] = $paquete -> paciente($id_paciente);
 
-            foreach($data["paciente"] as $dato){   
+        //     foreach($data["paciente"] as $dato){   
 
-                require_once "views/pacientes/update_info_pac/update_pacientes.php";
+        //         require_once "views/pacientes/update_info_pac/update_pacientes.php";
 
-            } 
-        }
+        //     } 
+        // }
 
         public function actualizar_pac(){
             $id_paciente = $_SESSION['pac'];
 			
 			$paciente = new Paciente_model();
 			$data["paciente"] = $paciente->get_paciente($id_paciente);
-			require_once "views/pacientes/update_info_pac/update_pacientes.php";
+			
+            foreach ($data["paciente"] as $dato) {
+                
+                require_once "views/pacientes/update_info_pac/update_pacientes.php";
+
+            }
+
         }
 
         public function update_pac(){
 
-            $id_paciente = $_POST['id_paciente'];
+            $id_paciente = $_SESSION['pac'];
             $correo_pac = $_POST['correo_pac'];
             $tel_pac = $_POST['tel_pac'];
 
@@ -150,12 +156,12 @@
             if($resultado == TRUE){
                 
                 $_SESSION['datos'] = "1";
-                header ('location:index.php?c=Paciente&a=get_paciente');
+                header ('location:index.php?c=Paciente&a=actualizar_pac');
 
             } else {
 
                 $_SESSION['datos'] = "0";
-                $this->get_paciente();
+                $this->actualizar_pac();
 
             }
 
@@ -167,8 +173,14 @@
 
 			$paciente = new Paciente_model();
 			$data["paciente"] = $paciente->get_paciente($id_paciente);
-			$_SESSION["pass_pac"] = $data["paciente"]["pass_pac"];
-            require_once "views/pacientes/update_info_pac/update_contraseña.php";
+
+            foreach($data["paciente"] as $dato){
+
+                $_SESSION["pass_pac"] = $dato["pass_pac"];
+                
+                require_once "views/pacientes/update_info_pac/update_contraseña.php";
+
+            };
 
         }
 
@@ -187,6 +199,9 @@
 					$resultado = $password->update_password($new_pass, $id_paciente);
 	
 					if ($resultado > 0) {
+
+                        unset($_SESSION["pass_pac"]);
+                        
 						$_SESSION["update_pass"] = "1";
 						header('location:index.php?c=Paciente&a=actualizar_pac');
 					}            	
@@ -231,9 +246,14 @@
         }
 
         public function ayuda() {
-
-            require_once "views/preguntas_frecuentes/menu_ayuda.php";
+            
             require_once "views/preguntas_frecuentes/ayuda.php";
+
+        }
+
+        public function ayuda1(){
+
+            require_once "views/preguntas_frecuentes/ayuda1.php";
 
         }
 

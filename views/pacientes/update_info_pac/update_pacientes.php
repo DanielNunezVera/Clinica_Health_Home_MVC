@@ -8,7 +8,8 @@
 
     <script src="https://kit.fontawesome.com/41bcea2ae3.js" crossorigin="anonymous"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
-
+    <link rel="stylesheet" href="assets/css/estilos_ayuda.css">
+    <link rel="stylesheet" href="assets/css/fontello.css">
     <link rel="stylesheet" href="assets/css/estilos.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Merriweather+Sans:wght@800&display=swap');
@@ -28,7 +29,6 @@
                     <ul>
                         <li><a href="index.php?c=Paciente&a=index">Inicio</a></li>
                         <li><a style="cursor: pointer;" onclick="cerrarsesionpac()">Cerrar sesion</a></li>
-                        <li><a href="index.php?c=Paciente&a=ayuda" >ayuda</a></li>
                     </ul>
                 </nav>
             </div>
@@ -44,23 +44,23 @@
                             <form action="index.php?c=Paciente&a=update_pac" method="POST">
                                 <p>
                                     <label>N° documento</label>
-                                    <input type="number" name="num_doc_pac" value="<?php echo $data['paciente']["num_doc_pac"];?>" readonly>
+                                    <input type="number" name="num_doc_pac" value="<?php echo $dato["num_doc_pac"];?>" readonly>
                                 </p>
                                 <p>
                                     <label>Nombre completo</label>
-                                    <input type="text" name="nombrecompleto" id="nombrecompleto" value="<?php echo $data['paciente']["nombres_pac"]." ". $data['paciente']["apellidos_pac"];?>" readonly>
+                                    <input type="text" name="nombrecompleto" id="nombrecompleto" value="<?php echo $dato["nombres_pac"]." ". $dato["apellidos_pac"];?>" readonly>
                                 </p>
                                 <p>
                                     <label>Email</label>
-                                    <input type="email" name="correo_pac" id="correo_pac" value="<?php echo $data['paciente']["correo_pac"];?>" required>
+                                    <input type="email" name="correo_pac" id="correo_pac" value="<?php echo $dato["correo_pac"];?>" required>
                                 </p>
                                 <p>
                                     <label>Teléfono</label>
-                                    <input type="tel" name="tel_pac" id="tel_pac" value="<?php echo $data['paciente']["tel_pac"];?>" required>
+                                    <input type="tel" name="tel_pac" id="tel_pac" value="<?php echo $dato["tel_pac"];?>" required>
                                 </p>
                                 <p>
                                     <label>Genero</label>
-                                    <input type="text" name="sexo_pac" value="<?php echo $data['paciente']["sexo_pac"];?>" readonly>
+                                    <input type="text" name="sexo_pac" value="<?php echo $dato["sexo_pac"];?>" readonly>
                                 </p>
                                 <p>
                                     <label><br></label>
@@ -76,6 +76,16 @@
                     </div>
                 </div>
             </div> 
+        </div>
+        <div class="help">
+            <input type="checkbox" id="btn-mas" style="display: none;">
+            <div class="apartados">
+                <a href="#" class="icon-phone"></a>
+                <a href="index.php?c=Paciente&a=ayuda1" class="icon-help"></a>
+            </div>
+            <div>
+                <label for="btn-mas" class="icon-info"></label>
+            </div>
         </div>
     </main>
     <script src="assets/js-general/menu-responsive.js"></script>
@@ -107,11 +117,17 @@
 
         if(isset($_SESSION["update_pass"])){
             if ($_SESSION["update_pass"]!="0") {
+                
                 echo "var update_pass = '1';";
                 echo "var datos = '2';";
+
                 unset($_SESSION["update_pass"]);
             }else {
-                echo "var update_pass = ";
+                
+                echo "var update_pass = '0';";
+                echo "var datos = '2';";
+                
+                unset($_SESSION["update_pass"]);
             }
         }
 

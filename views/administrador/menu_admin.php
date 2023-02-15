@@ -26,7 +26,6 @@
                     <ul>
                         <li><a href="index.php?c=Administrador&a=index" >Inicio</a></li>
                         <li><a href="cursor: pointer;" onclick="cerrarsesionadmin()">Cerrar sesion</a></li>
-                        <li><a href="index.php?c=Administrador&a=ayuda" >ayuda</a></li>
                     </ul>
                 </nav>
             </div>
