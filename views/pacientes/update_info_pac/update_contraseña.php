@@ -56,8 +56,11 @@
                                     <label>Repita contraseña</label>
                                     <input type="password" name="repass" minlength="8" required>
                                 </p>
-                                <p class="block">
-                                    <button class="btn btn-primary btn-lg btn-block" name="registrar" id="registrar" type="submit">Actualizar</button>
+                                <p>
+                                    <a href="index.php?c=Paciente&a=actualizar_pac" class="btn btn-lg btn-outline-danger">Volver</a>
+                                </p> 
+                                <p>
+                                    <button class="btn btn-primary btn-lg btn-block" style="float: right" name="registrar" id="registrar" type="submit">Actualizar</button>
                                 </p>
                             </form>
                         </div>

@@ -33,10 +33,13 @@
                                 <p>
                                     <label class="txtlabel">Elija fecha</label>
                                     <input type="date" name="fecha" id="fecha" required>
+                                </p>
+                                <p>
+                                    <a href="index.php?c=Paciente&a=index" class="btn btn-lg btn-outline-danger">Volver</a>
                                 </p> 
-                                <p class="block">
+                                <p >
                                 <a href="index.php?c=Paciente&a=buscar_cita">
-                                <button class="btn btn-primary btn-lg btn-block" name="registrar" id="reistrar" type="submit">Buscar</button>
+                                <button class="btn btn-primary btn-lg btn-block" style="float: right;" name="registrar" id="reistrar" type="submit">Buscar</button>
                                 </a>
                                 </p>
                             </form>

@@ -62,6 +62,9 @@
                                     ?>
                                 </tbody>
                             </table>  
+                            <p>
+                                <a href="index.php?c=Paciente&a=index" class="btn btn-lg btn-outline-danger">Volver</a>
+                            </p> 
                         </div>
                     </div> 
                 </div>

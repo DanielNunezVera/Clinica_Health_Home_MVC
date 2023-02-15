@@ -74,8 +74,11 @@
                                     <label><br></label>
                                     <a href="index.php?c=Profesional&a=actualizar_pass" class="btn btn-outline-primary btn-lg btn-block">Actualizar contraseña</a>
                                 </p>
-                                <p class="block d-grid gap-2">
-                                    <button class="btn btn-primary btn-lg btn-block" name="registrar" id="registrar" type="submit">Actualizar</button>
+                                <p>
+                                    <a href="index.php?c=Profesional&a=index" class="btn btn-lg btn-outline-danger">Volver</a>
+                                </p>
+                                <p>
+                                    <button class="btn btn-primary btn-lg btn-block" style="float: right;" name="registrar" id="registrar" type="submit">Actualizar</button>
                                 </p>
                             </form>
                         </div>
