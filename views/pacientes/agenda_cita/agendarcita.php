@@ -37,7 +37,7 @@
                                     <input type="date" name="fecha" id="fecha" required>
                                 </p>
                                 <p>
-                                    <a href="index.php?c=Paciente&a=index" class="btn btn-lg btn-outline-danger">Volver</a>
+                                    <a href="index.php?c=Paciente&a=acciones" class="btn btn-lg btn-outline-danger">Volver</a>
                                 </p> 
                                 <p >
                                 <a href="index.php?c=Paciente&a=buscar_cita">
