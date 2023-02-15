@@ -59,6 +59,9 @@
                                     ?>
                                 </tbody>
                             </table>  
+                            <p>
+                                <a href="index.php?c=Paciente&a=agendar_cita_i" class="btn btn-lg btn-outline-danger">Volver</a>
+                            </p>
                         </div>
                     </div>
                 </div>

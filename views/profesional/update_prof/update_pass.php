@@ -56,7 +56,8 @@
                                     <input type="password" name="repass" minlength="8" required>
                                 </p>
                                 <p class="block">
-                                    <button class="btn btn-primary btn-lg btn-block" name="registrar" id="registrar" type="submit">Actualizar</button>
+                                <a href="index.php?c=Profesional&a=actualizar_prof" class="btn btn-lg btn-outline-danger">Volver</a>
+                                    <button class="btn btn-primary btn-lg btn-block" style="float: right" name="registrar" id="registrar" type="submit">Actualizar</button>
                                 </p>
                             </form>
                         </div>
