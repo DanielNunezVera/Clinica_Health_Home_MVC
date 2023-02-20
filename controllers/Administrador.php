@@ -39,6 +39,9 @@
 				
 		}
 
+
+
+
 		public function gestion_agenda(){
 
 			$agenda =  new Administrador_model();
@@ -90,10 +93,20 @@
 
 		public function nuevo_profesional(){
 			$paquete=  new Administrador_model();
-			$data["tipo_doc"] = $paquete->get_tipo_doc();
-			$data["consultorios"] = $paquete->get_consultorios();
-			$data["especialidad"] = $paquete->get_especialidad();
-			require_once "views/administrador/gestion_usuarios/new_prof.php";
+			$data["especialidad"] = $paquete->get_especialidad_2();
+			if (!empty($data["especialidad"])) {
+				$data["consultorios"] = $paquete->get_consultorios_2();			
+				if (!empty($data["consultorios"])) {
+					$data["tipo_doc"] = $paquete->get_tipo_doc();		
+					require_once "views/administrador/gestion_usuarios/new_prof.php";
+				}else {
+					$_SESSION["Error_consult"]="1";
+					$this->gestion_u();
+				}
+			}else{
+				$_SESSION["Error_espec"]="1";
+				$this->gestion_u();
+			}
 		}
 
 		public function nuevo_auxiliar(){
@@ -242,11 +255,12 @@
 		public function actualizar_prof($id){
 			
 			$profesional = new Administrador_model();
+			$url = "views/administrador/gestion_usuarios/update_prof.php";
 			$data["consultorios"] = $profesional->get_consultorios();
-			$data["especialidad"] = $profesional->get_especialidad();
+			$data["especialidad"] = $profesional->get_especialidad_2();
 			$data["tipo_doc"] = $profesional->get_tipo_doc();
 			$data["profesional"] = $profesional->get_prof($id);
-			require_once "views/administrador/gestion_usuarios/update_prof.php";
+			require_once $url;
 		}
 
 		public function actualizar_aux($id){
@@ -292,16 +306,14 @@
 			
 			$id_profesional = $_POST['id_profesional'];
 			$id_tipo_doc = $_POST['id_tipo_doc'];
-			$id_consultorios = $_POST['id_consultorios'];
 			$id_especialidad = $_POST['id_especialidad'];
 			$tel_prof = $_POST['tel_prof'];
 			$correo_prof = $_POST['correo_prof'];
 			$dias_laborales = $_POST['dias_laborales'];
-			$franja_horaria = $_POST['franja_horaria'];
 
 
 			$profesional = new Administrador_model();
-			$resultado = $profesional->modificar_profesional($id_profesional, $id_tipo_doc, $id_consultorios, $id_especialidad, $tel_prof, $correo_prof, $dias_laborales, $franja_horaria);
+			$resultado = $profesional->modificar_profesional($id_profesional, $id_tipo_doc, $id_especialidad, $tel_prof, $correo_prof, $dias_laborales);
 			if ($resultado > 0 ) {
 				$_SESSION["prof_update"] = "1" ;
 			} else {

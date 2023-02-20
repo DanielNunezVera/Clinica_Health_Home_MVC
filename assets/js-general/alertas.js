@@ -191,6 +191,22 @@ function eliminar_consult(a){
   })
 }
 
+function estado_consult(a, b){
+  Swal.fire({
+    title: '¿Esta seguro de realizar esta acción?',
+    text: "Aceptar para continuar, cancelar para retornar",
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Aceptar',
+    cancelButtonText:'Cancelar'
+  }).then((result) => {
+    if (result.isConfirmed) {
+      location.href = a + b;
+    }
+  })
+}
 
 ///////////////ALERTAS ESPECIALDIAD///////////////////////////////////
 if (typeof alerta_espec !=="undefined") {
@@ -257,6 +273,23 @@ function eliminar_espec(a){
   }).then((result) => {
     if (result.isConfirmed) {
       location.href = "index.php?c=Administrador&a=eliminar_espec&id=" + etiqueta;
+    }
+  })
+}
+
+function estado_espec(a, b){
+  Swal.fire({
+    title: '¿Esta seguro de realizar esta acción?',
+    text: "Aceptar para continuar, cancelar para retornar",
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Aceptar',
+    cancelButtonText:'Cancelar'
+  }).then((result) => {
+    if (result.isConfirmed) {
+      location.href = a + b;
     }
   })
 }
@@ -329,6 +362,23 @@ function eliminar_pac(a){
   })
 }
 
+function estado_pac(a, b){
+  Swal.fire({
+    title: '¿Esta seguro de realizar esta acción?',
+    text: "Aceptar para continuar, cancelar para retornar",
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Aceptar',
+    cancelButtonText:'Cancelar'
+  }).then((result) => {
+    if (result.isConfirmed) {
+      location.href = a + b;
+    }
+  })
+}
+
 ///////////////// ALERTAS PROFESIONAL///////////////////////////////////////////
 if (typeof alerta_prof !=="undefined") {
   switch (alerta_prof) {
@@ -341,8 +391,8 @@ if (typeof alerta_prof !=="undefined") {
               )
       }else{
         Swal.fire(
-          '¡Alerta!',
-          '¡El profesional ya existe!',
+          '¡Error!',
+          '¡Profesional ya existe o se produjo un error!',
           'warning'
           )
       }
@@ -377,6 +427,33 @@ if (typeof alerta_prof !=="undefined") {
           )
       }
       break;
+    case "4":
+      if(alert_error_consult == '1'){
+          Swal.fire(
+              '¡Alerta!',
+              '¡No se encuentran consultorios disponibles para registrar otro profesional!',
+              'warning'
+              )
+      }
+      break;
+      case "5":
+        if(alert_error_espec == '1'){
+            Swal.fire(
+                '¡Alerta!',
+                '¡No se encuentran especialidades disponibles para registrar otro profesional!',
+                'warning'
+                )
+        }
+        break;
+        case "6":
+          if(alert_error_espec == '1'){
+              Swal.fire(
+                  '¡Informacion!',
+                  'La especialidad del profesional esta desactivada, no seleccionar otra especialidad a menos que deseé actualizar la misma',
+                  'info'
+                  )
+          }
+          break;
   }
 }
 
@@ -395,6 +472,23 @@ function eliminar_prof(a){
   }).then((result) => {
     if (result.isConfirmed) {
       location.href = "index.php?c=Administrador&a=eliminar_prof&id=" + etiqueta;
+    }
+  })
+}
+
+function estado_prof(a, b){
+  Swal.fire({
+    title: '¿Esta seguro de realizar esta acción?',
+    text: "Esta acción modificara las citas disponibles del profesional",
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Aceptar',
+    cancelButtonText:'Cancelar'
+  }).then((result) => {
+    if (result.isConfirmed) {
+      location.href = a + b;
     }
   })
 }
@@ -464,6 +558,23 @@ function eliminar_aux(a){
   }).then((result) => {
     if (result.isConfirmed) {
       location.href = "index.php?c=Administrador&a=eliminar_aux&id=" + etiqueta;
+    }
+  })
+}
+
+function estado_aux(a, b){
+  Swal.fire({
+    title: '¿Esta seguro de realizar esta acción?',
+    text: "Aceptar para continuar, cancelar para retornar",
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Aceptar',
+    cancelButtonText:'Cancelar'
+  }).then((result) => {
+    if (result.isConfirmed) {
+      location.href = a + b;
     }
   })
 }
