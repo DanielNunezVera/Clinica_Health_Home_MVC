@@ -28,16 +28,16 @@
                                 <div class="caja-pregunta">
                                     <p class="pregunta">¿Cómo inicio sesión?<img src="assets/images/iconmonstr-plus-1.svg" alt="Abrir respuesta"></p>
                                     <p class="respuesta">Para ingrear a mi cuenta debo identidicar mi rol, ya sea paciente, auxiliar, administrador o profesinal. 
-una vez identificado que tipo de rol poseo me dirigo al portal correspondinte usurios Pacientes si es paciente o si es profesional(Auxiliar Administrativo, 
-porfesional o Admin), 
-seleccione el tipo de documento de identidad posteriormente en escriba el numero de identidad, finalmente escriba la contraseña y da click en enviar,
-si esta registrado y los datos son correctos ingresara a su cuenta.  
-En portal funcionarios seleccione el rol con el cual va ingresar, selecione el tipo de documento, escriba su numero de documento y posterirmente su contraseña, 
-da click al voton enviar y si esta registrado y los datos son correctos ingresara a su cuenta.</p>
+una vez identificado que tipo de rol poseo me dirigo al portal correspondinte usurios Pacientes si es paciente o si es profesional (Auxiliar Administrativo, 
+profesional o paciente), 
+seleccione el tipo de documento de identidad posteriormente en escriba el número de identidad, finalmente escriba la contraseña y da click en enviar,
+si esta registrado y los datos son correctos ingresará a su cuenta.<br>
+En portal funcionarios seleccione el rol con el cual va ingresar, selecione el tipo de documento, escriba su número de documento y posterirmente su contraseña, 
+da click al botón enviar y si esta registrado y los datos son correctos ingresará a su cuenta.</p>
                                 </div>
                                 <div class="caja-pregunta">
                                     <p class="pregunta">¿Cómo restablecer la contraseña?<img src="assets/images/iconmonstr-plus-1.svg" alt="Abrir respuesta"></p>
-                                    <p class="respuesta">Se ubica en donde normalmnte inicia session, de bajo del boton "Enviar" encontrara el boton "Restablecer contraseña" da click, lo va a redirigir a una nueva ventana donde
+                                    <p class="respuesta">Se ubica en donde normalmnte inicia sesió<n, de bajo del boton "Enviar" encontrara el boton "Restablecer contraseña" da click, lo va a redirigir a una nueva ventana donde
 debe selecciona su rol o usuario ya sea paciente,Auxiliar Administrativo o Profesional, digita sus datos en los demas apartados despues dbera hacer click en el boton 
 "Restablecer contraseña" donde se enviara un codigo que sera su nueva contraseña, una vez recuperda e ingrese a su cuenta se recomienda cambiar la contraseña en el apartdado 
 de actualizar datos, una vez ubicado ahi ingresara el codigo que llego a su correo en el apartado de contraseña actual, despues podra escribir su nueva clave no menor a 8 caracteres, dara click en boton "actualizar"</p>
