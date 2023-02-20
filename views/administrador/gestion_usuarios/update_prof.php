@@ -41,12 +41,8 @@
                                 </p>
                                 <p>
                                     <label>Consultorio</label>
-                                    <select class="Selectorconsult" name="id_consultorios" id="id_consultorios" required>
-                                    <?php echo "<option value='".$data["profesional"]["id_consultorios"]."'>".$data["profesional"]["id_consultorios"]."</option>";
-                        
-                                    foreach ($data["consultorios"] as $dato) {
-                                        echo "<option value='".$dato["id_consultorios"]."'>".$dato["id_consultorios"]."</option>";
-                                    }?>
+                                    <select class="Selectorconsult" name="id_consultorios" id="id_consultorios" disabled>
+                                    <?php echo "<option value='".$data["profesional"]["id_consultorios"]."'>".$data["profesional"]["id_consultorios"]."</option>";?>
                                     </select>
                                 </p>
                                 <p>
@@ -57,10 +53,20 @@
                                     foreach ($data["especialidad"] as $dato) {
                                         if($dato["id_especialidad"]==$data["profesional"]["id_especialidad"]){
                                             $especialidad= $dato["descrip_espec"];
+                                            $resultado = $especialidad;
+                                            $value=$data["profesional"]["id_especialidad"];
+                                            $contador=1;
                                         }
                                     }
-                                    
-                                    echo "<option value='".$data["profesional"]["id_especialidad"]."'>".$especialidad
+                                    if ($contador!=1) {
+                                        $resultado = "Seleccione una opcion";
+                                        $value = $data["profesional"]["id_especialidad"];
+                                        $_SESSION["Error_espec"] = "1";
+                                    }
+                                   
+
+                                  
+                                echo "<option value='".$value."'>".$resultado
                                     ."</option>";
                                     
                                     foreach ($data["especialidad"] as $dato) {
@@ -90,7 +96,12 @@
                                 </p>
                                 <p>
                                     <label>Franja horaria</label>
-                                    <input type="text" name="franja_horaria" id="franja_horaria" value="<?php echo $data["profesional"]["franja_horaria"]?>">
+                                    <input type="text" name="franja_horaria" id="franja_horaria" value="<?php if ($data['profesional']['franja_horaria']=="b") {
+                                        echo '6:00 a.m - 2:00 p.m';
+                                    } 
+                                    if ($data['profesional']['franja_horaria']=="c") {
+                                        echo '2:00 p.m - 10:00 p.m';
+                                    } ?>" disabled>
                                 </p>
                                 <p>
                                     <label>Estado</label>
@@ -116,6 +127,19 @@
             </div> 
         </div>
     </main>
-    <?php require "views/Links/js.php"?>
+
+    <script>
+    <?php 
+        if(isset($_SESSION["Error_espec"])) {
+            if ($_SESSION["Error_espec"]!="0") {
+                echo "var alert_error_espec = '1';";
+                echo "var alerta_prof = '6';";
+                unset($_SESSION["Error_espec"]);
+            }
+        }
+    ?>
+    </script>
+
+<?php require "views/Links/js.php"?>
 </body>
 </html>

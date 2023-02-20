@@ -54,7 +54,7 @@
                                       echo "<td>".$dato["num_doc_pac"]."</td>";
                                       echo "<td>".$dato["nombres_pac"]."&nbsp".$dato["apellidos_pac"]."</td>";
                                       echo "<td> Paciente </td>";
-                                      echo "<td><a href='"."$url".$dato["id_paciente"]."' ".$boton."</td>";
+                                      echo "<td><a onclick='estado_pac(\""."$url"."\",\"".$dato["id_paciente"]."\")'".$boton."</td>";
                                       echo "<td><a href='index.php?c=Administrador&a=actualizar_pac&id=".$dato["id_paciente"]."&t_doc=".$dato["id_tipo_doc"]."' class='btn btn-light active' role='button' aria-pressed='true'>Actualizar</a></td>";
                                       echo "<td><a onclick='eliminar_pac(".$dato["id_paciente"].")'  class='btn btn-danger active ' role='button' aria-pressed='true'>&nbsp&nbspEliminar&nbsp&nbsp</a>
                                       </td>";
@@ -73,7 +73,7 @@
                                         echo "<td>".$dato["num_doc_prof"]."</td>";
                                         echo "<td>".$dato["nombres_prof"]."&nbsp".$dato["apellidos_prof"]."</td>";
                                         echo "<td> Profesional </td>";
-                                        echo "<td><a href='"."$url".$dato["id_profesional"]."' ".$boton."</td>";
+                                        echo "<td><a onclick='estado_prof(\""."$url"."\",\"".$dato["id_profesional"]."\")'".$boton."</td>";
                                         echo "<td><a href='index.php?c=Administrador&a=actualizar_prof&id=".$dato["id_profesional"]."&t_doc=".$dato["id_tipo_doc"]."' class='btn btn-light active' role='button' aria-pressed='true'>Actualizar</a></td>";
                                         echo "<td><a onclick='eliminar_prof(".$dato["id_profesional"].")'  class='btn btn-danger active ' role='button' aria-pressed='true'>&nbsp&nbspEliminar&nbsp&nbsp</a>
                                         </td>";
@@ -92,7 +92,7 @@
                                         echo "<td>".$dato["num_doc_aux"]."</td>";
                                         echo "<td>".$dato["nombres_aux"]."&nbsp".$dato["apellidos_aux"]."</td>";
                                         echo "<td> Auxiliar </td>";
-                                        echo "<td><a href='"."$url".$dato["id_auxiliar"]."' ".$boton."</td>";
+                                        echo "<td><a onclick='estado_aux(\""."$url"."\",\"".$dato["id_auxiliar"]."\")'".$boton."</td>";
                                         echo "<td><a href='index.php?c=Administrador&a=actualizar_aux&id=".$dato["id_auxiliar"]."' class='btn btn-light active' role='button' aria-pressed='true'>Actualizar</a></td>";
                                         echo "<td><a onclick='eliminar_aux(".$dato["id_auxiliar"].")'  class='btn btn-danger active ' role='button' aria-pressed='true'>&nbsp&nbspEliminar&nbsp&nbsp</a>
                                         </td>";
@@ -254,6 +254,22 @@
                     echo "var alert_prof_update = '0';";
                     echo "var alerta_prof = '3';";
                     unset($_SESSION["prof_update"]);
+                }
+            }
+
+            if(isset($_SESSION["Error_consult"])) {
+                if ($_SESSION["Error_consult"]!="0") {
+                    echo "var alert_error_consult = '1';";
+                    echo "var alerta_prof = '4';";
+                    unset($_SESSION["Error_consult"]);
+                }
+            }
+
+            if(isset($_SESSION["Error_espec"])) {
+                if ($_SESSION["Error_espec"]!="0") {
+                    echo "var alert_error_espec = '1';";
+                    echo "var alerta_prof = '5';";
+                    unset($_SESSION["Error_espec"]);
                 }
             }
 

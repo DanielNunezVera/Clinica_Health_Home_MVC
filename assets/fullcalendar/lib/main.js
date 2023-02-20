@@ -1846,7 +1846,7 @@ var FullCalendar = (function (exports) {
         timeZoneParam: 'timeZone',
         timeZone: 'local',
         locales: [],
-        locale: '',
+        locale: 'es',
         themeSystem: 'standard',
         dragRevertDuration: 500,
         dragScroll: true,
@@ -4244,7 +4244,7 @@ var FullCalendar = (function (exports) {
     var globalLocales = [];
 
     var MINIMAL_RAW_EN_LOCALE = {
-        code: 'en',
+        code: 'es',
         week: {
             dow: 0,
             doy: 4, // 4 days need to be within the year to be considered the first week
@@ -4255,16 +4255,16 @@ var FullCalendar = (function (exports) {
             next: 'next',
             prevYear: 'prev year',
             nextYear: 'next year',
-            year: 'year',
-            today: 'today',
-            month: 'month',
-            week: 'week',
-            day: 'day',
-            list: 'list',
+            year: 'Año',
+            today: 'Hoy',
+            month: 'Mes',
+            week: 'Semana',
+            day: 'dia',
+            list: 'lista',
         },
         weekText: 'W',
-        weekTextLong: 'Week',
-        closeHint: 'Close',
+        weekTextLong: 'Semana',
+        closeHint: 'Cerrar',
         timeHint: 'Time',
         eventHint: 'Event',
         allDayText: 'all-day',
@@ -7956,7 +7956,7 @@ var FullCalendar = (function (exports) {
                 var buttonName = widget.buttonName, buttonClick = widget.buttonClick, buttonText = widget.buttonText, buttonIcon = widget.buttonIcon, buttonHint = widget.buttonHint;
                 if (buttonName === 'title') {
                     isOnlyButtons = false;
-                    children.push(createElement("h2", { className: "fc-toolbar-title", id: props.titleId }, props.title));
+                    children.push(createElement("h2", { className: "fc-toolbar-title text-capitalize", id: props.titleId }, props.title));
                 }
                 else {
                     var isPressed = buttonName === props.activeButton;
