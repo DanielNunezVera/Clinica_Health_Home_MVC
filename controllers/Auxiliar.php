@@ -1,6 +1,6 @@
 <?php
 
-		require 'Sesiones.php';
+		require_once 'Sesiones.php';
 		$inc = new SesionesController();
 		if(empty($_SESSION["auxiliar"])){
 			$inc->redireccionar();

@@ -61,6 +61,6 @@ y para agendar debe dar click en el botn "Agendar", eso desplegara una pequeña 
         </div>
     </main>
     <script src="assets/js-general/ayuda.js"></script>
-    <script src="assets/js-general/menu-responsive.js"></script>
+
 </body>
 </html>

@@ -627,11 +627,23 @@ header nav ul li:hover {
 
 
 
-table thead{
+/* table thead{
     background-color: linear-gradient(62deg, rgba(1, 75, 160, 1) 29%, rgba(0, 105, 192, 1) 46%, rgba(30, 145, 237, 1) 64%, rgba(124, 183, 248, 1) 80%);
+} */
+
+/*estilos para la tabla*/
+table th {
+    background-color: #337ab7 !important;
+    color: white;
+}
+table>tbody>tr>td {
+    vertical-align: middle !important;
 }
 
-
+/*para alinear los botones y cuadro de busqueda*/
+.btn-group, .btn-group-vertical {
+    position: absolute !important;
+}
 
 
 

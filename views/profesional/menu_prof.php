@@ -35,7 +35,6 @@
     <div class="container-fluid">
         <iframe src="index.php?c=Profesional&a=acciones" name="header"></iframe>
     </div>
-    <script src="assets/js-general/alertas_prof.js"></script>
-    <?php require "views/Links/js.php"?>
+    <?php require_once "views/Links/js.php"?>
 </body>
 </html>

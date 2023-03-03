@@ -90,6 +90,6 @@
         }
         ?>
     </script>
-    <script src="assets/js-general/alertas_prof.js"></script>
+    <?php require_once "views/Links/js.php"?>
 </body>
 </html>

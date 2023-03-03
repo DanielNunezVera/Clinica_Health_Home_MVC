@@ -42,6 +42,6 @@
             </div>
         </div>
     </main>
-    <?php require "views/Links/js.php"?>
+    <?php require_once "views/Links/js.php"?>
 </body>
 </html>

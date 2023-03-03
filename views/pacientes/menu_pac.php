@@ -36,6 +36,6 @@
         <iframe src="index.php?c=Paciente&a=acciones" name="header"></iframe>
     </div>
     <script src="assets/js-general/alertas.js"></script>
-    <?php require "views/Links/js.php"?>
+    <?php require_once "views/Links/js.php"?>
 </body>
 </html>

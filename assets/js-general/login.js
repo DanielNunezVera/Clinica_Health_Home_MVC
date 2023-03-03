@@ -66,31 +66,31 @@ function register() {
 	}
 }
 
-function validar() {
-	var txtC = document.getElementById("txtCedula");
-	var txtN = document.getElementById("txtNombre");
-	var txtCO = document.getElementById("txtCorreo");
-	var txtU = document.getElementById("txtUsuario");
-	var txtCON = document.getElementById("txtClave");
-	if (txtC.value.trim().length == 0) {
-		alert("La cedula no puede estar vacia");
-		return false;
-	} else if (txtN.value.trim().length == 0) {
-		alert("El nombre no debe estar vacio");
-		return false;
-	} else if (txtCO.value.trim().length == 0) {
-		alert("El correo electronico no puede estar vacio");
-		return false;
-	} else if (txtU.value.trim().length == 0) {
-		alert("El usuario no puede estar vacio");
-		return false;
-	} else if (txtCON.value.trim().length == 0) {
-		alert("La contraseña no puede estar vacia");
-		return false;
-	} else {
-		return true;
-	}
-}
+// function validar() {
+// 	var txtC = document.getElementById("txtCedula");
+// 	var txtN = document.getElementById("txtNombre");
+// 	var txtCO = document.getElementById("txtCorreo");
+// 	var txtU = document.getElementById("txtUsuario");
+// 	var txtCON = document.getElementById("txtClave");
+// 	if (txtC.value.trim().length == 0) {
+// 		alert("La cedula no puede estar vacia");
+// 		return false;
+// 	} else if (txtN.value.trim().length == 0) {
+// 		alert("El nombre no debe estar vacio");
+// 		return false;
+// 	} else if (txtCO.value.trim().length == 0) {
+// 		alert("El correo electronico no puede estar vacio");
+// 		return false;
+// 	} else if (txtU.value.trim().length == 0) {
+// 		alert("El usuario no puede estar vacio");
+// 		return false;
+// 	} else if (txtCON.value.trim().length == 0) {
+// 		alert("La contraseña no puede estar vacia");
+// 		return false;
+// 	} else {
+// 		return true;
+// 	}
+// }
 
 function recuperarcontraseña() {
 	Swal.fire({

@@ -1,6 +1,4 @@
-<?php
-// include "../../../controller/sesiones/sesiones_pac.php";
-?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

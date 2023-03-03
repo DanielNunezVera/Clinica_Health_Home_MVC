@@ -43,5 +43,6 @@
         </div>
     </main>
     <script src="views/Links/js.php"></script>
+    <?php require_once "views/Links/js.php"?>
 </body>
 </html>

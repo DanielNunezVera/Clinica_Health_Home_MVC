@@ -9,7 +9,7 @@
 	src="https://code.jquery.com/jquery-3.3.1.min.js"
 	integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
 	crossorigin="anonymous"></script>
-    <?php require "views/Links/Css.php"?>
+    <?php require_once "views/Links/Css.php"?>
 </head>
 <body>
     <main>
@@ -98,6 +98,6 @@
             </div> 
         </div>
     </main>
-    <?php require "views/Links/js.php"?>
+    <?php require_once "views/Links/js.php"?>
 </body>
 </html>

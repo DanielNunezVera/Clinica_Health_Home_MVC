@@ -173,7 +173,6 @@
             }
         ?>
     </script>
-    <script src="assets/js-general/alertas_admin.js"></script>
     <script src="assets/js-general/alertas.js"></script>
     
 </body>

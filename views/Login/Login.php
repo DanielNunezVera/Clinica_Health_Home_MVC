@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Inicio de sesión - Clínica Health Home</title>
-<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0 300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+<!-- <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0 300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet"> -->
 <link rel="stylesheet" href="assets/css/estilos_login.css">
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script src="https://kit.fontawesome.com/2d830bca63.js" crossorigin="anonymous"></script>
@@ -152,7 +152,7 @@
             </div>
             <div class="box">
                 <h2>SOBRE NOSOTROS</h2>
-                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Magni, laboriosam? Quia mollitia reprehenderit necessitatibus possimus earum quasi vel, consequatur dicta iusto, in magni accusamus optio ad nisi fuga autem aperiam.</p>
+                <p>Somos una clinica destinada a ofrecerle la mejor experiencia y ayuda en sus temas relacionados con salud general y especifica, brindando servicios con profesionales especialidados.</p>
             </div>
             <div class="box">
                 <h2>CONTACTANOS</h2>

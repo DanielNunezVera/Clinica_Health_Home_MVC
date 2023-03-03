@@ -33,7 +33,7 @@
             $data["citas_prof"] =$ci_pr->get_citas_programadas($id_prof);
 			
 
-            require "views/profesional/citas_programadas/citas_programadas.php";
+            require_once "views/profesional/citas_programadas/citas_programadas.php";
           
         }
 
