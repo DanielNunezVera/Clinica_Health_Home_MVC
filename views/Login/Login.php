@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Inicio de sesión - Clínica Health Home</title>
-<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0 300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+<!-- <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0 300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet"> -->
 <link rel="stylesheet" href="assets/css/estilos_login.css">
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script src="https://kit.fontawesome.com/2d830bca63.js" crossorigin="anonymous"></script>
@@ -164,8 +164,11 @@
 					<br>
 					<br>
 					<a href="mailto:<nowiki> clinica.health.home7@gmail.com" class="fa fa-envelope-o"></a>
-					<a href="#" class="fa fa-question"></a>
-
+					<br>
+					<br>
+					<h2>¿NECESITAS AYUDA?</h2>
+					<!-- <p>Revisa las Preguntas Frecuentes</p> -->
+					<a href="index.php?c=Login&a=ayuda" class="fa fa-info-circle"></a>
                 </div>
             </div>
         </div>
