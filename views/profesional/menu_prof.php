@@ -27,7 +27,6 @@
                         <li><a href="index.php?c=Profesional&a=index" >Inicio</a></li>
                         <li><a href="index.php?c=Profesional&a=actualizar_prof">Actualizar Datos</a></li>
                         <li><a style="cursor:pointer;" onclick="cerrarsesion()">Cerrar sesion</a></li>
-                        <li><a href="index.php?c=Profesional&a=ayuda" >ayuda</a></li>
                     </ul>
                 </nav>
             </div>
@@ -36,7 +35,6 @@
     <div class="container-fluid">
         <iframe src="index.php?c=Profesional&a=acciones" name="header"></iframe>
     </div>
-    <?php require "views/Links/js.php"?>
-    <script src="assets/js-general/alertas_prof.js"></script>
+    <?php require_once "views/Links/js.php"?>
 </body>
 </html>

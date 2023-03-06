@@ -8,6 +8,8 @@
     <script src="https://kit.fontawesome.com/41bcea2ae3.js" crossorigin="anonymous"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
     <link rel="stylesheet" href="assets/css/estilos.css">
+    <link rel="stylesheet" href="assets/css/estilos_ayuda.css">
+    <link rel="stylesheet" href="assets/css/fontello.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Merriweather+Sans:wght@800&display=swap');
     </style>
@@ -26,7 +28,6 @@
                     <ul>
                         <li><a href="index.php?c=Profesional&a=index" >Inicio</a></li>
                         <li><a style="cursor:pointer;" onclick="cerrarsesion()">Cerrar sesion</a></li>
-                        <li><a href="index.php?c=Profesional&a=ayuda" >ayuda</a></li>
                     </ul>
                 </nav>
             </div>
@@ -42,45 +43,58 @@
                             <form action="index.php?c=Profesional&a=modificar_prof" method="POST">
                                 <p>
                                     <label>Tipo doc</label>
-                                    <input type="text" name="t_doc" value="<?php echo $dato["id_tipo_doc"];?>" disabled>
+                                    <input type="text" name="t_doc" value="<?php echo $data["profesional"]["id_tipo_doc"];?>" disabled>
                                 </p>
                                 <p>
                                     <label>N° documento</label>
-                                    <input type="number" name="num_doc" value="<?php echo $dato["num_doc_prof"];?>" disabled>
+                                    <input type="number" name="num_doc" value="<?php echo $data["profesional"]["num_doc_prof"];?>" disabled>
                                 </p>
                                 <p>
                                     <label>Nombre </label>
-                                    <input type="text" name="fullnombre" value="<?php echo $dato["nombres_prof"]." ".$dato["apellidos_prof"];?>" disabled>
+                                    <input type="text" name="fullnombre" value="<?php echo $data["profesional"]["nombres_prof"]." ".$data["profesional"]["apellidos_prof"];?>" disabled>
                                 </p>
                                 <p>
                                     <label>Teléfono</label>
-                                    <input type="tel" name="tel_prof" value="<?php echo $dato["tel_prof"];?>" required>
+                                    <input type="tel" name="tel_prof" value="<?php echo $data["profesional"]["tel_prof"];?>" required>
                                 </p>
                                 <p>
                                     <label>Email</label>
-                                    <input type="email" name="correo_prof" value="<?php echo $dato["correo_prof"]?>" required>
+                                    <input type="email" name="correo_prof" value="<?php echo $data["profesional"]["correo_prof"]?>" required>
                                 </p>
                                 <p>
                                     <label>Dias laborales </label>
-                                    <input name="dias_laborales" value="<?php echo $dato["dias_laborales"]?>" disabled>
+                                    <input name="dias_laborales" value="<?php echo $data["profesional"]["dias_laborales"]?>" disabled>
                                 </p>
 
                                 <p>
                                     <label>Franja laboral </label>
-                                    <input name="franja_horaria" value="<?php echo $dato["franja_horaria"]?>" disabled>
+                                    <input name="franja_horaria" value="<?php echo $data["profesional"]["franja_horaria"]?>" disabled>
                                 </p>
                                 
                                 <p>
                                     <label><br></label>
                                     <a href="index.php?c=Profesional&a=actualizar_pass" class="btn btn-outline-primary btn-lg btn-block">Actualizar contraseña</a>
                                 </p>
-                                <p class="block d-grid gap-2">
-                                    <button class="btn btn-primary btn-lg btn-block" name="registrar" id="registrar" type="submit">Actualizar</button>
+                                <p>
+                                    <a href="index.php?c=Profesional&a=index" class="btn btn-lg btn-outline-danger">Volver</a>
+                                </p>
+                                <p>
+                                    <button class="btn btn-primary btn-lg btn-block" style="float: right;" name="registrar" id="registrar" type="submit">Actualizar</button>
                                 </p>
                             </form>
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+        <div class="help">
+            <input type="checkbox" id="btn-mas" style="display: none;">
+            <div class="apartados">
+                <a href="#" class="icon-phone"></a>
+                <a href="index.php?c=Profesional&a=ayuda1" class="icon-help"></a>
+            </div>
+            <div>
+                <label for="btn-mas" class="icon-info"></label>
             </div>
         </div>
     </main>
@@ -111,6 +125,6 @@
         
         ?>
     </script>
-    <script src="assets/js-general/alertas_prof.js"></script>
+    <?php require_once "views/Links/js.php"?>
 </body>
 </html>

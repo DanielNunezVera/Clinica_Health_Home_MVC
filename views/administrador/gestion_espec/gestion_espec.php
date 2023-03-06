@@ -53,7 +53,7 @@
                                       echo "<td>".$dato["id_especialidad"]."</td>";
                                       echo "<td>".$dato["descrip_espec"]."</td>";
                                       echo "<td>".$dato["costo_espec"]."</td>";
-                                      echo "<td><a href='"."$url".$dato["id_especialidad"]."' ".$boton."</td>";
+                                      echo "<td><a onclick='estado_espec(\""."$url"."\",\"".$dato["id_especialidad"]."\")'".$boton."</td>";
                                       echo "<td><a href='index.php?c=Administrador&a=actualizar_espec&id=".$dato["id_especialidad"]."' class='btn btn-light active' role='button' aria-pressed='true'>Actualizar</a></td>";
                                       echo "<td><a onclick='eliminar_espec(".$dato["id_especialidad"].")'  class='btn btn-danger active ' role='button' aria-pressed='true'>&nbsp&nbspEliminar&nbsp&nbsp</a>
                                       </td>";
@@ -173,7 +173,6 @@
             }
         ?>
     </script>
-    <script src="assets/js-general/alertas_admin.js"></script>
     <script src="assets/js-general/alertas.js"></script>
     
 </body>

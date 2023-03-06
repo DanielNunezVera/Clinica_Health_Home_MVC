@@ -9,12 +9,10 @@
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
     <link rel="stylesheet" href="assets/css/estilos.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <link rel="stylesheet" href="views/administrador/gestion_agenda/css/bootstrap.min.css">
     <link href="//cdn.jsdelivr.net/npm/@sweetalert2/theme-minimal@4/minimal.css" rel="stylesheet">
     <link rel="stylesheet" href="assets/fullcalendar/lib/main.min.css">
     <script src="assets/js-general/jquery-3.6.0.min.js"></script>
-    <script src="assets/js-general/bootstrap.min.js"></script>
-    <script src="assets/fullcalendar/lib/main.min.js"></script>
+    <script src="assets/fullcalendar/lib/main.js"></script>
     <script src="https://kit.fontawesome.com/68088d55fd.js" crossorigin="anonymous"></script>
 
 
@@ -75,9 +73,14 @@
                                                 <label for="end_datetime" class="control-label">Franja laboral</label>
                                                 <select class="Selectordoc" name="tipo_franja" id="tipo_franja" required>
                                                 <option value="">Elige el tipo de franja</option>
-                                                    <option value="a">8:00 a.m - 4:00 p.m</option>
-                                                    <option value="b">6:00 a.m - 2:00 p.m</option>
-                                                    <option value="c">2:00 p.m - 10:00 p.m</option>
+                                                    <?php 
+                                                    if ($data["profesional"]["franja_horaria"]=="b") {
+                                                        echo"<option value='b'>6:00 a.m - 2:00 p.m</option>";
+                                                    }
+                                                    if ($data["profesional"]["franja_horaria"]=="c") {
+                                                        echo"<option value='b'>2:00 p.m - 10:00 p.m</option>";
+                                                    }
+                                                    ?>
                                                 </select>
                                                 </div>
                                             </form>

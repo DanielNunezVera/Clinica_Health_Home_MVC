@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Administrador del sistema</title>
     <script src="https://kit.fontawesome.com/41bcea2ae3.js" crossorigin="anonymous"></script>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous"> -->
     <link rel="stylesheet" href="assets/css/estilos.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Merriweather+Sans:wght@800&display=swap');
@@ -26,7 +26,6 @@
                     <ul>
                         <li><a href="index.php?c=Administrador&a=index" >Inicio</a></li>
                         <li><a href="cursor: pointer;" onclick="cerrarsesionadmin()">Cerrar sesion</a></li>
-                        <li><a href="index.php?c=Administrador&a=ayuda" >ayuda</a></li>
                     </ul>
                 </nav>
             </div>

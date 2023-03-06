@@ -8,6 +8,8 @@
     <script src="https://kit.fontawesome.com/41bcea2ae3.js" crossorigin="anonymous"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
     <link rel="stylesheet" href="assets/css/estilos.css">
+    <link rel="stylesheet" href="assets/css/estilos_ayuda.css">
+    <link rel="stylesheet" href="assets/css/fontello.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Merriweather+Sans:wght@800&display=swap');
     </style>
@@ -33,10 +35,13 @@
                                 <p>
                                     <label class="txtlabel">Elija fecha</label>
                                     <input type="date" name="fecha" id="fecha" required>
+                                </p>
+                                <p>
+                                    <a href="index.php?c=Paciente&a=acciones" class="btn btn-lg btn-outline-danger">Volver</a>
                                 </p> 
-                                <p class="block">
+                                <p >
                                 <a href="index.php?c=Paciente&a=buscar_cita">
-                                <button class="btn btn-primary btn-lg btn-block" name="registrar" id="reistrar" type="submit">Buscar</button>
+                                <button class="btn btn-primary btn-lg btn-block" style="float: right;" name="registrar" id="reistrar" type="submit">Buscar</button>
                                 </a>
                                 </p>
                             </form>
@@ -44,6 +49,16 @@
                     </div>
                 </div>
             </div> 
+        </div>
+        <div class="help">
+            <input type="checkbox" id="btn-mas" style="display: none;">
+            <div class="apartados">
+                <a href="#" class="icon-phone"></a>
+                <a href="index.php?c=Paciente&a=ayuda" class="icon-help"></a>
+            </div>
+            <div>
+                <label for="btn-mas" class="icon-info"></label>
+            </div>
         </div>
     </main>
     <script>

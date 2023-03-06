@@ -1,6 +1,4 @@
-<?php
-// include "../../../controller/sesiones/sesiones_pac.php";
-?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,6 +8,8 @@
     <title>Citas agendadas</title>
     <script src="https://kit.fontawesome.com/41bcea2ae3.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="assets/css/estilos.css">
+    <link rel="stylesheet" href="assets/css/estilos_ayuda.css">
+    <link rel="stylesheet" href="assets/css/fontello.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
     <!--  Datatables  -->
@@ -62,10 +62,23 @@
                                     ?>
                                 </tbody>
                             </table>  
+                            <p>
+                                <a href="index.php?c=Paciente&a=acciones" class="btn btn-lg btn-outline-danger">Volver</a>
+                            </p> 
                         </div>
                     </div> 
                 </div>
             </div> 
+        </div>
+        <div class="help">
+            <input type="checkbox" id="btn-mas" style="display: none;">
+            <div class="apartados">
+                <a href="#" class="icon-phone"></a>
+                <a href="index.php?c=Paciente&a=ayuda" class="icon-help"></a>
+            </div>
+            <div>
+                <label for="btn-mas" class="icon-info"></label>
+            </div>
         </div>
     </main>
     <script src="assets/js-general/menu-responsive.js"></script>

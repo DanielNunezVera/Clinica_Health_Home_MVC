@@ -1,0 +1,144 @@
+/* Botón de ayuda/Preguntas Frecuentes */
+
+#btn-mas{
+
+    display: none;
+
+}
+
+.help{
+
+    position: fixed;
+    bottom: 1.5em;
+    right: 1.5em;
+
+}
+
+.apartados a, .icon-info{
+
+    display: block;
+    text-decoration: none;
+    background: linear-gradient(to right, #156fe4, #0a2c8b);
+    color: #fff;
+    width: 5em;
+    height: 5em;
+    line-height: 5em;
+    text-align: center;
+    border-radius: 50%;
+    box-shadow: 0px 0px 10px 1px rgb(0, 0, 0, 0.4);
+    transition: all 1000ms ease;
+    cursor: pointer;
+
+}
+
+.apartados a:hover{
+
+    background: #fff;
+    color: #000;
+
+}
+
+.apartados a{
+
+    margin-bottom: -1em;
+    opacity: 0;
+    visibility: hidden;
+
+}
+
+#btn-mas:checked~ .apartados a{
+
+    margin-bottom: 1.2em;
+    opacity: 1;
+    visibility: visible;
+
+}
+
+/* Estilos de Preguntas */
+
+:root{
+
+    --primary: rgb(11, 111, 226);
+    --gradiente: linear-gradient(to right, #156fe4, #0a2c8b);
+    --sombra: 0px 0px 10px 1px rgb(0, 0, 0, 0.4);;
+    --gris: #b8b8b8;
+
+}
+
+.contenedor-preguntas{
+
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2em;
+    margin-right: 0.5em;
+    margin-left: 1em;
+
+}
+
+.caja-pregunta{
+
+    /* background: var(--primary); */
+    padding: 2em;
+    border: 2px solid transparent;
+    border-radius: 10px;
+    overflow: hidden;
+    transition: .3s ease all;
+    cursor: pointer;
+
+}
+
+.caja-pregunta:hover{
+
+    box-shadow: var(--sombra);
+
+}
+
+.caja-pregunta.activa{
+
+    border: 2px solid var(--primary);
+
+}
+
+/* PREGUNTAS */
+
+.pregunta{
+
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: -0.9em;
+
+}
+
+.pregunta img{
+
+    width: 14px;
+
+}
+
+.respuesta{
+
+    color: #808080;
+    line-height: 30px;
+    max-height: 0;
+    opacity: 0;
+    transition: .3s ease all;
+
+}
+
+.caja-pregunta.activa .respuesta{
+
+    opacity: 1;
+    margin-top: 3em;
+
+}
+
+.caja-pregunta.activa img{
+
+    transform: rotate(45deg);
+
+}
+

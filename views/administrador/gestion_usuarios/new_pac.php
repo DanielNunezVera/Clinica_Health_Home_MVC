@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gestión Usuarios</title>
-    <?php require "views/Links/Css.php"?>
+    <?php require_once "views/Links/Css.php"?>
 </head>
 <body>
     <main>
@@ -64,7 +64,7 @@
             </div> 
         </div>
     </main>
-    <?php require "views/Links/js.php"?>
+    <?php require_once "views/Links/js.php"?>
 
 </body>
 </html>

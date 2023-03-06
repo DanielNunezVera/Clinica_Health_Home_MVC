@@ -152,20 +152,25 @@
             </div>
             <div class="box">
                 <h2>SOBRE NOSOTROS</h2>
-                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Magni, laboriosam? Quia mollitia reprehenderit necessitatibus possimus earum quasi vel, consequatur dicta iusto, in magni accusamus optio ad nisi fuga autem aperiam.</p>
+                <p>Somos una clinica privada especialida en la prestacion del servicio de la salud, contamos con un equipo profesional y con los equipos tecgnologicos de punta para brindar un ecxelente servicio.</p>
             </div>
             <div class="box">
-                <h2>siguenos</h2>
+                <h2>CONTACTANOS</h2>
                 <div class="red-social">
-                    <a href="#" class="fa fa-facebook"></a>
-                    <a href="#" class="fa fa-instagram"></a>
-                    <a href="#" class="fa fa-twitter"></a>
-                    <a href="#" class="fa fa-youtube"></a>
+                    <a href="https://www.facebook.com/profile.php?id=100090351939572" class="fa fa-facebook"></a>
+                    <a href="https://www.instagram.com/clinica_health_home_7/" class="fa fa-instagram"></a>
+                    <a href="https://www.youtube.com/channel/UCeTmjUBKH3qsjDpfRDaEHTg" class="fa fa-youtube"></a>
+					<a href="https://www.linkedin.com/in/clinica-health-home-2b9131266/" class="fa fa-linkedin"></a>
+					<br>
+					<br>
+					<a href="mailto:<nowiki> clinica.health.home7@gmail.com" class="fa fa-envelope-o"></a>
+					<a href="#" class="fa fa-question"></a>
+
                 </div>
             </div>
         </div>
         <div class="grupo-2">
-            <small>&copy; 2021 <b>Clinica Healt Home</b> - Todos los Derechos Reservados.</small>
+            <small>&copy; 2023 <b>Clinica Healt Home</b> - Todos los Derechos Reservados.</small>
         </div>
 </footer>
 </html>

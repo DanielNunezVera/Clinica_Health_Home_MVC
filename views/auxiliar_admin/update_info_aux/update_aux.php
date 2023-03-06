@@ -10,6 +10,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 
     <link rel="stylesheet" href="assets/css/estilos.css">
+    <link rel="stylesheet" href="assets/css/estilos_ayuda.css">
+    <link rel="stylesheet" href="assets/css/fontello.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Merriweather+Sans:wght@800&display=swap');
     </style>
@@ -28,7 +30,6 @@
                     <ul>
                         <li><a href="index.php?c=Auxiliar&a=index" >Inicio</a></li>
                         <li><a style="cursor: pointer;" onclick="cerrarsesionaux()">Cerrar sesion</a></li>
-                        <li><a href="index.php?c=Auxiliar&a=ayuda" >ayuda</a></li>
                     </ul>
                 </nav>
             </div>
@@ -43,43 +44,51 @@
                     <div class="contact-wrapper animated bounceInUp">
                         <div class="contact-form">
                             <form action="index.php?c=Auxiliar&a=modificar_aux" method="POST">
-                                <!-- <p>
-                                    <label>Tipo de documento</label>
-                                    <input type="text" name="t_doc" disabled>
-                                </p> -->
                                 <p>
                                     <label>N° documento</label>
-                                    <input type="number" name="num_doc" value="<?php echo $dato["num_doc_aux"];?>" disabled>
+                                    <input type="number" name="num_doc" value="<?php echo $data["auxiliar"]["num_doc_aux"];?>" disabled>
                                 </p>
 
                                 <p>
                                     <label>Nombre</label>
-                                    <input type="text" name="fullnombre" value="<?php echo $dato["nombres_aux"]." ".$dato["apellidos_aux"]?>" disabled>
+                                    <input type="text" name="fullnombre" value="<?php echo $data["auxiliar"]["nombres_aux"]." ".$data["auxiliar"]["apellidos_aux"]?>" disabled>
                                 </p>
                                
                                 <p>
                                     <label>Email</label>
-                                    <input type="email" name="correo_aux" id="correo_aux" value="<?php echo $dato["correo_aux"]?>" required>
+                                    <input type="email" name="correo_aux" id="correo_aux" value="<?php echo $data["auxiliar"]["correo_aux"]?>" required>
                                 </p>
 
                                 <p>
                                     <label>Teléfono</label>
-                                    <input type="number" name="tel_aux" id="tel_aux" value="<?php echo $dato["tel_aux"];?>" required>
-                                </p>
-
-                                <p>
-                                    <label><br></label>
-                                    <a href="index.php?c=Auxiliar&a=actualizar_pass" class="btn btn-outline-primary btn-lg btn-block">Actualizar contraseña</a>
+                                    <input type="number" name="tel_aux" id="tel_aux" value="<?php echo $data["auxiliar"]["tel_aux"];?>" required>
                                 </p>
 
                                 <p class="block d-grid gap-2">
-                                <button class="btn btn-primary btn-lg btn-block" name="registrar" id="registrar" type="submit">Actualizar</button>
+                                    <label></label>
+                                    <a href="index.php?c=Auxiliar&a=actualizar_pass" class="btn btn-outline-primary btn-lg btn-block">Actualizar contraseña</a>
+                                </p>
+                                <p>
+                                    <a href="index.php?c=Auxiliar&a=index" class="btn btn-lg btn-outline-danger">Volver</a>
+                                </p>
+                                <p>
+                                    <button class="btn btn-primary btn-lg btn-block" style="float: right;" name="registrar" id="registrar" type="submit">Actualizar</button>
                                 </p>
                             </form>
                         </div>
                     </div>
                 </div>
             </div> 
+        </div>
+        <div class="help">
+            <input type="checkbox" id="btn-mas" style="display: none;">
+            <div class="apartados">
+                <a href="#" class="icon-phone"></a>
+                <a href="index.php?c=Auxiliar&a=ayuda1" class="icon-help"></a>
+            </div>
+            <div>
+                <label for="btn-mas" class="icon-info"></label>
+            </div>
         </div>
     </main>
     <script src="assets/js-general/menu-responsive.js"></script>
@@ -97,14 +106,13 @@
                     unset($_SESSION["update_info"]);
                 }
             }
-            if (isset($_SESSION["update_pass"])) {
 
+            if(isset($_SESSION["update_pass"])){
                 if ($_SESSION["update_pass"]!="0") {
-                    echo "var alerta_pass_update = '1';";
+                    echo "var update_pass = '1';";
                     echo "var alerta_m_aux = '1';";
                     unset($_SESSION["update_pass"]);
                 }
-
             }
         ?>
     </script>

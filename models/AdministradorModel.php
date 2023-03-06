@@ -10,6 +10,10 @@
 		private $especialidad;
 		private $tipo_doc;
 		private $sched_res;
+		private $consultorios_llenos;
+		private $consultorios_vacios;
+		private $consultorios_franja;
+
 		
 		public function __construct(){
 			$this->db = Conectar::conexion();
@@ -20,6 +24,9 @@
 			$this->especialidad = array();
 			$this->tipo_doc = array();
 			$this->sched_res = array();
+			$this->consultorios_llenos = array();
+			$this->consultorios_vacios = array();
+			$this->consultorios_franja = array();
 		}
 		//consultas para listar pacientes, profesionales, auxiliares, consultorios, especialidades, tipo doc, agenda
 		public function get_pacientes()
@@ -67,6 +74,27 @@
 			return $this->consultorios;
 		}
 
+		public function get_consultorios_2()
+		{
+			$sql_aux = "SET @franjita = 1";
+			$resultado_aux = $this->db->query($sql_aux);
+			$sql1 = "SELECT id_consultorios, estado_consult, @franjita FROM consultorios WHERE id_consultorios NOT IN (SELECT id_consultorios FROM profesional) AND estado_consult=1";
+			$resultado1 = $this->db->query($sql1);
+			while($row = $resultado1->fetch_assoc())
+			{
+				$this->consultorios_vacios[] = $row;				  
+			}
+			
+			$sql2 = "SELECT consultorios.id_consultorios, profesional.franja_horaria FROM consultorios INNER JOIN profesional ON consultorios.id_consultorios = profesional.id_consultorios WHERE consultorios.estado_consult=1 AND EXISTS(SELECT id_consultorios FROM profesional WHERE franja_horaria='b' OR franja_horaria='c') GROUP BY consultorios.id_consultorios HAVING COUNT(*) =1;" ;
+			$resultado2 = $this->db->query($sql2);
+			while($row = $resultado2->fetch_assoc())
+			{
+				$this->consultorios_franja[] = $row;
+			}
+			$this->consultorios = array_merge($this->consultorios_vacios, $this->consultorios_franja);
+			return $this->consultorios;
+		}
+
 		public function get_tipo_doc()
 		{
 			$sql = "SELECT * FROM tipo_doc";
@@ -81,6 +109,17 @@
 		public function get_especialidad()
 		{
 			$sql = "SELECT * FROM especialidad";
+			$resultado = $this->db->query($sql);
+			while($row = $resultado->fetch_assoc())
+			{
+				$this->especialidad[] = $row;
+			}
+			return $this->especialidad;
+		}
+
+		public function get_especialidad_2()
+		{
+			$sql = "SELECT * FROM especialidad WHERE estado_espec=1";
 			$resultado = $this->db->query($sql);
 			while($row = $resultado->fetch_assoc())
 			{
@@ -161,10 +200,7 @@
 			$fecha_entrante = strtotime(date("Y")."-".$tipo_franja_la);
 			if($fecha_entrante>=$fecha_actual){
 
-				if($tipo_franja == "a"){
-					$fecha_i = date('Y')."/".$tipo_franja_la.'/01 8:00';
-					$fecha_f = date('Y')."/".$tipo_franja_la.'/01 16:00';
-				}elseif ($tipo_franja == "b") {
+				if ($tipo_franja == "b") {
 					$fecha_i = date('Y')."/".$tipo_franja_la.'/01 6:00';
 					$fecha_f = date('Y')."/".$tipo_franja_la.'/01 14:00';
 				}elseif ($tipo_franja == "c") {
@@ -233,9 +269,9 @@
 
 		}
 
-		public function modificar_profesional($id_profesional, $id_tipo_doc, $id_consultorios, $id_especialidad, $tel_prof, $correo_prof,$dias_laborales, $franja_horaria){
+		public function modificar_profesional($id_profesional, $id_tipo_doc, $id_especialidad, $tel_prof, $correo_prof,$dias_laborales){
 			
-			$resultado = $this->db->query("UPDATE profesional SET id_tipo_doc='$id_tipo_doc', tel_prof='$tel_prof', correo_prof='$correo_prof', id_consultorios='$id_consultorios', id_especialidad='$id_especialidad',dias_laborales='$dias_laborales', franja_horaria='$franja_horaria' WHERE id_profesional = '$id_profesional'");
+			$resultado = $this->db->query("UPDATE profesional SET id_tipo_doc='$id_tipo_doc', tel_prof='$tel_prof', correo_prof='$correo_prof',id_especialidad='$id_especialidad',dias_laborales='$dias_laborales' WHERE id_profesional = '$id_profesional'");
 			$resultado2 = $this ->db->affected_rows;
 			$this->db->close();
 			return $resultado2;			

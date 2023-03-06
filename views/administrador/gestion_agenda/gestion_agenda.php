@@ -61,7 +61,6 @@
 
 
     <script src="assets/js-general/menu-responsive.js"></script>
-    <script src="assets/js-general/main.js"></script>
     
     
     <!-- Optional JavaScript -->

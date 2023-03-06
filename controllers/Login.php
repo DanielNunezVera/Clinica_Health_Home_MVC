@@ -1,5 +1,5 @@
 <?php 
-require 'Sesiones.php';
+require_once 'Sesiones.php';
 $inc = new SesionesController();
     if(!empty($_SESSION["Admin"])){
 
@@ -141,6 +141,13 @@ class LoginController{
         $tipo_doc = new Login_Model();
         $data["tipo_doc"] = $tipo_doc->get_tipo_doc();
         require_once "views/restablecer_contra/restablecer_pass.php";
+    }
+
+    public function ayuda(){
+
+        require_once "views/Login/login_menu_ayuda.php";
+        require_once "views/Login/login_ayuda.php";
+
     }
 }
 ?>

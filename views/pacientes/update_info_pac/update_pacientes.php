@@ -8,7 +8,8 @@
 
     <script src="https://kit.fontawesome.com/41bcea2ae3.js" crossorigin="anonymous"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
-
+    <link rel="stylesheet" href="assets/css/estilos_ayuda.css">
+    <link rel="stylesheet" href="assets/css/fontello.css">
     <link rel="stylesheet" href="assets/css/estilos.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Merriweather+Sans:wght@800&display=swap');
@@ -27,9 +28,7 @@
                     <img src="assets/images/ajustes.png" alt="">
                     <ul>
                         <li><a href="index.php?c=Paciente&a=index">Inicio</a></li>
-                        <li><a href="index.php?c=Paciente&a=get_paciente">Actualizar datos</a></li>
                         <li><a style="cursor: pointer;" onclick="cerrarsesionpac()">Cerrar sesion</a></li>
-                        <li><a href="index.php?c=Paciente&a=ayuda" >ayuda</a></li>
                     </ul>
                 </nav>
             </div>
@@ -43,7 +42,6 @@
                     <div class="contact-wrapper animated bounceInUp">
                         <div class="contact-form">
                             <form action="index.php?c=Paciente&a=update_pac" method="POST">
-                                <input type="hidden" name="id_paciente" id="id_paciente" value="<?php echo $_SESSION['pac'];?>">
                                 <p>
                                     <label>N° documento</label>
                                     <input type="number" name="num_doc_pac" value="<?php echo $dato["num_doc_pac"];?>" readonly>
@@ -66,10 +64,13 @@
                                 </p>
                                 <p>
                                     <label><br></label>
-                                    <a href="index.php?c=Paciente&a=password" class="btn btn-outline-primary btn-lg btn-block">Actualizar contraseña</a>
+                                    <a href="index.php?c=Paciente&a=actualizar_pass" class="btn btn-outline-primary btn-lg btn-block">Actualizar contraseña</a>
                                 </p>
-                                <p class="block d-grid gap-2">
-                                    <button class="btn btn-primary btn-lg btn-block" name="update" id="update" type="submit">
+                                <p>
+                                    <a href="index.php?c=Paciente&a=index" class="btn btn-lg btn-outline-danger">Volver</a>
+                                </p> 
+                                <p>
+                                    <button class="btn btn-primary btn-lg btn-block"  style="float: right;" name="update" id="update" type="submit">
                                         Actualizar
                                     </button>
                                 </p>
@@ -78,6 +79,16 @@
                     </div>
                 </div>
             </div> 
+        </div>
+        <div class="help">
+            <input type="checkbox" id="btn-mas" style="display: none;">
+            <div class="apartados">
+                <a href="#" class="icon-phone"></a>
+                <a href="index.php?c=Paciente&a=ayuda1" class="icon-help"></a>
+            </div>
+            <div>
+                <label for="btn-mas" class="icon-info"></label>
+            </div>
         </div>
     </main>
     <script src="assets/js-general/menu-responsive.js"></script>
@@ -107,20 +118,20 @@
 
         }
 
-        if (isset($_SESSION['password'])) {
-
-            if ($_SESSION['password'] == "1") {
-
-                // var_dump($_SESSION['password']);
-                // echo $_SESSION['password'];
-
-                echo "var update_datos = '1';";
+        if(isset($_SESSION["update_pass"])){
+            if ($_SESSION["update_pass"]!="0") {
+                
+                echo "var update_pass = '1';";
                 echo "var datos = '2';";
 
-                unset($_SESSION['password']);
-
+                unset($_SESSION["update_pass"]);
+            }else {
+                
+                echo "var update_pass = '0';";
+                echo "var datos = '2';";
+                
+                unset($_SESSION["update_pass"]);
             }
-
         }
 
         ?>
