@@ -741,6 +741,15 @@ if (typeof datos !== 'undefined') {
 
 }
 
+if (typeof sin_personal !== 'undefined') {
+  Swal.fire(
+    '¡Error!',
+    'No hay citas disponibles, intente mas tarde',
+    'warning'
+    )
+
+}
+
 function cerrarsesionpac(){
   Swal.fire({
     title: 'Cerrar sesion',
@@ -884,7 +893,7 @@ if (typeof alerta_m_aux !=="undefined"){
           }else{
               Swal.fire(
                   '¡Error!',
-                  'Hubo un error en cancelar cita',
+                  'La cita se ecuentra con un pago registrado',
                   'warning'
                   )
           }
@@ -919,10 +928,20 @@ if (typeof alerta_m_aux !=="undefined"){
                   'warning'
                   )
           }
-          break;      
+          break;
+    case "9":
+          if(alerta_error_cita  == "1"){
+              Swal.fire(
+                  'Alerta!',
+                  'No hay citas disponibles, intente mas tarde',
+                  'warning'
+                  )
+          }
+          break;   
          
   }
 }
+
 function cancelar_cita_pac_aux(a){
   const etiqueta = a
   Swal.fire({

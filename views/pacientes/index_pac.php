@@ -59,6 +59,21 @@
             </div>
         </div>
     </main>
+
+    <script>
+    <?php
+
+        if (isset($_SESSION['sin_personal'])) {
+            if ($_SESSION['sin_personal']=="1") {
+                echo "var sin_personal = '1';";
+
+                unset($_SESSION['sin_personal']);
+            };
+        };
+    ?>
+    </script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="assets/js-general/menu-responsive.js"></script>
+    <script src="assets/js-general/alertas.js"></script>
 </body>
 </html>

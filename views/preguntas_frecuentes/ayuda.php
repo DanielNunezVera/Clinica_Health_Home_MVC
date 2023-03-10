@@ -37,7 +37,7 @@ da click al botón enviar y si esta registrado y los datos son correctos ingresa
                                 </div>
                                 <div class="caja-pregunta">
                                     <p class="pregunta">¿Cómo restablecer la contraseña?<img src="assets/images/iconmonstr-plus-1.svg" alt="Abrir respuesta"></p>
-                                    <p class="respuesta">Se ubica en donde normalmnte inicia sesió<n, de bajo del boton "Enviar" encontrara el boton "Restablecer contraseña" da click, lo va a redirigir a una nueva ventana donde
+                                    <p class="respuesta">Se ubica en donde normalmnte inicia sesión, de bajo del boton "Enviar" encontrara el boton "Restablecer contraseña" da click, lo va a redirigir a una nueva ventana donde
 debe selecciona su rol o usuario ya sea paciente,Auxiliar Administrativo o Profesional, digita sus datos en los demas apartados despues dbera hacer click en el boton 
 "Restablecer contraseña" donde se enviara un codigo que sera su nueva contraseña, una vez recuperda e ingrese a su cuenta se recomienda cambiar la contraseña en el apartdado 
 de actualizar datos, una vez ubicado ahi ingresara el codigo que llego a su correo en el apartado de contraseña actual, despues podra escribir su nueva clave no menor a 8 caracteres, dara click en boton "actualizar"</p>

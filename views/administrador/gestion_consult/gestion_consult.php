@@ -7,14 +7,17 @@
     <title>Gestión Consultorios</title>
     <script src="https://kit.fontawesome.com/41bcea2ae3.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="assets/css/estilos.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-
-    <!--  Datatables  -->
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.10.20/datatables.min.css"/>  
-
-    <!--  extension responsive  -->
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css">
-
+ 
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    
+    <!--datables CSS básico-->
+    <link rel="stylesheet" type="text/css" href="assets/datatables/datatables.min.css"/>
+    <!--datables estilo bootstrap 4 CSS-->  
+    <link rel="stylesheet"  type="text/css" href="assets/datatables/DataTables-1.13.3/css/dataTables.bootstrap4.min.css">
+            
+    <!--font awesome con CDN-->  
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">  
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Merriweather+Sans:wght@800&display=swap');
     </style>
@@ -63,51 +66,28 @@
         </div>
     </main>
     <script src="assets/js-general/menu-responsive.js"></script>
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-            
-    <!--   Datatables-->
-    <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.20/datatables.min.js"></script>  
-      
-    <!-- extension responsive -->
-    <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
 
+    
+    <!-- jQuery, Popper.js, Bootstrap JS -->
+    <script src="assets/js-general/jquery-3.6.0.min.js"></script>
+    <!-- <script src="assets/js-general/popper.min.js"></script> -->
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+      
+    <!-- datatables JS -->
+    <script type="text/javascript" src="assets/datatables/datatables.min.js"></script>    
+     
+    <!-- para usar botones en datatables JS -->  
+    <script src="assets/datatables/Buttons-2.3.5/js/dataTables.buttons.min.js"></script>  
+    <script src="assets/datatables/JSZip-2.5.0/jszip.min.js"></script>    
+    <!-- <script src="assets/datatables/pdfmake-0.1.36/pdfmake.min.js"></script> -->
+    <!-- <script src="assets/datatables/pdfmake-0.1.36/vfs_fonts.js"></script> -->
+    <script src="assets/datatables/Buttons-2.3.5/js/buttons.html5.min.js"></script>
+     
+    <!-- código JS propìo-->    
+    <script type="text/javascript" src="assets/js-general/main.js"></script>  
     
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
-        function enviarform(){
-            window.location = "new_consult.php"
-        };
-
-        $(document).ready(function() {
-            $('#example').DataTable({
-                responsive: true,
-                "language": {
-                    "lengthMenu": "Mostrar " + 
-                        `<select class="custom-select custom-select-sm form-control form-control-sm">
-                            <option value='10'>10</option>
-                            <option value='25'>25</option>
-                            <option value='50'>50</option>
-                            <option value='100'>100</option>
-                            <option value='-1'>Todos</option>
-                        </select>` + 
-                        " registros por página",
-                    "zeroRecords": "No hay registros ",
-                    "info": "Mostrando pagina _PAGE_ de _PAGES_",
-                    "infoEmpty": "No registros disponibles",
-                    "infoFiltered": "(Filtrado de _MAX_ registros)",
-                    "search":"Buscar",
-                    "paginate":{
-                        "next": "Siguiente",
-                        "previous": "Anterior"
-                    }
-                }
-                });
-        });
-
         <?php
             if(isset($_SESSION["consult_insert_1"])){
                     if ($_SESSION["consult_insert_1"]!="0") {

@@ -60,8 +60,13 @@
 			$data["paciente"] = $paciente->get_paciente($num_doc_pac, $id_tipo_doc);
 			$data["especialidades"] = $paciente->get_especialidad();
 			if(isset($data["paciente"])){
-				require_once "views/auxiliar_admin/agenda_cita/cita_aux.php";
-				$_SESSION['id_paciente']= $data["paciente"]['id_paciente'];
+				if(count($data["especialidades"])!==0){
+					require_once "views/auxiliar_admin/agenda_cita/cita_aux.php";
+					$_SESSION['id_paciente']= $data["paciente"]['id_paciente'];
+				}else{
+					$_SESSION["error_citas"] = "1";
+					$this->buscar_pacientei();
+				}
 			}else{
 				$_SESSION["descti_pac_age"] = "0";
 				$this->buscar_pacientei();

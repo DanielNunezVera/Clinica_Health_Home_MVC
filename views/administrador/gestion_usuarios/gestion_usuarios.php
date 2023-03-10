@@ -144,7 +144,7 @@
     
     <!-- jQuery, Popper.js, Bootstrap JS -->
     <script src="assets/js-general/jquery-3.6.0.min.js"></script>
-    <script src="assets/js-general/popper.min.js"></script>
+    <!-- <script src="assets/js-general/popper.min.js"></script> -->
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
       
     <!-- datatables JS -->
@@ -153,8 +153,8 @@
     <!-- para usar botones en datatables JS -->  
     <script src="assets/datatables/Buttons-2.3.5/js/dataTables.buttons.min.js"></script>  
     <script src="assets/datatables/JSZip-2.5.0/jszip.min.js"></script>    
-    <script src="assets/datatables/pdfmake-0.1.36/pdfmake.min.js"></script>    
-    <script src="assets/datatables/pdfmake-0.1.36/vfs_fonts.js"></script>
+    <!-- <script src="assets/datatables/pdfmake-0.1.36/pdfmake.min.js"></script> -->
+    <!-- <script src="assets/datatables/pdfmake-0.1.36/vfs_fonts.js"></script> -->
     <script src="assets/datatables/Buttons-2.3.5/js/buttons.html5.min.js"></script>
      
     <!-- código JS propìo-->    
@@ -290,13 +290,6 @@
                 }
             }
 
-        ?>
-    </script>
- 		 	  	
-    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script>
-        <?php
-
             if(isset($user_reg)){
                 if($user_reg==1){
                     echo "var user_reg = '$user_reg';";
@@ -315,7 +308,8 @@
             }
         ?>
     </script>
-        
+       
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="assets/js-general/codigo.js"></script>
     <script src="assets/js-general/alertas.js"></script>
 </body>
