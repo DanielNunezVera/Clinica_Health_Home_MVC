@@ -31,7 +31,10 @@
                                     <label>Costo</label>
                                     <input type="number" name="costo_espec" id="costo_espec" required>
                                 </p>
-                                <button class="btn btn-primary btn-lg btn-block" name="registrar" id="reistrar" type="submit">Registrar</button>
+                                <p class="block">
+                                <a href="index.php?c=Administrador&a=gestion_espec" class="btn btn-lg btn-outline-danger ">&nbsp&nbspVolver&nbsp&nbsp</a>
+                                <button class="btn btn-primary btn-lg"  style="float: right" name="registrar" id="reistrar" type="submit">Registrar</button>
+                                </P>
                             </form>
                         </div>
                     </div>

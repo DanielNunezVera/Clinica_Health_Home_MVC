@@ -72,6 +72,7 @@
                                     <a href="index.php?c=Auxiliar&a=index" class="btn btn-lg btn-outline-danger">Volver</a>
                                 </p>
                                 <p>
+                                    <a href="index.php?c=Administrador&a=gestion_u" class="btn btn-lg btn-outline-danger">&nbsp&nbspVolver&nbsp&nbsp</a>  
                                     <button class="btn btn-primary btn-lg btn-block" style="float: right;" name="registrar" id="registrar" type="submit">Actualizar</button>
                                 </p>
                             </form>
