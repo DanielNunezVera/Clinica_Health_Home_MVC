@@ -87,6 +87,14 @@
                     unset($_SESSION["descti_pac_age"]);
                 }
             }
+
+            if(isset($_SESSION["error_citas"])){
+                if ($_SESSION["error_citas"]=="1") {
+                    echo "var alerta_error_cita = '1';";
+                    echo "var alerta_m_aux = '9';";
+                    unset($_SESSION["error_citas"]);
+                }
+            }
         ?>
     </script>
     <script src="assets/js-general/alertas.js"></script>

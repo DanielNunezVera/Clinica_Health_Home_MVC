@@ -11,6 +11,7 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Merriweather+Sans:wght@800&display=swap');
     </style>
+    <?php require_once "views/Links/js.php"?>
 </head>
 <body>
     <header>
@@ -36,6 +37,5 @@
         <iframe src="index.php?c=Paciente&a=acciones" name="header"></iframe>
     </div>
     <script src="assets/js-general/alertas.js"></script>
-    <?php require_once "views/Links/js.php"?>
 </body>
 </html>

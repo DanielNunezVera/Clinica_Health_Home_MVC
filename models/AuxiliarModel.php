@@ -5,6 +5,7 @@
 		private $db;
 		private $citas_pac;
     	private $citas_prof;
+		private $especialidad;
 		
 		
 		public function __construct(){
@@ -12,6 +13,7 @@
 			$this->citas_pac = array();
       		$this->citas_prof = array();
 			$this->auxiliar = array();
+			$this->especialidad = array();
 		}
 		
 		public function get_citas_pac()
@@ -57,7 +59,7 @@
 		
 		public function cancelar_cita_pac($id_cita){
 			
-			$resultado = $this->db->query("UPDATE cita SET id_paciente = null, estado_cita = 0 WHERE id_cita = '$id_cita'");
+			$resultado = $this->db->query("UPDATE cita SET id_paciente = null, estado_cita = 0 WHERE id_cita = '$id_cita' AND estado_pago_cita = 0");
 			$resultado2 = $this->db->affected_rows;
 			$this->db->close();
 			return $resultado2;
@@ -83,7 +85,7 @@
 
 		public function get_especialidad()
 		{
-			$sql = "SELECT DISTINCT especialidad.id_especialidad, especialidad.descrip_espec, especialidad.costo_espec, especialidad.estado_espec FROM profesional INNER JOIN especialidad ON profesional.id_especialidad = especialidad.id_especialidad WHERE estado_espec = '1'";
+			$sql = "SELECT DISTINCT especialidad.id_especialidad, especialidad.descrip_espec, especialidad.costo_espec, especialidad.estado_espec FROM profesional INNER JOIN especialidad ON profesional.id_especialidad = especialidad.id_especialidad WHERE estado_espec = '1' AND profesional.estado_prof='1'";
 			$resultado = $this->db->query($sql);
 			while($row = $resultado->fetch_assoc())
 			{

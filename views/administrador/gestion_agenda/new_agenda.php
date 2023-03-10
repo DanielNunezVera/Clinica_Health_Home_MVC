@@ -12,6 +12,7 @@
     <link href="//cdn.jsdelivr.net/npm/@sweetalert2/theme-minimal@4/minimal.css" rel="stylesheet">
     <link rel="stylesheet" href="assets/fullcalendar/lib/main.min.css">
     <script src="assets/js-general/jquery-3.6.0.min.js"></script>
+    <script src="assets/js-general/bootstrap.min.js"></script>
     <script src="assets/fullcalendar/lib/main.js"></script>
     <script src="https://kit.fontawesome.com/68088d55fd.js" crossorigin="anonymous"></script>
 

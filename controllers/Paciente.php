@@ -48,8 +48,12 @@
             
             $paquete=  new Paciente_model();
             $data["especialidad"] = $paquete->get_especialidad();
-			require_once "views/pacientes/agenda_cita/agendarcita.php";
-				
+            if(count($data["especialidad"])==0){
+                header("Location: index.php?c=Paciente&a=acciones");
+                $_SESSION['sin_personal'] = "1";
+            }else{
+                require_once "views/pacientes/agenda_cita/agendarcita.php";
+            }
 		}
 
         public function agendar_cita_f(){

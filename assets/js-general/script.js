@@ -8,7 +8,7 @@
                 events.push({ id: row.id_cita, title: row.id_cita, start: row.fechacita_horainicio, end: row.fechacita_horafin });
             })
         }else {
-            alert("pvto");
+            alert("Hola como tas?");
         }
         var date = new Date()
         var d = date.getDate(),
