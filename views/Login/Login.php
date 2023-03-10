@@ -166,8 +166,8 @@
 					<a href="mailto:<nowiki> clinica.health.home7@gmail.com" class="fa fa-envelope-o"></a>
 					<br>
 					<br>
-					<h2>¿NECESITAS AYUDA?</h2>
 					<!-- <p>Revisa las Preguntas Frecuentes</p> -->
+					<h2>¿NECESITAS AYUDA?</h2>
 					<a href="index.php?c=Login&a=ayuda" class="fa fa-info-circle"></a>
                 </div>
             </div>

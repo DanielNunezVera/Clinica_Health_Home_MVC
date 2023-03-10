@@ -160,6 +160,9 @@
     <!-- código JS propìo-->    
     <script type="text/javascript" src="assets/js-general/main.js"></script>  
     
+    <!-- para los estilos Excel -->
+    <script src="assets/datatables/datatables-buttons-excel-styles/js/buttons.html5.styles.min.js"></script>
+    <script src="assets/datatables/datatables-buttons-excel-styles/js/buttons.html5.styles.templates.min.js"></script>
 
     <script>
         <?php

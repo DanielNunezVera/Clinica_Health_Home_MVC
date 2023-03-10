@@ -23,7 +23,12 @@ $(document).ready(function() {
 				extend:    'excelHtml5',
 				text:      '<i class="fas fa-file-excel"></i> ',
 				titleAttr: 'Exportar a Excel',
-				className: 'btn btn-success'
+				className: 'btn btn-success',
+				excelStyles: {
+
+					template: 'cyan_medium'
+
+				}
 			},
 			{
 				extend:    'pdfHtml5',
