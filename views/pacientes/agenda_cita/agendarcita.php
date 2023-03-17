@@ -120,3 +120,4 @@
     <script src="assets/js-general/alertas.js"></script>
 </body>
 </html>
+<img src="" alt="">
