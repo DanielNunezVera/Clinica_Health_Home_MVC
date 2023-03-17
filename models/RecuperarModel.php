@@ -16,12 +16,6 @@ require_once 'vendor/autoload.php';
             $this->sched_res = array();
 		}
 
-		public function vali_rec_pass($id_tipo_doc, $num_doc, $tipo_rol, $new_pass){
-            $sql = "CALL vali_rec_password ('$id_tipo_doc', '$num_doc', '$tipo_rol', '$new_pass');";
-            $resultado = $this->db->query($sql);
-            $resultado1 = $this ->db->affected_rows;
-            return $resultado1;
-		}
 
         public function get_email($id_tipo_doc, $num_doc, $tipo_rol){
             $sql = "CALL email('$id_tipo_doc', '$num_doc', '$tipo_rol');";
@@ -61,12 +55,13 @@ require_once 'vendor/autoload.php';
                 //Content
                 $mail->isHTML(true);                                  //Set email format to HTML
                 $mail->Subject = 'Codigo de acceso a la plataforma';
-                $mail->Body    = 'La nueva contraseña para poder ingresar a los servicios es:<b>'.$key.'</b>';
+                $mail->Body    = 'El nuevo codigo para poder ingresar a los servicios es: <b>'.$key.'</b>';
                 // $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
                 $mail->send();
-                return "1";
+                return 1;
             } catch (Exception $e) {
-                return "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+                return 0;
+                // return "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
             }
 		}
 

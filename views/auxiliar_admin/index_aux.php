@@ -20,7 +20,7 @@
             <div class="cover"> 
                 <div class="caja1">
                     <div class="row">
-                        <h1>Bienvenido - Aux</h1>
+                        <h1>Bienvenido auxiliar administrativo</h1>
                         <a href="index.php?c=Auxiliar&a=citas_pac" class="boton">Citas Pacientes</a>
                         <br>
                         <a href="index.php?c=Auxiliar&a=citas_prof" class="boton">Citas Profesionales</a>

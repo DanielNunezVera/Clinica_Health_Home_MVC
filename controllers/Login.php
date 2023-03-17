@@ -137,9 +137,19 @@ class LoginController{
 
     }
 
-    public function restablecer_contraseña(){
+
+    public function restablecer_contraseña($id){
         $tipo_doc = new Login_Model();
         $data["tipo_doc"] = $tipo_doc->get_tipo_doc();
+        if ($id=="error_email") {
+            $alerta_recuperar_pass = 1;
+        }
+        elseif ($id=="pass_send") {
+            $alerta_recuperar_pass = 2;
+        }
+        elseif ($id=="error_especial") {
+            $alerta_recuperar_pass = 3;
+        }
         require_once "views/restablecer_contra/restablecer_pass.php";
     }
 
