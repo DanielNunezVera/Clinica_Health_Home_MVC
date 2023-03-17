@@ -1,4 +1,7 @@
-const btn_menu = document.getElementById("btn_menu")
+document.addEventListener('DOMContentLoaded', ()=>{
+
+
+    const btn_menu = document.getElementById("btn_menu")
 if (btn_menu) {
     btn_menu.addEventListener("click", function(){
         nav.style.right = "0px";
@@ -28,3 +31,5 @@ background_menu = document.getElementById("back_menu");
 //     nav.style.right = "-250px";
 //     background_menu.style.display = "none";
 // }
+
+})

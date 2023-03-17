@@ -61,7 +61,7 @@ require_once 'vendor/autoload.php';
                 //Content
                 $mail->isHTML(true);                                  //Set email format to HTML
                 $mail->Subject = 'Codigo de acceso a la plataforma';
-                $mail->Body    = 'La nueva contraseña para poder inresar a los servicios es:<b>'.$key.'</b>';
+                $mail->Body    = 'La nueva contraseña para poder ingresar a los servicios es:<b>'.$key.'</b>';
                 // $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
                 $mail->send();
                 return "1";

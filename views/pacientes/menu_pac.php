@@ -37,5 +37,6 @@
         <iframe src="index.php?c=Paciente&a=acciones" name="header"></iframe>
     </div>
     <script src="assets/js-general/alertas.js"></script>
+    <script src="assets/js-general/menu-responsive.js"></script>
 </body>
 </html>
