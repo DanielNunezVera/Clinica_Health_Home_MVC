@@ -48,10 +48,19 @@ de actualizar datos, una vez ubicado ahi ingresara el codigo que llego a su corr
 primera pagina.</p>
                                 </div>
                                 <div class="caja-pregunta">
-                                    <p class="pregunta">¿Cómo agendar una cita?<img src="assets/images/iconmonstr-plus-1.svg" alt="Abrir respuesta"></p>
-                                    <p class="respuesta">Los pacientes que quieran agendar una cita deberan iniciar session con su cuenta, una vez lo haya hecho debera ingresar agendar cita dando click al boton "Agendar cita"
-donde debe elegir la especialidad ademas de la fecha, si hay disponibilidad lo enviara a un nuevo apartado donde vera las citas describiendo profesinal, especialidad, fecha y hora da clikc a l que vea conveniente 
-y para agendar debe dar click en el botn "Agendar", eso desplegara una pequeña ventana con el resumen de la cita donde podra confirmar la cita dando click al boton "Aceptar" su cita quedara agendada.</p>
+                                    <p class="pregunta">¿Por qué me aparece un mensaje de advertencia <br> comentado “Error en los datos” cuando inicio
+sesión?<img src="assets/images/iconmonstr-plus-1.svg" alt="Abrir respuesta"></p>
+                                    <p class="respuesta">El sistema muestra este tipo de error, ya que al momento de digitar los datos
+cometido algún error en su información diligenciada, como lo puede ser: contraseña no
+coincide con el número de documentos y tipo de documento diligenciados o viceversa.</p>
+                                </div>
+                                <div class="caja-pregunta">
+                                    <p class="pregunta">¿No recuerda su contraseña?<img src="assets/images/iconmonstr-plus-1.svg" alt="Abrir respuesta"></p>
+                                    <p class="respuesta">En caso de que sea un usuario nuevo, la contraseña
+será el mismo número de documento inscrito en el proceso de registro, de lo contrario, en el
+inicio de sesión, en la parte inferior del formulario de pacientes, estará un botón que dice
+“recuperar contraseña” en donde deberá digitar el tipo de documento y el número para poder
+validar y enviar una contraseña temporal al correo registrado por el usuario.</p>
                                 </div>
                             </div>
                         </div>

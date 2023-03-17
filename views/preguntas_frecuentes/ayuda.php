@@ -26,32 +26,35 @@
                         <div class="preguntas" style="margin-top: 1em;">
                             <div class="contenedor-preguntas">
                                 <div class="caja-pregunta">
-                                    <p class="pregunta">¿Cómo inicio sesión?<img src="assets/images/iconmonstr-plus-1.svg" alt="Abrir respuesta"></p>
-                                    <p class="respuesta">Para ingrear a mi cuenta debo identidicar mi rol, ya sea paciente, auxiliar, administrador o profesinal. 
-una vez identificado que tipo de rol poseo me dirigo al portal correspondinte usurios Pacientes si es paciente o si es profesional (Auxiliar Administrativo, 
-profesional o paciente), 
-seleccione el tipo de documento de identidad posteriormente en escriba el número de identidad, finalmente escriba la contraseña y da click en enviar,
-si esta registrado y los datos son correctos ingresará a su cuenta.<br>
-En portal funcionarios seleccione el rol con el cual va ingresar, selecione el tipo de documento, escriba su número de documento y posterirmente su contraseña, 
-da click al botón enviar y si esta registrado y los datos son correctos ingresará a su cuenta.</p>
-                                </div>
-                                <div class="caja-pregunta">
-                                    <p class="pregunta">¿Cómo restablecer la contraseña?<img src="assets/images/iconmonstr-plus-1.svg" alt="Abrir respuesta"></p>
-                                    <p class="respuesta">Se ubica en donde normalmnte inicia sesión, de bajo del boton "Enviar" encontrara el boton "Restablecer contraseña" da click, lo va a redirigir a una nueva ventana donde
-debe selecciona su rol o usuario ya sea paciente,Auxiliar Administrativo o Profesional, digita sus datos en los demas apartados despues dbera hacer click en el boton 
-"Restablecer contraseña" donde se enviara un codigo que sera su nueva contraseña, una vez recuperda e ingrese a su cuenta se recomienda cambiar la contraseña en el apartdado 
-de actualizar datos, una vez ubicado ahi ingresara el codigo que llego a su correo en el apartado de contraseña actual, despues podra escribir su nueva clave no menor a 8 caracteres, dara click en boton "actualizar"</p>
-                                </div>
-                                <div class="caja-pregunta">
-                                    <p class="pregunta">¿Cómo puedo registrarme?<img src="assets/images/iconmonstr-plus-1.svg" alt="Abrir respuesta"></p>
-                                    <p class="respuesta">Debe comunicarse con la Clinica Health Home a traves de sus canales de atencion, ya sea por sus redes sociales, email o telefono que aparece en la parte inferior de la 
-primera pagina.</p>
-                                </div>
-                                <div class="caja-pregunta">
                                     <p class="pregunta">¿Cómo agendar una cita?<img src="assets/images/iconmonstr-plus-1.svg" alt="Abrir respuesta"></p>
                                     <p class="respuesta">Los pacientes que quieran agendar una cita deberan iniciar session con su cuenta, una vez lo haya hecho debera ingresar agendar cita dando click al boton "Agendar cita"
 donde debe elegir la especialidad ademas de la fecha, si hay disponibilidad lo enviara a un nuevo apartado donde vera las citas describiendo profesinal, especialidad, fecha y hora da clikc a l que vea conveniente 
 y para agendar debe dar click en el botn "Agendar", eso desplegara una pequeña ventana con el resumen de la cita donde podra confirmar la cita dando click al boton "Aceptar" su cita quedara agendada.</p>
+                                </div>
+                                <!-- <div class="caja-pregunta">
+                                    <p class="pregunta">¿Cómo puedo agendar una cita?<img src="assets/images/iconmonstr-plus-1.svg" alt="Abrir respuesta"></p>
+                                    <p class="respuesta">Debe iniciar sesión en la plataforma y dirigirse en el
+módulo agendar cita donde debe escoger fecha y especialidad, seguidamente se arrojará una
+lista de citas disponibles donde seleccionará la hora y profesional que desee.</p>
+                                </div> -->
+                                <div class="caja-pregunta">
+                                    <p class="pregunta">¿Aparece la tabla de citas disponibles vacía?<img src="assets/images/iconmonstr-plus-1.svg" alt="Abrir respuesta"></p>
+                                    <p class="respuesta">Según el día y especialidad escogida, puede
+llegar a ver casos que la agenda este totalmente ocupado, por lo que tendrá que elegir otra
+fecha en el calendario o esperar a que se libere una cita para el día seleccionado.</p>
+                                </div>
+                                <div class="caja-pregunta">
+                                    <p class="pregunta">¿Cómo puedo cancelar mi cita agendada?<img src="assets/images/iconmonstr-plus-1.svg" alt="Abrir respuesta"></p>
+                                    <p class="respuesta">Tendrá que dirigirse al módulo de citas
+agendadas y seleccionar la cita que desea cancelar, luego deberá dar clic en el botón “cancelar”
+o podrá llamar a atención al cliente de la clínica para poder cancelarla si la plataforma pueda
+tener fallos.</p>
+                                </div>
+                                <div class="caja-pregunta">
+                                    <p class="pregunta">¿Cómo puedo actualizar mi contraseña en la plataforma?<img src="assets/images/iconmonstr-plus-1.svg" alt="Abrir respuesta"></p>
+                                    <p class="respuesta">Deberá dirigirse botón
+“actualizar datos” del menú superior o barra de navegación lateral en caso de dispositivos
+móviles, y allí podrá actualizar los campos de “correo, teléfono y contraseña”.</p>
                                 </div>
                             </div>
                         </div>

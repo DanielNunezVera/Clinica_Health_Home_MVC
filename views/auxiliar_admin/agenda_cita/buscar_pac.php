@@ -17,24 +17,6 @@
     </style>
 </head>
 <body>
-    <header>
-        <div class="container__menu">
-            <div class="logo">
-                <img src="assets/images/Logo2.png" alt="">
-            </div>
-            <div class="menu">
-                <i class="fas fa-bars" id="btn_menu"></i>
-                <div id="back_menu"></div>
-                <nav id="nav">
-                    <img src="assets/images/ajustes.png" alt="">
-                    <ul>
-                        <li><a href="index_admin.php">Inicio</a></li>
-                        <li><a href="controller/sesiones/cerrarsesion.php">Cerrar sesion</a></li>
-                    </ul>
-                </nav>
-            </div>
-        </div>
-    </header>
     <main>
         <div class="container__cover">
             <div class="cover"> 
@@ -64,7 +46,7 @@
         <div class="help">
             <input type="checkbox" id="btn-mas" style="display: none;">
             <div class="apartados">
-                <a href="#" class="icon-phone"></a>
+                <!-- <a href="#" class="icon-phone"></a> -->
                 <a href="index.php?c=Auxiliar&a=ayuda" class="icon-help"></a>
             </div>
             <div>

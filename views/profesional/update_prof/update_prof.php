@@ -90,7 +90,7 @@
         <div class="help">
             <input type="checkbox" id="btn-mas" style="display: none;">
             <div class="apartados">
-                <a href="#" class="icon-phone"></a>
+                <!-- <a href="#" class="icon-phone"></a> -->
                 <a href="index.php?c=Profesional&a=ayuda1" class="icon-help"></a>
             </div>
             <div>

@@ -53,7 +53,7 @@
         <div class="help">
             <input type="checkbox" id="btn-mas" style="display: none;">
             <div class="apartados">
-                <a href="#" class="icon-phone"></a>
+                <!-- <a href="#" class="icon-phone"></a> -->
                 <a href="index.php?c=Paciente&a=ayuda" class="icon-help"></a>
             </div>
             <div>
@@ -120,4 +120,4 @@
     <script src="assets/js-general/alertas.js"></script>
 </body>
 </html>
-<img src="" alt="">
+<!-- <img src="" alt=""> -->
