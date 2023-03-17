@@ -59,7 +59,8 @@
             </div>
         </div>
     </main>
-
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="assets/js-general/alertas.js"></script>
     <script>
     <?php
 
@@ -72,8 +73,5 @@
         };
     ?>
     </script>
-    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="assets/js-general/menu-responsive.js"></script>
-    <script src="assets/js-general/alertas.js"></script>
 </body>
 </html>
