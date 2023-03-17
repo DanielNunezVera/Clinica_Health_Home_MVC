@@ -29,7 +29,8 @@
                                     <input type="text" name="id_consultorios" id="id_consultorios" required>
                                 </p>
                                 <p class="block">
-                                <button class="btn btn-primary btn-lg btn-block" name="registrar" id="reistrar" type="submit">Registrar</button>
+                                <a href="index.php?c=Administrador&a=gestion_consult" class="btn btn-lg btn-outline-danger">&nbsp&nbspVolver&nbsp&nbsp</a>  
+                                <button class="btn btn-primary btn-lg btn-block" style="float: right" name="registrar" id="reistrar" type="submit">Registrar</button>
                                 </p>
                             </form>
                         </div>

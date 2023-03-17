@@ -47,7 +47,8 @@
                                     <input type="datetime" name="" id="" value="<?php echo $data["especialidad"]["create_espec"]?>" readonly>
                                 </p>
                                 <p class="block">
-                                <button class="btn btn-primary btn-lg btn-block" name="registrar" id="reistrar" type="submit">Actualizar</button>
+                                    <a href="index.php?c=Administrador&a=gestion_espec" class="btn btn-lg btn-outline-danger">&nbsp&nbspVolver&nbsp&nbsp</a>
+                                    <button class="btn btn-primary btn-lg" style="float: right" name="registrar" id="reistrar" type="submit">Actualizar</button>
                                 </p>
                             </form>
                         </div>

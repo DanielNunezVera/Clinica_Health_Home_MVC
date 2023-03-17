@@ -72,8 +72,8 @@
                                     <input type="text" name="create_aux" id="create_aux" value="<?php echo $data["auxiliar"]["create_aux"]?>" readonly>
                                 </p>
                                 <p class="block">
-                                <button class="btn btn-primary btn-lg btn-block" name="registrar" id="reistrar" type="submit">Actualizar</button>
-                                </p>
+                                <a href="index.php?c=Administrador&a=gestion_u" class="btn btn-lg btn-outline-danger">&nbsp&nbspVolver&nbsp&nbsp</a>  
+                                <button class="btn btn-primary btn-lg btn-block" style="float: right" name="registrar" id="reistrar" type="submit">Actualizar</button>
                                 </p>
                             </form>
                         </div>
