@@ -4,10 +4,12 @@ class RecuperarpController {
 
         public function __construct(){
             require_once "models/RecuperarModel.php";
+            require_once "models/LoginModel.php";
         }
 
         public function Restablecer_pass(){
             $rest_pass= new Recuperar_model();
+            $rest_pass_1= new Login_model();
             $id_tipo_doc = $_POST['id_tipo_doc'];
             $num_doc = $_POST['num_doc'];
             $tipo_usuario = $_POST['tipo_usuario'];
@@ -25,25 +27,22 @@ class RecuperarpController {
                 $key .= substr($pattern, mt_rand(0,$max), 1);
             }
             $new_pass = password_hash($key, PASSWORD_BCRYPT);
-            $resultado_1 = $rest_pass->vali_rec_pass($id_tipo_doc, $num_doc, $tipo_usuario, $new_pass);
-            if($resultado_1>0){
-                $data["email"] = $rest_pass->get_email($id_tipo_doc, $num_doc, $tipo_usuario);
-                foreach ($data["email"] as $dato) {
-                    $email = $dato["$correo"];
+            $data["email"] = $rest_pass->get_email($id_tipo_doc, $num_doc, $tipo_usuario);
+            foreach ($data["email"] as $dato) {
+                $email = $dato["$correo"];
+            }
+            $resultado_2 = $rest_pass ->send_email($key, $email);
+            if($resultado_2==1){
+                $resultado_1 = $rest_pass_1->vali_rec_pass($id_tipo_doc, $num_doc, $tipo_usuario, $new_pass);
+                if ($resultado_1>0) {
+                    header ("Location: index.php?c=Login&a=restablecer_contraseña&id=pass_send");
+                }else{
+                    header ("Location: index.php?c=Login&a=restablecer_contraseña&id=error_especial");
                 }
-                $resultado_2 = $rest_pass -> send_email($key, $email);
-                if($resultado_2=="1"){
-                    $_SESSION["rec_contra"]="1";
-                    header ("Location: index.php?c=Login&a=restablecer_contraseña");
-                    // echo $_SESSION["rec_contra"];
-                }else {
-                    $_SESSION["rec_contra"]=$resultado_2;
-                }
-            }else{
-                $_SESSION["rec_contra"]="0";
+            }else {
+                header ("Location: index.php?c=Login&a=restablecer_contraseña&id=error_email");
             }
         }
-
-        }
+    }
 
 ?>

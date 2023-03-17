@@ -23,6 +23,14 @@
 			return $this->tipo_doc;
 		}
 
+        public function vali_rec_pass($id_tipo_doc, $num_doc, $tipo_rol, $new_pass){
+            $sql = "CALL vali_rec_password ('$id_tipo_doc', '$num_doc', '$tipo_rol', '$new_pass');";
+            $resultado = $this->db->query($sql);
+            $resultado1 = $this ->db->affected_rows;
+    
+            return $resultado1;
+        }
+
 
         public function validar_funcionario($tipo_rol, $id_tipo_doc, $num_doc){
             if ($tipo_rol=="4") {

@@ -134,6 +134,33 @@ function cerrarsesionadmin(){
                 )
             }
             break;
+            case "5":
+              if (user_error == '1') {
+                Swal.fire(
+                  '¡Alerta!',
+                  '¡El usuario no existe o se encuentra desactivado, vuelva a intentarlo!',
+                  'warning'
+                  )
+              }
+              break;
+              case "6":
+                if (user_pass_send == '1') {
+                  Swal.fire(
+                    'Proceso exitoso',
+                    'Se ha enviado un correo electronico en donde recibira un codigo para ingresar al sistema',
+                    'success'
+                    )
+                }
+                break;
+                case "7":
+                  if (user_error_especial == '1') {
+                    Swal.fire(
+                      '¡Alerta!',
+                      '¡Ocurrio un error a la hora de realizar el proceso de recuperar contraseña, omita todo correo relacionado y vuelva a intentarlo!',
+                      'warning'
+                      )
+                  }
+                break;
       }
  }
 

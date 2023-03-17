@@ -51,7 +51,7 @@
 					<input type="submit" name="login" class="boton" placeholder="Iniciar sesion"></input>
 					<br>
 					<br>
-					<a href="index.php?c=Login&a=restablecer_contraseña">Restablecer contraseña</a>
+					<a href="index.php?c=Login&a=restablecer_contraseña&id=0">Restablecer contraseña</a>
 				</form>
 
 				<!--Formulario de pacientes-->
@@ -68,7 +68,7 @@
 					<input type="submit" name="login" class="boton" placeholder="Iniciar sesion"></input>
 					<br>
 					<br>
-					<a href="index.php?c=Login&a=restablecer_contraseña">Restablecer contraseña</a>
+					<a href="index.php?c=Login&a=restablecer_contraseña&id=0">Restablecer contraseña</a>
 					<div id="dvTabla"></div>
 				</form>
 			</div>
@@ -121,22 +121,14 @@
 				}
 			}
 			
-			if(isset($_SESSION["rec_contra"])) {
-				if($_SESSION["rec_contra"]=="1"){
-					echo "var recuperar_pass = '1';";
-					echo "var alerta_login = '4';";
-					unset($_SESSION["rec_contra"]);
-				}elseif ($_SESSION["rec_contra"]=='0') {
-					echo "var recuperar_pass = '0';";
-					echo "var alerta_login = '4';";
-					unset($_SESSION["rec_contra"]);
-				}else{
-					echo "var recuperar_pass = '2';";
-					echo "var alerta_login = '4';";
-					echo "var message =".$_SESSION['rec_contra'].";";
-					unset($_SESSION["rec_contra"]);
+			if(isset($alerta_recuperar_pass)) {
+				if($alerta_recuperar_pass=="1"){
+					echo "var user_error = '1';";
+					echo "var alerta_login = '5';";
+					$alerta_recuperar_pass = null;
 				}
 			}
+
 		?>
 	</script>
 	<script src="assets/js-general/alertas.js"></script>
