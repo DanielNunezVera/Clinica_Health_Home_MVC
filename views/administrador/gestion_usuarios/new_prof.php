@@ -31,7 +31,7 @@
                                 </p>
                                 <p>
                                     <label>N° documento</label>
-                                    <input type="number" name="num_doc_prof" id="num_doc_prof">
+                                    <input type="number" name="num_doc_prof" id="num_doc_prof" maxlength="20">
                                 </p>
                                 <p>
                                     <label>Consultorio</label>
@@ -70,7 +70,7 @@
                                 </p>
                                 <p>
                                     <label>Teléfono</label>
-                                    <input type="number" name="tel_prof" id="	tel_prof"required>
+                                    <input type="number" name="tel_prof" id="	tel_prof" maxlength="10" required>
                                 </p>
                                 <p>
                                     <label>Email</label>

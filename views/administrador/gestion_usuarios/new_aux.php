@@ -27,7 +27,7 @@
                                 </p>
                                 <p>
                                     <label>N° documento</label>
-                                    <input type="number" name="num_doc_aux" id="num_doc_aux">
+                                    <input type="number" name="num_doc_aux" id="num_doc_aux" maxlength="20">
                                 </p>
                                 <p>
                                     <label>Nombres</label>
@@ -39,7 +39,7 @@
                                 </p>
                                 <p>
                                     <label>Teléfono</label>
-                                    <input type="number" name="tel_aux" id="	tel_aux"required>
+                                    <input type="number" name="tel_aux" id="tel_aux" maxlength="10" required>
                                 </p>
                                 <p>
                                     <label>Email</label>

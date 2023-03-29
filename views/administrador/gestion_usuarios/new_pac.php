@@ -27,7 +27,7 @@
                                 </p>
                                 <p>
                                     <label class="form-label">N° documento</label>
-                                    <input type="number" name="num_doc_pac" required>
+                                    <input type="number" name="num_doc_pac" maxlength="20" required>
                                 </p>
                                 <p>
                                     <label>Nombres</label>
@@ -39,7 +39,7 @@
                                 </p>
                                 <p>
                                     <label>Teléfono</label>
-                                    <input type="number" name="tel_pac" id="	tel_pac"required>
+                                    <input type="number" name="tel_pac" id="tel_pac" maxlength="10" required>
                                 </p>
                                 <p>
                                     <label>Email</label>

@@ -28,7 +28,7 @@
 
                         } elseif ($dato["sexo_pac"] == "Femenino"){
 
-                            echo "<h1>Bienvenida"." - ".$dato["apellidos_pac"]."</h1>";
+                            echo "<h1>Bienvenida"." - ".$dato["nombres_pac"]."</h1>";
 
                         } else {
 
